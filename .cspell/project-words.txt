@@ -1,0 +1,3 @@
+# Project-specific words
+# Add character names, locations, and custom terms here
+

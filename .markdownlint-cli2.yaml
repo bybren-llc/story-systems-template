@@ -1,0 +1,23 @@
+# Markdownlint configuration
+
+config:
+  # Allow long lines (prose often has long paragraphs)
+  MD013: false
+
+  # Allow inline HTML (needed for some formatting)
+  MD033: false
+
+  # Allow non-H1 first heading
+  MD041: false
+
+  # Allow trailing punctuation in headings
+  MD026: false
+
+  # Allow duplicate headings (chapters may have same titles)
+  MD024:
+    siblings_only: true
+
+globs:
+  - "**/*.md"
+  - "!node_modules/**"
+  - "!exports/**"

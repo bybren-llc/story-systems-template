@@ -1,0 +1,40 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+_site/
+
+# IDE
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log
+npm-debug.log*
+
+# Export outputs (keep structure, ignore generated files)
+exports/pdf/*.pdf
+exports/fdx/*.fdx
+exports/html/*.html
+
+# Source materials - large files kept locally
+sourcematerials/*.pdf
+sourcematerials/*.doc
+sourcematerials/*.docx
+
+# Temporary files
+*.tmp
+*.temp
+*~
+
+# Test coverage
+coverage/

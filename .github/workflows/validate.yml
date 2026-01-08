@@ -1,0 +1,140 @@
+name: Validate Project
+
+on:
+  push:
+    branches: [main, 'draft/**']
+  pull_request:
+    branches: [main]
+
+jobs:
+  detect-type:
+    name: Detect Project Type
+    runs-on: ubuntu-latest
+    outputs:
+      type: ${{ steps.detect.outputs.type }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Detect project type
+        id: detect
+        run: |
+          if [ -f ".wtfb/project.json" ]; then
+            TYPE=$(jq -r '.projectType' .wtfb/project.json)
+          else
+            TYPE="unknown"
+          fi
+          echo "type=$TYPE" >> $GITHUB_OUTPUT
+          echo "Detected project type: $TYPE"
+
+  validate-screenplay:
+    name: Validate Screenplay
+    needs: detect-type
+    if: needs.detect-type.outputs.type == 'screenplay'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Validate Fountain syntax
+        run: npm run lint:fountain
+
+      - name: Lint Markdown
+        run: npm run lint:md
+
+      - name: Spell check
+        run: npm run lint:spell
+
+  validate-novel:
+    name: Validate Novel
+    needs: detect-type
+    if: needs.detect-type.outputs.type == 'novel'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint Markdown
+        run: npm run lint:md
+
+      - name: Spell check
+        run: npm run lint:spell
+
+  validate-structure:
+    name: Validate Workspace Structure
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check required files exist
+        run: |
+          echo "Checking workspace structure..."
+
+          REQUIRED_FILES=(
+            "README.md"
+            "CLAUDE.md"
+            ".wtfb/project.json"
+          )
+
+          REQUIRED_DIRS=(
+            "sourcematerials"
+            "exports"
+            "templates"
+            "marketing"
+          )
+
+          MISSING=0
+
+          for file in "${REQUIRED_FILES[@]}"; do
+            if [ ! -f "$file" ] && [ ! -L "$file" ]; then
+              echo "Missing required file: $file"
+              MISSING=1
+            else
+              echo "Found: $file"
+            fi
+          done
+
+          for dir in "${REQUIRED_DIRS[@]}"; do
+            if [ ! -d "$dir" ]; then
+              echo "Missing required directory: $dir"
+              MISSING=1
+            else
+              echo "Found: $dir/"
+            fi
+          done
+
+          if [ $MISSING -eq 1 ]; then
+            echo ""
+            echo "Workspace structure validation failed!"
+            exit 1
+          fi
+
+          echo ""
+          echo "Workspace structure is valid!"
+
+      - name: Validate project.json
+        run: |
+          if [ -f ".wtfb/project.json" ]; then
+            jq empty .wtfb/project.json && echo "project.json is valid JSON"
+          fi
+
+      - name: Validate marketing config
+        run: |
+          if [ -f "marketing/wtfb-marketing.json" ]; then
+            jq empty marketing/wtfb-marketing.json && echo "wtfb-marketing.json is valid JSON"
+          fi

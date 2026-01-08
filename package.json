@@ -1,0 +1,30 @@
+{
+  "name": "wtfb-project",
+  "version": "1.0.0",
+  "description": "WTFB Creative Project",
+  "private": true,
+  "scripts": {
+    "validate": "npm run lint:fountain && npm run lint:md && npm run lint:spell",
+    "lint:fountain": "node scripts/validate-fountain.js",
+    "lint:md": "markdownlint-cli2 '**/*.md' '#node_modules'",
+    "lint:spell": "cspell '**/*.{md,fountain,txt}' --no-progress",
+    "init": "bash scripts/init-project.sh"
+  },
+  "devDependencies": {
+    "cspell": "^8.0.0",
+    "markdownlint-cli2": "^0.12.0"
+  },
+  "keywords": [
+    "wtfb",
+    "screenplay",
+    "fountain",
+    "creative",
+    "film"
+  ],
+  "author": "Words To Film By <dev@wordstofilmby.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bybren-llc/wtfb-projects-template.git"
+  }
+}

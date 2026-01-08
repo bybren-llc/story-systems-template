@@ -1,0 +1,12 @@
+{
+  "recommendations": [
+    "piersdeseilligny.betterfountain",
+    "streetsidesoftware.code-spell-checker",
+    "davidanson.vscode-markdownlint",
+    "yzhang.markdown-all-in-one",
+    "esbenp.prettier-vscode",
+    "eamodio.gitlens",
+    "github.vscode-pull-request-github"
+  ],
+  "unwantedRecommendations": []
+}

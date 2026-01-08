@@ -1,0 +1,47 @@
+{
+  "editor.formatOnSave": true,
+  "editor.wordWrap": "on",
+  "editor.rulers": [80, 100],
+  "files.autoSave": "afterDelay",
+  "files.autoSaveDelay": 1000,
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+
+  "cSpell.words": [],
+  "cSpell.customDictionaries": {
+    "project-words": {
+      "name": "project-words",
+      "path": "${workspaceFolder}/.cspell/project-words.txt",
+      "addWords": true
+    }
+  },
+
+  "fountain.general.sceneNumbering": true,
+  "fountain.general.synchronizedMarkupAndPreview": true,
+  "fountain.pdf.scene_numbers": "right",
+  "fountain.pdf.print_title_page": true,
+
+  "[fountain]": {
+    "editor.wordWrap": "on",
+    "editor.lineNumbers": "on",
+    "editor.quickSuggestions": false
+  },
+
+  "[markdown]": {
+    "editor.wordWrap": "on",
+    "editor.quickSuggestions": {
+      "other": true,
+      "comments": false,
+      "strings": false
+    }
+  },
+
+  "markdownlint.config": {
+    "MD013": false,
+    "MD033": false,
+    "MD041": false
+  },
+
+  "git.enableSmartCommit": true,
+  "git.autofetch": true
+}

@@ -1,0 +1,146 @@
+name: Deploy Marketing Pages
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'marketing/**'
+      - 'README.md'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: Build Marketing Pages
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Generate site data
+        run: |
+          mkdir -p _site
+
+          # Copy marketing config as site data
+          if [ -f "marketing/wtfb-marketing.json" ]; then
+            cp marketing/wtfb-marketing.json _site/data.json
+          fi
+
+          # Copy assets
+          if [ -d "marketing/assets" ]; then
+            cp -r marketing/assets _site/assets
+          fi
+
+          # Generate index.html from marketing data
+          node -e "
+            const fs = require('fs');
+            const config = JSON.parse(fs.readFileSync('marketing/wtfb-marketing.json', 'utf8'));
+
+            const html = \`<!DOCTYPE html>
+<html lang=\"en\">
+<head>
+    <meta charset=\"UTF-8\">
+    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
+    <title>\${config.project.title} - \${config.project.subtitle || 'WTFB Project'}</title>
+    <meta name=\"description\" content=\"\${config.project.logline}\">
+    <meta property=\"og:title\" content=\"\${config.project.title}\">
+    <meta property=\"og:description\" content=\"\${config.project.logline}\">
+    <meta property=\"og:type\" content=\"website\">
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --text: #fafafa;
+            --accent: #f59e0b;
+            --muted: #a1a1aa;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        .container { max-width: 800px; margin: 0 auto; padding: 2rem; }
+        header { text-align: center; padding: 4rem 0; }
+        h1 { font-size: 3rem; margin-bottom: 0.5rem; }
+        .subtitle { color: var(--accent); font-size: 1.25rem; margin-bottom: 1rem; }
+        .logline { font-size: 1.5rem; color: var(--muted); max-width: 600px; margin: 0 auto; }
+        .meta { display: flex; gap: 1rem; justify-content: center; margin-top: 2rem; flex-wrap: wrap; }
+        .tag { background: #27272a; padding: 0.5rem 1rem; border-radius: 0.5rem; font-size: 0.875rem; }
+        section { padding: 2rem 0; border-top: 1px solid #27272a; }
+        h2 { color: var(--accent); margin-bottom: 1rem; }
+        .cta { display: inline-block; background: var(--accent); color: var(--bg); padding: 1rem 2rem; border-radius: 0.5rem; text-decoration: none; font-weight: 600; margin-top: 1rem; }
+        .cta:hover { opacity: 0.9; }
+        footer { text-align: center; padding: 2rem; color: var(--muted); font-size: 0.875rem; }
+        footer a { color: var(--accent); }
+    </style>
+</head>
+<body>
+    <div class=\"container\">
+        <header>
+            <h1>\${config.project.title}</h1>
+            <p class=\"subtitle\">\${config.project.subtitle || ''}</p>
+            <p class=\"logline\">\${config.project.logline}</p>
+            <div class=\"meta\">
+                <span class=\"tag\">\${config.project.type}</span>
+                <span class=\"tag\">\${config.project.status}</span>
+                \${config.metadata.genres.map(g => '<span class=\"tag\">' + g + '</span>').join('')}
+            </div>
+        </header>
+
+        <section>
+            <h2>About</h2>
+            <p>\${config.marketing.oneSheet?.synopsis || 'Coming soon.'}</p>
+            \${config.marketing.tagline ? '<p><em>\"' + config.marketing.tagline + '\"</em></p>' : ''}
+        </section>
+
+        <section>
+            <h2>Team</h2>
+            <p><strong>\${config.creators.primary.role}</strong>: \${config.creators.primary.name}</p>
+        </section>
+
+        \${config.platform.allowInquiries ? '<section><h2>Contact</h2><a class=\"cta\" href=\"mailto:' + config.platform.contactEmail + '\">Get in Touch</a></section>' : ''}
+
+        <footer>
+            <p>Powered by <a href=\"https://wordstofilmby.com\">Words To Film By</a></p>
+        </footer>
+    </div>
+</body>
+</html>\`;
+
+            fs.writeFileSync('_site/index.html', html);
+          "
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    name: Deploy to GitHub Pages
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

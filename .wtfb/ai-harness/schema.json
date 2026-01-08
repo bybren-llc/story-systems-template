@@ -1,0 +1,144 @@
+{
+  "$schema": "https://wtfb.io/schemas/ai-harness.v1.json",
+  "version": "1.0.0",
+  "description": "WTFB Multi-AI Harness - Unified capability definitions for Claude, Gemini, and Codex",
+
+  "projectTypes": {
+    "screenplay": {
+      "format": "fountain",
+      "mainFile": "*.fountain",
+      "plugin": "wtfb-screenwriting"
+    },
+    "novel": {
+      "format": "markdown",
+      "mainFile": "manuscript/*.md",
+      "plugin": "wtfb-novel-writing"
+    },
+    "film-production": {
+      "format": "json",
+      "mainFile": "production/*.json",
+      "plugin": "wtfb-film-production"
+    }
+  },
+
+  "capabilities": {
+    "writing": {
+      "scene": true,
+      "dialogue": true,
+      "action": true,
+      "revision": true,
+      "description": "Create and modify narrative content"
+    },
+    "analysis": {
+      "structure": true,
+      "character": true,
+      "continuity": true,
+      "theme": true,
+      "description": "Analyze story elements and patterns"
+    },
+    "validation": {
+      "format": true,
+      "syntax": true,
+      "spelling": true,
+      "description": "Validate content format and correctness"
+    },
+    "export": {
+      "formats": ["pdf", "fdx", "html", "epub"],
+      "description": "Export to industry-standard formats"
+    }
+  },
+
+  "agents": [
+    {
+      "id": "story-architect",
+      "role": "Structure and beat sheet design",
+      "capabilities": ["structure", "scene-sequencing", "pacing"],
+      "projectTypes": ["screenplay", "novel"]
+    },
+    {
+      "id": "dialogue-writer",
+      "role": "Character voice and dialogue polish",
+      "capabilities": ["dialogue", "subtext", "voice-consistency"],
+      "projectTypes": ["screenplay", "novel"]
+    },
+    {
+      "id": "scene-writer",
+      "role": "Scene drafting and action description",
+      "capabilities": ["scene", "action", "visual-storytelling"],
+      "projectTypes": ["screenplay"]
+    },
+    {
+      "id": "continuity-editor",
+      "role": "Timeline and consistency verification",
+      "capabilities": ["continuity", "timeline", "props"],
+      "projectTypes": ["screenplay", "novel", "film-production"]
+    },
+    {
+      "id": "script-supervisor",
+      "role": "Format compliance and standards",
+      "capabilities": ["format", "syntax", "industry-standards"],
+      "projectTypes": ["screenplay"]
+    },
+    {
+      "id": "research-specialist",
+      "role": "Accuracy and authenticity research",
+      "capabilities": ["research", "fact-checking", "authenticity"],
+      "projectTypes": ["screenplay", "novel", "film-production"]
+    },
+    {
+      "id": "story-analyst",
+      "role": "Audience engagement and market analysis",
+      "capabilities": ["analysis", "audience", "market-fit"],
+      "projectTypes": ["screenplay", "novel"]
+    },
+    {
+      "id": "production-coordinator",
+      "role": "Production planning and logistics",
+      "capabilities": ["scheduling", "budgeting", "logistics"],
+      "projectTypes": ["film-production"]
+    }
+  ],
+
+  "commands": {
+    "prefix": "/",
+    "common": [
+      {"name": "help", "description": "Show available commands"},
+      {"name": "status", "description": "Show project status"}
+    ],
+    "screenplay": [
+      {"name": "start-scene", "args": "[description]", "description": "Begin scene work with context"},
+      {"name": "end-session", "args": null, "description": "Complete session, commit progress"},
+      {"name": "check-format", "args": null, "description": "Validate Fountain syntax"},
+      {"name": "check-continuity", "args": null, "description": "Check consistency across script"},
+      {"name": "new-scene", "args": "[location]", "description": "Add formatted scene heading"},
+      {"name": "new-character", "args": "[name]", "description": "Add character with tracking"},
+      {"name": "export-pdf", "args": null, "description": "Generate industry-standard PDF"},
+      {"name": "writers-room", "args": null, "description": "Convene multi-agent pre-production session"}
+    ],
+    "novel": [
+      {"name": "start-chapter", "args": "[number]", "description": "Begin chapter work"},
+      {"name": "outline", "args": null, "description": "View/edit story outline"},
+      {"name": "character", "args": "[name]", "description": "View/edit character sheet"},
+      {"name": "word-count", "args": null, "description": "Current manuscript length"},
+      {"name": "timeline", "args": null, "description": "View story timeline"}
+    ],
+    "film-production": [
+      {"name": "create-schedule", "args": null, "description": "Build production schedule"},
+      {"name": "call-sheet", "args": "[date]", "description": "Generate call sheet"},
+      {"name": "budget-check", "args": null, "description": "Review budget status"},
+      {"name": "location-scout", "args": "[name]", "description": "Add location details"}
+    ]
+  },
+
+  "resources": {
+    "templates": "templates/",
+    "patterns": "patterns/",
+    "sourcematerials": "sourcematerials/",
+    "exports": "exports/"
+  },
+
+  "validation": {
+    "preCommit": ["lint:fountain", "lint:spell", "lint:md"],
+    "prePush": ["validate"]
+  }
+}

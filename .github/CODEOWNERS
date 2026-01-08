@@ -1,0 +1,19 @@
+# WTFB Project Code Owners
+# These owners will be requested for review when changes are made
+
+# Default owners for everything
+* @project-owner
+
+# Screenplay/manuscript content
+*.fountain @lead-writer
+manuscript/ @lead-writer
+
+# Marketing and platform integration
+marketing/ @marketing-lead
+
+# CI/CD and tooling
+.github/ @tech-lead
+scripts/ @tech-lead
+
+# Project configuration
+.wtfb/ @project-owner @tech-lead

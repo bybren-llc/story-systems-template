@@ -1,0 +1,38 @@
+# Jekyll configuration for GitHub Pages
+# Data is pulled from ../wtfb-marketing.json
+
+title: WTFB Project
+description: A WTFB Creative Project
+theme: minima
+
+# Build settings
+markdown: kramdown
+permalink: pretty
+
+# Exclude from processing
+exclude:
+  - node_modules
+  - vendor
+
+# Custom data (populated by build script from wtfb-marketing.json)
+project:
+  title: "Project Title"
+  type: "screenplay"
+  status: "development"
+  logline: "Your logline here"
+
+metadata:
+  genres: []
+
+creators:
+  primary:
+    name: "Creator Name"
+    role: "Writer"
+
+marketing:
+  tagline: null
+  oneSheet:
+    synopsis: "Project synopsis"
+
+platform:
+  contactEmail: null

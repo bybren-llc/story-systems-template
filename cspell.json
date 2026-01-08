@@ -1,0 +1,31 @@
+{
+  "version": "0.2",
+  "language": "en",
+  "words": [
+    "wtfb",
+    "bybren",
+    "posthog",
+    "fontain",
+    "screenplay",
+    "screenwriting",
+    "logline",
+    "beatsheet",
+    "markdownlint"
+  ],
+  "dictionaries": [
+    "project-words"
+  ],
+  "dictionaryDefinitions": [
+    {
+      "name": "project-words",
+      "path": "./.cspell/project-words.txt",
+      "addWords": true
+    }
+  ],
+  "ignorePaths": [
+    "node_modules",
+    "exports",
+    ".git",
+    "package-lock.json"
+  ]
+}

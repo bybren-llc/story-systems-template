@@ -1,0 +1,46 @@
+{
+  "$schema": "https://wtfb.io/schemas/project.v1.json",
+  "projectType": "screenplay",
+  "name": "wtfb-project",
+  "version": "1.0.0",
+  "template": {
+    "upstream": "https://github.com/bybren-llc/wtfb-projects-template",
+    "version": "1.0.0",
+    "lastSync": null
+  },
+  "plugins": {
+    "installed": [],
+    "optional": [
+      {
+        "name": "wtfb-screenwriting",
+        "source": "github.com/bybren-llc/wtfb-claude-marketplace/plugins/screenwriting",
+        "when": "screenplay"
+      },
+      {
+        "name": "wtfb-novel-writing",
+        "source": "github.com/bybren-llc/wtfb-claude-marketplace/plugins/novel-writing",
+        "when": "novel"
+      },
+      {
+        "name": "wtfb-film-production",
+        "source": "github.com/bybren-llc/wtfb-claude-marketplace/plugins/film-production",
+        "when": "film-production"
+      }
+    ]
+  },
+  "protectedPaths": [
+    "*.fountain",
+    "manuscript/**",
+    "sourcematerials/**",
+    "docs/v*/**",
+    "README.md",
+    "marketing/wtfb-marketing.json",
+    "marketing/assets/**"
+  ],
+  "syncPaths": [
+    ".github/workflows/**",
+    "scripts/**",
+    ".wtfb/ai-harness/**",
+    "templates/**"
+  ]
+}

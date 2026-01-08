@@ -1,0 +1,142 @@
+{
+  "$schema": "https://wtfb.io/schemas/wtfb-marketing.v1.json",
+  "version": "1.0.0",
+
+  "project": {
+    "id": "project-name",
+    "title": "Project Title",
+    "subtitle": "A Short Film",
+    "logline": "One sentence that captures the essence of your story.",
+    "type": "screenplay",
+    "status": "development",
+    "year": 2026
+  },
+
+  "metadata": {
+    "genres": ["Drama"],
+    "themes": [],
+    "keywords": [],
+    "runtime": null,
+    "rating": null,
+    "language": "English",
+    "setting": null
+  },
+
+  "creators": {
+    "primary": {
+      "name": "Your Name",
+      "wtfbUserId": null,
+      "role": "Writer",
+      "bio": null,
+      "links": {
+        "website": null,
+        "twitter": null,
+        "imdb": null
+      }
+    },
+    "contributors": []
+  },
+
+  "marketing": {
+    "tagline": null,
+    "oneSheet": {
+      "headline": null,
+      "synopsis": null,
+      "callToAction": "Coming Soon"
+    },
+    "assets": {
+      "poster": "assets/poster.png",
+      "banner": "assets/banner.png",
+      "socialCards": {
+        "twitter": "assets/social/twitter-card.png",
+        "og": "assets/social/og-image.png"
+      }
+    },
+    "quotes": []
+  },
+
+  "platform": {
+    "visibility": "private",
+    "featured": false,
+    "allowFunding": false,
+    "allowInquiries": false,
+    "contactEmail": null
+  },
+
+  "commerce": {
+    "enabled": false,
+    "stripeAccountId": null,
+    "products": [
+      {
+        "id": "screenplay-pdf",
+        "type": "digital",
+        "name": "Screenplay PDF",
+        "description": "Production-ready screenplay in PDF format",
+        "price": 0,
+        "currency": "USD",
+        "access": "free-download",
+        "enabled": false
+      }
+    ]
+  },
+
+  "analytics": {
+    "posthogProjectId": null,
+    "trackingEvents": [
+      "page_view",
+      "screenplay_download",
+      "funding_inquiry",
+      "merchandise_purchase",
+      "social_share"
+    ],
+    "customProperties": {}
+  },
+
+  "funding": {
+    "enabled": false,
+    "goal": null,
+    "currency": "USD",
+    "tiers": [
+      {
+        "id": "supporter",
+        "name": "Supporter",
+        "amount": 25,
+        "description": "Digital thanks + screenplay credit",
+        "limit": null,
+        "enabled": false
+      },
+      {
+        "id": "associate-producer",
+        "name": "Associate Producer",
+        "amount": 1000,
+        "description": "Associate Producer credit",
+        "limit": 10,
+        "enabled": false
+      },
+      {
+        "id": "executive-producer",
+        "name": "Executive Producer",
+        "amount": 10000,
+        "description": "Executive Producer credit + profit participation",
+        "limit": 3,
+        "enabled": false
+      }
+    ]
+  },
+
+  "rights": {
+    "ownership": "creator",
+    "registrations": [],
+    "licensing": {
+      "optionAvailable": false,
+      "purchaseAvailable": false,
+      "contactRequired": true
+    }
+  },
+
+  "social": {
+    "hashtag": null,
+    "handles": {},
+    "shareText": null
+  }
+}

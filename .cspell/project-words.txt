@@ -22,3 +22,11 @@ intercut
 # File types
 fdx
 epub
+
+# VS Code extension publishers
+piersdeseilligny
+betterfountain
+davidanson
+yzhang
+esbenp
+eamodio

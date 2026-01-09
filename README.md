@@ -112,15 +112,17 @@ Same team structure. Different AI underneath.
 
 ## Quick Start
 
+> **New to WTFB?** See the full [QUICKSTART Guide](docs/QUICKSTART.md) for step-by-step instructions with screenshots and troubleshooting.
+
 ### 1. Create Your Project
 
 ```bash
 # From GitHub template
-gh repo create my-screenplay --template bybren-llc/wtfb-projects-template --clone
+gh repo create my-screenplay --template bybren-llc/wtfb-projects-template --clone --public
 cd my-screenplay
 
-# Initialize
-./scripts/init-project.sh my-screenplay screenplay
+# Initialize (interactive prompts)
+./scripts/init-project.sh
 npm install
 ```
 
@@ -172,6 +174,7 @@ We've already built a [software development harness](https://github.com/bybren-l
 
 | Document | Purpose |
 |----------|---------|
+| [docs/QUICKSTART.md](docs/QUICKSTART.md) | Step-by-step setup guide |
 | [AGENTS.md](AGENTS.md) | Complete agent team reference |
 | [docs/REFERENCE.md](docs/REFERENCE.md) | Commands, patterns, structure |
 | [docs/WORKFLOW.md](docs/WORKFLOW.md) | Git workflow guide |

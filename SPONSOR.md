@@ -9,10 +9,7 @@ Thank you for considering supporting this project!
 [Sponsor on GitHub](https://github.com/sponsors/bybren-llc)
 
 ### Direct Support
-<!-- Add your preferred payment methods -->
-- PayPal: [your-paypal-link]
-- Zelle: your-email@example.com
-- Ko-fi: [your-ko-fi-link]
+- Zelle: Scott@cheddarfox.com
 
 ## What Your Support Enables
 

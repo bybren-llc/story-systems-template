@@ -212,7 +212,12 @@ Want to build a harness for your field?
 3. Set up who has authority over what
 4. Create the common workflows
 
-We've documented exactly how to do this.
+We've documented exactly how to do this:
+
+- **Agent structure**: See [AGENTS.md](../AGENTS.md) for team organization
+- **Harness architecture**: See [.claude/](./.claude/) and [.gemini/](./.gemini/) directories
+- **Plugin creation**: See the [marketplace repository](https://github.com/bybren-llc/wtfb-claude-marketplace)
+- **Skills & patterns**: See [patterns/](../patterns/) for examples
 
 ---
 

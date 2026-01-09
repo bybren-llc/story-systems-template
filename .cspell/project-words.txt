@@ -61,3 +61,7 @@ kofi
 # Jekyll template keywords
 endfor
 endif
+
+# Hollywood terms
+showrunner
+biostatistician

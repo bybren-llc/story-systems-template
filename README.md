@@ -155,6 +155,25 @@ Your AI team is now active. The Story Architect will ensure structure. The Dialo
 
 ---
 
+## Global CLI
+
+Use our tools across any project:
+
+```bash
+npm install -g @wtfb/cli
+```
+
+```bash
+wtfb validate       # Validate Fountain, Markdown, spelling
+wtfb export-pdf     # Export to industry-standard PDF
+wtfb export-fdx     # Export to Final Draft XML
+wtfb export-html    # Export to HTML preview
+```
+
+See [@wtfb/cli on npm](https://www.npmjs.com/package/@wtfb/cli) for full documentation.
+
+---
+
 ## Beyond Screenwriting
 
 The same pattern works for any field that needs expert collaboration:

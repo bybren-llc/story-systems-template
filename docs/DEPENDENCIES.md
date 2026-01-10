@@ -152,9 +152,10 @@ Then use:
 wtfb validate    # Run all validation
 wtfb export-pdf  # Export to PDF
 wtfb export-fdx  # Export to Final Draft
+wtfb export-html # Export to HTML
 ```
 
-See [@wtfb/cli documentation](https://github.com/bybren-llc/wtfb-cli) for details.
+See [@wtfb/cli on npm](https://www.npmjs.com/package/@wtfb/cli) or [GitHub](https://github.com/cheddarfox/wtfb-packages) for details.
 
 ---
 

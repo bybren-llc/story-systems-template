@@ -348,8 +348,21 @@ MIT License - see [LICENSE](LICENSE) for details.
 
 ---
 
+## Attribution
+
+This project is the **Words To Film By™** multi-agent harness.
+
+**Creator**: J. Scott Graham ([@cheddarfox](https://github.com/cheddarfox)) - [jscottgraham.us](https://jscottgraham.us)
+**Organization**: [Bybren LLC](https://github.com/bybren-llc)
+**Enterprise**: [Words To Film By™](https://wordstofilmby.com)
+
+If you use this harness in your own projects, you must include attribution.
+See [NOTICE](NOTICE) for details.
+
+---
+
 <p align="center">
-  <strong>Words To Film By</strong><br>
+  <strong>Words To Film By™</strong><br>
   <a href="https://wordstofilmby.com">Website</a> •
   <a href="mailto:scott@wordstofilmby.com">Contact</a> •
   <a href="https://github.com/sponsors/bybren-llc">Sponsor</a>

@@ -1,6 +1,6 @@
 {
   "name": "wtfb-project",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "description": "WTFB Creative Project",
   "private": true,
   "scripts": {
@@ -37,7 +37,17 @@
     "novel",
     "production"
   ],
-  "author": "Words To Film By <dev@wordstofilmby.com>",
+  "author": {
+    "name": "J. Scott Graham",
+    "email": "scott@wordstofilmby.com",
+    "url": "https://jscottgraham.us"
+  },
+  "contributors": [
+    {
+      "name": "Bybren LLC",
+      "url": "https://github.com/bybren-llc"
+    }
+  ],
   "license": "MIT",
   "repository": {
     "type": "git",

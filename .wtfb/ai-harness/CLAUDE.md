@@ -1,5 +1,7 @@
 # CLAUDE.md
 
+> **Words To Film By™** harness by J. Scott Graham ([@cheddarfox](https://github.com/cheddarfox)) / [Bybren LLC](https://github.com/bybren-llc)
+
 This file provides guidance to Claude Code when working with this WTFB creative project.
 
 ## Project Overview

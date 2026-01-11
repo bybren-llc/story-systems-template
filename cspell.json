@@ -10,7 +10,9 @@
     "screenwriting",
     "logline",
     "beatsheet",
-    "markdownlint"
+    "markdownlint",
+    "cheddarfox",
+    "jscottgraham"
   ],
   "dictionaries": [
     "project-words"

@@ -5,6 +5,37 @@ All notable changes to WTFB Projects Template will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.1] - 2026-01-11
+
+### Added
+
+- **NOTICE File**: Attribution requirements for WTFB™ harness methodology
+  - Required attribution text for derivative works
+  - Clear IP acknowledgment for methodology, agent team structure, and skill system
+
+### Changed
+
+- **LICENSE**: Updated with full creator attribution
+  - J. Scott Graham (@cheddarfox) as creator
+  - Words To Film By™ trademark
+  - Reference to NOTICE file for attribution requirements
+
+- **package.json**: Complete author metadata
+  - Author object with name, email, and website
+  - Contributors array with Bybren LLC
+
+- **README.md**: Added Attribution section
+  - Creator, organization, and enterprise credits
+  - Link to NOTICE file for requirements
+
+- **CLAUDE.md**: Added attribution header
+
+- **marketing/wtfb-marketing.json**: Full creator details
+  - Primary creator with GitHub and website links
+  - Organization details with links
+
+---
+
 ## [1.3.0] - 2026-01-11
 
 ### Added

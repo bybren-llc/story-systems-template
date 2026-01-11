@@ -24,13 +24,22 @@
 
   "creators": {
     "primary": {
+      "name": "J. Scott Graham",
+      "handle": "@cheddarfox",
+      "wtfbUserId": "cheddarfox",
+      "role": "Creator",
+      "bio": "Founder of Words To Film By™",
+      "links": {
+        "website": "https://jscottgraham.us",
+        "github": "https://github.com/cheddarfox"
+      }
+    },
+    "organization": {
       "name": "Bybren LLC",
       "wtfbUserId": "bybren-llc",
-      "role": "Developer",
-      "bio": "Building tools for creative professionals",
+      "role": "Organization",
       "links": {
         "website": "https://wordstofilmby.com",
-        "twitter": null,
         "github": "https://github.com/bybren-llc"
       }
     },
@@ -60,7 +69,7 @@
     "featured": true,
     "allowFunding": true,
     "allowInquiries": true,
-    "contactEmail": "dev@wordstofilmby.com"
+    "contactEmail": "scott@wordstofilmby.com"
   },
 
   "commerce": {

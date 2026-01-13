@@ -192,17 +192,20 @@ code .
 claude
 ```
 
-**Step 6: Install the plugin**
-
-In Claude Code, run:
-```
-/plugin install wtfb-screenwriting@github.com/bybren-llc/wtfb-claude-marketplace/plugins/screenwriting
-```
-
-**Step 7: Start writing!**
+**Step 6: Start writing!**
 
 ```
 /start-scene Opening confrontation in the bar
+```
+
+Your AI team is ready. All 11 agents, 24 skills, and 30 commands work out of the box.
+
+**Optional: Install Marketplace Plugins**
+
+For enhanced workflows (showrunner mode, advanced methodology), you can install plugins:
+
+```
+/plugin install wtfb-screenwriting@github.com/bybren-llc/wtfb-claude-marketplace/plugins/screenwriting
 ```
 
 ---
@@ -264,17 +267,20 @@ code .
 claude
 ```
 
-**Step 6: Install the plugin**
-
-In Claude Code, run:
-```
-/plugin install wtfb-screenwriting@github.com/bybren-llc/wtfb-claude-marketplace/plugins/screenwriting
-```
-
-**Step 7: Start writing!**
+**Step 6: Start writing!**
 
 ```
 /start-scene Opening confrontation in the bar
+```
+
+Your AI team is ready. All 11 agents, 24 skills, and 30 commands work out of the box.
+
+**Optional: Install Marketplace Plugins**
+
+For enhanced workflows (showrunner mode, advanced methodology), you can install plugins:
+
+```
+/plugin install wtfb-screenwriting@github.com/bybren-llc/wtfb-claude-marketplace/plugins/screenwriting
 ```
 
 ---

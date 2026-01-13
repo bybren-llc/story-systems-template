@@ -306,7 +306,7 @@ function main() {
   const commandsDir = '.claude/commands';
   if (fs.existsSync(commandsDir)) {
     const commandFiles = fs.readdirSync(commandsDir)
-      .filter(f => f.endsWith('.md'))
+      .filter(f => f.endsWith('.md') && f.toLowerCase() !== 'readme.md')
       .map(f => path.join(commandsDir, f));
 
     console.log(`${BOLD}Validating ${commandFiles.length} commands...${RESET}`);

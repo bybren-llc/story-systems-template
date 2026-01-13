@@ -245,9 +245,12 @@ Examples:
 
 ---
 
-## Plugin Installation
+## Optional: Marketplace Plugins
 
-Install the appropriate plugin for your project type:
+**The base template is complete.** All 11 agents, 24 skills, and 30 commands work out of the box. You can start writing immediately with `/start-scene`.
+
+For enhanced workflows (showrunner mode, advanced methodology), you can optionally install marketplace plugins:
+
 ```bash
 # Screenplay projects
 /plugin install wtfb-screenwriting@github.com/bybren-llc/wtfb-claude-marketplace/plugins/screenwriting

@@ -147,15 +147,17 @@ cd my-screenplay
 # 3. Install dependencies
 npm install
 
-# 4. Start Claude Code and install the plugin
+# 4. Start Claude Code and start writing!
 claude
-/plugin install wtfb-screenwriting@github.com/bybren-llc/wtfb-claude-marketplace/plugins/screenwriting
-
-# 5. Start writing!
 /start-scene Opening confrontation in the bar
 ```
 
-Your AI team is now active. The Story Architect ensures structure. The Dialogue Writer refines voices. The Script Supervisor catches formatting issues. They work together automatically.
+Your AI team is now active. All 11 agents, 24 skills, and 30 commands work out of the box. The Story Architect ensures structure. The Dialogue Writer refines voices. The Script Supervisor catches formatting issues. They work together automatically.
+
+**Optional: Install marketplace plugins** for enhanced workflows:
+```bash
+/plugin install wtfb-screenwriting@github.com/bybren-llc/wtfb-claude-marketplace/plugins/screenwriting
+```
 
 ---
 

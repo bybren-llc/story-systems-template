@@ -1,0 +1,31 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+
+# Force LF for shell scripts (critical for bash on Linux/macOS/WSL)
+*.sh text eol=lf
+
+# Force CRLF for Windows PowerShell scripts
+*.ps1 text eol=crlf
+
+# Force LF for JavaScript and JSON
+*.js text eol=lf
+*.json text eol=lf
+
+# Force LF for config files
+*.yml text eol=lf
+*.yaml text eol=lf
+*.md text eol=lf
+
+# Force LF for husky hooks
+.husky/* text eol=lf
+
+# Force LF for Fountain screenplays
+*.fountain text eol=lf
+
+# Binary files - don't touch
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.pdf binary

@@ -1,1 +1,14 @@
-npx lint-staged
+#!/usr/bin/env sh
+
+# Ensure node_modules/.bin is in PATH (fixes WSL2/environment issues)
+export PATH="$PATH:./node_modules/.bin"
+
+# Run lint-staged with error handling
+if command -v npx >/dev/null 2>&1; then
+    npx lint-staged
+else
+    echo "⚠️  Warning: npx not found in PATH"
+    echo "   Run 'npm run validate' manually before pushing."
+    echo "   Or use: git commit --no-verify"
+    exit 0  # Don't block commit, but warn
+fi

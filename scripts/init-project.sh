@@ -65,8 +65,8 @@ echo ""
 echo -e "${YELLOW}Initializing $PROJECT_TYPE project: $PROJECT_NAME${NC}"
 echo ""
 
-# Create title from project name
-PROJECT_TITLE=$(echo "$PROJECT_NAME" | sed 's/-/ /g' | sed 's/\b\(.\)/\u\1/g')
+# Create title from project name (portable: works on macOS BSD and GNU)
+PROJECT_TITLE=$(echo "$PROJECT_NAME" | tr '-' ' ' | awk '{for(i=1;i<=NF;i++) $i=toupper(substr($i,1,1)) tolower(substr($i,2))}1')
 CURRENT_DATE=$(date -u +%Y-%m-%dT%H:%M:%SZ)
 CURRENT_YEAR=$(date +%Y)
 
@@ -463,9 +463,13 @@ echo "Creating CLAUDE.md symlink..."
 ln -sf .wtfb/ai-harness/CLAUDE.md CLAUDE.md
 echo -e "  ${GREEN}Created: CLAUDE.md -> .wtfb/ai-harness/CLAUDE.md${NC}"
 
-# Update package.json name
+# Update package.json name (portable: BSD sed on macOS requires -i '')
 echo "Updating package.json..."
-sed -i "s/\"name\": \"wtfb-project\"/\"name\": \"$PROJECT_NAME\"/" package.json
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    sed -i '' "s/\"name\": \"wtfb-project\"/\"name\": \"$PROJECT_NAME\"/" package.json
+else
+    sed -i "s/\"name\": \"wtfb-project\"/\"name\": \"$PROJECT_NAME\"/" package.json
+fi
 
 # Add placeholder files
 echo "Creating placeholder files..."

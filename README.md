@@ -120,41 +120,40 @@ Same team structure. Different AI underneath.
 
 ## Quick Start
 
-> **New to WTFB?** See the full [QUICKSTART Guide](docs/QUICKSTART.md) for step-by-step instructions with screenshots and troubleshooting.
+> **Time to first success**: ~10 minutes
 
-### 1. Install Claude Code
+**Choose your platform:**
+
+| Platform | Init Command |
+|----------|--------------|
+| macOS / Linux / WSL | `./scripts/init-project.sh` |
+| Windows PowerShell | `.\scripts\init-project.ps1` |
+
+**Full instructions:** [docs/QUICKSTART.md](docs/QUICKSTART.md) - Platform-specific prerequisites, troubleshooting, and step-by-step guide.
+
+### The Essentials
 
 ```bash
-npm install -g @anthropic-ai/claude-code
-claude auth  # Authenticate with your Anthropic API key
-```
-
-### 2. Create Your Project
-
-```bash
-# From GitHub template
-gh repo create my-screenplay --template bybren-llc/wtfb-projects-template --clone --public
+# 1. Get the template
+git clone https://github.com/bybren-llc/wtfb-projects-template.git my-screenplay
 cd my-screenplay
 
-# Initialize (interactive prompts)
-./scripts/init-project.sh
+# 2. Initialize (run the command for your platform above)
+./scripts/init-project.sh  # macOS/Linux/WSL
+# .\scripts\init-project.ps1  # Windows PowerShell
+
+# 3. Install dependencies
 npm install
-```
 
-### 3. Install the AI Team Plugin
-
-```bash
-claude  # Start Claude Code in your project
+# 4. Start Claude Code and install the plugin
+claude
 /plugin install wtfb-screenwriting@github.com/bybren-llc/wtfb-claude-marketplace/plugins/screenwriting
-```
 
-### 4. Start Writing
-
-```bash
+# 5. Start writing!
 /start-scene Opening confrontation in the bar
 ```
 
-Your AI team is now active. The Story Architect will ensure structure. The Dialogue Writer will refine voices. The Script Supervisor will catch formatting issues. They work together automatically.
+Your AI team is now active. The Story Architect ensures structure. The Dialogue Writer refines voices. The Script Supervisor catches formatting issues. They work together automatically.
 
 ---
 

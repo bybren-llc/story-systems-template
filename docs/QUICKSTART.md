@@ -4,65 +4,292 @@
 
 This guide walks you through creating your first WTFB project step-by-step.
 
+> **Time to first success**: ~10 minutes
+
 ---
 
-## Prerequisites
+## Choose Your Platform
 
-Before starting, ensure you have:
+| You're using... | Terminal... | Follow... |
+|-----------------|-------------|-----------|
+| macOS | Terminal.app or iTerm2 | [macOS/Linux](#macos--linux) |
+| Linux | Default terminal | [macOS/Linux](#macos--linux) |
+| Windows + WSL | Ubuntu terminal | [Windows (WSL)](#windows-wsl) |
+| Windows (native) | PowerShell or Windows Terminal | [Windows (PowerShell)](#windows-powershell) |
 
-| Requirement | Check Command | Install |
-|-------------|---------------|---------|
-| **Git** | `git --version` | [git-scm.com](https://git-scm.com) |
-| **GitHub CLI** | `gh --version` | [cli.github.com](https://cli.github.com) |
-| **Node.js 18+** | `node --version` | [nodejs.org](https://nodejs.org) |
-| **Claude Code** | `claude --version` | `npm install -g @anthropic-ai/claude-code` |
-| **GitHub Account** | - | [github.com](https://github.com) |
+---
 
-**GitHub CLI Authentication:**
+## Prerequisites by Platform
+
+### macOS
+
+**Install with Homebrew** (recommended):
+
 ```bash
-gh auth login
-```
+# Install Homebrew if not present
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-**Claude Code Setup:**
-```bash
-# Install Claude Code globally
+# Install required tools
+brew install git node
+
+# Install GitHub CLI (optional - only needed for one-command repo creation)
+brew install gh
+
+# Install Claude Code
 npm install -g @anthropic-ai/claude-code
 
-# Authenticate with your Anthropic API key
+# Authenticate Claude Code
 claude auth
 ```
 
----
+**Verify installation:**
 
-## Step 1: Create Your Repository
-
-Open your terminal and run:
-
-```bash
-gh repo create {your-project} --template bybren-llc/wtfb-projects-template --clone --public
-```
-
-**Replace `{your-project}` with your project name** (lowercase, hyphens only).
-
-Examples:
-- `my-first-screenplay`
-- `untitled-thriller`
-- `coffee-shop-romance`
-
-**What happens:**
-- Creates a new repo in your GitHub account
-- Clones it to your computer
-- Copies all template files
+| Check | Command |
+|-------|---------|
+| Git | `git --version` |
+| Node.js 18+ | `node --version` |
+| npm | `npm --version` |
+| Claude Code | `claude --version` |
+| GitHub CLI (optional) | `gh --version` |
 
 ---
 
-## Step 2: Enter Your Project
+### Linux (Debian/Ubuntu)
 
 ```bash
-cd {your-project}
+# Update package lists
+sudo apt update
+
+# Install Git and Node.js
+sudo apt install git nodejs npm
+
+# Install GitHub CLI (optional)
+sudo apt install gh
+# or: sudo snap install gh
+
+# Install Claude Code
+npm install -g @anthropic-ai/claude-code
+
+# Authenticate Claude Code
+claude auth
 ```
 
-You should see this structure:
+**For other distributions:**
+- Fedora/RHEL: Use `dnf` instead of `apt`
+- Arch: Use `pacman -S git nodejs npm`
+
+---
+
+### Windows (WSL)
+
+WSL gives you a full Linux environment on Windows. This is **recommended for development parity** with macOS/Linux users.
+
+**Step 1: Enable WSL**
+
+Open PowerShell as Administrator and run:
+
+```powershell
+wsl --install
+```
+
+Restart your computer when prompted.
+
+**Step 2: Open Ubuntu**
+
+After restart, open "Ubuntu" from the Start menu. Complete the initial setup (username/password).
+
+**Step 3: Follow Linux instructions**
+
+Once in Ubuntu terminal, follow the [Linux (Debian/Ubuntu)](#linux-debianubuntu) instructions above.
+
+---
+
+### Windows (PowerShell)
+
+For native Windows without WSL.
+
+**Option A: Install with winget** (Windows 10 1709+ / Windows 11):
+
+```powershell
+# Install Git
+winget install Git.Git
+
+# Install Node.js LTS
+winget install OpenJS.NodeJS.LTS
+
+# Install GitHub CLI (optional)
+winget install GitHub.cli
+
+# Restart terminal, then install Claude Code
+npm install -g @anthropic-ai/claude-code
+
+# Authenticate Claude Code
+claude auth
+```
+
+**Option B: Manual download**
+
+- Node.js: Download from [nodejs.org](https://nodejs.org) (LTS version)
+- Git: Download from [git-scm.com](https://git-scm.com)
+- GitHub CLI: Download from [cli.github.com](https://cli.github.com)
+
+**Verify installation:**
+
+```powershell
+git --version
+node --version
+npm --version
+claude --version
+```
+
+---
+
+## Setup Steps
+
+### macOS / Linux
+
+**Step 1: Get the template**
+
+Choose one:
+
+**Option A (git clone):**
+```bash
+git clone https://github.com/bybren-llc/wtfb-projects-template.git my-screenplay
+cd my-screenplay
+git remote remove origin
+```
+
+**Option B (GitHub CLI - creates your own repo):**
+```bash
+gh repo create my-screenplay --template bybren-llc/wtfb-projects-template --clone --public
+cd my-screenplay
+```
+
+**Step 2: Initialize your project**
+
+```bash
+./scripts/init-project.sh
+```
+
+You'll be prompted for project name and type (screenplay/novel/film-production).
+
+**Step 3: Install dependencies**
+
+```bash
+npm install
+```
+
+**Step 4: Open in your editor**
+
+```bash
+code .
+# or: cursor .
+```
+
+**Step 5: Start Claude Code**
+
+```bash
+claude
+```
+
+**Step 6: Install the plugin**
+
+In Claude Code, run:
+```
+/plugin install wtfb-screenwriting@github.com/bybren-llc/wtfb-claude-marketplace/plugins/screenwriting
+```
+
+**Step 7: Start writing!**
+
+```
+/start-scene Opening confrontation in the bar
+```
+
+---
+
+### Windows (WSL)
+
+Once you have Ubuntu terminal open, follow the [macOS / Linux](#macos--linux) steps above.
+
+---
+
+### Windows (PowerShell)
+
+**Step 1: Get the template**
+
+Choose one:
+
+**Option A (git clone):**
+```powershell
+git clone https://github.com/bybren-llc/wtfb-projects-template.git my-screenplay
+cd my-screenplay
+git remote remove origin
+```
+
+**Option B (GitHub CLI - creates your own repo):**
+```powershell
+gh repo create my-screenplay --template bybren-llc/wtfb-projects-template --clone --public
+cd my-screenplay
+```
+
+**Step 2: Initialize your project**
+
+```powershell
+.\scripts\init-project.ps1
+```
+
+If you get an execution policy error, run:
+```powershell
+PowerShell -ExecutionPolicy Bypass -File .\scripts\init-project.ps1
+```
+
+You'll be prompted for project name and type (screenplay/novel/film-production).
+
+**Step 3: Install dependencies**
+
+```powershell
+npm install
+```
+
+**Step 4: Open in your editor**
+
+```powershell
+code .
+# or: cursor .
+```
+
+**Step 5: Start Claude Code**
+
+```powershell
+claude
+```
+
+**Step 6: Install the plugin**
+
+In Claude Code, run:
+```
+/plugin install wtfb-screenwriting@github.com/bybren-llc/wtfb-claude-marketplace/plugins/screenwriting
+```
+
+**Step 7: Start writing!**
+
+```
+/start-scene Opening confrontation in the bar
+```
+
+---
+
+## What Gets Created
+
+When you run the init script, you'll see:
+
+| Type | Main File | Additional |
+|------|-----------|------------|
+| `screenplay` | `{name}.fountain` | Beat sheet, character registry |
+| `novel` | `manuscript/chapters/` | Outline, character sheets |
+| `film-production` | `production/schedule.json` | Budget, crew contacts |
+
+**Project structure:**
 ```
 {your-project}/
 ├── .claude/           # AI agent configurations
@@ -82,104 +309,6 @@ You should see this structure:
 
 ---
 
-## Step 3: Initialize Your Project
-
-Run the initialization script:
-
-```bash
-./scripts/init-project.sh
-```
-
-**You'll be prompted for:**
-
-1. **Project name** (lowercase, hyphenated)
-   ```
-   Project name (lowercase, hyphenated): my-screenplay
-   ```
-
-2. **Project type**
-   ```
-   Project types:
-     1) screenplay
-     2) novel
-     3) film-production
-   Select project type [1-3]: 1
-   ```
-
-**What this creates:**
-
-| Type | Main File | Additional |
-|------|-----------|------------|
-| `screenplay` | `{name}.fountain` | Beat sheet, character registry |
-| `novel` | `manuscript/chapters/` | Outline, character sheets |
-| `film-production` | `production/schedule.json` | Budget, crew contacts |
-
----
-
-## Step 4: Install Dependencies
-
-```bash
-npm install
-```
-
-This installs validation tools for:
-- Fountain syntax checking
-- Spell checking
-- Markdown linting
-
----
-
-## Step 5: Open in Your Editor
-
-**VS Code / Cursor:**
-```bash
-code .
-# or
-cursor .
-```
-
-When prompted, install the recommended extensions (Better Fountain, spell checker, etc.).
-
----
-
-## Step 6: Start Claude Code
-
-```bash
-claude
-```
-
----
-
-## Step 7: Install the AI Team Plugin
-
-In Claude Code, run:
-
-```
-/plugin install wtfb-screenwriting@github.com/bybren-llc/wtfb-claude-marketplace/plugins/screenwriting
-```
-
-**What you get:**
-- 11 specialized AI agents
-- 30+ slash commands
-- 17 craft patterns
-- Industry-standard exports
-
----
-
-## Step 8: Start Writing!
-
-```
-/start-scene Opening confrontation in the bar
-```
-
-Your AI team is now active:
-- **Story Architect** ensures structure
-- **Dialogue Writer** refines voices
-- **Script Supervisor** catches formatting issues
-- **Continuity Editor** tracks consistency
-
----
-
 ## Quick Command Reference
 
 | Command | Purpose |
@@ -193,55 +322,47 @@ Your AI team is now active:
 
 ---
 
-## All-in-One (Copy-Paste Version)
-
-For experienced users, here's everything in one block:
-
-```bash
-# Create and enter project
-gh repo create my-screenplay --template bybren-llc/wtfb-projects-template --clone --public
-cd my-screenplay
-
-# Initialize (interactive)
-./scripts/init-project.sh
-
-# Install dependencies
-npm install
-
-# Open editor
-cursor .
-
-# Start Claude Code (in terminal)
-claude
-
-# Install plugin (in Claude Code)
-/plugin install wtfb-screenwriting@github.com/bybren-llc/wtfb-claude-marketplace/plugins/screenwriting
-
-# Start writing
-/start-scene Opening scene
-```
-
----
-
 ## Troubleshooting
 
-### "gh: command not found"
-Install GitHub CLI: https://cli.github.com
+### All Platforms
 
-### "Permission denied" on init script
+**"npm: command not found"**
+- Install Node.js from [nodejs.org](https://nodejs.org)
+- Windows: Restart terminal after installing
+
+**Plugin install fails**
+```bash
+npm update -g @anthropic-ai/claude-code
+```
+
+### macOS / Linux / WSL
+
+**"Permission denied" on init script**
 ```bash
 chmod +x scripts/init-project.sh
 ./scripts/init-project.sh
 ```
 
-### "npm: command not found"
-Install Node.js: https://nodejs.org
+**"gh: command not found"**
+- macOS: `brew install gh`
+- Linux: `sudo apt install gh`
+- Or use `git clone` option instead
 
-### Plugin install fails
-Ensure you have the latest Claude Code:
-```bash
-npm update -g @anthropic-ai/claude-code
+### Windows (PowerShell)
+
+**Script blocked by execution policy**
+```powershell
+PowerShell -ExecutionPolicy Bypass -File .\scripts\init-project.ps1
 ```
+
+**"CLAUDE.md created as copy" message**
+- Normal on Windows without Developer Mode
+- To enable symlinks: Settings > Developer settings > Developer Mode: On
+- The copy works identically; symlinks are just a minor convenience
+
+**"git: command not found"**
+- Restart PowerShell after installing Git
+- Or use Git Bash instead
 
 ---
 

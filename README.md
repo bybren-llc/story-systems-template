@@ -131,6 +131,8 @@ Same team structure. Different AI underneath.
 
 **Full instructions:** [docs/QUICKSTART.md](docs/QUICKSTART.md) - Platform-specific prerequisites, troubleshooting, and step-by-step guide.
 
+**New to Claude?** [Get Claude Code](https://claude.com/pricing) - Required for the AI team features.
+
 ### The Essentials
 
 ```bash

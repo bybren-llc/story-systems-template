@@ -13,7 +13,9 @@
     "markdownlint",
     "cheddarfox",
     "jscottgraham",
-    "GHSA"
+    "GHSA",
+    "winget",
+    "pacman"
   ],
   "dictionaries": [
     "project-words"

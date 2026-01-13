@@ -111,3 +111,13 @@ Vogler
 # Claude Code terms
 frontmatter
 agentskills
+
+# Additional terms from testing
+Speakability
+Goodfellas
+Unfilmable
+throughlines
+autofetch
+Bren
+imdb
+IMDb

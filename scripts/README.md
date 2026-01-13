@@ -7,10 +7,47 @@ This directory contains automation scripts for project initialization, validatio
 ```
 scripts/
 ├── README.md              # This file
-├── init-project.sh        # Project initialization
+├── init-project.sh        # Project initialization (macOS/Linux/WSL)
+├── init-project.ps1       # Project initialization (Windows PowerShell)
 ├── sync-upstream.sh       # Template sync helper
 └── validate-fountain.js   # Fountain format validation
 ```
+
+## Compatibility Contract
+
+Both init scripts require:
+
+| Dependency | Minimum Version | Notes |
+|------------|-----------------|-------|
+| Node.js | 18.x or 20.x LTS | For npm and validation scripts |
+| Git | 2.x | For version control |
+| npm | 9.x+ | Comes with Node.js |
+| PowerShell | 5.1+ | Windows built-in; or 7+ cross-platform |
+| GitHub CLI | Optional | Only needed for repo creation, not init |
+
+## Init Script Responsibilities
+
+Both `init-project.sh` and `init-project.ps1` **MUST** implement identical behavior:
+
+1. Prompt for project name (lowercase, hyphenated) and type (screenplay/novel/film-production)
+2. Validate inputs before proceeding
+3. Create `.wtfb/project.json` with project configuration
+4. Create `marketing/wtfb-marketing.json` with placeholder values
+5. Create type-specific files:
+   - **Screenplay**: `{name}.fountain`, `templates/beat-sheet.md`, `templates/character-registry.md`
+   - **Novel**: `manuscript/` structure, `world/` structure
+   - **Film-production**: `production/`, `assets/`, `crew/` structures
+6. Create symlink: `CLAUDE.md` -> `.wtfb/ai-harness/CLAUDE.md` (or copy as fallback on Windows)
+7. Update `package.json` name field
+8. Create placeholder directories with `.gitkeep` files
+9. Print next steps with type-specific plugin recommendation
+10. Exit with code 0 on success, non-zero on failure
+
+**Console Output Requirements:**
+- Use colored output where supported
+- Print what each step is doing
+- Print next steps on completion
+- Print recovery hints on common failures (missing deps)
 
 ## Available Scripts
 
@@ -46,6 +83,34 @@ scripts/
 - Colored terminal output showing progress
 - List of created files
 - Next steps and recommended commands
+
+### init-project.ps1
+
+**Purpose:** Initialize a new WTFB project from the template (Windows PowerShell).
+
+**Usage:**
+```powershell
+# From PowerShell or Windows Terminal
+.\scripts\init-project.ps1 [project-name] [project-type]
+
+# Interactive mode (prompts for inputs)
+.\scripts\init-project.ps1
+
+# Direct mode
+.\scripts\init-project.ps1 my-screenplay screenplay
+
+# If execution policy blocks the script
+PowerShell -ExecutionPolicy Bypass -File .\scripts\init-project.ps1
+```
+
+**What it does:**
+
+Identical to `init-project.sh` (see Init Script Responsibilities above).
+
+**Windows-specific behavior:**
+- Attempts to create symlink for `CLAUDE.md`; falls back to file copy if symlink creation fails (requires Developer Mode or admin rights)
+- Uses Windows-native paths and PowerShell commands
+- Compatible with PowerShell 5.1+ (Windows built-in) and PowerShell 7+
 
 ### sync-upstream.sh
 

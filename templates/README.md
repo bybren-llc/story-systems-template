@@ -10,7 +10,8 @@ templates/
 ├── beat-sheet.md          # Story structure template
 ├── character-registry.md  # Character tracking template
 ├── treatment-template.md  # Project treatment/pitch document
-└── continuity-report.md   # Continuity tracking template
+├── continuity-report.md   # Continuity tracking template
+└── readme-imdb-style.md   # IMDb-style project README template
 ```
 
 ## Available Templates
@@ -102,6 +103,34 @@ templates/
 - Production preparation
 - Script supervision
 
+### readme-imdb-style.md
+
+**Purpose:** Create a professional, IMDb-style README for your project that presents it like a finished film.
+
+**Contains:**
+- Title with hero image
+- Genre/Type/Runtime header
+- Storyline (elevator pitch)
+- Plot Summary (detailed)
+- Cast and Crew tables
+- Technical Specs
+- Themes and Keywords
+- Trivia, Quotes, and Connections
+- Contributing guidelines
+- Copyright notice
+
+**When to use:**
+- Project presentation on GitHub
+- Pitch materials
+- Portfolio showcase
+- Community sharing
+
+**Example usage:**
+1. Copy to your project root: `cp templates/readme-imdb-style.md README.md`
+2. Replace all placeholder text with your project details
+3. Add your hero image to `source-materials/`
+4. Update as your project evolves
+
 ## Project Type Variations
 
 Templates work across project types with minor adaptations:
@@ -112,6 +141,7 @@ Templates work across project types with minor adaptations:
 | Character Registry | Full use | Full use | Casting reference |
 | Treatment | Industry format | Query/synopsis | Pitch deck |
 | Continuity | Script supervision | Editor's notes | Production tracking |
+| README IMDb-style | Project showcase | Project showcase | Project showcase |
 
 ## How Templates Are Used by AI
 

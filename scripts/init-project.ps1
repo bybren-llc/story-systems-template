@@ -68,10 +68,10 @@ Write-Host ""
 Write-Yellow "Initializing $ProjectType project: $ProjectName"
 Write-Host ""
 
-# Create title from project name (title case)
-$ProjectTitle = ($ProjectName -replace '-', ' ') -split ' ' | ForEach-Object {
+# Create title from project name (title case, PS 5.1 compatible)
+$ProjectTitle = (($ProjectName -replace '-', ' ') -split ' ' | Where-Object { $_ } | ForEach-Object {
     $_.Substring(0,1).ToUpper() + $_.Substring(1).ToLower()
-} | Join-String -Separator ' '
+}) -join ' '
 
 $CurrentDate = (Get-Date).ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ")
 $CurrentYear = (Get-Date).Year

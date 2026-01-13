@@ -156,7 +156,7 @@ Choose one:
 ```bash
 git clone https://github.com/bybren-llc/wtfb-projects-template.git my-screenplay
 cd my-screenplay
-git remote remove origin
+git remote remove origin  # Disconnects from template repo (add your own later)
 ```
 
 **Option B (GitHub CLI - creates your own repo):**
@@ -223,7 +223,7 @@ Choose one:
 ```powershell
 git clone https://github.com/bybren-llc/wtfb-projects-template.git my-screenplay
 cd my-screenplay
-git remote remove origin
+git remote remove origin  # Disconnects from template repo (add your own later)
 ```
 
 **Option B (GitHub CLI - creates your own repo):**

@@ -1,3 +1,14 @@
+---
+name: story-structure
+description: |
+  Three-act screenplay structure with beat placement.
+  Covers opening image, inciting incident, midpoint, all is lost, climax,
+  and page targets for feature screenplays.
+
+  Use when: planning screenplay structure, analyzing narrative arc,
+  placing story beats, or validating structural integrity.
+---
+
 # Story Structure
 
 ## Three-Act Structure

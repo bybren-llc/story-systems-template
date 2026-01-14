@@ -1,3 +1,15 @@
+---
+name: dialogue-craft
+description: |
+  Dialogue writing techniques for screenplays.
+  Covers subtext, character voice differentiation, exposition handling,
+  and the four purposes of dialogue (reveal character, advance plot,
+  create conflict, entertain).
+
+  Use when: polishing dialogue, developing subtext, differentiating
+  character voices, or handling exposition in screenplay dialogue.
+---
+
 # Dialogue Craft
 
 ## Core Principles

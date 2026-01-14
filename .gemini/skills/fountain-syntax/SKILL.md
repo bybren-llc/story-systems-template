@@ -1,3 +1,14 @@
+---
+name: fountain-syntax
+description: |
+  Complete Fountain screenplay format syntax reference.
+  Covers scene headings, action, character names, dialogue, parentheticals,
+  transitions, dual dialogue, notes, title page, emphasis, and page breaks.
+
+  Use when: writing or editing .fountain files, validating screenplay format,
+  converting between formats, or teaching Fountain syntax.
+---
+
 # Fountain Syntax
 
 ## Overview

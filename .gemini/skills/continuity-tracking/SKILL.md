@@ -1,3 +1,14 @@
+---
+name: continuity-tracking
+description: |
+  Screenplay continuity tracking systems and templates.
+  Covers character registry, timeline registry, location registry, prop
+  registry, and wardrobe registry for maintaining story consistency.
+
+  Use when: setting up tracking systems, checking consistency, managing
+  timelines, or tracking characters, props, and locations across scenes.
+---
+
 # Continuity Tracking
 
 ## Continuity Types

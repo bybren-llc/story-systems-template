@@ -23,42 +23,105 @@ This project uses an 11-agent team for collaborative development. See `AGENTS.md
 @.gemini/agents/production-coordinator.md
 @.gemini/agents/session-manager.md
 
-### Loading Skills
-@.gemini/skills/fountain-syntax.md
-@.gemini/skills/story-structure.md
-@.gemini/skills/dialogue-craft.md
-@.gemini/skills/scene-analysis.md
-@.gemini/skills/continuity-tracking.md
+### Loading Skills (24 Skills)
+@.gemini/skills/fountain-syntax/SKILL.md
+@.gemini/skills/story-structure/SKILL.md
+@.gemini/skills/dialogue-craft/SKILL.md
+@.gemini/skills/scene-analysis/SKILL.md
+@.gemini/skills/continuity-tracking/SKILL.md
+@.gemini/skills/story-check/SKILL.md
+@.gemini/skills/arc-check/SKILL.md
+@.gemini/skills/character-arcs/SKILL.md
+@.gemini/skills/character-dialogue/SKILL.md
+@.gemini/skills/character-interview/SKILL.md
+@.gemini/skills/action-description/SKILL.md
+@.gemini/skills/transitions/SKILL.md
+@.gemini/skills/scene-headings/SKILL.md
+@.gemini/skills/title-page/SKILL.md
+@.gemini/skills/logline/SKILL.md
+@.gemini/skills/synopsis/SKILL.md
+@.gemini/skills/pitch-worksheet/SKILL.md
+@.gemini/skills/power-analysis/SKILL.md
+@.gemini/skills/theme-discovery/SKILL.md
+@.gemini/skills/writers-room/SKILL.md
+@.gemini/skills/rewriting-methodology/SKILL.md
+@.gemini/skills/format-export/SKILL.md
+@.gemini/skills/page-estimation/SKILL.md
+@.gemini/skills/glossary-reference/SKILL.md
 
 ## Project Structure
 
 ```
-├── *.fountain           # Main screenplay (if screenplay project)
-├── manuscript/          # Novel content (if novel project)
-├── sourcematerials/     # Research, references, images
-├── exports/             # Generated outputs (PDF, FDX, HTML)
-├── templates/           # Beat sheets, character registries
-├── patterns/            # Reusable structural patterns
-├── docs/                # Project documentation
-├── marketing/           # Marketing materials and config
-└── .gemini/             # This harness
-    ├── agents/          # 11 specialized agent profiles
-    ├── commands/        # Slash command definitions (TOML)
-    └── skills/          # Knowledge base modules
+*.fountain           # Main screenplay (if screenplay project)
+manuscript/          # Novel content (if novel project)
+sourcematerials/     # Research, references, images
+exports/             # Generated outputs (PDF, FDX, HTML)
+templates/           # Beat sheets, character registries
+patterns/            # Reusable structural patterns
+docs/                # Project documentation
+marketing/           # Marketing materials and config
+.gemini/             # This harness
+  settings.json      # CLI configuration
+  agents/            # 11 specialized agent profiles
+  commands/          # 30 slash command definitions (TOML)
+  skills/            # 24 knowledge base modules
 ```
 
-## Available Commands
+## Available Commands (30 Commands)
 
+### Workflow Commands
 | Command | Purpose |
 |---------|---------|
+| `/start-project` | Initialize new screenplay project |
 | `/start-scene` | Begin new scene development |
-| `/check-format` | Validate Fountain syntax |
-| `/check-continuity` | Verify consistency |
+| `/end-session` | Complete session, commit progress |
+| `/stuck` | Get help when blocked |
+
+### Writing Commands
+| Command | Purpose |
+|---------|---------|
+| `/new-scene` | Add formatted scene heading |
+| `/new-character` | Add character with tracking |
+| `/format-dialogue` | Format dialogue block |
+| `/add-transition` | Insert transition element |
+| `/add-note` | Add Fountain note |
+| `/import` | Import existing screenplay |
+
+### Analysis Commands
+| Command | Purpose |
+|---------|---------|
 | `/analyze-structure` | Review narrative structure |
-| `/export-pdf` | Generate PDF output |
+| `/analyze-character` | Analyze character arc |
 | `/scene-list` | List all scenes |
 | `/page-count` | Calculate page estimation |
-| `/new-character` | Add a new character |
+| `/arc-check` | Validate character arcs |
+| `/story-check` | Validate against 12 critical questions |
+| `/power-analysis` | Analyze conflict dynamics |
+| `/rewrite-check` | Apply 6-step rewriting methodology |
+
+### Validation Commands (Quality Gates)
+| Command | Purpose |
+|---------|---------|
+| `/check-format` | Validate Fountain syntax (BLOCKING) |
+| `/check-continuity` | Verify consistency (BLOCKING) |
+
+### Export Commands
+| Command | Purpose |
+|---------|---------|
+| `/export-pdf` | Generate industry-standard PDF |
+| `/export-fdx` | Generate Final Draft XML |
+| `/export-html` | Generate HTML preview |
+| `/export-all` | Generate all formats |
+
+### Development Commands
+| Command | Purpose |
+|---------|---------|
+| `/logline` | Create compelling logline |
+| `/synopsis` | Generate one-page synopsis |
+| `/pitch-worksheet` | Generate pitch worksheet |
+| `/character-interview` | Conduct 80-question interview |
+| `/theme-discovery` | Interactive theme exploration |
+| `/writers-room` | Convene multi-agent session |
 
 ## Git Workflow
 
@@ -103,9 +166,19 @@ The Script Supervisor controls quality gates:
 
 The Story Architect has stop-the-line authority for structural issues.
 
+## Core Writer Loop
+
+The evidence-based writer loop:
+1. `/start-scene` - Begin work with context
+2. `/check-format` - Validate Fountain syntax
+3. `/check-continuity` - Verify consistency
+4. `/export-pdf` - Generate output
+5. `/end-session` - Commit and close cleanly
+
 ## See Also
 
 - `AGENTS.md` - Complete agent team reference
 - `.gemini/README.md` - Harness documentation
+- `.gemini/settings.json` - CLI configuration
 - `docs/WORKFLOW.md` - Full workflow documentation
 - `docs/CONTRIBUTING.md` - Contribution guidelines

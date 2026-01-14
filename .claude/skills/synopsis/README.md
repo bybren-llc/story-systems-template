@@ -1,6 +1,7 @@
 # Synopsis
 
 ![Status](https://img.shields.io/badge/status-production-green)
+![Harness](https://img.shields.io/badge/harness-v1.5-blue)
 
 > One-page synopsis writing techniques for screenplays.
 

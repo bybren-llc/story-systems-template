@@ -1,6 +1,8 @@
 # Glossary Reference
 
 ![Status](https://img.shields.io/badge/status-production-green)
+![Harness](https://img.shields.io/badge/harness-v1.5-blue)
+![Provider](https://img.shields.io/badge/provider-Gemini_CLI-orange)
 
 > Comprehensive film and television industry terminology.
 
@@ -41,6 +43,13 @@ Extracted from skill description:
 - [format-export](../format-export/) - Export procedures
 - [page-estimation](../page-estimation/) - Page count calculation
 - [rewriting-methodology](../rewriting-methodology/) - 6-step rewrite process
+
+## Provider Compatibility
+
+| Provider | Status |
+|----------|--------|
+| Gemini CLI | ✅ Native |
+| Claude Code | ✅ Equivalent skill in `.claude/skills/` |
 
 ## Quality Checklist
 

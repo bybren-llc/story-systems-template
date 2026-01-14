@@ -1,6 +1,8 @@
 # Character Dialogue
 
 ![Status](https://img.shields.io/badge/status-production-green)
+![Harness](https://img.shields.io/badge/harness-v1.5-blue)
+![Provider](https://img.shields.io/badge/provider-Gemini_CLI-orange)
 
 > Fountain format character and dialogue formatting rules.
 
@@ -43,6 +45,13 @@ Extracted from skill description:
 - [fountain-syntax](../fountain-syntax/) - Complete Fountain format reference
 - [action-description](../action-description/) - Action writing techniques
 - [title-page](../title-page/) - Title page formatting
+
+## Provider Compatibility
+
+| Provider | Status |
+|----------|--------|
+| Gemini CLI | ✅ Native |
+| Claude Code | ✅ Equivalent skill in `.claude/skills/` |
 
 ## Quality Checklist
 

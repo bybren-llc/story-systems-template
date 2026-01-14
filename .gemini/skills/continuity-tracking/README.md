@@ -1,6 +1,8 @@
 # Continuity Tracking
 
 ![Status](https://img.shields.io/badge/status-production-green)
+![Harness](https://img.shields.io/badge/harness-v1.5-blue)
+![Provider](https://img.shields.io/badge/provider-Gemini_CLI-orange)
 
 > Screenplay continuity tracking systems and templates.
 
@@ -41,6 +43,13 @@ Extracted from skill description:
 - [rewriting-methodology](../rewriting-methodology/) - 6-step rewrite process
 - [page-estimation](../page-estimation/) - Page count calculation
 - [format-export](../format-export/) - Export procedures
+
+## Provider Compatibility
+
+| Provider | Status |
+|----------|--------|
+| Gemini CLI | ✅ Native |
+| Claude Code | ✅ Equivalent skill in `.claude/skills/` |
 
 ## Quality Checklist
 

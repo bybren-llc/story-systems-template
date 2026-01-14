@@ -1,6 +1,7 @@
 # Dialogue Craft
 
 ![Status](https://img.shields.io/badge/status-production-green)
+![Harness](https://img.shields.io/badge/harness-v1.5-blue)
 
 > Dialogue writing techniques for screenplays.
 

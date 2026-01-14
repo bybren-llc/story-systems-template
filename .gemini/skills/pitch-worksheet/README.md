@@ -1,6 +1,8 @@
 # Pitch Worksheet
 
 ![Status](https://img.shields.io/badge/status-production-green)
+![Harness](https://img.shields.io/badge/harness-v1.5-blue)
+![Provider](https://img.shields.io/badge/provider-Gemini_CLI-orange)
 
 > Structured pitch development worksheet for screenwriters.
 
@@ -41,6 +43,13 @@ Extracted from skill description:
 - [logline](../logline/) - Logline writing techniques
 - [synopsis](../synopsis/) - One-page synopsis writing
 - [theme-discovery](../theme-discovery/) - Personal theme mining
+
+## Provider Compatibility
+
+| Provider | Status |
+|----------|--------|
+| Gemini CLI | ✅ Native |
+| Claude Code | ✅ Equivalent skill in `.claude/skills/` |
 
 ## Quality Checklist
 

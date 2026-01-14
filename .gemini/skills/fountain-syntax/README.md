@@ -1,6 +1,8 @@
 # Fountain Syntax
 
 ![Status](https://img.shields.io/badge/status-production-green)
+![Harness](https://img.shields.io/badge/harness-v1.5-blue)
+![Provider](https://img.shields.io/badge/provider-Gemini_CLI-orange)
 
 > Complete Fountain screenplay format syntax reference.
 
@@ -41,6 +43,13 @@ Extracted from skill description:
 - [scene-headings](../scene-headings/) - Scene heading formatting rules
 - [character-dialogue](../character-dialogue/) - Character and dialogue formatting
 - [title-page](../title-page/) - Title page formatting
+
+## Provider Compatibility
+
+| Provider | Status |
+|----------|--------|
+| Gemini CLI | ✅ Native |
+| Claude Code | ✅ Equivalent skill in `.claude/skills/` |
 
 ## Quality Checklist
 

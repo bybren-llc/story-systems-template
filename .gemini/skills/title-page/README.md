@@ -1,6 +1,8 @@
 # Title Page
 
 ![Status](https://img.shields.io/badge/status-production-green)
+![Harness](https://img.shields.io/badge/harness-v1.5-blue)
+![Provider](https://img.shields.io/badge/provider-Gemini_CLI-orange)
 
 > Fountain title page formatting and metadata setup.
 
@@ -41,6 +43,13 @@ Extracted from skill description:
 - [fountain-syntax](../fountain-syntax/) - Complete Fountain format reference
 - [character-dialogue](../character-dialogue/) - Character and dialogue formatting
 - [scene-headings](../scene-headings/) - Scene heading formatting rules
+
+## Provider Compatibility
+
+| Provider | Status |
+|----------|--------|
+| Gemini CLI | ✅ Native |
+| Claude Code | ✅ Equivalent skill in `.claude/skills/` |
 
 ## Quality Checklist
 

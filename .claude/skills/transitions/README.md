@@ -1,6 +1,7 @@
 # Transitions
 
 ![Status](https://img.shields.io/badge/status-production-green)
+![Harness](https://img.shields.io/badge/harness-v1.5-blue)
 
 > Screenplay transition formatting and conventions.
 

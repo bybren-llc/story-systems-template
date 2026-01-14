@@ -1,6 +1,8 @@
 # Power Analysis
 
 ![Status](https://img.shields.io/badge/status-production-green)
+![Harness](https://img.shields.io/badge/harness-v1.5-blue)
+![Provider](https://img.shields.io/badge/provider-Gemini_CLI-orange)
 
 > Power dynamics analysis for screenplay scenes.
 
@@ -41,6 +43,13 @@ Extracted from skill description:
 - [scene-analysis](../scene-analysis/) - Scene evaluation techniques
 - [story-check](../story-check/) - 12 critical story questions
 - [story-structure](../story-structure/) - Three-act structure framework
+
+## Provider Compatibility
+
+| Provider | Status |
+|----------|--------|
+| Gemini CLI | ✅ Native |
+| Claude Code | ✅ Equivalent skill in `.claude/skills/` |
 
 ## Quality Checklist
 

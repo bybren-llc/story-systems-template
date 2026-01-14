@@ -1,6 +1,8 @@
 # Arc Check
 
 ![Status](https://img.shields.io/badge/status-production-green)
+![Harness](https://img.shields.io/badge/harness-v1.5-blue)
+![Provider](https://img.shields.io/badge/provider-Gemini_CLI-orange)
 
 > Validates character arc development throughout a screenplay.
 
@@ -41,6 +43,13 @@ Extracted from skill description:
 - [character-arcs](../character-arcs/) - Arc development frameworks
 - [character-interview](../character-interview/) - 80-question interview framework
 - [dialogue-craft](../dialogue-craft/) - Dialogue writing techniques
+
+## Provider Compatibility
+
+| Provider | Status |
+|----------|--------|
+| Gemini CLI | ✅ Native |
+| Claude Code | ✅ Equivalent skill in `.claude/skills/` |
 
 ## Quality Checklist
 

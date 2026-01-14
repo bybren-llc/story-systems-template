@@ -1,6 +1,8 @@
 # Writers Room
 
 ![Status](https://img.shields.io/badge/status-production-green)
+![Harness](https://img.shields.io/badge/harness-v1.5-blue)
+![Provider](https://img.shields.io/badge/provider-Gemini_CLI-orange)
 
 > 6-agent collaborative pre-production session.
 
@@ -41,6 +43,13 @@ Extracted from skill description:
 - [theme-discovery](../theme-discovery/) - Personal theme mining
 - [pitch-worksheet](../pitch-worksheet/) - Pitch development framework
 - [logline](../logline/) - Logline writing techniques
+
+## Provider Compatibility
+
+| Provider | Status |
+|----------|--------|
+| Gemini CLI | ✅ Native |
+| Claude Code | ✅ Equivalent skill in `.claude/skills/` |
 
 ## Quality Checklist
 

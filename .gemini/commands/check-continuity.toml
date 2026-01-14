@@ -1,24 +1,97 @@
-[command]
-name = "check-continuity"
-description = "Verify consistency across the project"
+description = "Validate consistency across the screenplay"
+prompt = """
+Validate consistency across the screenplay.
 
-[command.arguments]
-scope = { type = "string", required = false, description = "all|timeline|characters|locations" }
-scene = { type = "string", required = false, description = "Specific scene to check" }
+## Arguments
+- `[scope]` - Optional: `full`, `act1`, `act2`, `act3`, `scenes X-Y`
 
-[command.workflow]
-steps = [
-  "Scan for timeline references",
-  "Track character states",
-  "Verify location consistency",
-  "Check prop/costume continuity",
-  "Generate continuity report"
-]
+## Workflow
 
-[command.agents]
-primary = "continuity-editor"
-supporting = ["research-specialist"]
+### Step 1: Determine Scope
+- Default: Full screenplay
+- Or specific act/scene range
 
-[command.validation]
-blocking = true
-required_for = ["pr", "export"]
+### Step 2: Run Checks
+
+#### Timeline Check
+```markdown
+## Timeline Validation
+
+| Scene | Heading Time | Prev Scene | Status |
+|-------|--------------|------------|--------|
+| 1 | DAY | - | OK |
+| 2 | DAY | DAY | OK |
+| 3 | NIGHT | CONTINUOUS | WARNING |
+```
+
+Flags:
+- WARNING: DAY after NIGHT-CONTINUOUS (or vice versa)
+- WARNING: Impossible time jumps
+- WARNING: Missing time indicators
+
+#### Character Check
+```markdown
+## Character Continuity
+
+### [CHARACTER]
+| Scene | Location | Issue |
+|-------|----------|-------|
+| 5 | Office | OK |
+| 6 | Home | OK |
+| 7 | Office | WARNING: No travel time |
+```
+
+Flags:
+- WARNING: Character in impossible location
+- WARNING: Knowledge inconsistency
+- WARNING: Wardrobe impossible change
+
+#### Prop Check
+```markdown
+## Prop Continuity
+
+### [PROP]
+| Scene | Status | Issue |
+|-------|--------|-------|
+| Intro: 5 | Active | OK |
+| Used: 20 | Active | OK |
+| After: 40 | ? | WARNING: Unresolved |
+```
+
+Flags:
+- WARNING: Prop appears without introduction
+- WARNING: Prop used after destroyed
+- WARNING: Chekhov's gun unused
+
+### Step 3: Generate Report
+
+```markdown
+## Continuity Report: [TITLE]
+
+### Status: [CLEAN / X ISSUES]
+
+### Timeline Issues
+[List or "None found"]
+
+### Character Issues
+[List or "None found"]
+
+### Prop Issues
+[List or "None found"]
+
+### Recommendations
+1. [Specific fix]
+2. [Specific fix]
+```
+
+## Success Criteria
+- [ ] All scenes checked
+- [ ] Timeline validated
+- [ ] Character tracking verified
+- [ ] Props accounted for
+- [ ] Report generated
+
+## Agent Assignment
+Primary: Continuity Editor
+Supporting: Script Supervisor, Story Analyst
+"""

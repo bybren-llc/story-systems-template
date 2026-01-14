@@ -1,18 +1,154 @@
-[command]
-name = "story-check"
-description = "Validate story against 12 critical questions"
+description = "Validate your screenplay against the 12 essential story questions"
+prompt = """
+Validate your screenplay against the 12 essential story questions.
 
-[command.arguments]
-section = { type = "string", required = false, description = "Specific section: premise, structure, character, theme" }
+## Arguments
+- `[screenplay-file]` - Optional: Path to screenplay file
 
-[command.workflow]
-steps = [
-  "Review story against 12 critical questions",
-  "Identify strengths and weaknesses",
-  "Flag areas needing development",
-  "Provide actionable recommendations"
-]
+## Workflow
 
-[command.agents]
-primary = "story-analyst"
-supporting = ["story-architect"]
+### Step 1: Identify Script
+If file not provided, search for `.fountain` files and ask:
+```
+Which screenplay should we check?
+
+Found:
+  1. [screenplay1.fountain]
+  2. [screenplay2.fountain]
+
+Or paste/describe your story for analysis:
+```
+
+### Step 2: Read and Analyze
+Read the screenplay file if provided, or work with description.
+
+### Step 3: Ask the 12 Questions
+
+Display each question and provide assessment:
+
+```markdown
+## STORY CHECK: [TITLE]
+
+### 1. STORY ELEMENTS
+What are the elements of my story?
+- Concept: [identified concept]
+- Genre: [identified genre]
+Status: [PASS/NEEDS WORK]
+
+### 2. MESSAGE
+What do I want to say with my script?
+- Theme: [identified theme]
+- About: [world/relationships/people/etc.]
+Status: [PASS/NEEDS WORK]
+
+### 3. AUDIENCE REACTION
+How will audiences react?
+- Interesting: [Yes/No]
+- Believable: [Yes/No]
+- Credible: [Yes/No]
+- Compelling: [Yes/No]
+Status: [PASS/NEEDS WORK]
+
+### 4. BEGINNING
+Where does my story begin?
+- Setup: [description]
+- Protagonist in crisis: [Yes/No]
+- World established: [Yes/No]
+- Rules clear: [Yes/No]
+Status: [PASS/NEEDS WORK]
+
+### 5. ENDING
+Where does my story end?
+- Resolution: [description]
+- Questions answered: [Yes/Partial/No]
+- Premise fulfilled: [Yes/No]
+Status: [PASS/NEEDS WORK]
+
+### 6. RISING TENSIONS
+Are there rising tensions?
+- Surprises: [count]
+- Escalation: [description]
+- Climax: [description]
+Status: [PASS/NEEDS WORK]
+
+### 7. CHARACTERS
+Who are my characters?
+- Likable: [assessment]
+- Interesting/Unique: [assessment]
+- Audience will care: [Yes/No]
+Status: [PASS/NEEDS WORK]
+
+### 8. PROTAGONIST
+What is my protagonist like?
+- Empathy: [Strong/Moderate/Weak]
+- Want: [what they want]
+- Need: [what they need]
+- Stakes: [what's at risk]
+- Point of no return: [Yes/No]
+Status: [PASS/NEEDS WORK]
+
+### 9. MOTIVATION
+What are my characters' motivations?
+- Shown on screen: [Yes/No]
+- Justified: [Yes/No]
+- Built into story: [Yes/No]
+Status: [PASS/NEEDS WORK]
+
+### 10. ANTAGONIST
+Who/what is the antagonist?
+- Identity: [who/what]
+- Motivation: [why they oppose]
+- Worthy foe: [Yes/No]
+Status: [PASS/NEEDS WORK]
+
+### 11. OVER-EXPLANATION
+Do I over-explain?
+- Too spelled out: [Yes/No]
+- Setup too busy: [Yes/No]
+- Events shown vs told: [Shown/Told]
+- Key events off screen: [Yes/No]
+Status: [PASS/NEEDS WORK]
+
+### 12. BELIEVABILITY
+Are fictitious characters believable?
+- Reality score: [1-10]
+- Issues: [any noted]
+Status: [PASS/NEEDS WORK]
+```
+
+### Step 4: Summary Assessment
+
+```markdown
+## OVERALL ASSESSMENT
+
+PASS: [count]/12
+NEEDS WORK: [count]/12
+
+### CRITICAL ISSUES
+1. [Most important issue]
+2. [Second issue]
+3. [Third issue]
+
+### RECOMMENDED ACTIONS
+1. [Specific action]
+2. [Specific action]
+3. [Specific action]
+
+### VERDICT
+[ ] Ready for submission
+[ ] Needs minor revisions
+[ ] Needs significant rewrite
+[ ] Fundamental story issues
+```
+
+## Success Criteria
+- [ ] All 12 questions assessed
+- [ ] Issues documented with specifics
+- [ ] Action items prioritized
+- [ ] Overall verdict provided
+- [ ] Assessment is honest and actionable
+
+## Agent Assignment
+Primary: Story Analyst
+Supporting: Story Architect
+"""

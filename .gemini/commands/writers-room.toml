@@ -1,19 +1,174 @@
-[command]
-name = "writers-room"
-description = "Convene multi-agent pre-production discussion"
+description = "Convene a collaborative pre-production session where 6 specialized agents pitch their creative visions"
+prompt = """
+Convene a collaborative pre-production session where 6 specialized agents pitch their creative visions before writing begins.
 
-[command.arguments]
-topic = { type = "string", required = false, description = "Focus topic for discussion" }
-phase = { type = "string", required = false, description = "Development phase: premise, structure, characters" }
+## Usage
 
-[command.workflow]
-steps = [
-  "Convene 6-agent writers room session",
-  "Each agent contributes from their expertise",
-  "Facilitate constructive debate",
-  "Synthesize consensus and action items"
-]
+```
+/writers-room
+```
 
-[command.agents]
-primary = "session-manager"
-supporting = ["story-architect", "story-analyst", "dialogue-writer", "scene-writer", "research-specialist"]
+## What It Does
+
+1. **Gathers Context:** Collects premise, existing material, constraints, and creative goals
+2. **Convenes Agents:** Runs 6 specialized agents in parallel:
+   - **Story Architect** - Structure and form
+   - **Story Analyst** - Character and meaning
+   - **Dialogue Writer** - Voice and tone
+   - **Scene Writer** - Visual setpieces
+   - **Standards Reviewer** - Quality and originality
+   - **Research Specialist** - Authenticity
+3. **Synthesizes Direction:** Combines best ideas into unified creative direction
+4. **Outputs Document:** Creates `creative-direction.md` to guide production
+
+## When to Use
+
+- Starting a new screenplay
+- Beginning a major rewrite or reimagining
+- When creative direction is uncertain
+- When you want expert perspectives before committing to an approach
+
+## Required Input
+
+- **Premise/Logline:** What's the story about?
+- **Existing Material:** Any previous versions, source material, notes
+- **Target Tone:** Comedy, drama, thriller, etc. + rating level
+- **Constraints:** Runtime, budget tier, sacred elements
+- **Freedom Level:** What can change vs. what's fixed
+
+## Workflow
+
+### Step 1: Gather Context
+Ask user for:
+- Story premise or logline
+- Any existing material or versions
+- Target tone and audience
+- Constraints and must-haves
+- What's open for reimagining
+
+### Step 2: Convene the Writers Room
+
+Each agent provides their perspective:
+
+**Story Architect** speaks to:
+- Structure approach (traditional, experimental, hybrid)
+- Act breakdown and key beats
+- Pacing recommendations
+- Genre conventions to embrace or subvert
+
+**Story Analyst** speaks to:
+- Thematic depth and meaning
+- Character arcs and relationships
+- Emotional journey of the audience
+- What the story is really about
+
+**Dialogue Writer** speaks to:
+- Voice and tone of dialogue
+- Character differentiation through speech
+- Subtext opportunities
+- Memorable line potential
+
+**Scene Writer** speaks to:
+- Most cinematic moments
+- Visual storytelling opportunities
+- Opening and closing images
+- Must-have setpieces
+
+**Standards Reviewer** speaks to:
+- Market viability
+- Originality assessment
+- Potential comparison titles
+- Quality benchmarks
+
+**Research Specialist** speaks to:
+- Authenticity requirements
+- Research needed
+- Technical accuracy
+- Cultural sensitivity
+
+### Step 3: Synthesize Vision
+
+Combine perspectives into unified direction:
+- Consensus points
+- Creative tensions to resolve
+- Clear direction forward
+- "North Star" guiding principle
+
+### Step 4: Output Creative Direction
+
+Create `creative-direction.md` containing:
+- Individual agent pitches
+- Synthesized unified vision
+- Must-have scenes list
+- Tone and voice guidelines
+- Explicit "off-limits" list
+- Single "North Star" guiding principle
+
+## Output Example
+
+```markdown
+# Creative Direction: [TITLE]
+
+## North Star
+[One sentence guiding principle]
+
+## Unanimous Vision
+[What all agents agreed on]
+
+## Story Architect Perspective
+[Structure recommendations]
+
+## Story Analyst Perspective
+[Theme and character recommendations]
+
+## Dialogue Writer Perspective
+[Voice and tone recommendations]
+
+## Scene Writer Perspective
+[Visual and setpiece recommendations]
+
+## Standards Reviewer Perspective
+[Quality and market recommendations]
+
+## Research Specialist Perspective
+[Authenticity recommendations]
+
+## Resolved Tensions
+[Where disagreements were reconciled]
+
+## Must-Have Scenes
+1. [Scene description]
+2. [Scene description]
+3. [Scene description]
+
+## Off-Limits
+- [What not to do]
+- [What not to do]
+
+## Next Steps
+1. [Action item]
+2. [Action item]
+```
+
+## Integration
+
+The Writers Room output directly informs:
+- Theme discovery and validation
+- Character interview priorities
+- Story structure decisions
+- Scene writing direction
+- Dialogue voice parameters
+- Quality benchmarks for review
+
+## Success Criteria
+- [ ] All 6 agents contributed perspectives
+- [ ] Unified vision synthesized
+- [ ] North Star principle defined
+- [ ] Must-have scenes identified
+- [ ] Off-limits clearly stated
+- [ ] creative-direction.md created
+
+## Agent Assignment
+Primary: Session Manager
+Supporting: Story Architect, Story Analyst, Dialogue Writer, Scene Writer, Standards Reviewer, Research Specialist
+"""

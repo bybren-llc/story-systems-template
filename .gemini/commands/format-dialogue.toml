@@ -1,20 +1,182 @@
-[command]
-name = "format-dialogue"
-description = "Format a dialogue block with proper Fountain syntax"
+description = "Structure a dialogue block correctly in Fountain format"
+prompt = """
+Structure a dialogue block correctly in Fountain format.
 
-[command.arguments]
-character = { type = "string", required = true, description = "Speaking character name" }
-extension = { type = "string", required = false, description = "V.O., O.S., CONT'D, etc" }
-parenthetical = { type = "string", required = false, description = "Parenthetical direction" }
+## Arguments
+- `[character]` - Required: Character name
+- `[extension]` - Optional: V.O., O.S., CONT'D, etc.
 
-[command.workflow]
-steps = [
-  "Format character cue in uppercase",
-  "Add extension if specified",
-  "Include parenthetical if provided",
-  "Ensure dialogue follows proper indentation"
-]
+## Workflow
 
-[command.agents]
-primary = "dialogue-writer"
-supporting = ["script-supervisor"]
+### Step 1: Validate Character
+- Check character exists in registry
+- Verify correct name spelling
+- Use consistent capitalization
+
+### Step 2: Format Dialogue Block
+```fountain
+
+CHARACTER
+Dialogue text here.
+```
+
+With extension:
+```fountain
+
+CHARACTER (V.O.)
+Dialogue text here.
+```
+
+With parenthetical:
+```fountain
+
+CHARACTER
+(emotional direction)
+Dialogue text here.
+```
+
+### Step 3: Verify Spacing
+- Blank line before character name
+- No blank line between character and dialogue
+- Blank line after dialogue block (before next element)
+
+## Extension Reference
+
+| Extension | Meaning | Usage |
+|-----------|---------|-------|
+| `(V.O.)` | Voice Over | Narration, not in scene |
+| `(O.S.)` | Off Screen | In scene, not visible |
+| `(O.C.)` | Off Camera | Same as O.S. |
+| `(CONT'D)` | Continued | Same speaker after action |
+| `(PRE-LAP)` | Pre-lap | Audio before scene |
+| `(INTO PHONE)` | Delivery | On phone |
+| `(SUBTITLE)` | Translation | Foreign language |
+
+## Dialogue Patterns
+
+### Basic Dialogue
+```fountain
+
+SARAH
+I don't think that's a good idea.
+```
+
+### With Parenthetical
+```fountain
+
+SARAH
+(hesitant)
+I don't think that's a good idea.
+```
+
+### Multiple Parentheticals
+```fountain
+
+JOHN
+(laughing)
+You're kidding.
+(realizes she's not)
+Oh. You're not kidding.
+```
+
+### Continued Dialogue
+```fountain
+
+SARAH
+We need to talk.
+
+She crosses to the window.
+
+SARAH (CONT'D)
+About what happened last night.
+```
+
+### Dual Dialogue
+```fountain
+
+JACK
+I love you!
+
+JILL ^
+I hate you!
+```
+
+## Examples
+
+```
+User: /format-dialogue sarah
+Output:
+
+SARAH
+[dialogue here]
+```
+
+```
+User: /format-dialogue john vo
+Output:
+
+JOHN (V.O.)
+[dialogue here]
+```
+
+```
+User: /format-dialogue sarah cont'd hesitant
+Output:
+
+SARAH (CONT'D)
+(hesitant)
+[dialogue here]
+```
+
+## Common Fixes
+
+### Missing Blank Line
+```fountain
+// Wrong
+SARAH
+Hello.
+JOHN
+Hi.
+
+// Right
+SARAH
+Hello.
+
+JOHN
+Hi.
+```
+
+### Parenthetical Placement
+```fountain
+// Wrong
+SARAH (quietly)
+Hello.
+
+// Right
+SARAH
+(quietly)
+Hello.
+```
+
+### Extension Format
+```fountain
+// Wrong
+SARAH V.O.
+SARAH (VO)
+SARAH - V.O.
+
+// Right
+SARAH (V.O.)
+```
+
+## Success Criteria
+- [ ] Character name UPPERCASE
+- [ ] Proper spacing (blank before, none after name)
+- [ ] Extension in parentheses if used
+- [ ] Parenthetical on own line if used
+- [ ] Consistent with character registry
+
+## Agent Assignment
+Primary: Dialogue Writer
+Supporting: Script Supervisor
+"""

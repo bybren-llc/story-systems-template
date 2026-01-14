@@ -1,0 +1,146 @@
+description = "Insert a transition element in proper Fountain format"
+prompt = """
+Insert a transition element in proper Fountain format.
+
+## Arguments
+- `[type]` - Required: Transition type (cut, fade, dissolve, etc.)
+
+## Workflow
+
+### Step 1: Identify Transition Type
+Parse the requested transition and format correctly.
+
+### Step 2: Format Transition
+Standard transitions end in `TO:` and are right-aligned by Fountain:
+```fountain
+
+                                                      CUT TO:
+
+```
+
+### Step 3: Insert with Proper Spacing
+- Blank line before transition
+- Transition on its own line
+- Blank line after transition (before next scene)
+
+## Transition Types
+
+### Standard Transitions
+| Input | Output |
+|-------|--------|
+| `cut` | `CUT TO:` |
+| `smash` | `SMASH CUT TO:` |
+| `match` | `MATCH CUT TO:` |
+| `jump` | `JUMP CUT TO:` |
+
+### Fade Transitions
+| Input | Output |
+|-------|--------|
+| `fade` | `FADE TO:` |
+| `fade in` | `FADE IN:` |
+| `fade out` | `FADE OUT.` |
+| `fade black` | `FADE TO BLACK.` |
+| `fade white` | `FADE TO WHITE.` |
+
+### Dissolve Transitions
+| Input | Output |
+|-------|--------|
+| `dissolve` | `DISSOLVE TO:` |
+| `ripple` | `RIPPLE DISSOLVE TO:` |
+| `cross` | `CROSS DISSOLVE TO:` |
+
+### Time Transitions
+| Input | Output |
+|-------|--------|
+| `time` | `TIME CUT:` |
+| `later` | `LATER:` |
+
+### Intercut
+| Input | Output |
+|-------|--------|
+| `intercut` | `INTERCUT:` |
+
+## Force Non-Standard Transitions
+
+Use `>` prefix in Fountain:
+```fountain
+>BURN TO WHITE.
+
+>SLAM TO:
+
+>WIPE TO:
+```
+
+## Usage Guidelines
+
+### When to Use Transitions
+- **End of acts**: `FADE OUT.`
+- **Script opening**: `FADE IN:`
+- **Script closing**: `FADE OUT.` / `THE END`
+- **Jarring juxtaposition**: `SMASH CUT TO:`
+- **Visual match**: `MATCH CUT TO:`
+- **Time passage**: `DISSOLVE TO:` / `TIME CUT:`
+
+### When NOT to Use
+- Between standard scenes (cut is implied)
+- Every scene change (creates clutter)
+- To pad page count
+
+## Examples
+
+```
+User: /add-transition cut
+Output:
+                                                      CUT TO:
+```
+
+```
+User: /add-transition fade out
+Output:
+                                                      FADE OUT.
+```
+
+```
+User: /add-transition smash
+Output:
+                                                      SMASH CUT TO:
+```
+
+## Special Patterns
+
+### Opening
+```fountain
+FADE IN:
+
+EXT. CITY - NIGHT
+```
+
+### End of Act
+```fountain
+Sarah stares at the evidence.
+
+                                                      FADE OUT.
+
+                                                      END OF ACT ONE
+```
+
+### Script Ending
+```fountain
+Sarah walks into the light.
+
+                                                      FADE OUT.
+
+                                                      THE END
+```
+
+## Success Criteria
+- [ ] Transition is uppercase
+- [ ] Ends with `TO:` or `.`
+- [ ] Blank line before
+- [ ] Properly formatted for Fountain
+- [ ] Used sparingly and purposefully
+
+## Agent Assignment
+Primary: Scene Writer
+Supporting: Script Supervisor
+"""

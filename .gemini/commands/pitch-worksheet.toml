@@ -1,0 +1,133 @@
+description = "Generate a structured pitch worksheet for your screenplay concept"
+prompt = """
+Generate a structured pitch worksheet for your screenplay concept.
+
+## Arguments
+- `[title]` - Optional: The screenplay title
+
+## Workflow
+
+### Step 1: Identify Screenplay
+If title not provided, ask:
+```
+Which screenplay are we developing a pitch for?
+
+Enter the title or describe your concept:
+```
+
+### Step 2: Core Elements
+Gather essential information:
+
+```
+Let's build your pitch worksheet.
+
+LOGLINE - What is your story about? (1-2 sentences max)
+>
+
+GENRE - What genre? (stick to one, or note if mixing)
+>
+
+THE 3 MAIN CHARACTERS (including the antagonist):
+1. Name and brief description:
+2. Name and brief description:
+3. Name and brief description:
+```
+
+### Step 3: Three-Act Summary
+```
+ACT 1 - Introduce your main character. How do they live?
+What moment changes everything for them?
+>
+
+ACT 2 - Intensify the conflict. What stands in their way?
+When are they furthest from their goal?
+>
+
+ACT 3 - How does it resolve? What's the ending?
+>
+```
+
+### Step 4: Cinematic Elements
+```
+TURNING POINTS - 3 flashes that change the story direction:
+1.
+2.
+3.
+
+MOST CINEMATIC SCENES - The ones you can really visualize:
+1.
+2.
+3.
+
+B-STORY - Your secondary plot:
+>
+```
+
+### Step 5: Generate Worksheet
+Create formatted pitch worksheet document:
+
+```markdown
+# PITCH WORKSHEET: [TITLE]
+
+## LOGLINE
+[Refined logline]
+
+## GENRE
+[Genre(s)]
+
+## MAIN CHARACTERS
+1. **[Name]** - [Description]
+2. **[Name]** - [Description]
+3. **[Name]** - [Description]
+
+## ACT ONE
+[Summary]
+
+## ACT TWO
+[Summary]
+
+## ACT THREE
+[Summary]
+
+## KEY TURNING POINTS
+1. [Turning point]
+2. [Turning point]
+3. [Turning point]
+
+## MOST CINEMATIC SCENES
+1. [Scene description]
+2. [Scene description]
+3. [Scene description]
+
+## B-STORY
+[Secondary plot]
+
+---
+*Pitch Worksheet - Ready for verbal delivery*
+```
+
+### Step 6: Verbal Pitch Prep
+```
+Your pitch worksheet is ready!
+
+Practice tip: Don't memorize - tell it like you're sharing
+an exciting story with a friend.
+
+Ready to practice your verbal pitch?
+  Yes - I'll help you rehearse
+  No  - I'll save the worksheet
+```
+
+## Success Criteria
+- [ ] Logline is 1-2 sentences
+- [ ] Genre clearly identified
+- [ ] 3 main characters described
+- [ ] All three acts summarized
+- [ ] Turning points identified
+- [ ] Cinematic moments captured
+- [ ] Worksheet document created
+
+## Agent Assignment
+Primary: Story Analyst
+Supporting: Story Architect
+"""

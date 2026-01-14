@@ -1,0 +1,197 @@
+description = "Apply the WTFB 6-step rewriting methodology to your screenplay"
+prompt = """
+Apply the WTFB 6-step rewriting methodology to your screenplay.
+
+## Arguments
+- `[screenplay-file]` - Optional: Path to screenplay file
+
+## Workflow
+
+### Step 1: Identify Script
+```
+Ready to apply the WTFB rewriting methodology!
+
+This is a comprehensive process that will:
+  1. Identify all story threads
+  2. Chart arcs across acts
+  3. Find holes in your structure
+  4. Grade every scene
+  5. Elevate weak scenes
+  6. Compress for maximum impact
+
+Which screenplay should we analyze?
+```
+
+### Step 2: Story Thread Identification
+```markdown
+## STEP 1: IDENTIFY THE STORIES
+
+List every story thread by completing "The story of..."
+
+### Main Plots
+1. The story of [protagonist] who [journey]
+2. The story of [relationship between X and Y]
+3. The story of [theme exploration]
+
+### Subplots
+4. The story of [subplot A]
+5. The story of [subplot B]
+
+[Continue for all threads identified]
+```
+
+### Step 3: Arc Charting
+```markdown
+## STEP 2: CHART THE ARCS
+
+| Story Thread | Beginning | Act One | Act Two | Act Three | Finish |
+|--------------|-----------|---------|---------|-----------|--------|
+| Main Plot | | | | | |
+| B-Story | | | | | |
+| Character Arc | | | | | |
+| Subplot 1 | | | | | |
+| Subplot 2 | | | | | |
+```
+
+### Step 4: Hole Finding
+```markdown
+## STEP 3: FIND THE HOLES
+
+Look at the chart. Identify:
+
+### Missing Beats
+- Story thread [X] is missing from [Act]
+- [Character]'s arc has no [beginning/middle/end]
+
+### Threads That Disappear
+- [Subplot] introduced in Act One, absent in Act Two
+- [Character] mentioned but never resolved
+
+### Incomplete Arcs
+- [Thread] starts but doesn't complete
+- Resolution for [conflict] is missing
+
+### HOLES TO FIX
+1. ___________________________________
+   Location: ___________
+   Solution: ___________
+
+2. ___________________________________
+   Location: ___________
+   Solution: ___________
+```
+
+### Step 5: Scene Grading
+```markdown
+## STEP 4: GRADE YOUR SCENES
+
+| Scene # | Location | Grade | Issue/Note |
+|---------|----------|-------|------------|
+| 1 | | | |
+| 2 | | | |
+| 3 | | | |
+[Continue for all scenes]
+
+### GRADE KEY
+- **A**: Essential, well-executed, couldn't be better
+- **B**: Good, serves story, minor improvements possible
+- **C**: Adequate, needs work
+- **D**: Weak, may not be necessary
+- **F**: Fails to serve story, cut or rewrite
+
+### GRADE SUMMARY
+- A Scenes: [count]
+- B Scenes: [count]
+- C Scenes: [count]
+- D Scenes: [count]
+- F Scenes: [count]
+```
+
+### Step 6: Best Scene Analysis
+```markdown
+## STEP 5: ELEVATE TO YOUR BEST
+
+Your best scene is: Scene [#] - [location]
+
+### What makes it work:
+1. [Quality 1]
+2. [Quality 2]
+3. [Quality 3]
+
+### Apply these qualities to weaker scenes:
+
+**Scene [#]** (Current: [grade])
+- Lacks: [what's missing]
+- Add: [specific improvement]
+
+**Scene [#]** (Current: [grade])
+- Lacks: [what's missing]
+- Add: [specific improvement]
+
+[Continue for all C, D, F scenes]
+```
+
+### Step 7: Compression Targets
+```markdown
+## STEP 6: COMPRESS
+
+### Scenes to CUT entirely:
+- Scene [#]: [reason]
+- Scene [#]: [reason]
+
+### Scenes to SHORTEN:
+- Scene [#]: Enter later at [point]
+- Scene [#]: Exit earlier at [point]
+- Scene [#]: Remove [what]
+
+### Dialogue to TRIM:
+- Page [#]: Cut [what]
+- Page [#]: Cut [what]
+
+### Characters to COMBINE:
+- [Character A] + [Character B] -> serve same function
+
+### ESTIMATED PAGE REDUCTION: [X] pages
+```
+
+### Step 8: Rewrite Action Plan
+```markdown
+## REWRITE ACTION PLAN
+
+### Priority 1: Fix Holes
+1. [specific action]
+2. [specific action]
+
+### Priority 2: Cut/Rewrite F Scenes
+1. [specific action]
+2. [specific action]
+
+### Priority 3: Elevate D Scenes
+1. [specific action]
+2. [specific action]
+
+### Priority 4: Strengthen C Scenes
+1. [specific action]
+2. [specific action]
+
+### Priority 5: Compress
+1. [specific action]
+2. [specific action]
+
+---
+*WTFB Rewriting Methodology Applied*
+```
+
+## Success Criteria
+- [ ] All story threads identified
+- [ ] Arc chart completed
+- [ ] All holes found
+- [ ] Every scene graded
+- [ ] Best scene qualities identified
+- [ ] Compression targets set
+- [ ] Action plan created
+
+## Agent Assignment
+Primary: Story Analyst
+Supporting: Story Architect, Script Supervisor
+"""

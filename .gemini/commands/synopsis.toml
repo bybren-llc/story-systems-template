@@ -1,0 +1,141 @@
+description = "Generate a one-page synopsis per WTFB requirements"
+prompt = """
+Generate a one-page synopsis per WTFB requirements.
+
+## Arguments
+- `[screenplay-file]` - Optional: Path to screenplay file
+
+## Workflow
+
+### Step 1: Identify Source
+If file not provided:
+```
+Which screenplay needs a synopsis?
+
+Found:
+  1. [screenplay1.fountain]
+  2. [screenplay2.fountain]
+
+Or describe your story and I'll format it:
+```
+
+### Step 2: Gather Key Information
+Read screenplay or gather from user:
+
+```markdown
+## SYNOPSIS PREPARATION
+
+**Title**: [title]
+**Genre**: [genre]
+**Setting**: [location], [time period]
+**Page Count**: [pages]
+
+**PROTAGONIST**:
+Name and brief description:
+
+**THE CONFLICT**:
+What is the central problem?
+
+**THE RESOLUTION**:
+How does it end?
+```
+
+### Step 3: Apply WTFB Synopsis Criteria
+
+Per WTFB, a good synopsis must:
+1. Be easily pitchable by a producer to others
+2. Be instantly understandable on first read
+3. Give an accurate picture of the story
+4. Be one page or less
+5. Not over-complicate with every character/detail
+
+### Step 4: Generate Synopsis
+
+Create formatted synopsis document:
+
+```markdown
+---
+**TITLE**: [TITLE]
+**GENRE**: [Genre]
+**LOCALE**: [Location]
+**CIRCA**: [Time Period]
+---
+
+## LOGLINE
+[1-2 sentence hook]
+
+## SYNOPSIS
+
+[PROTAGONIST NAME] is [brief character description establishing
+their status quo].
+
+When [INCITING INCIDENT], [they] must [GOAL]. But [ANTAGONIST/
+OBSTACLE] stands in the way because [motivation].
+
+[Describe the journey through Act Two - the escalation, the
+complications, the relationships that develop. Keep it to
+2-3 paragraphs maximum.]
+
+[Describe the dark moment - when all seems lost.]
+
+In the end, [PROTAGONIST] [describe resolution and character
+transformation]. [Final image or state].
+
+---
+*Copyright [Year] [Author]. All Rights Reserved.*
+```
+
+### Step 5: Simplicity Test
+
+```markdown
+## SIMPLICITY TEST
+
+Could even a busy executive understand this on first read?
+
+**Word Count**: [X] / ~350 target
+**Character Names Used**: [count] / 3-4 max
+**Subplots Included**: [which ones - should be minimal]
+
+### Assessment
+[ ] PASS - Clear and pitchable
+[ ] NEEDS TRIM - Too detailed
+[ ] NEEDS CLARITY - Confusing elements
+```
+
+### Step 6: Producer Pitch Test
+
+```
+Imagine a producer reading this, then pitching it in a meeting:
+
+"It's about [protagonist] who [conflict] and [resolution]."
+
+Can they do that from your synopsis?
+
+If not, let's simplify further.
+```
+
+### Step 7: Format Options
+
+```
+Synopsis complete!
+
+Save as:
+  1. Markdown file (synopsis.md)
+  2. Add to screenplay title page
+  3. Both
+
+Where should I save it?
+```
+
+## Success Criteria
+- [ ] One page or less (350 words max)
+- [ ] Instantly understandable on first read
+- [ ] No more than 3-4 character names
+- [ ] Complete story arc (including ending)
+- [ ] Genre/tone is clear
+- [ ] Easily pitchable by producer to others
+
+## Agent Assignment
+Primary: Story Analyst
+Supporting: Story Architect
+"""

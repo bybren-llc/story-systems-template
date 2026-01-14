@@ -1,0 +1,167 @@
+description = "Generate all output formats (PDF, FDX, HTML) at once"
+prompt = """
+Generate all output formats (PDF, FDX, HTML) at once.
+
+## Arguments
+- `[version]` - Optional: Version number (default: 1.0)
+- `[options]` - Optional: `draft`, `final`
+
+## Workflow
+
+### Step 1: Pre-Export Validation
+Run comprehensive validation:
+- Fountain syntax check
+- Title page verification
+- Standards review
+- Page count confirmation
+
+### Step 2: Generate Filenames
+```
+[Title]_v[Version]_[YYYYMMDD].pdf
+[Title]_v[Version]_[YYYYMMDD].fdx
+[Title]_v[Version]_[YYYYMMDD].html
+```
+
+### Step 3: Execute All Exports
+
+#### Recommended: VS Code + Better Fountain Extension
+
+The easiest method uses the Better Fountain extension:
+
+1. Open your `.fountain` file in VS Code
+2. Press `Ctrl+Shift+P` (or `Cmd+Shift+P` on macOS)
+3. Run each export command:
+   - "Fountain: Export to PDF"
+   - "Fountain: Export to FDX"
+   - "Fountain: Export to HTML"
+
+#### Alternative: CLI Tools (for automation)
+
+For CI/CD pipelines or scripted exports:
+
+```bash
+# PDF and HTML via afterwriting
+afterwriting --source screenplay.fountain --pdf --output file.pdf
+afterwriting --source screenplay.fountain --html --output file.html
+
+# FDX via screenplain (afterwriting does NOT support FDX)
+screenplain --format fdx screenplay.fountain file.fdx
+```
+
+Note: Requires `npm install -g afterwriting` and `pipx install screenplain`
+
+### Step 4: Verify All Outputs
+- Check all files created
+- Verify sizes
+- Confirm formats
+
+### Step 5: Generate Report
+
+```markdown
+## Export Complete: All Formats
+
+### Files Generated
+| Format | Filename | Size | Status |
+|--------|----------|------|--------|
+| PDF | name.pdf | X KB | OK |
+| FDX | name.fdx | X KB | OK |
+| HTML | name.html | X KB | OK |
+
+### Screenplay Info
+- **Title**: [title]
+- **Version**: [version]
+- **Pages**: [count]
+- **Date**: [date]
+
+All formats ready for delivery.
+```
+
+## Export Package
+
+### Directory Structure
+```
+exports/
+├── Seoul_Identity_v1.0_20251227/
+│   ├── Seoul_Identity_v1.0_20251227.pdf
+│   ├── Seoul_Identity_v1.0_20251227.fdx
+│   ├── Seoul_Identity_v1.0_20251227.html
+│   └── export_manifest.md
+```
+
+### Export Manifest
+```markdown
+# Export Manifest
+
+## Screenplay
+- **Title**: Seoul Identity
+- **Author**: Scott Graham
+- **Version**: 1.0
+- **Export Date**: 2025-12-27
+- **Pages**: 98
+
+## Files
+- PDF: Seoul_Identity_v1.0_20251227.pdf (245 KB)
+- FDX: Seoul_Identity_v1.0_20251227.fdx (312 KB)
+- HTML: Seoul_Identity_v1.0_20251227.html (156 KB)
+
+## Verification
+- All files generated successfully
+- Page count verified
+- Format validation passed
+```
+
+## Options
+
+### Draft Export
+- Includes "DRAFT" watermark on PDF
+- Marks all files with DRAFT in name
+- For internal review
+
+### Final Export
+- Clean PDF without watermarks
+- Full validation required
+- For submission/delivery
+
+## Example Output
+
+```markdown
+## Export Complete: All Formats
+
+### Files Generated
+| Format | Filename | Size | Status |
+|--------|----------|------|--------|
+| PDF | Seoul_Identity_v1.0_20251227.pdf | 245 KB | OK |
+| FDX | Seoul_Identity_v1.0_20251227.fdx | 312 KB | OK |
+| HTML | Seoul_Identity_v1.0_20251227.html | 156 KB | OK |
+
+### Screenplay Info
+- **Title**: Seoul Identity
+- **Author**: Scott Graham
+- **Version**: 1.0
+- **Pages**: 98
+- **Date**: December 27, 2025
+
+### Validation
+- OK Fountain syntax valid
+- OK Title page complete
+- OK Page count: 98 pages
+- OK All formats generated
+
+### Notes
+- FDX: 5 [[notes]] not transferred (Fountain-specific)
+- All core content preserved across formats
+
+All formats ready for delivery.
+```
+
+## Success Criteria
+- [ ] All three formats generated
+- [ ] Files correctly named
+- [ ] Sizes reasonable
+- [ ] Validation passed
+- [ ] Manifest created
+
+## Agent Assignment
+Primary: Production Coordinator
+Supporting: Script Supervisor, Standards Reviewer
+"""

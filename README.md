@@ -21,6 +21,18 @@
   </a>
 </p>
 
+<p align="center">
+  <img src="https://img.shields.io/badge/Claude_Code-Full_Support-blueviolet?style=flat-square&logo=anthropic" alt="Claude Code">
+  <img src="https://img.shields.io/badge/Gemini_CLI-Full_Support-orange?style=flat-square&logo=google" alt="Gemini CLI">
+</p>
+
+<p align="center">
+  <em>"Machines are for speed, repetition, and necessity.<br>
+  Humans are for novelty, myth, and meaning.<br>
+  Most people identify with traits of a machine."</em><br>
+  — <strong>J. Scott Graham</strong>
+</p>
+
 > **AI Agents:** For comprehensive documentation, visit [DeepWiki](https://deepwiki.com/bybren-llc/wtfb-projects-template)
 
 ---
@@ -108,13 +120,13 @@ They're not starting from zero. They know the craft.
 
 We're not locked to one AI:
 
-| Platform | Status |
-|----------|--------|
-| **Claude Code** (Anthropic) | Full support |
-| **Gemini CLI** (Google) | Full support |
-| **OpenAI Codex** | Documented |
+| Platform | Status | Harness |
+|----------|--------|---------|
+| ![Claude Code](https://img.shields.io/badge/Claude_Code-Anthropic-blueviolet?style=flat-square&logo=anthropic) | ✅ Full support | `.claude/` |
+| ![Gemini CLI](https://img.shields.io/badge/Gemini_CLI-Google-orange?style=flat-square&logo=google) | ✅ Full support | `.gemini/` |
+| **OpenAI Codex** | 📄 Documented | `.openai/` |
 
-Same team structure. Different AI underneath.
+Same team structure. Same 11 agents, 24 skills, 30 commands. Different AI underneath.
 
 ---
 

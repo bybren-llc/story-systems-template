@@ -1,6 +1,7 @@
 # Rewriting Methodology
 
 ![Status](https://img.shields.io/badge/status-production-green)
+![Harness](https://img.shields.io/badge/harness-v1.5-blue)
 
 > WTFB 6-step screenplay rewriting process.
 

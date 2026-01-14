@@ -1,6 +1,8 @@
 # Scene Analysis
 
 ![Status](https://img.shields.io/badge/status-production-green)
+![Harness](https://img.shields.io/badge/harness-v1.5-blue)
+![Provider](https://img.shields.io/badge/provider-Gemini_CLI-orange)
 
 > Scene-by-scene analysis techniques for screenplays.
 
@@ -41,6 +43,13 @@ Extracted from skill description:
 - [power-analysis](../power-analysis/) - Conflict dynamics analysis
 - [story-structure](../story-structure/) - Three-act structure framework
 - [story-check](../story-check/) - 12 critical story questions
+
+## Provider Compatibility
+
+| Provider | Status |
+|----------|--------|
+| Gemini CLI | ✅ Native |
+| Claude Code | ✅ Equivalent skill in `.claude/skills/` |
 
 ## Quality Checklist
 

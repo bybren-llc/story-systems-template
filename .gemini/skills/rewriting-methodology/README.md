@@ -1,6 +1,8 @@
 # Rewriting Methodology
 
 ![Status](https://img.shields.io/badge/status-production-green)
+![Harness](https://img.shields.io/badge/harness-v1.5-blue)
+![Provider](https://img.shields.io/badge/provider-Gemini_CLI-orange)
 
 > WTFB 6-step screenplay rewriting process.
 
@@ -41,6 +43,13 @@ Extracted from skill description:
 - [continuity-tracking](../continuity-tracking/) - Consistency systems
 - [page-estimation](../page-estimation/) - Page count calculation
 - [format-export](../format-export/) - Export procedures
+
+## Provider Compatibility
+
+| Provider | Status |
+|----------|--------|
+| Gemini CLI | ✅ Native |
+| Claude Code | ✅ Equivalent skill in `.claude/skills/` |
 
 ## Quality Checklist
 

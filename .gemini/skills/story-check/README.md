@@ -1,6 +1,8 @@
 # Story Check
 
 ![Status](https://img.shields.io/badge/status-production-green)
+![Harness](https://img.shields.io/badge/harness-v1.5-blue)
+![Provider](https://img.shields.io/badge/provider-Gemini_CLI-orange)
 
 > The 12 critical story questions for screenplay evaluation.
 
@@ -41,6 +43,13 @@ Extracted from skill description:
 - [story-structure](../story-structure/) - Three-act structure framework
 - [scene-analysis](../scene-analysis/) - Scene evaluation techniques
 - [power-analysis](../power-analysis/) - Conflict dynamics analysis
+
+## Provider Compatibility
+
+| Provider | Status |
+|----------|--------|
+| Gemini CLI | ✅ Native |
+| Claude Code | ✅ Equivalent skill in `.claude/skills/` |
 
 ## Quality Checklist
 

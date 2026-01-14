@@ -1,19 +1,194 @@
-[command]
-name = "stuck"
-description = "Get help when blocked on a writing problem"
+description = "Analyze the current project state and provide helpful, context-aware guidance"
+prompt = """
+Analyze the current project state and provide helpful, context-aware guidance.
 
-[command.arguments]
-problem = { type = "string", required = false, description = "Description of the block" }
-scene = { type = "string", required = false, description = "Scene where stuck" }
+## Arguments
+None - automatically analyzes current project state
 
-[command.workflow]
-steps = [
-  "Identify the nature of the block",
-  "Review relevant story context",
-  "Suggest multiple approaches",
-  "Offer exercises to break through"
-]
+## Workflow
 
-[command.agents]
-primary = "story-analyst"
-supporting = ["story-architect", "dialogue-writer", "scene-writer"]
+### Step 1: Analyze Project State
+
+Check for:
+1. Existence of `.fountain` file(s)
+2. Current page count (estimate from line count)
+3. Number of scenes
+4. Last scene written
+5. Any uncommitted changes
+6. Notes or TODOs in the screenplay
+
+### Step 2: Determine User Situation
+
+| Situation | Indicators |
+|-----------|------------|
+| No project | No .fountain files found |
+| Empty project | Only title page, no scenes |
+| Early draft | Less than 15 pages |
+| Mid-draft | 15-80 pages |
+| Late draft | More than 80 pages |
+| Revision mode | Complete draft exists |
+
+### Step 3: Provide Contextual Guidance
+
+#### No Project Found
+
+```
+You haven't started a screenplay yet!
+
+Here's how to begin:
+
+  /start-project   Set up a new screenplay
+  /import          Bring in an existing script
+
+Or just tell me:
+  - Your story idea
+  - Who your main character is
+  - What happens in the opening
+
+I'll help you from there!
+```
+
+#### Empty Project (Only Title Page)
+
+```
+You've got your screenplay file set up - great start!
+
+The blank page can feel intimidating. Here are some ways in:
+
+If you know your opening:
+  - Just describe it: "A woman sits alone in a diner..."
+  - Use /start-scene to set up the location
+
+If you're still figuring things out:
+  - Tell me your logline
+  - Describe your main character
+  - Tell me what kind of story this is
+
+What feels right to start?
+```
+
+#### Early Draft (< 15 pages)
+
+```
+You're in the early pages - finding your story!
+
+Current Status:
+  Pages: ~[X]
+  Scenes: [Y]
+  Last scene: [Scene heading]
+
+This is the "discovery" phase. What might help:
+
+  /start-scene         Continue from where you left off
+  /analyze-structure   See how your setup is shaping up
+  Just tell me         What happens next in your story
+
+Common questions at this stage:
+  - "Is my opening working?"
+  - "When should the inciting incident happen?"
+  - "How do I introduce my characters?"
+
+What's on your mind?
+```
+
+#### Mid-Draft (15-80 pages)
+
+```
+You're in the thick of it - the marathon section!
+
+Current Status:
+  Pages: ~[X]
+  Scenes: [Y]
+  Position: [Estimated act/sequence]
+
+This is where many writers hit walls. Here's what might help:
+
+If you're lost in the story:
+  /analyze-structure   See where you are in the structure
+  /scene-list          Review what you've written
+
+If a scene isn't working:
+  - Tell me which one and what feels off
+  - I can help with pacing, dialogue, or stakes
+
+If you know what happens but can't write it:
+  - Just describe it in plain language
+  - I'll help shape it into screenplay format
+
+What's blocking you right now?
+```
+
+#### Late Draft (> 80 pages)
+
+```
+You're in the home stretch!
+
+Current Status:
+  Pages: ~[X]
+  Scenes: [Y]
+
+Final act considerations:
+  - Does your climax pay off your setup?
+  - Is your protagonist's journey complete?
+  - Does the ending feel earned?
+
+What might help:
+  /analyze-structure   Check your final act pacing
+  /check-continuity    Look for loose ends
+  /scene-list          Review your third act scenes
+
+You're almost there. What do you need to finish?
+```
+
+#### Revision Mode (Complete Draft)
+
+```
+Congratulations on completing a draft!
+
+Current Status:
+  Pages: ~[X]
+  Scenes: [Y]
+
+Ready for revision? Here are your tools:
+
+Analysis:
+  /analyze-structure      Structure and pacing
+  /analyze-character      Character arc review
+  /check-continuity       Continuity check
+  /check-format           Format validation
+
+Common revision passes:
+  1. Structure - Are beats in the right places?
+  2. Character - Distinct voices? Complete arcs?
+  3. Dialogue - Natural? Subtext-rich?
+  4. Action - Visual? Economical?
+  5. Format - Industry-ready?
+
+What kind of revision are you doing?
+```
+
+### Step 4: Offer Specific Next Steps
+
+Always end with 2-3 concrete options:
+
+```
+Your next steps:
+
+  1. [Most relevant action based on situation]
+  2. [Alternative helpful action]
+  3. Tell me what's really on your mind
+
+What works for you?
+```
+
+## Success Criteria
+- [ ] Project state accurately assessed
+- [ ] Guidance appropriate to writing stage
+- [ ] 2-3 clear next steps offered
+- [ ] Encouraging, not overwhelming tone
+- [ ] No technical jargon
+
+## Agent Assignment
+Primary: Story Analyst
+Supporting: Story Architect, Dialogue Writer, Scene Writer
+"""

@@ -1,19 +1,154 @@
-[command]
-name = "analyze-character"
-description = "Analyze a character's arc, voice, and consistency"
+description = "Analyze a character's arc, appearances, and development"
+prompt = """
+Analyze a character's arc, appearances, and development.
 
-[command.arguments]
-character_name = { type = "string", required = true, description = "Name of the character to analyze" }
-focus = { type = "string", required = false, description = "Specific aspect: arc, voice, relationships" }
+## Arguments
+- `[character]` - Required: Character name to analyze
 
-[command.workflow]
-steps = [
-  "Find all scenes featuring the character",
-  "Map character arc across story structure",
-  "Analyze dialogue patterns and voice",
-  "Check consistency and identify gaps"
-]
+## Workflow
 
-[command.agents]
-primary = "story-analyst"
-supporting = ["dialogue-writer", "continuity-editor"]
+### Step 1: Find All Appearances
+Search screenplay for:
+- Character name in dialogue headers
+- Character name in action (CAPS on first, then mentions)
+- References by other characters
+
+### Step 2: Map Arc Points
+Track character state at key structural moments:
+
+```markdown
+| Point | Page | Character State | Evidence |
+|-------|------|-----------------|----------|
+| Introduction | ? | [initial state] | [scene/action] |
+| End Act One | ? | [state] | [evidence] |
+| Midpoint | ? | [state] | [evidence] |
+| Low Point | ? | [state] | [evidence] |
+| Climax | ? | [state] | [evidence] |
+| Resolution | ? | [final state] | [evidence] |
+```
+
+### Step 3: Identify Arc Elements
+- **Lie believed**: What false belief do they hold?
+- **Truth to learn**: What must they discover?
+- **Want**: External goal
+- **Need**: Internal growth required
+
+### Step 4: Analyze Relationships
+```markdown
+| Character | Relationship | Evolution |
+|-----------|--------------|-----------|
+| [name] | [type] | [how it changes] |
+```
+
+### Step 5: Generate Report
+
+```markdown
+## Character Analysis: [NAME]
+
+### Overview
+- **Role**: [protagonist/antagonist/supporting]
+- **Arc Type**: [positive/negative/flat]
+- **Scenes**: [X] appearances
+- **First Appearance**: Page [Y]
+
+### Arc Summary
+- **Lie**: [false belief]
+- **Truth**: [what they learn]
+- **Want**: [external goal]
+- **Need**: [internal need]
+
+### Transformation
+[Table of arc points]
+
+### Key Relationships
+[Relationship table]
+
+### Strengths
+- [What works in this character's arc]
+
+### Issues
+- [What needs development]
+
+### Recommendations
+1. [Specific improvement]
+```
+
+## Analysis Elements
+
+### Arc Type Detection
+- **Positive**: Character overcomes flaw -> look for growth moments
+- **Negative**: Character descends -> look for corruption moments
+- **Flat**: Character stays same, changes world -> look for influence moments
+
+### Voice Consistency
+- Track vocabulary patterns
+- Note speech rhythm
+- Check for voice drift
+
+### Screen Time
+- Total scenes
+- Total dialogue lines
+- Percentage of screenplay
+
+## Output Example
+
+```markdown
+## Character Analysis: SARAH
+
+### Overview
+- **Role**: Protagonist
+- **Arc Type**: Positive Change
+- **Scenes**: 45 appearances
+- **First Appearance**: Page 1
+
+### Arc Summary
+- **Lie**: "I can't trust anyone"
+- **Truth**: "Connection makes us stronger"
+- **Want**: Find her father's killer
+- **Need**: Learn to trust again
+
+### Transformation
+| Point | Page | State | Evidence |
+|-------|------|-------|----------|
+| Intro | 1 | Isolated, distrustful | Pushes away partner |
+| End Act 1 | 25 | Reluctantly accepts help | Lets John assist |
+| Midpoint | 52 | Beginning to open up | Shares her past |
+| Low Point | 72 | Betrayed, walls go up | "I knew better" |
+| Climax | 95 | Chooses to trust | Relies on team |
+| Resolution | 105 | Transformed | Initiates connection |
+
+### Key Relationships
+| Character | Relationship | Evolution |
+|-----------|--------------|-----------|
+| JOHN | Partner | Suspicion -> Trust -> Betrayal -> Forgiveness |
+| DETECTIVE PARK | Mentor | Resistance -> Respect |
+| VILLAIN | Antagonist | Unknown threat -> Personal enemy |
+
+### Strengths
+- Clear want/need distinction
+- Arc maps well to structure
+- Transformation is earned through action
+
+### Issues
+- Midpoint turn feels abrupt (pages 50-52)
+- Low point recovery too quick
+- Need more "refusing help" beats in Act One
+
+### Recommendations
+1. Add scene showing Sarah's backstory (why she doesn't trust)
+2. Extend the recovery from betrayal (add Dark Night scene)
+3. Add one more "push away" moment before Act One break
+```
+
+## Success Criteria
+- [ ] All appearances mapped
+- [ ] Arc type identified
+- [ ] Want/Need/Lie/Truth defined
+- [ ] Transformation tracked
+- [ ] Relationships analyzed
+- [ ] Actionable recommendations provided
+
+## Agent Assignment
+Primary: Story Analyst
+Supporting: Dialogue Writer, Continuity Editor
+"""

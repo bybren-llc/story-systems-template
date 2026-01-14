@@ -1,24 +1,134 @@
-[command]
-name = "export-pdf"
-description = "Generate PDF output for reading or submission"
+description = "Generate a formatted PDF from the Fountain screenplay"
+prompt = """
+Generate a formatted PDF from the Fountain screenplay.
 
-[command.arguments]
-output = { type = "string", required = false, description = "Output filename" }
-watermark = { type = "string", required = false, description = "Watermark text" }
-include_notes = { type = "boolean", required = false, description = "Include script notes" }
+## Arguments
+- `[output]` - Optional: Output filename (default: auto-generated)
+- `[options]` - Optional: `draft`, `final`, `anonymous`
 
-[command.workflow]
-steps = [
-  "Verify format validation passed",
-  "Generate PDF from source",
-  "Apply watermark if specified",
-  "Save to exports/",
-  "Log export in history"
-]
+## Pre-Export Checklist
 
-[command.agents]
-primary = "production-coordinator"
-supporting = ["script-supervisor"]
+### Required
+- [ ] No Fountain syntax errors
+- [ ] Title page present
+- [ ] All scenes have valid headings
 
-[command.prerequisites]
-validation = ["check-format"]
+### Recommended
+- [ ] Script Supervisor approval
+- [ ] Standards Reviewer approval
+- [ ] All [[notes]] resolved
+
+### For Submission
+- [ ] Page count within target
+- [ ] No scene numbers
+- [ ] No WGA registration numbers
+- [ ] Contact info current
+
+## Workflow
+
+### Step 1: Pre-Export Validation
+Run format validation:
+- Check Fountain syntax
+- Verify title page
+- Confirm no blocking errors
+
+### Step 2: Prepare Export
+Determine settings:
+- Title page inclusion
+- Scene numbers (off for specs)
+- Notes visibility (off for delivery)
+- Watermark (if draft)
+
+### Step 3: Execute Export
+
+#### Recommended: VS Code + Better Fountain Extension
+
+The easiest method uses the Better Fountain extension:
+
+1. Open your `.fountain` file in VS Code
+2. Press `Ctrl+Shift+P` (or `Cmd+Shift+P` on macOS)
+3. Type "Fountain: Export to PDF"
+4. Choose output location
+
+#### Alternative: CLI Tools (for automation)
+
+For CI/CD pipelines or scripted exports:
+
+```bash
+# First-time setup
+npm install -g afterwriting
+
+# Export
+afterwriting --source screenplay.fountain --pdf --output output.pdf
+```
+
+### Step 4: Verify Output
+- Confirm file created
+- Check file size
+- Verify page count
+- Sample formatting check
+
+### Step 5: Report Results
+
+```markdown
+## PDF Export Complete
+
+**File**: [filename].pdf
+**Size**: [X] KB
+**Pages**: [Y]
+**Status**: Success
+
+Ready for delivery.
+```
+
+## Export Options
+
+### Standard (Default)
+- Title page: Yes
+- Scene numbers: No
+- Notes: Hidden
+- Watermark: None
+
+### Draft
+- Title page: Yes
+- Scene numbers: No
+- Notes: Hidden
+- Watermark: "DRAFT"
+
+### Final
+- Title page: Yes
+- Scene numbers: No
+- Notes: Hidden
+- Watermark: None
+- Extra validation
+
+### Anonymous
+- Title page: Minimal (no author)
+- Scene numbers: No
+- Notes: Hidden
+- Watermark: None
+- For competition submission
+
+## Filename Convention
+
+Auto-generated names:
+```
+[Title]_v[Version]_[YYYYMMDD].pdf
+
+Examples:
+Seoul_Identity_v1.0_20251227.pdf
+Seoul_Identity_DRAFT_20251227.pdf
+Seoul_Identity_ANONYMOUS_20251227.pdf
+```
+
+## Success Criteria
+- [ ] PDF file created
+- [ ] Correct page count
+- [ ] Title page present
+- [ ] Formatting correct
+- [ ] File size reasonable
+
+## Agent Assignment
+Primary: Production Coordinator
+Supporting: Script Supervisor, Standards Reviewer
+"""

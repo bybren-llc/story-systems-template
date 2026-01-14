@@ -1,24 +1,74 @@
-[command]
-name = "check-format"
-description = "Validate format syntax across the project"
+description = "Validate Fountain syntax and formatting"
+prompt = """
+Validate Fountain syntax and formatting for the screenplay project.
 
-[command.arguments]
-file = { type = "string", required = false, description = "Specific file to check (default: all)" }
-fix = { type = "boolean", required = false, description = "Auto-fix issues where possible" }
+## Arguments
+- `[file]` - Optional: specific .fountain file (default: main screenplay)
 
-[command.workflow]
-steps = [
-  "Run format linter",
-  "Check scene heading format",
-  "Validate character name consistency",
-  "Check parenthetical formatting",
-  "Report issues found"
-]
+## Pre-Task Checklist
+- [ ] Identify target .fountain file
+- [ ] Load skill: fountain-syntax
 
-[command.agents]
-primary = "script-supervisor"
-supporting = ["standards-reviewer"]
+## Workflow
 
-[command.validation]
-blocking = true
-required_for = ["commit", "pr", "export"]
+### Step 1: Load Fountain File
+- Identify target .fountain file (check for *.fountain in project root)
+- Read complete file content
+
+### Step 2: Syntax Validation
+
+#### Title Page Check
+- [ ] Title present
+- [ ] Author/Credit present
+- [ ] Contact information
+- [ ] Draft date (recommended)
+
+#### Scene Headings Check
+- Must start with INT, EXT, INT./EXT., or I/E
+- Must include time of day (DAY, NIGHT, CONTINUOUS, etc.)
+- Report any invalid headings with line numbers
+
+#### Character/Dialogue Check
+- Character names must be UPPERCASE
+- Parentheticals must be on own line, in (parentheses)
+- No orphaned dialogue (dialogue without character)
+
+### Step 3: Generate Report
+
+Format your output as:
+```
+## Fountain Validation: [FILENAME]
+
+### Status: [VALID / X ERRORS / Y WARNINGS]
+
+### Errors (Must Fix)
+[List breaking issues with line numbers]
+
+### Warnings (Should Review)
+[List non-breaking issues]
+
+### Statistics
+- Pages: ~[X]
+- Scenes: [Y]
+- Characters: [Z]
+
+### Ready for Export: [YES/NO]
+```
+
+## Success Criteria
+- [ ] All scenes have valid headings
+- [ ] All dialogue has character names
+- [ ] No orphaned elements
+- [ ] Title page complete (or warned if missing)
+- [ ] Export-ready status determined
+
+## Agent Assignment
+Primary: Script Supervisor
+Supporting: Standards Reviewer
+
+## Validation Gate
+This command is BLOCKING for:
+- Commits
+- Pull Requests
+- Exports
+"""

@@ -1,6 +1,8 @@
 # Theme Discovery
 
 ![Status](https://img.shields.io/badge/status-production-green)
+![Harness](https://img.shields.io/badge/harness-v1.5-blue)
+![Provider](https://img.shields.io/badge/provider-Gemini_CLI-orange)
 
 > Personal theme mining exercises for screenwriters.
 
@@ -41,6 +43,13 @@ Extracted from skill description:
 - [logline](../logline/) - Logline writing techniques
 - [pitch-worksheet](../pitch-worksheet/) - Pitch development framework
 - [writers-room](../writers-room/) - Collaborative pre-production
+
+## Provider Compatibility
+
+| Provider | Status |
+|----------|--------|
+| Gemini CLI | ✅ Native |
+| Claude Code | ✅ Equivalent skill in `.claude/skills/` |
 
 ## Quality Checklist
 

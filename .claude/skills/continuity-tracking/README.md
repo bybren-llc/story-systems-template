@@ -1,6 +1,7 @@
 # Continuity Tracking
 
 ![Status](https://img.shields.io/badge/status-production-green)
+![Harness](https://img.shields.io/badge/harness-v1.5-blue)
 
 > Screenplay continuity tracking systems and templates.
 

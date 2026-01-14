@@ -1,6 +1,8 @@
 # Character Arcs
 
 ![Status](https://img.shields.io/badge/status-production-green)
+![Harness](https://img.shields.io/badge/harness-v1.5-blue)
+![Provider](https://img.shields.io/badge/provider-Gemini_CLI-orange)
 
 > Character arc development frameworks and techniques.
 
@@ -41,6 +43,13 @@ Extracted from skill description:
 - [arc-check](../arc-check/) - Character arc validation
 - [character-interview](../character-interview/) - 80-question interview framework
 - [dialogue-craft](../dialogue-craft/) - Dialogue writing techniques
+
+## Provider Compatibility
+
+| Provider | Status |
+|----------|--------|
+| Gemini CLI | ✅ Native |
+| Claude Code | ✅ Equivalent skill in `.claude/skills/` |
 
 ## Quality Checklist
 

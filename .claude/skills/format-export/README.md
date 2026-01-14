@@ -1,6 +1,7 @@
 # Format Export
 
 ![Status](https://img.shields.io/badge/status-production-green)
+![Harness](https://img.shields.io/badge/harness-v1.5-blue)
 
 > Screenplay export procedures for PDF, FDX, and HTML.
 

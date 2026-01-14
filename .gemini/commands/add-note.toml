@@ -1,0 +1,118 @@
+description = "Add a Fountain note (hidden in output) to the screenplay"
+prompt = """
+Add a Fountain note (hidden in output) to the screenplay.
+
+## Arguments
+- `[type]` - Optional: TODO, QUESTION, ALT, CUT, EXPAND, RESEARCH, NOTE
+- `[content]` - Required: The note content
+
+## Workflow
+
+### Step 1: Determine Note Type
+If type specified, prefix content:
+- `TODO:` - Action item
+- `QUESTION:` - Needs clarification
+- `ALT:` - Alternative approach
+- `CUT:` - Consider removing
+- `EXPAND:` - Needs development
+- `RESEARCH:` - Needs fact-checking
+- `NOTE:` - General observation
+
+### Step 2: Format Note
+```fountain
+[[TYPE: Note content here]]
+```
+
+### Step 3: Insert at Location
+- Inline: Within action or dialogue
+- Between scenes: On its own line
+- Multi-line: For longer notes
+
+## Note Types
+
+| Type | Purpose | Example |
+|------|---------|---------|
+| `TODO` | Action required | `[[TODO: Add confrontation beat]]` |
+| `QUESTION` | Decision needed | `[[QUESTION: Should this be day or night?]]` |
+| `ALT` | Alternative version | `[[ALT: Could also play this comedically]]` |
+| `CUT` | Consider removal | `[[CUT: This may slow pacing]]` |
+| `EXPAND` | Needs more | `[[EXPAND: Build tension here]]` |
+| `RESEARCH` | Fact-check | `[[RESEARCH: Verify Seoul geography]]` |
+| `NOTE` | General | `[[NOTE: Sets up Act 3 reveal]]` |
+
+## Examples
+
+```
+User: /add-note todo Add Sarah's reaction shot
+Output: [[TODO: Add Sarah's reaction shot]]
+
+User: /add-note question Is this the right location for the reveal?
+Output: [[QUESTION: Is this the right location for the reveal?]]
+
+User: /add-note This scene mirrors the opening
+Output: [[NOTE: This scene mirrors the opening]]
+```
+
+## Placement Patterns
+
+### Inline Note
+```fountain
+Sarah hesitates at the door. [[TODO: Add physical business]]
+
+She enters.
+```
+
+### Scene Note
+```fountain
+INT. WAREHOUSE - NIGHT
+
+[[NOTE: This is the midpoint reversal. Everything changes here.]]
+
+Sarah stands alone in the darkness.
+```
+
+### Multi-Line Note
+```fountain
+[[QUESTION: This scene could go two ways:
+1. Sarah confronts John directly
+2. Sarah pretends not to know
+
+Need to decide which serves the character arc better.]]
+```
+
+### Before Boneyard
+```fountain
+[[CUT: Removing for pacing. Preserving in boneyard below.]]
+
+/*
+INT. DINER - NIGHT
+
+Cut scene content here...
+*/
+```
+
+## Note Management
+
+### Finding Notes
+Search for patterns:
+- All notes: `[[`
+- TODOs: `[[TODO:`
+- Questions: `[[QUESTION:`
+
+### Clearing Notes
+Before final export:
+1. Review all notes
+2. Resolve action items
+3. Answer questions
+4. Remove or keep intentionally
+
+## Success Criteria
+- [ ] Double brackets used [[]]
+- [ ] Type prefix if specified
+- [ ] Clear, actionable content
+- [ ] Proper placement
+
+## Agent Assignment
+Primary: Scene Writer
+Supporting: Script Supervisor
+"""

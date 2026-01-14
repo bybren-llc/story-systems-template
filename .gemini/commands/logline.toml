@@ -1,0 +1,140 @@
+description = "Create a compelling logline using the WTFB hook structure"
+prompt = """
+Create a compelling logline using the WTFB hook structure.
+
+## Arguments
+- `[title]` - Optional: Screenplay title
+
+## Workflow
+
+### Step 1: Gather Core Elements
+```
+Let's craft your logline!
+
+A great logline has 4 components:
+  - CHARACTERS: Who are they? What do they want?
+  - CONFLICT: Main obstacle to achieving goal?
+  - SETTING: Time period, genre, style
+  - ACTION: Excitement - never be boring!
+
+Tell me about your screenplay:
+```
+
+### Step 2: Extract Components
+
+```markdown
+## LOGLINE COMPONENTS
+
+**PROTAGONIST**:
+Who is your main character? (Be specific - not "a man" but "a disgraced surgeon")
+> [gathered info]
+
+**GOAL**:
+What do they actively pursue?
+> [gathered info]
+
+**ANTAGONIST/OBSTACLE**:
+Who or what opposes them?
+> [gathered info]
+
+**STAKES**:
+What happens if they fail?
+> [gathered info]
+
+**UNIQUE ELEMENT**:
+What makes THIS story different?
+> [gathered info]
+```
+
+### Step 3: Generate Draft Loglines
+
+Create 3 variations using different formulas:
+
+```markdown
+## DRAFT LOGLINES
+
+### Version 1 (Basic Formula)
+A [ADJECTIVE] [PROTAGONIST TYPE] must [GOAL]
+when [CONFLICT], or else [STAKES].
+
+> [generated logline]
+
+### Version 2 (Setup-Catalyst Formula)
+When [SETUP], a [PROTAGONIST] must [OBJECTIVE]
+before [ANTAGONIST] [THREAT].
+
+> [generated logline]
+
+### Version 3 (Genre Formula)
+A [GENRE] about [PROTAGONIST] who [SITUATION]
+until [CATALYST] forces them to [ACTION]
+against [ANTAGONIST/OBSTACLE].
+
+> [generated logline]
+```
+
+### Step 4: Refine
+
+```
+Which version resonates most?
+
+  1. Version 1: [logline]
+  2. Version 2: [logline]
+  3. Version 3: [logline]
+  4. Combine elements from multiple
+
+Let's refine your chosen version:
+```
+
+### Step 5: Quality Check
+
+```markdown
+## LOGLINE QUALITY CHECK
+
+**FINAL LOGLINE**:
+> [refined logline]
+
+**Word Count**: [X] / 25 target
+
+### Checklist
+- [ ] Protagonist clearly identified
+- [ ] Goal is active (character DOES something)
+- [ ] Conflict/obstacle is compelling
+- [ ] Stakes implied or stated
+- [ ] Genre is clear
+- [ ] Creates curiosity to see the film
+- [ ] No character names used
+- [ ] 25 words or fewer
+```
+
+### Step 6: Compare to Classics
+
+```markdown
+## COMPARISON TO CLASSIC LOGLINES
+
+**Raiders of the Lost Ark** (18 words):
+"An archeologist is hired by the U.S. government to find
+the Ark of the Covenant before the Nazis."
+
+**Gladiator** (24 words):
+"A Roman general is betrayed and his family killed by an
+insane emperor. Now a gladiator, he comes to Rome for revenge."
+
+**Your Logline** ([X] words):
+"[Your logline]"
+
+Does your logline have the same clarity and hook?
+```
+
+## Success Criteria
+- [ ] 4 components identified
+- [ ] Multiple draft versions generated
+- [ ] Final version refined
+- [ ] 25 words or fewer
+- [ ] Quality checklist passed
+- [ ] Creates desire to see the film
+
+## Agent Assignment
+Primary: Story Analyst
+Supporting: Story Architect
+"""

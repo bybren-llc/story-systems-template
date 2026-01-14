@@ -1,0 +1,197 @@
+description = "Conduct an in-depth character interview using the 80-question WTFB methodology"
+prompt = """
+Conduct an in-depth character interview using the 80-question WTFB methodology.
+
+## Arguments
+- `[character-name]` - Required: Name of character to interview
+
+## Workflow
+
+### Step 1: Setup
+```
+Let's interview [CHARACTER NAME].
+
+Grab a drink, get comfortable - we're going deep into
+who this character really is.
+
+I'll ask questions in groups. Answer as if you ARE the
+character, or describe what they would say.
+
+Ready to begin?
+```
+
+### Step 2: Background Section (Questions 1-10)
+```
+BACKGROUND
+
+1. When and where were you born?
+2. What's your favorite color?
+3. What type of birth did you have?
+4. What makes you laugh?
+5. What makes you sad?
+6. What makes you angry?
+7. What makes you cry?
+8. How do you make a living?
+9. How do you feel about your mother?
+10. How do you feel about your father?
+```
+
+### Step 3: Preferences Section (Questions 11-20)
+```
+PREFERENCES
+
+11. What sports do you love to play?
+12. What sports do you love to watch?
+13. What's your favorite movie?
+14. What's your favorite music?
+15. Favorite TV show?
+16. Favorite beverage?
+17. Favorite food?
+18. Political affiliation?
+19. Do you gamble?
+20. Do you have kids?
+```
+
+### Step 4: Relationships Section (Questions 21-30)
+```
+RELATIONSHIPS
+
+21. Do you like kids?
+22. Are you married?
+23. Have you ever been married?
+24. Do you believe in marriage?
+25. What religion are you?
+26. Most exciting thing that happened to you?
+27. Most traumatic thing that happened to you?
+28. What type of home do you live in?
+29. How is it furnished?
+30. Any physical diseases?
+```
+
+### Step 5: Psychology Section (Questions 31-40)
+```
+PSYCHOLOGY
+
+31. Any physical disabilities?
+32. Ever been in love? With whom? When?
+33. Your first sexual encounter - where and when?
+34. What one thing about the world would you change?
+35. Your most recent dream?
+36. Do you smoke or drink?
+37. Do you use drugs?
+38. What are three of your character flaws?
+39. What's your goal in life?
+40. Strongest physical attribute?
+```
+
+### Step 6: Self-Image Section (Questions 41-50)
+```
+SELF-IMAGE
+
+41. What do you like most about your body?
+42. What do you like least about yourself?
+43. Who would you change places with?
+44. Who do you idolize?
+45. Who do you worship?
+46. Are you aggressive?
+47. Are you passive?
+48. Do you read the newspaper?
+49. Do you read books?
+50. Do you read magazines?
+```
+
+### Step 7: Personality Section (Questions 51-60)
+```
+PERSONALITY
+
+51. Favorite actor/actress?
+52. What animal would you choose to be?
+53. How do you dress?
+54. How do you show or protect your feelings?
+55. How do you feel about death?
+56. How do you get along with other people?
+57. How did your father influence you?
+58. Your mother?
+59. Your siblings?
+60. Do you have brothers/sisters?
+```
+
+### Step 8: History Section (Questions 61-70)
+```
+HISTORY
+
+61. Childhood strict or lenient?
+62. Overprotected? Rejected? Loved?
+63. Family's economic status?
+64. Smart? Intelligent? Savvy? Slow?
+65. High school? College?
+66. Like school? Teachers? Classmates?
+67. Do you travel? Where? Why?
+68. Friends? Who? Why? How'd you meet?
+69. Hobbies? Interests?
+70. Daydream? Worry? Stress?
+```
+
+### Step 9: Worldview Section (Questions 71-80)
+```
+WORLDVIEW
+
+71. Outlook on life - positive or negative?
+72. How do you deal with hostility? Ridicule?
+73. What's your health like?
+74. What's your self-image?
+75. How do you feel about your size? Looks?
+76. Voice - shrill? High? Low?
+77. Impulsive or self-controlled?
+78. Energetic or sluggish?
+79. Do you work out?
+80. How do you feel about the opposite sex? Same sex?
+```
+
+### Step 10: Generate Dossier
+Create character dossier document:
+
+```markdown
+# Character Dossier: [NAME]
+
+## Vital Statistics
+- Birth: [when/where]
+- Occupation: [job]
+- Residence: [home]
+
+## Physical
+- [key attributes]
+
+## Psychological Profile
+- Flaws: [three flaws]
+- Goal: [life goal]
+- Fears: [key fears]
+
+## Background
+- [key history points]
+
+## Relationships
+- [key relationships]
+
+## Voice & Manner
+- [speech/behavior notes]
+
+## Story Function
+- Role: [protagonist/antagonist/supporting]
+- Arc: [how they change]
+
+---
+*Character Interview Complete*
+```
+
+## Success Criteria
+- [ ] All 80 questions addressed
+- [ ] Answers reveal character depth
+- [ ] Contradictions/complexities noted
+- [ ] Character dossier generated
+- [ ] Voice and mannerisms clear
+
+## Agent Assignment
+Primary: Story Analyst
+Supporting: Dialogue Writer
+"""

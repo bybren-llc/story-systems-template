@@ -1,0 +1,143 @@
+description = "Analyze power dynamics and conflict structure in your screenplay"
+prompt = """
+Analyze power dynamics and conflict structure in your screenplay.
+
+## Arguments
+- `[screenplay-file]` - Optional: Path to screenplay file
+- `[scene]` - Optional: Specific scene to analyze
+
+## Workflow
+
+### Step 1: Identify Scope
+```
+What would you like to analyze?
+
+  1. Full screenplay - Power movement throughout
+  2. Specific scene - Deep dive on one scene
+  3. Learn the technique - Practice with examples first
+```
+
+### Step 2a: Full Screenplay Analysis
+Read screenplay and chart power movement:
+
+```markdown
+## POWER ANALYSIS: [TITLE]
+
+### Power Map by Act
+
+#### ACT ONE
+| Scene | Power Holder | Shift To | Technique |
+|-------|--------------|----------|-----------|
+| [#] | [character] | [character] | [how] |
+| [#] | [character] | [character] | [how] |
+
+#### ACT TWO
+| Scene | Power Holder | Shift To | Technique |
+|-------|--------------|----------|-----------|
+| [#] | [character] | [character] | [how] |
+| [#] | [character] | [character] | [how] |
+
+#### ACT THREE
+| Scene | Power Holder | Shift To | Technique |
+|-------|--------------|----------|-----------|
+| [#] | [character] | [character] | [how] |
+| [#] | [character] | [character] | [how] |
+
+### Observations
+- Opening power holder: [character]
+- Total power shifts: [count]
+- Final power holder: [character]
+- Pattern: [seesaw/descent/ascent/reversal/illusion]
+```
+
+### Step 2b: Scene Analysis
+For specific scene, analyze:
+
+```markdown
+## SCENE POWER ANALYSIS
+
+### Scene: [HEADING]
+
+#### Conflict Type
+- [ ] Immediate (happening now)
+- [ ] Imminent (about to happen)
+- [ ] Both
+
+#### Power Dynamics
+- Opens with power: [character]
+- Power source: [physical/positional/economic/knowledge/relational/moral]
+- Shift point: [description]
+- Closes with power: [character]
+
+#### Desire/Obstacle/Stakes
+- DESIRE: [what protagonist wants]
+- OBSTACLE: [what blocks them]
+- REASON COMPROMISE IS NOT AN OPTION: [why]
+
+#### Assessment
+- Power shift earned: [Yes/No]
+- Tension maintained: [Yes/No]
+- Stakes clear: [Yes/No]
+```
+
+### Step 2c: Practice Exercise
+Guide user through the technique:
+
+```
+Let's practice power analysis!
+
+EXERCISE 1: Write a scene with ONLY immediate conflict.
+(Two characters in direct opposition, conflict happening NOW)
+
+EXERCISE 2: Write a scene with ONLY imminent conflict.
+(Tension from what's about to happen, no direct confrontation)
+
+EXERCISE 3: Write a scene with BOTH.
+(Present struggle plus awareness of greater threat)
+
+Which exercise would you like to try?
+```
+
+### Step 3: Recommendations
+
+```markdown
+## RECOMMENDATIONS
+
+### Scenes Needing Power Strengthening
+1. Scene [#]: [issue and suggestion]
+2. Scene [#]: [issue and suggestion]
+
+### Missing Conflict Types
+- Immediate conflict needed in: [scenes]
+- Imminent conflict needed in: [scenes]
+
+### Power Pattern Issues
+- [specific issue and fix]
+
+### Rising Stakes
+- Current progression: [description]
+- Suggested enhancement: [description]
+```
+
+## Power Sources Reference
+
+| Type | Description | Example |
+|------|-------------|---------|
+| Physical | Strength, weapons, numbers | "He's got a gun" |
+| Positional | Job title, authority | "I'm your boss" |
+| Economic | Money, resources | "I'll buy your company" |
+| Knowledge | Information, secrets | "I know what you did" |
+| Relational | Connections, influence | "The mayor owes me" |
+| Moral | Righteousness, ethics | "You know I'm right" |
+
+## Success Criteria
+- [ ] Power holders identified throughout
+- [ ] Power shifts documented
+- [ ] Conflict types categorized
+- [ ] Desire/obstacle/stakes clear for protagonist
+- [ ] Recommendations provided
+
+## Agent Assignment
+Primary: Story Analyst
+Supporting: Story Architect
+"""

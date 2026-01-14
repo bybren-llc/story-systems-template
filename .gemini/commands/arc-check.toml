@@ -1,0 +1,164 @@
+description = "Track and validate character arcs throughout your screenplay"
+prompt = """
+Track and validate character arcs throughout your screenplay.
+
+## Arguments
+- `[character-name]` - Optional: Focus on specific character
+- `[screenplay-file]` - Optional: Path to screenplay file
+
+## Workflow
+
+### Step 1: Identify Characters
+If no character specified, analyze screenplay and list main characters:
+
+```
+Which character arc should we analyze?
+
+MAIN CHARACTERS FOUND:
+  1. [Protagonist name]
+  2. [Antagonist name]
+  3. [Supporting character]
+  4. All main characters
+
+Select a number or name a character:
+```
+
+### Step 2: Identify Starting Point
+```markdown
+## CHARACTER ARC: [NAME]
+
+### STARTING POINT (Act One)
+
+What is [NAME]'s viewpoint at the start?
+> [identified or ask user]
+
+What do they believe?
+> [identified or ask user]
+
+What is their flaw or limitation?
+> [identified or ask user]
+
+What is their status/position?
+> [identified or ask user]
+```
+
+### Step 3: Track Events
+Identify events that change the character's viewpoint:
+
+```markdown
+### TRANSFORMATIVE EVENTS
+
+#### Event 1: [Page ___]
+What happens: [description]
+Impact on viewpoint: [how it changes them]
+
+#### Event 2: [Page ___]
+What happens: [description]
+Impact on viewpoint: [how it changes them]
+
+#### Event 3: [Page ___]
+What happens: [description]
+Impact on viewpoint: [how it changes them]
+
+#### Midpoint Shift: [Page ___]
+What changes: [description]
+New direction: [description]
+
+#### Dark Night/Crisis: [Page ___]
+Lowest point: [description]
+Confronting truth: [what they realize]
+```
+
+### Step 4: Identify Ending Point
+```markdown
+### ENDING POINT (Act Three)
+
+What is [NAME]'s new viewpoint?
+> [identified]
+
+What do they now believe?
+> [identified]
+
+Is their flaw resolved or embraced?
+> [identified]
+
+What is their new status/position?
+> [identified]
+```
+
+### Step 5: Assess Arc
+
+```markdown
+### ARC ASSESSMENT
+
+**Arc Type**:
+[ ] Positive (growth) - overcomes flaw
+[ ] Negative (fall) - succumbs to flaw
+[ ] Transformational - becomes different
+[ ] Flat (catalyst) - changes others, not self
+
+**Degree of Change**:
+[ ] Dramatic - fundamental transformation
+[ ] Moderate - significant but not total
+[ ] Subtle - small but meaningful
+
+**Arc Visibility**:
+[ ] Clearly shown on screen
+[ ] Partially visible
+[ ] Mostly told, not shown
+
+**Arc Earned**:
+[ ] Yes - events justify the change
+[ ] Partially - needs more building
+[ ] No - change feels unearned
+
+**Arc Supports Theme**:
+[ ] Strongly aligned
+[ ] Loosely connected
+[ ] Disconnected
+```
+
+### Step 6: Multi-Character Arc Chart
+If analyzing all characters:
+
+```markdown
+### MULTI-CHARACTER ARC SUMMARY
+
+| Character | ACT 1 | ACT 2 | ACT 3 | Arc Type |
+|-----------|-------|-------|-------|----------|
+| [Name] | [state] | [state] | [state] | [type] |
+| [Name] | [state] | [state] | [state] | [type] |
+| [Name] | [state] | [state] | [state] | [type] |
+```
+
+### Step 7: Recommendations
+
+```markdown
+### RECOMMENDATIONS
+
+**Issues Found**:
+1. [Issue with specific character/scene]
+2. [Issue with specific character/scene]
+
+**Suggested Fixes**:
+1. [Specific action]
+2. [Specific action]
+
+**Arc Strengthening**:
+- Add event at [location] to show [change]
+- Clarify moment of realization at [scene]
+- Make [character]'s transformation more visible by [action]
+```
+
+## Success Criteria
+- [ ] Starting viewpoint clearly identified
+- [ ] Key transformative events documented
+- [ ] Ending viewpoint different from start
+- [ ] Arc type classified
+- [ ] Arc supports theme
+- [ ] Issues and fixes identified
+
+## Agent Assignment
+Primary: Story Analyst
+Supporting: Dialogue Writer, Continuity Editor
+"""

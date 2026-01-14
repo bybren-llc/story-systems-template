@@ -1,0 +1,146 @@
+description = "Run an interactive theme exploration exercise to discover compelling story themes"
+prompt = """
+Run an interactive theme exploration exercise to discover compelling story themes from personal experience and movie analysis.
+
+## Arguments
+- None required
+
+## Workflow
+
+### Step 1: Personal Theme Mining
+Ask the user to reflect on their life experiences:
+
+```
+Let's discover your story themes!
+
+First, think about your life experiences. What moments had:
+- High stakes or drama?
+- Injustice you witnessed?
+- Transformative relationships?
+- Fears you overcame?
+- Lessons learned the hard way?
+
+Share 3 experiences that could inspire great movies:
+```
+
+### Step 2: Capture Personal Themes
+For each experience shared:
+- Identify the underlying theme
+- Connect to universal human experience
+- Suggest potential genre/approach
+
+```markdown
+## PERSONAL THEME ANALYSIS
+
+### Experience 1: [title]
+**What happened**: [summary]
+**Underlying theme**: [theme]
+**Universal appeal**: [why others relate]
+**Potential genre**: [genre suggestion]
+
+### Experience 2: [title]
+**What happened**: [summary]
+**Underlying theme**: [theme]
+**Universal appeal**: [why others relate]
+**Potential genre**: [genre suggestion]
+
+### Experience 3: [title]
+**What happened**: [summary]
+**Underlying theme**: [theme]
+**Universal appeal**: [why others relate]
+**Potential genre**: [genre suggestion]
+```
+
+### Step 3: Top 10 Movie Analysis
+```
+Now let's analyze what YOU love in movies.
+
+List your top 10 favorite films, and I'll help you identify:
+- The theme of each
+- Why it appeals to you
+- Patterns across your favorites
+```
+
+### Step 4: Theme Pattern Analysis
+
+```markdown
+## MOVIE THEME ANALYSIS
+
+| # | Film | Theme | Why It Resonates |
+|---|------|-------|------------------|
+| 1 | [film] | [theme] | [personal reason] |
+| 2 | [film] | [theme] | [personal reason] |
+| 3 | [film] | [theme] | [personal reason] |
+| ... | ... | ... | ... |
+
+### Pattern Recognition
+
+**Recurring Themes in Your Favorites**:
+- [theme 1] - appears in [count] films
+- [theme 2] - appears in [count] films
+- [theme 3] - appears in [count] films
+
+**What This Reveals About You**:
+- You're drawn to stories about [observation]
+- [Another observation]
+- [Another observation]
+```
+
+### Step 5: Theme Selection
+```
+Based on your personal experiences and movie preferences:
+
+YOUR STRONGEST THEMES:
+1. [Theme] - from [source]
+2. [Theme] - from [source]
+3. [Theme] - from [source]
+
+Which resonates most for your screenplay?
+```
+
+### Step 6: Theme to Premise
+Convert selected theme into initial premise:
+
+```markdown
+## THEME TO PREMISE
+
+**Selected Theme**: [theme]
+
+### Development Questions
+
+**Who embodies this theme?**
+What kind of character would explore this theme?
+> [brainstorm]
+
+**What conflict tests this theme?**
+What situation forces a character to confront this theme?
+> [brainstorm]
+
+**What arena makes it dramatic?**
+Where/when does this story unfold?
+> [brainstorm]
+
+**What are the stakes?**
+What happens if the character fails to learn/embrace the theme?
+> [brainstorm]
+
+### Initial Premise Draft
+[Draft premise incorporating theme, character, conflict, arena, stakes]
+
+### Next Steps
+1. Develop character using /character-interview
+2. Build structure using /analyze-structure
+3. Refine hook using /logline
+```
+
+## Success Criteria
+- [ ] 3+ personal themes identified
+- [ ] 10 favorite movies analyzed
+- [ ] Patterns across preferences noted
+- [ ] One theme selected for development
+- [ ] Initial premise drafted
+
+## Agent Assignment
+Primary: Story Analyst
+Supporting: Story Architect, Dialogue Writer
+"""

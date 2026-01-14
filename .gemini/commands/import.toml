@@ -1,0 +1,259 @@
+description = "Import an existing screenplay or source material into your project"
+prompt = """
+Import an existing screenplay or source material into your project.
+
+## Arguments
+- `[path]` - Optional: Path to file or folder to import
+- `[type]` - Optional: `screenplay`, `notes`, `reference`
+
+## Workflow
+
+### Step 1: Identify Source
+
+If no path provided, ask:
+
+```
+What would you like to import?
+
+You can share:
+  - A file path (drag and drop works!)
+  - A folder with multiple files
+  - Or just paste content directly here
+
+I can read:
+  - Final Draft (.fdx)
+  - PDF documents
+  - Word documents (.docx)
+  - Fountain files (.fountain)
+  - Images of pages (.jpg, .png)
+  - Plain text (.txt, .md)
+```
+
+### Step 2: Detect File Type
+
+Read the file and determine format:
+
+| Extension | Handler |
+|-----------|---------|
+| .fdx | Parse Final Draft XML structure |
+| .pdf | Extract text, detect screenplay formatting |
+| .docx | Extract document content |
+| .fountain | Validate and import directly |
+| .jpg/.png/.heic | Read image, transcribe visible text |
+| .txt/.md | Parse for screenplay or note content |
+| folder | Scan all files, present summary |
+
+### Step 3: Process by Format
+
+#### Final Draft (.fdx)
+
+1. Parse the XML structure
+2. Extract:
+   - Title page information
+   - Scene headings
+   - Action blocks
+   - Character names and dialogue
+   - Transitions
+3. Convert to Fountain format
+4. Show preview
+
+Display:
+```
+Found a Final Draft screenplay!
+
+Title: [Title from file]
+Pages: ~[X]
+Scenes: [Y]
+Characters: [Top 5 names]
+
+Preview:
+------------------------------------------------------------
+[First 15 lines in Fountain format]
+------------------------------------------------------------
+
+This look right?
+  Yes, save it     Create [title].fountain
+  Show more        See more of the conversion
+  Fix the title    Change the screenplay title
+```
+
+#### PDF Document
+
+1. Read and extract text
+2. Detect if screenplay format:
+   - Scene headings (INT./EXT.)
+   - Character cues (centered, caps)
+   - Dialogue blocks
+3. If screenplay: Convert to Fountain
+4. If prose/notes: Offer to save as reference or analyze
+
+Display for screenplay:
+```
+Found a screenplay in this PDF!
+
+Detected:
+  - [X] scenes
+  - [Y] characters
+  - ~[Z] pages
+
+Preview of opening:
+------------------------------------------------------------
+[First 15 lines converted to Fountain]
+------------------------------------------------------------
+
+How does this look?
+  Yes, save it        Create the Fountain file
+  Show more           See more pages
+  Something's off     Tell me what looks wrong
+```
+
+Display for non-screenplay:
+```
+This looks like notes or a treatment (not a formatted screenplay).
+
+I found:
+  - Story content about [brief description]
+  - Characters mentioned: [names]
+
+Would you like to:
+  1. Keep as reference material (save to source-materials/)
+  2. Create a beat sheet from this content
+  3. Use this to start a new screenplay
+```
+
+#### Fountain File
+
+1. Validate syntax
+2. Check for issues
+3. Copy to project root
+
+Display:
+```
+Found a Fountain screenplay!
+
+Title: [Title]
+Scenes: [X]
+Format check: [Pass/issues found]
+
+Copying to your workspace...
+
+Done! Your screenplay is ready.
+  /start-scene        Continue writing
+  /check-format       Run full validation
+  /scene-list         See all scenes
+```
+
+#### Images
+
+1. Read image and transcribe all visible text
+2. Detect if screenplay format or handwritten notes
+3. For multiple images, process in sequence
+4. Show transcription for review
+
+Display:
+```
+Reading your image...
+
+Transcribed content:
+------------------------------------------------------------
+[Transcribed text from image]
+------------------------------------------------------------
+
+This is from a [screenplay/handwritten notes].
+
+How does the transcription look?
+  Looks good         Save and continue
+  Add more pages     Import another image
+  Fix errors         Tell me what's wrong
+```
+
+#### Folder
+
+1. Scan folder for supported file types
+2. Present summary
+
+Display:
+```
+Found [X] files in this folder:
+
+  Screenplays:
+    - script_v2.fdx (Final Draft)
+    - old_draft.pdf
+
+  Reference Materials:
+    - character_notes.docx
+    - research.pdf
+
+  Images:
+    - page_scan_01.jpg
+    - page_scan_02.jpg
+
+Which would you like to import?
+  1. Import the screenplay (script_v2.fdx)
+  2. Import all reference materials
+  3. Transcribe the images
+  4. Let me choose specific files
+```
+
+### Step 4: Save and Organize
+
+Create files in appropriate locations:
+- Screenplay: `[title-slug].fountain` at project root
+- Notes/reference: `source-materials/[filename]`
+- Images: Keep originals in `source-materials/scans/`
+
+### Step 5: Confirm and Next Steps
+
+Display completion with next actions:
+```
+Import complete!
+
+Created: [filename].fountain
+
+Your screenplay is ready. What's next?
+  /start-scene         Continue writing
+  /check-format        Validate the import
+  /analyze-structure   Analyze the structure
+  /scene-list          See all scenes
+```
+
+## Error Handling
+
+### File Not Found
+```
+I couldn't find that file.
+
+Try:
+  - Drag and drop the file into this chat
+  - Copy the full file path
+  - Check that the file exists
+
+Or just paste the content directly - that works too!
+```
+
+### Unreadable Format
+```
+I'm not sure how to read this file type ([extension]).
+
+I work best with:
+  - Final Draft (.fdx)
+  - PDF documents
+  - Word documents (.docx)
+  - Fountain files (.fountain)
+  - Images (.jpg, .png)
+  - Plain text (.txt, .md)
+
+Try exporting to PDF from your application, or paste the content directly.
+```
+
+## Success Criteria
+- [ ] File successfully read
+- [ ] Content converted to Fountain format (if applicable)
+- [ ] User approves the conversion
+- [ ] File saved to appropriate location
+- [ ] User knows their next steps
+
+## Agent Assignment
+Primary: Production Coordinator
+Supporting: Script Supervisor
+"""

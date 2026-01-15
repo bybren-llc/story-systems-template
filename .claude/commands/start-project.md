@@ -73,6 +73,7 @@ Just type a number or describe what you have!
      - `exports/pdf/`, `exports/fdx/`, `exports/html/`
      - `patterns/`
    - Run `npm install` silently
+   - Run `npx wtfb init-readme --title "[title]"` to generate project README
 
 Display completion:
 ```
@@ -80,6 +81,7 @@ Your workspace is ready!
 
 Created:
   [title].fountain     Your screenplay with title page
+  README.md            Project info page (IMDb style)
   CLAUDE.md            AI assistant instructions
   package.json         Validation scripts (installed)
 

@@ -530,6 +530,14 @@ foreach ($dir in $placeholderDirs) {
     if (-not (Test-Path $gitkeep)) { New-Item -ItemType File -Path $gitkeep -Force | Out-Null }
 }
 
+# Generate project README from IMDb template
+Write-Host "Generating project README..."
+try {
+    npx wtfb init-readme --title $ProjectTitle --type $ProjectType
+} catch {
+    Write-Yellow "  README generation failed"
+}
+
 Write-Host ""
 Write-Green "========================================"
 Write-Green "  Project initialized successfully!"

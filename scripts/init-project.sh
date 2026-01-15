@@ -480,6 +480,10 @@ touch exports/html/.gitkeep
 mkdir -p docs/v1-original
 touch docs/v1-original/.gitkeep
 
+# Generate project README from IMDb template
+echo "Generating project README..."
+npx wtfb init-readme --title "$PROJECT_TITLE" --type "$PROJECT_TYPE" || echo -e "  ${YELLOW}README generation failed${NC}"
+
 echo ""
 echo -e "${GREEN}========================================${NC}"
 echo -e "${GREEN}  Project initialized successfully!${NC}"

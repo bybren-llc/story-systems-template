@@ -1,3 +1,4 @@
+<!-- wtfb:template-readme -->
 # WTFB Projects Template
 
 <p align="center">

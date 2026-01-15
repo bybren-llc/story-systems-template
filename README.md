@@ -2,23 +2,23 @@
 # WTFB Projects Template
 
 <p align="center">
-  <a href="https://deepwiki.com/bybren-llc/wtfb-projects-template">
-    <img src="https://img.shields.io/badge/DeepWiki-AI_Docs-blue?style=flat-square&logo=artificial-intelligence" alt="DeepWiki">
-  </a>
-  <a href="https://www.npmjs.com/package/@wtfb/cli">
-    <img src="https://img.shields.io/npm/v/@wtfb/cli?style=flat-square&logo=npm&label=@wtfb/cli" alt="npm">
+  <a href="https://github.com/bybren-llc/wtfb-projects-template/blob/main/LICENSE">
+    <img src="https://img.shields.io/github/license/bybren-llc/wtfb-projects-template?style=flat-square" alt="License">
   </a>
   <a href="https://github.com/bybren-llc/wtfb-projects-template/releases/latest">
     <img src="https://img.shields.io/github/v/release/bybren-llc/wtfb-projects-template?include_prereleases&style=flat-square&color=blue" alt="Version">
-  </a>
-  <a href="https://github.com/bybren-llc/wtfb-projects-template/blob/main/LICENSE">
-    <img src="https://img.shields.io/github/license/bybren-llc/wtfb-projects-template?style=flat-square" alt="License">
   </a>
   <a href="https://github.com/bybren-llc/wtfb-projects-template/actions/workflows/validate.yml">
     <img src="https://img.shields.io/github/actions/workflow/status/bybren-llc/wtfb-projects-template/validate.yml?style=flat-square&label=validation" alt="Validation">
   </a>
   <a href="https://github.com/bybren-llc/wtfb-projects-template/stargazers">
     <img src="https://img.shields.io/github/stars/bybren-llc/wtfb-projects-template?style=flat-square" alt="Stars">
+  </a>
+  <a href="https://deepwiki.com/bybren-llc/wtfb-projects-template">
+    <img src="https://img.shields.io/badge/DeepWiki-AI_Docs-blue?style=flat-square&logo=artificial-intelligence" alt="DeepWiki">
+  </a>
+  <a href="https://www.npmjs.com/package/@wtfb/cli">
+    <img src="https://img.shields.io/npm/v/@wtfb/cli?style=flat-square&logo=npm&label=@wtfb/cli" alt="npm">
   </a>
 </p>
 

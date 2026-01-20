@@ -124,4 +124,4 @@ npm run lint:md && npm run lint:spell
 
 ---
 
-*Part of the [WTFB Screenwriting Plugin](https://github.com/bybren-llc/wtfb-claude-marketplace) ecosystem.*
+*Part of the [WTFB Screenwriting Plugin](https://github.com/bybren-llc/cheddarfox-claude-marketplace) ecosystem.*

@@ -127,7 +127,7 @@ replaces:
 ### Install a Plugin
 
 ```
-/plugin install wtfb-screenwriting@github.com/bybren-llc/wtfb-claude-marketplace/plugins/screenwriting
+/plugin install wtfb-screenwriting@github.com/bybren-llc/cheddarfox-claude-marketplace/plugins/screenwriting
 ```
 
 This updates `.wtfb/project.json`:

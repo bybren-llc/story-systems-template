@@ -72,7 +72,7 @@ For enterprise sponsorship, custom integrations, or partnership opportunities:
 The WTFB ecosystem includes:
 
 - **[story-systems-template](https://github.com/bybren-llc/story-systems-template)** - Multi-AI harness for creative projects
-- **[wtfb-claude-marketplace](https://github.com/bybren-llc/wtfb-claude-marketplace)** - Plugin system for Claude Code
+- **[cheddarfox-claude-marketplace](https://github.com/bybren-llc/cheddarfox-claude-marketplace)** - Plugin system for Claude Code
 - **[wordstofilmby.com](https://wordstofilmby.com)** - Platform for creative project discovery
 
 Your sponsorship directly supports open-source development that helps writers, filmmakers, and creative professionals work more effectively with AI tools.

@@ -253,10 +253,10 @@ For enhanced workflows (showrunner mode, advanced methodology), you can optional
 
 ```bash
 # Screenplay projects
-/plugin install wtfb-screenwriting@github.com/bybren-llc/wtfb-claude-marketplace/plugins/screenwriting
+/plugin install wtfb-screenwriting@github.com/bybren-llc/cheddarfox-claude-marketplace/plugins/screenwriting
 
 # Novel projects (when available)
-/plugin install wtfb-novel-writing@github.com/bybren-llc/wtfb-claude-marketplace/plugins/novel-writing
+/plugin install wtfb-novel-writing@github.com/bybren-llc/cheddarfox-claude-marketplace/plugins/novel-writing
 ```
 
 ---

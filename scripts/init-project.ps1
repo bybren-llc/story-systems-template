@@ -94,17 +94,17 @@ $projectJson = @"
     "optional": [
       {
         "name": "wtfb-screenwriting",
-        "source": "github.com/bybren-llc/wtfb-claude-marketplace/plugins/screenwriting",
+        "source": "github.com/bybren-llc/cheddarfox-claude-marketplace/plugins/screenwriting",
         "when": "screenplay"
       },
       {
         "name": "wtfb-novel-writing",
-        "source": "github.com/bybren-llc/wtfb-claude-marketplace/plugins/novel-writing",
+        "source": "github.com/bybren-llc/cheddarfox-claude-marketplace/plugins/novel-writing",
         "when": "novel"
       },
       {
         "name": "wtfb-film-production",
-        "source": "github.com/bybren-llc/wtfb-claude-marketplace/plugins/film-production",
+        "source": "github.com/bybren-llc/cheddarfox-claude-marketplace/plugins/film-production",
         "when": "film-production"
       }
     ]
@@ -554,7 +554,7 @@ Write-Host ""
 switch ($ProjectType) {
     "screenplay" {
         Write-Host "Recommended plugin:"
-        Write-Host "  /plugin install wtfb-screenwriting@github.com/bybren-llc/wtfb-claude-marketplace/plugins/screenwriting"
+        Write-Host "  /plugin install wtfb-screenwriting@github.com/bybren-llc/cheddarfox-claude-marketplace/plugins/screenwriting"
         Write-Host ""
         Write-Host "Available commands after plugin install:"
         Write-Host "  /start-scene      - Begin scene work"

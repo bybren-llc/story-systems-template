@@ -118,7 +118,7 @@ WTFB provides creative writing tools through a tiered access model:
 2. Gain access to the WTFB Claude Marketplace
 3. Install plugins using:
    ```
-   /plugin install wtfb-screenwriting@github.com/bybren-llc/wtfb-claude-marketplace/plugins/screenwriting
+   /plugin install wtfb-screenwriting@github.com/bybren-llc/cheddarfox-claude-marketplace/plugins/screenwriting
    ```
 4. Configure precedence in `.wtfb/project.json` if needed
 

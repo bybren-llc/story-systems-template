@@ -216,7 +216,7 @@ We've documented exactly how to do this:
 
 - **Agent structure**: See [AGENTS.md](../AGENTS.md) for team organization
 - **Harness architecture**: See [.claude/](./.claude/) and [.gemini/](./.gemini/) directories
-- **Plugin creation**: See the [marketplace repository](https://github.com/bybren-llc/wtfb-claude-marketplace)
+- **Plugin creation**: See the [marketplace repository](https://github.com/bybren-llc/cheddarfox-claude-marketplace)
 - **Skills & patterns**: See [patterns/](../patterns/) for examples
 
 ---
@@ -239,7 +239,7 @@ And it's ready for you to use today.
 ## Learn More
 
 - **Try it**: https://github.com/bybren-llc/story-systems-template
-- **See the plugins**: https://github.com/bybren-llc/wtfb-claude-marketplace
+- **See the plugins**: https://github.com/bybren-llc/cheddarfox-claude-marketplace
 - **Visit us**: https://wordstofilmby.com
 - **Contact**: dev@wordstofilmby.com
 

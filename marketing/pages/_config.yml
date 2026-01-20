@@ -1,7 +1,7 @@
 # Jekyll configuration for GitHub Pages
 # Data is pulled from ../wtfb-marketing.json
 
-title: WTFB Projects Template
+title: Story Systems Template
 description: Multi-AI Harness for Creative Projects
 theme: minima
 baseurl: "/story-systems-template"
@@ -18,7 +18,7 @@ exclude:
 # Custom data (populated from wtfb-marketing.json)
 project:
   id: "story-systems-template"
-  title: "WTFB Projects Template"
+  title: "Story Systems Template"
   subtitle: "Multi-AI Harness for Creative Projects"
   type: "template"
   status: "beta"

@@ -1,6 +1,6 @@
 # Technical Reference
 
-Complete reference documentation for the WTFB Projects Template.
+Complete reference documentation for the Story Systems Template.
 
 ---
 

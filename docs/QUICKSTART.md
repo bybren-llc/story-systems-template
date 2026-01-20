@@ -205,7 +205,7 @@ Your AI team is ready. All 11 agents, 24 skills, and 30 commands work out of the
 For enhanced workflows (showrunner mode, advanced methodology), you can install plugins:
 
 ```
-/plugin install wtfb-screenwriting@github.com/bybren-llc/wtfb-claude-marketplace/plugins/screenwriting
+/plugin install wtfb-screenwriting@github.com/bybren-llc/cheddarfox-claude-marketplace/plugins/screenwriting
 ```
 
 ---
@@ -280,7 +280,7 @@ Your AI team is ready. All 11 agents, 24 skills, and 30 commands work out of the
 For enhanced workflows (showrunner mode, advanced methodology), you can install plugins:
 
 ```
-/plugin install wtfb-screenwriting@github.com/bybren-llc/wtfb-claude-marketplace/plugins/screenwriting
+/plugin install wtfb-screenwriting@github.com/bybren-llc/cheddarfox-claude-marketplace/plugins/screenwriting
 ```
 
 ---

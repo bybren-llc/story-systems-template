@@ -94,7 +94,7 @@ These paths CAN be updated from the upstream template. This keeps your tooling c
       {
         "name": "wtfb-screenwriting",
         "version": "1.2.0",
-        "source": "github.com/bybren-llc/wtfb-claude-marketplace/plugins/screenwriting"
+        "source": "github.com/bybren-llc/cheddarfox-claude-marketplace/plugins/screenwriting"
       }
     ],
     "optional": [

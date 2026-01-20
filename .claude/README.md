@@ -120,6 +120,6 @@ This harness works with Claude Code's plugin system. The root `CLAUDE.md` file l
 
 ## See Also
 
-- [WTFB Claude Marketplace](https://github.com/bybren-llc/wtfb-claude-marketplace) for additional plugins
+- [WTFB Claude Marketplace](https://github.com/bybren-llc/cheddarfox-claude-marketplace) for additional plugins
 - `.gemini/` for Gemini CLI harness
 - `AGENTS.md` for team reference

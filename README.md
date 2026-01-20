@@ -169,7 +169,7 @@ Your AI team is now active. All 11 agents, 24 skills, and 30 commands work out o
 
 **Optional: Install marketplace plugins** for enhanced workflows:
 ```bash
-/plugin install wtfb-screenwriting@github.com/bybren-llc/wtfb-claude-marketplace/plugins/screenwriting
+/plugin install wtfb-screenwriting@github.com/bybren-llc/cheddarfox-claude-marketplace/plugins/screenwriting
 ```
 
 ---
@@ -240,7 +240,7 @@ The same pattern works for any field that needs expert collaboration:
 | Scene Writer | Backend Developer | Compliance Officer | Biostatistician |
 | Script Supervisor | QA Tester | Research Associate | Ethics Liaison |
 
-We've already built a [software development harness](https://github.com/bybren-llc/wtfb-claude-marketplace/tree/main/plugins/software-dev). The architecture is universal.
+We've already built a [software development harness](https://github.com/bybren-llc/cheddarfox-claude-marketplace/tree/main/plugins/software-dev). The architecture is universal.
 
 ---
 
@@ -253,7 +253,7 @@ WTFB uses a **hub-spoke architecture** that's infinitely extensible:
 
 ```
               ┌──────────────────┐
-              │  wtfb-projects-  │
+              │  story-systems-  │
               │    template      │
               │   (The Hub)      │
               │  11 agents       │
@@ -290,7 +290,7 @@ Anyone can extend WTFB. The architecture is open.
 
 1. Follow the same capability contract
 2. Add premium features (enhanced skills, workflows)
-3. Submit to [WTFB Marketplace](https://github.com/bybren-llc/wtfb-claude-marketplace) for review
+3. Submit to [WTFB Marketplace](https://github.com/bybren-llc/cheddarfox-claude-marketplace) for review
 4. Earn revenue from your expertise
 
 ### WTFB's Own Plugins (Leading by Example)

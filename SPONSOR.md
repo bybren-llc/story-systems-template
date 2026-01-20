@@ -33,7 +33,7 @@ Your contributions help build:
 
 ## About This Project
 
-The WTFB Projects Template is pioneering Human-AI team collaboration. Instead of one AI doing everything, we've built a system where 11 specialized AI agents work together — each with their own expertise, responsibilities, and authority.
+The Story Systems Template is pioneering Human-AI team collaboration. Instead of one AI doing everything, we've built a system where 11 specialized AI agents work together — each with their own expertise, responsibilities, and authority.
 
 Learn more in the [README](README.md) or read the [Harness Paper](docs/WTFB-HARNESS-PAPER.md).
 

@@ -1,6 +1,6 @@
 # Dependencies
 
-This document explains all npm dependencies used in the WTFB Projects Template.
+This document explains all npm dependencies used in the Story Systems Template.
 
 ---
 

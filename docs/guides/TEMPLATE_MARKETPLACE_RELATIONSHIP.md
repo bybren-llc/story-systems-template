@@ -1,6 +1,6 @@
 # Template & Marketplace Relationship
 
-This document explains how the WTFB template and marketplace work together, and why they're structured as separate but complementary repositories.
+This document explains how the Story Systems template and marketplace work together, and why they're structured as separate but complementary repositories.
 
 ## The WTFB Ecosystem
 

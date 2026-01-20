@@ -114,7 +114,7 @@ Identical to `init-project.sh` (see Init Script Responsibilities above).
 
 ### sync-upstream.sh
 
-**Purpose:** Manually sync updates from the upstream WTFB template.
+**Purpose:** Manually sync updates from the upstream Story Systems template.
 
 **Usage:**
 ```bash
@@ -136,7 +136,7 @@ Identical to `init-project.sh` (see Init Script Responsibilities above).
 **When to use:**
 - When notified of template updates
 - Periodically to stay current
-- After major WTFB template releases
+- After major Story Systems template releases
 
 ### validate-fountain.js
 

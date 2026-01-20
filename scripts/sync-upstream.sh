@@ -1,5 +1,5 @@
 #!/bin/bash
-# WTFB Template Sync Helper
+# Story Systems Template Sync Helper
 # Usage: ./scripts/sync-upstream.sh
 #
 # This script helps manually sync updates from the upstream template.
@@ -14,7 +14,7 @@ BLUE='\033[0;34m'
 NC='\033[0m'
 
 echo -e "${BLUE}========================================${NC}"
-echo -e "${BLUE}  WTFB Template Sync Helper${NC}"
+echo -e "${BLUE}  Story Systems Template Sync Helper${NC}"
 echo -e "${BLUE}========================================${NC}"
 echo ""
 

@@ -172,7 +172,7 @@ cp templates/beat-sheet.md docs/my-beat-sheet.md
 
 ## Template Sync
 
-Templates are in `syncPaths` in project.json, meaning they CAN be updated from the upstream WTFB template. This keeps your templates current with best practices.
+Templates are in `syncPaths` in project.json, meaning they CAN be updated from the upstream Story Systems template. This keeps your templates current with best practices.
 
 If you've customized templates, keep your working copies in `docs/` (which is protected).
 

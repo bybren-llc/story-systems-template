@@ -2,10 +2,10 @@
   "$schema": "https://wtfb.io/schemas/project.v1.json",
   "projectType": "screenplay",
   "name": "wtfb-project",
-  "version": "1.5.1",
+  "version": "1.5.2",
   "template": {
     "upstream": "https://github.com/bybren-llc/story-systems-template",
-    "version": "1.5.1",
+    "version": "1.5.2",
     "lastSync": null
   },
   "plugins": {

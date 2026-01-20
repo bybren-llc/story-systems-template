@@ -4,7 +4,7 @@
 title: WTFB Projects Template
 description: Multi-AI Harness for Creative Projects
 theme: minima
-baseurl: "/wtfb-projects-template"
+baseurl: "/story-systems-template"
 
 # Build settings
 markdown: kramdown
@@ -17,7 +17,7 @@ exclude:
 
 # Custom data (populated from wtfb-marketing.json)
 project:
-  id: "wtfb-projects-template"
+  id: "story-systems-template"
   title: "WTFB Projects Template"
   subtitle: "Multi-AI Harness for Creative Projects"
   type: "template"

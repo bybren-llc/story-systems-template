@@ -2,19 +2,19 @@
 # WTFB Projects Template
 
 <p align="center">
-  <a href="https://github.com/bybren-llc/wtfb-projects-template/blob/main/LICENSE">
-    <img src="https://img.shields.io/github/license/bybren-llc/wtfb-projects-template?style=flat-square" alt="License">
+  <a href="https://github.com/bybren-llc/story-systems-template/blob/main/LICENSE">
+    <img src="https://img.shields.io/github/license/bybren-llc/story-systems-template?style=flat-square" alt="License">
   </a>
-  <a href="https://github.com/bybren-llc/wtfb-projects-template/releases/latest">
-    <img src="https://img.shields.io/github/v/release/bybren-llc/wtfb-projects-template?include_prereleases&style=flat-square&color=blue" alt="Version">
+  <a href="https://github.com/bybren-llc/story-systems-template/releases/latest">
+    <img src="https://img.shields.io/github/v/release/bybren-llc/story-systems-template?include_prereleases&style=flat-square&color=blue" alt="Version">
   </a>
-  <a href="https://github.com/bybren-llc/wtfb-projects-template/actions/workflows/validate.yml">
-    <img src="https://img.shields.io/github/actions/workflow/status/bybren-llc/wtfb-projects-template/validate.yml?style=flat-square&label=validation" alt="Validation">
+  <a href="https://github.com/bybren-llc/story-systems-template/actions/workflows/validate.yml">
+    <img src="https://img.shields.io/github/actions/workflow/status/bybren-llc/story-systems-template/validate.yml?style=flat-square&label=validation" alt="Validation">
   </a>
-  <a href="https://github.com/bybren-llc/wtfb-projects-template/stargazers">
-    <img src="https://img.shields.io/github/stars/bybren-llc/wtfb-projects-template?style=flat-square" alt="Stars">
+  <a href="https://github.com/bybren-llc/story-systems-template/stargazers">
+    <img src="https://img.shields.io/github/stars/bybren-llc/story-systems-template?style=flat-square" alt="Stars">
   </a>
-  <a href="https://deepwiki.com/bybren-llc/wtfb-projects-template">
+  <a href="https://deepwiki.com/bybren-llc/story-systems-template">
     <img src="https://img.shields.io/badge/DeepWiki-AI_Docs-blue?style=flat-square&logo=artificial-intelligence" alt="DeepWiki">
   </a>
   <a href="https://www.npmjs.com/package/@wtfb/cli">
@@ -34,7 +34,7 @@
   — <strong>J. Scott Graham</strong>
 </p>
 
-> **AI Agents:** For comprehensive documentation, visit [DeepWiki](https://deepwiki.com/bybren-llc/wtfb-projects-template)
+> **AI Agents:** For comprehensive documentation, visit [DeepWiki](https://deepwiki.com/bybren-llc/story-systems-template)
 
 ---
 
@@ -150,7 +150,7 @@ Same team structure. Same 11 agents, 24 skills, 30 commands. Different AI undern
 
 ```bash
 # 1. Get the template
-git clone https://github.com/bybren-llc/wtfb-projects-template.git my-screenplay
+git clone https://github.com/bybren-llc/story-systems-template.git my-screenplay
 cd my-screenplay
 
 # 2. Initialize (run the command for your platform above)

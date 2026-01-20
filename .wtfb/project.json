@@ -4,7 +4,7 @@
   "name": "wtfb-project",
   "version": "1.4.2",
   "template": {
-    "upstream": "https://github.com/bybren-llc/wtfb-projects-template",
+    "upstream": "https://github.com/bybren-llc/story-systems-template",
     "version": "1.4.2",
     "lastSync": null
   },

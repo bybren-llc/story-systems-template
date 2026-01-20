@@ -58,7 +58,7 @@ Plugins enhance or replace template capabilities - they don't duplicate the base
 
 ## What's In Each
 
-### Template (wtfb-projects-template)
+### Template (story-systems-template)
 
 | Category | Contents |
 |----------|----------|
@@ -149,7 +149,7 @@ The template welcomes community contributions:
 - New patterns and templates
 - Skill enhancements (following the foundation philosophy)
 
-Open a PR at [wtfb-projects-template](https://github.com/bybren-llc/wtfb-projects-template).
+Open a PR at [story-systems-template](https://github.com/bybren-llc/story-systems-template).
 
 ### Contributing to Marketplace
 

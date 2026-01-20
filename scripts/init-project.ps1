@@ -85,7 +85,7 @@ $projectJson = @"
   "name": "$ProjectName",
   "version": "1.0.0",
   "template": {
-    "upstream": "https://github.com/bybren-llc/wtfb-projects-template",
+    "upstream": "https://github.com/bybren-llc/story-systems-template",
     "version": "1.0.0",
     "lastSync": "$CurrentDate"
   },

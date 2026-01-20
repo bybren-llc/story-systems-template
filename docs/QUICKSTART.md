@@ -154,14 +154,14 @@ Choose one:
 
 **Option A (git clone):**
 ```bash
-git clone https://github.com/bybren-llc/wtfb-projects-template.git my-screenplay
+git clone https://github.com/bybren-llc/story-systems-template.git my-screenplay
 cd my-screenplay
 git remote remove origin  # Disconnects from template repo (add your own later)
 ```
 
 **Option B (GitHub CLI - creates your own repo):**
 ```bash
-gh repo create my-screenplay --template bybren-llc/wtfb-projects-template --clone --public
+gh repo create my-screenplay --template bybren-llc/story-systems-template --clone --public
 cd my-screenplay
 ```
 
@@ -224,14 +224,14 @@ Choose one:
 
 **Option A (git clone):**
 ```powershell
-git clone https://github.com/bybren-llc/wtfb-projects-template.git my-screenplay
+git clone https://github.com/bybren-llc/story-systems-template.git my-screenplay
 cd my-screenplay
 git remote remove origin  # Disconnects from template repo (add your own later)
 ```
 
 **Option B (GitHub CLI - creates your own repo):**
 ```powershell
-gh repo create my-screenplay --template bybren-llc/wtfb-projects-template --clone --public
+gh repo create my-screenplay --template bybren-llc/story-systems-template --clone --public
 cd my-screenplay
 ```
 
@@ -385,8 +385,8 @@ PowerShell -ExecutionPolicy Bypass -File .\scripts\init-project.ps1
    - Fill out `templates/beat-sheet.md`
 
 3. **Join the community:**
-   - [GitHub Discussions](https://github.com/bybren-llc/wtfb-projects-template/discussions)
-   - [Report Issues](https://github.com/bybren-llc/wtfb-projects-template/issues)
+   - [GitHub Discussions](https://github.com/bybren-llc/story-systems-template/discussions)
+   - [Report Issues](https://github.com/bybren-llc/story-systems-template/issues)
 
 ---
 

@@ -14,7 +14,7 @@ WTFB provides creative writing tools through a tiered access model:
 
 ## Tier 1: Community (OSS Template)
 
-**Who**: Anyone who uses the `wtfb-projects-template` repository.
+**Who**: Anyone who uses the `story-systems-template` repository.
 
 **Access**: Full template capabilities
 
@@ -28,7 +28,7 @@ WTFB provides creative writing tools through a tiered access model:
 | Hooks | 5 | Pre-commit validation, session management |
 | Patterns | 6 | Beat sheets, character registries, templates |
 
-**Support**: Community GitHub issues at [wtfb-projects-template](https://github.com/bybren-llc/wtfb-projects-template/issues)
+**Support**: Community GitHub issues at [story-systems-template](https://github.com/bybren-llc/story-systems-template/issues)
 
 **Best For**:
 - Individual screenwriters starting out

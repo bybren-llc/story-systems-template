@@ -52,4 +52,4 @@
 
 ---
 
-*No ticket required for OSS contributions. Built with [WTFB Screenwriting Harness](https://github.com/bybren-llc/wtfb-projects-template).*
+*No ticket required for OSS contributions. Built with [WTFB Screenwriting Harness](https://github.com/bybren-llc/story-systems-template).*

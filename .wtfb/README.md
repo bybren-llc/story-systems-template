@@ -39,7 +39,7 @@ The project type determines:
 ```json
 {
   "template": {
-    "upstream": "https://github.com/bybren-llc/wtfb-projects-template",
+    "upstream": "https://github.com/bybren-llc/story-systems-template",
     "version": "1.0.0",
     "lastSync": "2026-01-08T00:00:00Z"
   }

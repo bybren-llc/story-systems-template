@@ -238,7 +238,7 @@ And it's ready for you to use today.
 
 ## Learn More
 
-- **Try it**: https://github.com/bybren-llc/wtfb-projects-template
+- **Try it**: https://github.com/bybren-llc/story-systems-template
 - **See the plugins**: https://github.com/bybren-llc/wtfb-claude-marketplace
 - **Visit us**: https://wordstofilmby.com
 - **Contact**: dev@wordstofilmby.com

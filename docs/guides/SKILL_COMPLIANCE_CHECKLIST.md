@@ -120,7 +120,7 @@ npm run lint:md && npm run lint:spell
 
 - [Agent Skills Specification](https://agentskills.io/specification)
 - [Claude Code Slash Commands](https://code.claude.com/docs/en/slash-commands)
-- [SKILL_AUTHORING_GUIDE.md](https://github.com/bybren-llc/wtfb-safe-agentic-workflow/blob/main/docs/guides/SKILL_AUTHORING_GUIDE.md)
+- [SKILL_AUTHORING_GUIDE.md](https://github.com/bybren-llc/safe-agentic-workflow/blob/main/docs/guides/SKILL_AUTHORING_GUIDE.md)
 
 ---
 

@@ -1,5 +1,5 @@
 <!-- wtfb:template-readme -->
-# WTFB Projects Template
+# Story Systems Template
 
 <p align="center">
   <a href="https://github.com/bybren-llc/story-systems-template/blob/main/LICENSE">

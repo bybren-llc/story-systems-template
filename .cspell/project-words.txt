@@ -38,6 +38,7 @@ codex
 harness
 subagent
 multiline
+agentic
 
 # Git/workflow terms
 husky

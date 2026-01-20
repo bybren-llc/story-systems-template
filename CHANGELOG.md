@@ -5,6 +5,27 @@ All notable changes to Story Systems Template will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.5.2] - 2026-01-20
+
+### Added
+
+- **`/init-readme` command**: Auto-populate project README from IMDb-style template
+
+### Changed
+
+- **Project rename**: "WTFB Projects Template" → "Story Systems Template"
+  - Updated README title, marketing config, Jekyll config
+  - Updated all user-facing documentation references
+  - Updated sync scripts and template relationship docs
+- **Repository references**: Updated marketplace name to `cheddarfox-claude-marketplace`
+- **License badge**: Moved to first position in README
+
+### Fixed
+
+- **SKILL_COMPLIANCE_CHECKLIST.md**: Fixed repo reference from `wtfb-safe-agentic-workflow` to `safe-agentic-workflow`
+
+---
+
 ## [1.4.0] - 2026-01-11
 
 ### Added

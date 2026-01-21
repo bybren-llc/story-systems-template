@@ -214,18 +214,18 @@ Your AI team is now active. All 11 agents, 24 skills, and 30 commands work out o
 
 ---
 
-## Why WTFB? (Competitive Analysis)
+## Why Story Systems? (Competitive Analysis)
 
-We did the research. Here's how WTFB compares to alternatives:
+We did the research. Here's how Story Systems compares to alternatives:
 
-| vs. Competition | WTFB Advantage |
+| vs. Competition | Story Systems Advantage |
 |-----------------|----------------|
 | **vs. Final Draft / Movie Magic** | They have no AI. We have 11 specialized agents. |
 | **vs. AI Writing Tools** | They're single AI. We're multi-agent with authority controls. |
 | **vs. CrewAI / AutoGen** | They're general-purpose. We have 24 craft skill modules. |
 | **vs. All of Them** | We're open source, extensible, and export to industry formats. |
 
-**Unique to WTFB:**
+**Unique to Story Systems:**
 
 - Tiered authority system (veto/gate powers)
 - Enterprise self-hosting with private workflows
@@ -233,7 +233,7 @@ We did the research. Here's how WTFB compares to alternatives:
 - Fountain format: open, portable, AI-friendly
 - VS Code Live Share for real-time collaboration
 
-> **Full Analysis:** [Competitive Analysis: WTFB Multi-Agent Harness](docs/COMPETITIVE-ANALYSIS-MULTI-AGENT-HARNESS.md)
+> **Full Analysis:** [Competitive Analysis: Story Systems Multi-Agent Harness](docs/COMPETITIVE-ANALYSIS-MULTI-AGENT-HARNESS.md)
 
 ---
 
@@ -271,9 +271,9 @@ We've already built a [software development harness](https://github.com/bybren-l
 
 ---
 
-## The WTFB Ecosystem
+## The Story Systems Ecosystem
 
-WTFB uses a **hub-spoke architecture** that's infinitely extensible:
+Story Systems uses a **hub-spoke architecture** that's infinitely extensible:
 
 - **Hub**: This template — complete 11-agent writing harness (free, OSS)
 - **Spokes**: Plugins that extend capabilities (free or paid)
@@ -292,8 +292,8 @@ WTFB uses a **hub-spoke architecture** that's infinitely extensible:
        │               │               │
        ▼               ▼               ▼
   ┌─────────┐    ┌─────────┐    ┌─────────┐
-  │  Your   │    │  WTFB   │    │Community│
-  │ Plugin  │    │ Premium │    │ Plugins │
+  │  Your   │    │  Story  │    │Community│
+  │ Plugin  │    │ Systems │    │ Plugins │
   │ (Free)  │    │ (Paid)  │    │ (Free)  │
   └─────────┘    └─────────┘    └─────────┘
 ```
@@ -304,7 +304,7 @@ WTFB uses a **hub-spoke architecture** that's infinitely extensible:
 
 ## Creating Your Own Plugins
 
-Anyone can extend WTFB. The architecture is open.
+Anyone can extend Story Systems. The architecture is open.
 
 ### Free Plugins (Contribute to Community)
 
@@ -317,16 +317,16 @@ Anyone can extend WTFB. The architecture is open.
 
 1. Follow the same capability contract
 2. Add premium features (enhanced skills, workflows)
-3. Submit to [WTFB Marketplace](https://github.com/bybren-llc/cheddarfox-claude-marketplace) for review
+3. Submit to [Story Systems Marketplace](https://github.com/bybren-llc/cheddarfox-claude-marketplace) for review
 4. Earn revenue from your expertise
 
-### WTFB's Own Plugins (Leading by Example)
+### Story Systems' Own Plugins (Leading by Example)
 
 We practice what we preach:
 
 | Plugin | What It Adds |
 |--------|--------------|
-| `wtfb-screenwriting` | Our proprietary WTFB methodology, showrunner workflows |
+| `wtfb-screenwriting` | Our proprietary Story Systems methodology, showrunner workflows |
 | `wtfb-novel-writing` | Extended narrative tools, chapter pacing |
 | `wtfb-film-production` | Call sheets, scheduling, budget tracking |
 
@@ -336,12 +336,12 @@ These demonstrate how to build premium enhancements that don't duplicate the bas
 
 ---
 
-## Join the WTFB Community
+## Join the Story Systems Community
 
 ```
 Use the Tools → Join Community → Take Courses → Get Published → Launch IRL
       ↓              ↓              ↓              ↓              ↓
-  Write more    Get feedback   Master craft   WTFB publishes   Film/TV
+  Write more    Get feedback   Master craft   We publish you   Film/TV
   Write better  Find collaborators  Network    Promotes you    Distribution
 ```
 
@@ -349,8 +349,8 @@ We're building more than tools. We're building a path from idea to screen:
 
 - **Use the tools** — Write more, write better
 - **Join the community** — Get feedback, find collaborators
-- **Take our courses** — Master the WTFB methodology
-- **Get published** — Submit your work for WTFB consideration
+- **Take our courses** — Master the Story Systems methodology
+- **Get published** — Submit your work for Story Systems consideration
 - **Launch IRL** — From page to screen, we help make it real
 
 **Website**: [wordstofilmby.com](https://wordstofilmby.com)

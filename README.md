@@ -295,8 +295,7 @@ Story Systems uses a **hub-spoke architecture** that's infinitely extensible:
        ▼               ▼               ▼
   ┌─────────┐    ┌─────────┐    ┌─────────┐
   │Community│    │  WTFB   │    │  Other  │
-  │ Plugins │    │(Example │    │Companies│
-  │ (Free)  │    │  Spoke) │    │ (Paid)  │
+  │  (Free) │    │(Example)│    │Companies│
   └─────────┘    └─────────┘    └─────────┘
 ```
 
@@ -319,7 +318,7 @@ Anyone can extend Story Systems. The architecture is open.
 
 1. Follow the same capability contract
 2. Add premium features (enhanced skills, workflows)
-3. Submit to the [Plugin Marketplace](https://github.com/bybren-llc/cheddarfox-claude-marketplace) (currently hosted at `bybren-llc/cheddarfox-claude-marketplace`)
+3. Submit to the [Plugin Marketplace](https://github.com/bybren-llc/cheddarfox-claude-marketplace)
 4. Earn revenue from your expertise
 
 ### Example Company Plugins: WTFB

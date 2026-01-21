@@ -131,6 +131,30 @@ Same team structure. Same 11 agents, 24 skills, 30 commands. Different AI undern
 
 ---
 
+## See What Your AI Team Creates
+
+Your AI team writes Fountain files. **BetterFountain** shows you the results.
+
+[BetterFountain](https://github.com/piersdeseilligny/betterfountain) is a free VS Code extension that transforms your workflow:
+
+| Feature | What It Does |
+|---------|--------------|
+| **Live Preview** | See formatted screenplay in real-time as agents write |
+| **Scene Outline** | Navigate scenes, sections, and notes in the sidebar |
+| **Statistics Panel** | Character counts, dialogue distribution, scene lengths |
+| **Duration Estimate** | Runtime approximation shown in status bar |
+| **PDF Export** | Industry-standard output with scene bookmarks |
+
+```
+Claude Agents ──write──> .fountain file ──view──> BetterFountain
+     ↑                                                    │
+     └────────────────── iterate ─────────────────────────┘
+```
+
+> **Install BetterFountain before you start.** It's how you see what your AI team produces.
+
+---
+
 ## Quick Start
 
 > **Time to first success**: ~10 minutes
@@ -145,6 +169,8 @@ Same team structure. Same 11 agents, 24 skills, 30 commands. Different AI undern
 **Full instructions:** [docs/QUICKSTART.md](docs/QUICKSTART.md) - Platform-specific prerequisites, troubleshooting, and step-by-step guide.
 
 **New to Claude?** [Get Claude Code](https://claude.com/pricing) - Required for the AI team features.
+
+**Required extension:** [BetterFountain](https://github.com/piersdeseilligny/betterfountain) - Install in VS Code/Cursor to preview and navigate your screenplay. See [above](#see-what-your-ai-team-creates) for details.
 
 ### The Essentials
 
@@ -183,6 +209,7 @@ Your AI team is now active. All 11 agents, 24 skills, and 30 commands work out o
 | **17 Craft Patterns** | Story structure, scene types, dialogue techniques |
 | **Validation Stack** | Fountain syntax, spelling, formatting checks |
 | **Industry Exports** | PDF, Final Draft (FDX), HTML |
+| **BetterFountain Integration** | Live preview, scene navigation, statistics, and visual feedback |
 | **Template Sync** | Automatic weekly updates from upstream |
 
 ---

@@ -193,10 +193,12 @@ claude
 
 Your AI team is now active. All 11 agents, 24 skills, and 30 commands work out of the box. The Story Architect ensures structure. The Dialogue Writer refines voices. The Script Supervisor catches formatting issues. They work together automatically.
 
-**Optional: Install marketplace plugins** for enhanced workflows:
-```bash
-/plugin install wtfb-screenwriting@github.com/bybren-llc/cheddarfox-claude-marketplace/plugins/screenwriting
-```
+**Extensible by design.** Story Systems supports plugins installed through Claude Code's native `/plugin` workflow. Plugins can come from any source—GitHub repos, community marketplaces, or local paths.
+
+- **Community plugins** — Open-source extensions from the broader ecosystem
+- **Company spokes** — Premium workflows from sources like WTFB *(coming soon)*
+
+When installing plugins, Claude Code uses a permission prompt model—review prompts when plugins request actions. See [Claude Code Plugins](https://claude.com/blog/claude-code-plugins) for installation details and marketplace examples.
 
 ---
 

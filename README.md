@@ -278,6 +278,8 @@ Story Systems uses a **hub-spoke architecture** that's infinitely extensible:
 - **Hub**: This template — complete 11-agent writing harness (free, OSS)
 - **Spokes**: Plugins that extend capabilities (free or paid)
 
+> **Story Systems is the open-source hub; company spokes (like WTFB) plug in to add brand-specific methodology and services on top of the baseline harness.**
+
 ```
               ┌──────────────────┐
               │  story-systems-  │
@@ -292,9 +294,9 @@ Story Systems uses a **hub-spoke architecture** that's infinitely extensible:
        │               │               │
        ▼               ▼               ▼
   ┌─────────┐    ┌─────────┐    ┌─────────┐
-  │  Your   │    │  Story  │    │Community│
-  │ Plugin  │    │ Systems │    │ Plugins │
-  │ (Free)  │    │ (Paid)  │    │ (Free)  │
+  │Community│    │  WTFB   │    │  Other  │
+  │ Plugins │    │(Example │    │Companies│
+  │ (Free)  │    │  Spoke) │    │ (Paid)  │
   └─────────┘    └─────────┘    └─────────┘
 ```
 
@@ -317,16 +319,16 @@ Anyone can extend Story Systems. The architecture is open.
 
 1. Follow the same capability contract
 2. Add premium features (enhanced skills, workflows)
-3. Submit to [Story Systems Marketplace](https://github.com/bybren-llc/cheddarfox-claude-marketplace) for review
+3. Submit to the [Plugin Marketplace](https://github.com/bybren-llc/cheddarfox-claude-marketplace) (currently hosted at `bybren-llc/cheddarfox-claude-marketplace`)
 4. Earn revenue from your expertise
 
-### Story Systems' Own Plugins (Leading by Example)
+### Example Company Plugins: WTFB
 
-We practice what we preach:
+WTFB plugins demonstrate how a company can extend the Story Systems hub with brand-specific workflows:
 
 | Plugin | What It Adds |
 |--------|--------------|
-| `wtfb-screenwriting` | Our proprietary Story Systems methodology, showrunner workflows |
+| `wtfb-screenwriting` | WTFB methodology, showrunner workflows |
 | `wtfb-novel-writing` | Extended narrative tools, chapter pacing |
 | `wtfb-film-production` | Call sheets, scheduling, budget tracking |
 
@@ -338,20 +340,26 @@ These demonstrate how to build premium enhancements that don't duplicate the bas
 
 ## Join the Story Systems Community
 
-```
-Use the Tools → Join Community → Take Courses → Get Published → Launch IRL
-      ↓              ↓              ↓              ↓              ↓
-  Write more    Get feedback   Master craft   We publish you   Film/TV
-  Write better  Find collaborators  Network    Promotes you    Distribution
-```
-
-We're building more than tools. We're building a path from idea to screen:
+The open-source hub has an active community:
 
 - **Use the tools** — Write more, write better
 - **Join the community** — Get feedback, find collaborators
-- **Take our courses** — Master the Story Systems methodology
-- **Get published** — Submit your work for Story Systems consideration
-- **Launch IRL** — From page to screen, we help make it real
+- **Contribute** — Submit plugins, report issues, improve the harness
+
+### WTFB Services (Company Spoke)
+
+[Words To Film By](https://wordstofilmby.com) offers additional services on top of the Story Systems hub:
+
+```
+Use the Tools → Join Community → Take Courses → Get Published → Launch IRL
+      ↓              ↓              ↓              ↓              ↓
+  Write more    Get feedback   Master craft   WTFB publishes   Film/TV
+  Write better  Find collaborators  Network    Promotes you    Distribution
+```
+
+- **Take courses** — Master the WTFB methodology
+- **Get published** — Submit your work for WTFB consideration
+- **Launch IRL** — From page to screen, WTFB helps make it real
 
 **Website**: [wordstofilmby.com](https://wordstofilmby.com)
 

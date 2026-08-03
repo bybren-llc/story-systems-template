@@ -112,6 +112,21 @@ Other agents focus on craft (story, dialogue, continuity) and don't need CLI too
 | **Production Coordinator** | Manage exports and delivery | Domain |
 | **Session Manager** | Initialize sessions, coordinate tasks | Workflow |
 
+## Model Routing
+
+Each agent role has a recommended model tier so prose quality, reasoning, and cost each land
+where they belong. See **`.claude/model-routing.md`** for the full policy and rationale.
+
+| Tier | Model | Roles |
+|------|-------|-------|
+| **Prose** | Claude Fable 5 | Dialogue Writer, Scene Writer |
+| **Reasoning** | Claude Opus 4.8 | Story Architect, Story Analyst, Continuity Editor, Script Supervisor, Standards Reviewer, Research Specialist, Session Manager |
+| **Mechanical** | Claude Haiku 4.5 | Scene Annotator, Production Coordinator; and mechanical commands (`/page-count`, `/scene-list`, `/check-format`) |
+
+This is documented policy today; the `model:` assignment is wired into each agent's
+frontmatter in Phase 3. `.wtfb/ai-harness/schema.json` currently carries `model` on the 8
+canonical schema agents; the remaining roles are reconciled into the schema in Phase 3.
+
 ## Invocation Patterns
 
 ### Direct Invocation

@@ -52,48 +52,56 @@
     {
       "id": "story-architect",
       "role": "Structure and beat sheet design",
+      "model": "claude-opus-4-8",
       "capabilities": ["structure", "scene-sequencing", "pacing"],
       "projectTypes": ["screenplay", "novel"]
     },
     {
       "id": "dialogue-writer",
       "role": "Character voice and dialogue polish",
+      "model": "claude-fable-5",
       "capabilities": ["dialogue", "subtext", "voice-consistency"],
       "projectTypes": ["screenplay", "novel"]
     },
     {
       "id": "scene-writer",
       "role": "Scene drafting and action description",
+      "model": "claude-fable-5",
       "capabilities": ["scene", "action", "visual-storytelling"],
       "projectTypes": ["screenplay"]
     },
     {
       "id": "continuity-editor",
       "role": "Timeline and consistency verification",
+      "model": "claude-opus-4-8",
       "capabilities": ["continuity", "timeline", "props"],
       "projectTypes": ["screenplay", "novel", "film-production"]
     },
     {
       "id": "script-supervisor",
       "role": "Format compliance and standards",
+      "model": "claude-opus-4-8",
       "capabilities": ["format", "syntax", "industry-standards"],
       "projectTypes": ["screenplay"]
     },
     {
       "id": "research-specialist",
       "role": "Accuracy and authenticity research",
+      "model": "claude-opus-4-8",
       "capabilities": ["research", "fact-checking", "authenticity"],
       "projectTypes": ["screenplay", "novel", "film-production"]
     },
     {
       "id": "story-analyst",
       "role": "Audience engagement and market analysis",
+      "model": "claude-opus-4-8",
       "capabilities": ["analysis", "audience", "market-fit"],
       "projectTypes": ["screenplay", "novel"]
     },
     {
       "id": "production-coordinator",
       "role": "Production planning and logistics",
+      "model": "claude-haiku-4-5",
       "capabilities": ["scheduling", "budgeting", "logistics"],
       "projectTypes": ["film-production"]
     }

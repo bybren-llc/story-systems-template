@@ -1,0 +1,124 @@
+# yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
+#
+# CodeRabbit configuration for a WRITING harness (WTFB story-systems-template).
+# Tuned so review is rigorous on the harness machinery (shell hooks, Node scripts,
+# YAML frontmatter, JSON schema, CI) — light-touch on prose/docs, and hands-off on
+# writers' creative content.
+#
+# This file ships in the template and forks inherit it. Fork owners: update
+# `knowledge_base.linear.team_keys` (and the title check) to your own tracker.
+
+language: en-US
+
+tone_instructions: |
+  This is a creative-writing harness, not an application codebase. Be encouraging and concise.
+  Review the harness machinery rigorously — shell hooks, Node scripts, YAML frontmatter, JSON
+  schema, CI — but treat documentation and any prose with a light touch, and never critique a
+  writer's creative or story choices. Prefer high-signal, actionable findings over stylistic nits.
+
+reviews:
+  profile: chill
+  # Gate-critical flags — the CodeRabbit approval gate depends on these. Keep true.
+  request_changes_workflow: true
+  review_status: true
+  commit_status: true
+  fail_commit_status: true
+
+  # Creative content is the writer's protected work — keep the bot out of it.
+  path_filters:
+    - "!**/*.fountain"
+    - "!manuscript/**"
+    - "!sourcematerials/**"
+    - "!exports/**"
+
+  auto_review:
+    enabled: true
+    drafts: false
+
+  path_instructions:
+    - path: ".claude/hooks/**"
+      instructions: |
+        Review shell hooks for correctness and safety. Claude Code hook matchers match the TOOL
+        NAME (not command/file substrings); the tool payload arrives as JSON on stdin. Blocking
+        PreToolUse hooks must exit 2 (exit 0 allows). Flag: substring matching that causes false
+        blocks, unsafe globbing (unquoted or `-`-prefixed paths — use `./` and `--`), fail-open
+        guards, and commands that could hang or crash the tool. Keep hooks fast and dependency-light.
+    - path: "scripts/**/*.js"
+      instructions: |
+        Review Node scripts for correctness. Repo scripts are CommonJS (`require`), zero-dependency,
+        advisory-by-default with an opt-in `--strict` that exits non-zero. When invoking git or other
+        tools, use `execFileSync` with an argument array — never interpolate JSON/config values into a
+        shell string. Preserve the advisory/strict split.
+    - path: ".claude/skills/**/SKILL.md"
+      instructions: |
+        Skills must have YAML frontmatter with `name` (matching the directory name), `wtfbId`
+        (`wtfb:{name}` for the template; `{plugin}:{name}` for marketplace plugins), and a
+        `description` containing a "Use when:" trigger, under 1024 chars. Flag missing or mismatched
+        fields. Do not rewrite the skill's craft content.
+    - path: ".claude/commands/**/*.md"
+      instructions: |
+        Commands must have an H1 `# /command-name` matching the filename. Optional frontmatter
+        `description` should be under 100 chars and start with an imperative verb. Flag heading and
+        filename mismatches.
+    - path: ".claude/agents/**/*.md"
+      instructions: |
+        Agent profiles: when YAML frontmatter is present, check `name`, `description`, `tools`, and
+        `model` (per `.claude/model-routing.md`). Keep the role/prose body intact.
+    - path: ".wtfb/**/*.json"
+      instructions: |
+        Validate JSON structure and internal consistency (capability schema `agents[]`/`commands`,
+        project config `protectedPaths`/`syncPaths`). Flag drift between the schema and the assets it
+        describes.
+    - path: "**/*.md"
+      instructions: |
+        Documentation: check accuracy, broken links, and stale references (e.g. files that were
+        removed or renamed). markdownlint and cspell already run in CI — do not duplicate pure style
+        nits.
+
+  pre_merge_checks:
+    title:
+      # Kept `warning` (not `error`) because this template is inherited by forks that may use a
+      # different tracker; promote to `error` in a concrete project repo.
+      mode: warning
+      requirements: |
+        PR titles follow `type(scope): description` and should include the tracker's issue ID in
+        uppercase square brackets, e.g. [STO-4] (Linear), [PROJ-123] (Jira), or your tracker's
+        equivalent. Bare or lowercase references (STO-4, [sto-4]) do not satisfy the convention.
+        Dependabot PRs with chore(deps)/ci(deps) titles are exempt.
+    issue_assessment:
+      mode: warning
+    custom_checks:
+      - name: "Protected creative content untouched"
+        mode: warning
+        instructions: |
+          Harness/template PRs should not modify writers' protected creative content. If the PR
+          changes `*.fountain`, `manuscript/**`, or `sourcematerials/**`, confirm it is intentional (a
+          template sample, or explicitly stated in the PR); otherwise flag it. If none of those paths
+          changed, pass as not applicable.
+      - name: "Capability frontmatter compliance"
+        mode: warning
+        instructions: |
+          If the PR adds or changes files under `.claude/skills/**` or `.claude/commands/**`, verify
+          skill frontmatter (`name` == directory, `wtfbId` namespace, `description` with a "Use when:"
+          clause) and command H1/filename match, mirroring `scripts/validate-capabilities.js`. If no
+          such files changed, pass as not applicable.
+
+knowledge_base:
+  code_guidelines:
+    enabled: true
+    filePatterns:
+      - files: "CONTRIBUTING.md"
+        applyTo: "**/*"
+      - files: "docs/CONTRIBUTING.md"
+        applyTo: "**/*"
+      - files: "AGENTS.md"
+        applyTo: ".claude/agents/**/*.md"
+      - files: ".claude/model-routing.md"
+        applyTo: ".claude/agents/**/*.md"
+      - files: "CLAUDE.md"
+        applyTo: "**/*"
+  linear:
+    usage: enabled
+    # Fork owners: replace with your team key(s), or switch trackers (Jira / GitHub Issues).
+    team_keys:
+      - "STO"

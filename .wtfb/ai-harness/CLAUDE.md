@@ -215,11 +215,18 @@ Example: `feat(skill): add advanced-structure skill`
 
 ## Git Workflow
 
-### Branch Strategy
+### Branch Strategy (writing)
 - `main` - Stable drafts only
 - `draft/v1`, `draft/v2` - Major versions
 - `scene/[name]` or `chapter/[name]` - Unit-specific work
 - `revision/[type]` - Revision passes (dialogue, action, etc.)
+
+> **Contributing to the harness itself** (agents, skills, commands, hooks, scripts, docs)?
+> Use ticket-linked branches — `<TICKET-ID>-<slug>` (e.g. `STO-4-scaffold-story-bible-vault`) —
+> and see `CONTRIBUTING.md`. The template is project-management-agnostic: Linear is our stack's
+> tracker, but Jira, GitHub Issues, or any tracker work the same way (put the issue ID at the
+> front of the branch — Linear/Jira auto-link it; GitHub links via a `Closes` keyword in the PR).
+> The creative branches above are for writing your screenplay or novel.
 
 ### Commit Format
 ```

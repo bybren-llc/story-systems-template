@@ -133,8 +133,16 @@ function validateFile(filePath) {
 
 // Main
 function main() {
+  // Opt-in strict mode: treat formatting issues as errors (non-zero exit).
+  // Default remains advisory (exit 0) so it never blocks writers unexpectedly.
+  const strict = process.argv.includes('--strict') || process.env.FOUNTAIN_STRICT === '1';
   const cwd = process.cwd();
-  const fountainFiles = findFountainFiles(cwd);
+
+  // Honor explicit file paths when provided; otherwise scan the project tree.
+  const pathArgs = process.argv.slice(2).filter((a) => !a.startsWith('-'));
+  const fountainFiles = pathArgs.length > 0
+    ? pathArgs.filter((f) => f.endsWith('.fountain') && fs.existsSync(f))
+    : findFountainFiles(cwd);
 
   if (fountainFiles.length === 0) {
     console.log('No .fountain files found');
@@ -166,8 +174,12 @@ function main() {
   console.log('');
   if (totalIssues > 0) {
     console.log(`\x1b[33mFound ${totalIssues} potential issue(s)\x1b[0m`);
+    if (strict) {
+      console.log('\x1b[31mStrict mode: failing due to formatting issues.\x1b[0m');
+      process.exit(1);
+    }
     console.log('Note: These are suggestions, not hard errors. Review and fix as needed.');
-    // Don't fail the build for warnings
+    console.log('Tip: run with --strict (or FOUNTAIN_STRICT=1) to treat these as errors.');
     process.exit(0);
   } else {
     console.log('\x1b[32mAll fountain files validated successfully!\x1b[0m');

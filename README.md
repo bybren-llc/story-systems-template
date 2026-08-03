@@ -398,7 +398,9 @@ Use the Tools → Join Community → Take Courses → Get Published → Launch I
 
 ## Contributing
 
-We welcome contributions. See [CONTRIBUTING.md](docs/CONTRIBUTING.md) for guidelines.
+We welcome contributions. See [CONTRIBUTING.md](CONTRIBUTING.md) for the workflow
+(branch/commit/PR conventions, project-management-agnostic ticket linking) and
+[docs/CONTRIBUTING.md](docs/CONTRIBUTING.md) for setup and reference detail.
 
 ---
 

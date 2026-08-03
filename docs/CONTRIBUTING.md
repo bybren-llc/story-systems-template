@@ -2,6 +2,12 @@
 
 Thank you for your interest in contributing to this project!
 
+> **Workflow conventions** — branch naming, commit format, PR and merge strategy, and
+> ticket linking — now live in the root **[CONTRIBUTING.md](../CONTRIBUTING.md)**. The harness is
+> project-management-agnostic (Linear is our tracker; Jira, GitHub Issues, and others work the
+> same way). This page covers **setup, tooling, and reference** detail. Where the two differ, the
+> root file wins for harness/template contributions.
+
 ## Getting Started
 
 1. **Fork and Clone**: Fork this repository and clone your fork locally
@@ -59,9 +65,11 @@ Pattern: `type/kebab-case-description`
    gh pr create --base main --title "scene: add opening sequence"
    ```
 
-4. **Merge strategy**:
+4. **Merge strategy** (creative content branches):
    - **Squash merge**: `scene/*`, `fix/*`, `export/*` (clean history)
    - **Regular merge**: `revision/*`, `structure/*`, `character/*` (preserve history)
+   - Harness/template contributions use ticket-linked branches and **rebase-and-merge** —
+     see the root [CONTRIBUTING.md](../CONTRIBUTING.md).
 
 5. **Cleanup after merge**:
    ```bash

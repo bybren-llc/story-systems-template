@@ -7,6 +7,7 @@
     "validate": "npm run lint:fountain && npm run lint:md && npm run lint:spell && npm run validate:capabilities",
     "validate:capabilities": "node scripts/validate-capabilities.js",
     "lint:fountain": "node scripts/validate-fountain.js",
+    "lint:fountain:strict": "node scripts/validate-fountain.js --strict",
     "lint:md": "markdownlint-cli2 '**/*.md' '#node_modules'",
     "lint:spell": "cspell '**/*.{md,fountain,txt}' --no-progress",
     "init": "bash scripts/init-project.sh",

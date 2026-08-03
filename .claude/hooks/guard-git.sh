@@ -26,18 +26,20 @@ let s="";process.stdin.on("data",d=>s+=d).on("end",()=>{
   let cmd="";
   try { cmd = (JSON.parse(s).tool_input||{}).command || ""; } catch(e) { cmd = s; }
   const segs = cmd.split(/&&|\|\||[;&|\n]/);
-  let push=false, commit=false, pushMain=false;
+  let push=false, commit=false, pushMain=false, commitBeforePush=false, sawCommit=false;
   for (let seg of segs){
     seg = seg.trim().replace(/^(?:[A-Za-z_][A-Za-z0-9_]*=[^\s]*\s+)+/, ""); // strip leading env vars
     if (/^git\s+push\b/.test(seg)) {
+      if (!push && sawCommit) commitBeforePush = true; // a commit precedes the first push
       push = true;
       const rest = seg.replace(/^git\s+push/, "");
-      if (/(^|[\s:])main(\s|$)/.test(rest)) pushMain = true;
+      // Match a "main" destination incl. full refspecs like HEAD:refs/heads/main
+      if (/(^|[\s:/])main(\s|$)/.test(rest)) pushMain = true;
     } else if (/^git\s+commit\b/.test(seg)) {
-      commit = true;
+      commit = true; sawCommit = true;
     }
   }
-  process.stdout.write(JSON.stringify({push,commit,pushMain}));
+  process.stdout.write(JSON.stringify({push,commit,pushMain,commitBeforePush}));
 });
 ' 2>/dev/null)
 
@@ -59,9 +61,10 @@ if has push; then
     echo "❌ BLOCKER: Refusing to push to main. Use a feature branch and open a PR." >&2
     exit 2
   fi
-  # Guard uncommitted TRACKED changes only, and only when the push is not paired
-  # with a commit in the same command line (e.g. `git commit ... && git push`).
-  if ! has commit; then
+  # Guard uncommitted TRACKED changes only, and only when a commit runs BEFORE the
+  # push in the same command line (e.g. `git commit ... && git push`). A push that
+  # precedes its commit (`git push && git commit`) is still guarded.
+  if ! has commitBeforePush; then
     if ! git diff --quiet 2>/dev/null || ! git diff --cached --quiet 2>/dev/null; then
       echo "❌ BLOCKER: Uncommitted (tracked) changes detected. Commit changes before pushing." >&2
       exit 2

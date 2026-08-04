@@ -57,6 +57,25 @@ function readJson(file, repoRoot, exitCode) {
   }
 }
 
+// Fail cleanly if `obj` is missing structural members that later code dereferences.
+function assertShape(obj, name, checks, exitCode) {
+  if (obj == null || typeof obj !== 'object' || Array.isArray(obj)) {
+    console.error(`${C.red}${name} must be a JSON object.${C.reset}`);
+    process.exit(exitCode);
+  }
+  for (const [key, kind] of checks) {
+    const v = key.split('.').reduce((o, k) => (o == null ? undefined : o[k]), obj);
+    const ok = kind === 'array' ? Array.isArray(v)
+      : kind === 'object' ? (v != null && typeof v === 'object' && !Array.isArray(v))
+      : kind === 'number' ? typeof v === 'number'
+      : v !== undefined;
+    if (!ok) {
+      console.error(`${C.red}${name}: missing or invalid "${key}" (expected ${kind}).${C.reset}`);
+      process.exit(exitCode);
+    }
+  }
+}
+
 // Walk a directory tree, returning all files (skips .git / node_modules).
 function walk(dir) {
   const out = [];
@@ -226,17 +245,20 @@ function main() {
   const cfgPath = path.join(vaultDir, '_meta', 'vault-config.json');
   if (!fs.existsSync(cfgPath)) { console.error(`${C.red}Missing ${path.relative(repoRoot, cfgPath)}${C.reset}`); process.exit(softExit); }
   const cfg = readJson(cfgPath, repoRoot, softExit);
-  if (!cfg.frontmatter || !Array.isArray(cfg.frontmatter.required) || !cfg.types || !cfg.link_rules) {
-    console.error(`${C.red}vault-config.json is missing required sections (frontmatter/types/link_rules).${C.reset}`);
-    process.exit(softExit);
-  }
+  assertShape(cfg, 'vault-config.json', [
+    ['frontmatter', 'object'], ['frontmatter.required', 'array'], ['frontmatter.optional', 'array'],
+    ['frontmatter.path_fields', 'array'], ['frontmatter.max_description_length', 'number'],
+    ['types', 'object'], ['statuses', 'array'], ['tags', 'array'], ['domains', 'array'],
+    ['link_rules', 'object'], ['max_concept_lines', 'number'],
+  ], softExit);
 
   // manifest ids (optional file)
   let manifestIds = null;
   const manifestPath = path.join(vaultDir, '_meta', 'manifest.json');
   if (fs.existsSync(manifestPath)) {
     const manifest = readJson(manifestPath, repoRoot, softExit);
-    manifestIds = new Set((Array.isArray(manifest.concepts) ? manifest.concepts : [])
+    assertShape(manifest, 'manifest.json', [['concepts', 'array']], softExit);
+    manifestIds = new Set(manifest.concepts
       .filter((c) => c && typeof c.id === 'string' && c.id)
       .map((c) => c.id));
   }

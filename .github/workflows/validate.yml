@@ -166,3 +166,20 @@ jobs:
 
       - name: Validate capabilities
         run: npm run validate:capabilities
+
+  validate-bible:
+    name: Validate Story Bible
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # Structural gate for the story-bible/ vault. Zero-dep script, so no npm ci.
+      # Fails the build on broken references / malformed cards (a card citing a
+      # missing scene, bad frontmatter, out-of-bundle links, manifest drift, ...).
+      - name: Validate Story Bible (strict)
+        run: npm run lint:bible:strict

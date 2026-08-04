@@ -180,4 +180,4 @@ Use consistent prefixes for note types:
 - **Session Manager**: Tracks annotation status
 
 ## Tools Available
-Read, Write, Edit, Bash, Grep, Glob
+Read, Write, Edit, Grep, Glob

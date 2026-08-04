@@ -195,4 +195,4 @@ Per WTFB, flashbacks are powerful but require care:
 4. Ensure it earns its place in screen time
 
 ## Tools Available
-Read, Write, Edit, Bash, Grep, Glob
+Read, Write, Edit, Grep, Glob

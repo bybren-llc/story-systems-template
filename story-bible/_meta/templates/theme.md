@@ -2,8 +2,8 @@
 type: theme
 title: "{{Theme}}"
 description: "{{ONE_SENTENCE <=160 chars: the thematic argument in a line}}"
-tags: [themes, {{motif|premise|moral-argument}}]
-timestamp: {{YYYY-MM-DD}}
+tags: [themes, "{{motif|premise|moral-argument}}"]
+timestamp: "{{YYYY-MM-DD}}"
 status: draft
 domain: themes
 sources:

@@ -8,14 +8,17 @@ status: draft
 aka: "The Mapmaker"
 domain: cast
 sources:
-  - "templates/screenplay-template.fountain"
+  - "manuscript/ch01.md"
 verified_against: "f7f0edd"
 ---
 
 # Mara Vance
 
-**Illustrative example — replace with your own cast. This is a map-card: Mara lives in the
-scenes cited under Appears In; do not restate her dialogue or blocking here.**
+**Non-canonical teaching fixture.** It lives in `_meta/` and is excluded from validation and
+drift-checking — it exists only to show the character-card *format*. A real card lives in
+`story-bible/characters/` and cites your actual manuscript scenes under **Appears In**. The
+Relationships below are prose only because this fixture has no sibling cards to link to; in a
+real card, link to the other character cards.
 
 ## Overview
 
@@ -39,4 +42,4 @@ Believes the lie that she is only her worst mistake; learns the truth that a map
 
 ## Appears In
 
-- [Screenplay template (sample source)](../../templates/screenplay-template.fountain) — stands in for the scenes that would establish her flaw and want.
+- [Chapter 1](../../manuscript/ch01.md) — where her flaw and want would be established.

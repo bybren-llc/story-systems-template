@@ -2,8 +2,8 @@
 type: prop
 title: "{{Prop Name}}"
 description: "{{ONE_SENTENCE <=160 chars: the object and why it matters}}"
-tags: [objects, {{macguffin|weapon|keepsake|symbol}}]
-timestamp: {{YYYY-MM-DD}}
+tags: [objects, "{{macguffin|weapon|keepsake|symbol}}"]
+timestamp: "{{YYYY-MM-DD}}"
 status: draft
 domain: objects
 sources:

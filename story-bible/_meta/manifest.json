@@ -1,14 +1,6 @@
 {
   "okf_version": "0.1",
   "baseline_sha": "f7f0edde322122b193aa51fea57395c58e6db15c",
-  "concept_count": 1,
-  "concepts": [
-    {
-      "id": "characters/example",
-      "type": "character",
-      "title": "Mara Vance",
-      "path": "characters/example.md",
-      "sources": ["templates/screenplay-template.fountain"]
-    }
-  ]
+  "concept_count": 0,
+  "concepts": []
 }

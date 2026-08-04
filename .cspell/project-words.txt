@@ -137,3 +137,4 @@ Ollama
 Qwen
 dispatchable
 rostered
+modelcontextprotocol

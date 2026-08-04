@@ -206,3 +206,21 @@ jobs:
       # (builds throwaway git repos in a temp dir); needs only git + jq + bash.
       - name: Run protected-path sync test
         run: bash tests/test-protected-sync.sh
+
+  test-model-consult:
+    name: Test Model Connector
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # Proves the multi-model connector talks to an OpenAI-compatible endpoint (mock server),
+      # redacts secrets, and degrades gracefully on failure (STO-17). Zero-dep; no npm ci needed.
+      - name: Run model-consult connector test
+        run: bash tests/test-model-consult.sh

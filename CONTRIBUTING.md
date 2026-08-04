@@ -29,7 +29,7 @@ tracked ID is strongly preferred.
 **Format:** `<TICKET-ID>-<short-description>` (kebab-case).
 
 - MUST start with the issue ID (`STO-4-...`, `PROJ-123-...`, `123-...`).
-- Branch off `main` (our stable branch).
+- Branch off **`develop`** (the integration branch — see [Branching & merge model](#branching--merge-model)).
 - One issue = one branch = one PR.
 
 ## Commit messages
@@ -49,7 +49,33 @@ tracked ID is strongly preferred.
 - **Body:** reference the issue with a closing keyword (`Closes STO-4`) and describe what and
   why, plus how you verified.
 - **One ticket = one PR.** Keep scope tight for easy review.
-- **Rebase and merge only** — never squash or create merge commits (keeps history linear).
+- **Merge method:** **squash** feature PRs into `develop`; **merge commit** for `develop → main`
+  promotes. **Never rebase-merge** — see [Branching & merge model](#branching--merge-model).
+
+## Branching & merge model
+
+Two long-lived, protected branches (PR-only, required checks, no force-push):
+
+- **`main`** — always releasable. It's the repo's **default branch**, so it's what people get from
+  **"Use this template"** and what carries the release tags. Never commit to it directly.
+- **`develop`** — the integration branch; feature work lands here first.
+
+**Flow (dev → main):**
+
+1. Branch `STO-<n>-<slug>` off **`develop`**.
+2. PR into **`develop`** → **squash merge** (one tidy commit per feature; branch is deleted).
+3. At a release, open a promote PR **`develop → main`** → **merge commit**, then tag the release on `main`.
+4. If `main` ever gains a change `develop` lacks (e.g. a hotfix), **back-merge `main → develop`** (merge commit).
+
+**Never rebase-merge.** Rebase rewrites commit SHAs, so the same content lands on `main` and `develop`
+under *different* SHAs and the two branches permanently drift. The `wtfb-standards` ruleset now allows
+only **merge** and **squash** to make that mistake impossible.
+
+**What "in sync" means here:** between releases `develop` is expected to be *ahead* of `main` by its
+unreleased commits — that's an integration branch working as intended, not drift. `main` and `develop`
+share the same *content* and *connected history*; they need not sit at byte-identical commit SHAs.
+
+CI (the required validation checks) runs on PRs into **both** `main` and `develop`.
 
 ## Before you open a PR
 

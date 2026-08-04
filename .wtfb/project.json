@@ -51,6 +51,7 @@
   "syncPaths": [
     ".github/workflows/**",
     "scripts/**",
+    ".claude-plugin/**",
     ".wtfb/ai-harness/**",
     "templates/**",
     "patterns/**",

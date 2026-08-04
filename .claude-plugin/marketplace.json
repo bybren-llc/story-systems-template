@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "wtfb-story-systems",
+  "owner": {
+    "name": "Bybren LLC",
+    "url": "https://github.com/bybren-llc"
+  },
+  "description": "Words To Film By — Story Systems harness and enhancements.",
+  "plugins": [
+    {
+      "name": "wtfb-story-harness",
+      "source": { "source": "github", "repo": "bybren-llc/story-systems-template" },
+      "description": "The full WTFB story harness (agents + skills + commands) as a one-command install.",
+      "author": { "name": "J. Scott Graham" }
+    }
+  ]
+}

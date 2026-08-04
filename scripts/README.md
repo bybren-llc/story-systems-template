@@ -6,11 +6,12 @@ This directory contains automation scripts for project initialization, validatio
 
 ```
 scripts/
-├── README.md              # This file
-├── init-project.sh        # Project initialization (macOS/Linux/WSL)
-├── init-project.ps1       # Project initialization (Windows PowerShell)
-├── sync-upstream.sh       # Template sync helper
-└── validate-fountain.js   # Fountain format validation
+├── README.md                   # This file
+├── init-project.sh             # Project initialization (macOS/Linux/WSL)
+├── init-project.ps1            # Project initialization (Windows PowerShell)
+├── sync-upstream.sh            # Template sync helper
+├── restore-protected-paths.sh  # Enforce protectedPaths after a template merge
+└── validate-fountain.js        # Fountain format validation
 ```
 
 ## Compatibility Contract
@@ -126,17 +127,38 @@ Identical to `init-project.sh` (see Init Script Responsibilities above).
 2. Adds/fetches the upstream remote
 3. Shows available updates (commits behind)
 4. Displays which paths will be synced vs protected
-5. Optionally creates a sync branch and merges
+5. Optionally creates a sync branch, merges, and **enforces `protectedPaths`** by calling
+   `restore-protected-paths.sh` — so a sync can never overwrite your fork-owned files
 
 **Interactive prompts:**
 - Shows diff of available changes
 - Asks for confirmation before merging
-- Handles merge conflicts gracefully
+- Handles merge conflicts gracefully (protected-file conflicts resolve in the fork's favour)
 
 **When to use:**
 - When notified of template updates
 - Periodically to stay current
 - After major Story Systems template releases
+
+### restore-protected-paths.sh
+
+**Purpose:** Enforce `protectedPaths` (from `.wtfb/project.json`) **after** an upstream template
+merge, so a template sync never overwrites fork-owned content. Shared by `sync-upstream.sh` and
+the `sync-upstream.yml` workflow.
+
+**Usage:**
+```bash
+# Run immediately after: git merge upstream/main --no-commit
+./scripts/restore-protected-paths.sh [ref]   # ref defaults to HEAD (the fork's version)
+```
+
+**What it does:**
+1. Restores the fork's version of any modified / deleted / conflicted protected file
+2. Drops files the merge **added** under a protected path
+3. Leaves non-protected (`syncPaths`) changes staged for you to review and commit
+
+Uses git pathspec matching (exact, not substring) and is bash 3.2 compatible (macOS default).
+Covered by `npm run test:sync` (`tests/test-protected-sync.sh`), which runs in CI.
 
 ### validate-fountain.js
 

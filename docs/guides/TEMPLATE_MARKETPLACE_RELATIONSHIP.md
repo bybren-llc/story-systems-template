@@ -17,7 +17,7 @@ WTFB provides creative writing tools through two main channels:
 │  │                       │    │                             │  │
 │  │  • 11 agents          │    │  • wtfb-screenwriting       │  │
 │  │  • 24 skills          │    │  • wtfb-novel-writing       │  │
-│  │  • 30 commands        │    │  • wtfb-film-production     │  │
+│  │  • 30+ commands       │    │  • wtfb-film-production     │  │
 │  │  • Hooks & patterns   │    │  • Future plugins           │  │
 │  └───────────────────────┘    └─────────────────────────────┘  │
 │                                                                 │

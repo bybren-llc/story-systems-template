@@ -1,6 +1,6 @@
 # Gemini CLI Harness
 
-This directory contains the multi-agent harness for Google's Gemini CLI, providing 11 agents, 30 commands, and 24 skills for screenwriting workflows.
+This directory contains the multi-agent harness for Google's Gemini CLI, providing 11 agents, 30+ commands, and 24 skills for screenwriting workflows.
 
 ## Structure
 
@@ -44,7 +44,7 @@ The harness coordinates 11 specialized agents organized into four functional are
 - **Production Coordinator** - Manage exports and delivery
 - **Session Manager** - Initialize sessions and coordinate tasks
 
-## Commands (30 Commands)
+## Commands (30+ Commands)
 
 ### Workflow Commands
 | Command | Description |

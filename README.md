@@ -127,7 +127,7 @@ We're not locked to one AI:
 | ![Gemini CLI](https://img.shields.io/badge/Gemini_CLI-Google-orange?style=flat-square&logo=google) | ✅ Full support | `.gemini/` |
 | **OpenAI Codex** | 📄 Documented | `.openai/` |
 
-Same team structure. Same 11 agents, 24 skills, 30 commands. Different AI underneath.
+Same team structure. Same 11 agents, 24 skills, 30+ commands. Different AI underneath.
 
 ---
 
@@ -191,7 +191,7 @@ claude
 /start-scene Opening confrontation in the bar
 ```
 
-Your AI team is now active. All 11 agents, 24 skills, and 30 commands work out of the box. The Story Architect ensures structure. The Dialogue Writer refines voices. The Script Supervisor catches formatting issues. They work together automatically.
+Your AI team is now active. All 11 agents, 24 skills, and 30+ commands work out of the box. The Story Architect ensures structure. The Dialogue Writer refines voices. The Script Supervisor catches formatting issues. They work together automatically.
 
 **Extensible by design.** Story Systems supports Claude Code's native `/plugin` workflow. Install from any supported source—GitHub repos, community marketplaces, or local paths.
 
@@ -207,8 +207,11 @@ When installing plugins, Claude Code uses a permission prompt model—review pro
 | Feature | Description |
 |---------|-------------|
 | **11 Specialized Agents** | Each with clear responsibilities and authority |
-| **30+ Commands** | `/new-scene`, `/check-format`, `/export-pdf`, and more |
+| **30+ Commands** | `/new-scene`, `/check-format`, `/export-pdf`, `/bible`, and more |
 | **17 Craft Patterns** | Story structure, scene types, dialogue techniques |
+| **Story Bible** | Validated, drift-aware continuity vault — `/bible`, `lint:bible` (CI-gated), `bible:drift` |
+| **Per-Role Model Routing** | Fable 5 (prose) · Opus 4.8 (structure/review) · Haiku 4.5 (mechanical) |
+| **Wired Git Guardrails** | Hooks block direct pushes to `main` and cue Fountain-format + commit conventions |
 | **Validation Stack** | Fountain syntax, spelling, formatting checks |
 | **Industry Exports** | PDF, Final Draft (FDX), HTML |
 | **BetterFountain Integration** | Live preview, scene navigation, statistics, and visual feedback |
@@ -289,7 +292,7 @@ Story Systems uses a **hub-spoke architecture** that's infinitely extensible:
               │   (The Hub)      │
               │  11 agents       │
               │  24 skills       │
-              │  30 commands     │
+              │  30+ commands    │
               └────────┬─────────┘
                        │
        ┌───────────────┼───────────────┐

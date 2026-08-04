@@ -127,3 +127,7 @@ IMDb
 wikilinks
 macguffin
 OKF
+
+# Harness / tooling terms
+refspec
+coderabbit

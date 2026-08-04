@@ -44,6 +44,7 @@ printf 'FORK PROGRESS\n' > .wtfb/session/progress.md
 printf 'fork tool v1\n' > scripts/tool.sh
 git add -A
 git commit -qm "fork base"
+git branch -M main   # normalize branch name (CI git may default to 'master')
 
 # --- Build upstream as a branch that diverges --------------------------------
 git checkout -qb upstream

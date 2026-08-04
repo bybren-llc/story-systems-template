@@ -132,3 +132,8 @@ OKF
 refspec
 coderabbit
 pathspec
+vLLM
+Ollama
+Qwen
+dispatchable
+rostered

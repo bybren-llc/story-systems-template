@@ -198,7 +198,7 @@ claude
 /start-scene Opening confrontation in the bar
 ```
 
-Your AI team is ready. All 11 agents, 24 skills, and 30 commands work out of the box.
+Your AI team is ready. All 11 agents, 24 skills, and 30+ commands work out of the box.
 
 **Optional: Install Marketplace Plugins**
 
@@ -273,7 +273,7 @@ claude
 /start-scene Opening confrontation in the bar
 ```
 
-Your AI team is ready. All 11 agents, 24 skills, and 30 commands work out of the box.
+Your AI team is ready. All 11 agents, 24 skills, and 30+ commands work out of the box.
 
 **Optional: Install Marketplace Plugins**
 

@@ -1,3 +1,10 @@
+---
+name: session-manager
+description: Workflow coordinator for writing sessions, git integration, and task routing across the team. Use to orchestrate and route work.
+tools: Read, Write, Edit, Bash, Grep, Glob
+model: claude-opus-4-8
+---
+
 # Session Manager Agent
 
 ## Identity

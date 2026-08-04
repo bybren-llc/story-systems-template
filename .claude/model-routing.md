@@ -1,8 +1,8 @@
 # Model Routing
 
 > Per-role model assignments for the WTFB 11-agent harness.
-> **Phase 0 (this doc):** the routing policy, documented. **Phase 3 (STO-11):** the
-> `model:` field gets wired into each agent's YAML frontmatter so dispatch is automatic.
+> This is the routing **policy**. The `model:` field is wired into each agent's YAML frontmatter
+> (STO-11) so dispatch is automatic — this doc stays the human-readable source.
 
 ## Why route by role
 
@@ -55,8 +55,8 @@ them:
 - IDs above are current as of 2026-08; update when Anthropic ships successors.
 - `claude-sonnet-5` is a valid economical substitute anywhere Opus is listed when cost
   matters more than the last increment of quality.
-- This is **policy**, not enforcement — enforcement lands in Phase 3 (STO-11) via agent
-  frontmatter `model:` fields.
+- The `model:` field in each agent's frontmatter is the enforcement (STO-11); this doc is the
+  human-readable policy behind it.
 - `.wtfb/ai-harness/schema.json` currently carries `model` on the **8 canonical schema
   agents**; the remaining roles (Scene Annotator, Standards Reviewer, Session Manager) are
   reconciled into the schema in Phase 3 (STO-12).

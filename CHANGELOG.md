@@ -5,6 +5,52 @@ All notable changes to Story Systems Template will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.6.0] - 2026-08-04
+
+**Story Harness Upgrade** — a large, additive, fully backward-compatible expansion of the
+writing harness (22 tracked issues, STO-1…STO-22). No breaking changes: new modes default off,
+new providers are opt-in, and existing workflows are unchanged.
+
+### Added
+
+- **Activated hooks** wired into `.claude/settings.json` (SessionStart/End, UserPromptSubmit,
+  Pre/PostToolUse), including an invocation-anchored **git guard** that blocks pushes to `main`
+  and a "count, don't claim" SessionStart banner (real scene/page counts).
+- **Per-role model routing** (`.claude/model-routing.md`) with `model:` on all 11 agents; the
+  agents are now real **dispatchable subagents** (YAML frontmatter, least-privilege tool sets).
+- **Story Bible vault** (`story-bible/`): card templates, `validate-bible.js` +
+  `check-bible-drift.js`, a `validate-bible` CI gate + `npm run lint:bible`, and the `/bible`
+  command; `continuity-tracking` extended to author/verify cards (`verified_against` SHA).
+- **Session memory** (`.wtfb/session/`): `progress.md` / `draft-state.md` / `session-log.md`,
+  wired into `/start-scene`, `/end-session`, `/stuck`.
+- **Per-scene sweep commands** `/continuity-sweep` and `/rewrite-sweep` (one subagent per scene →
+  consolidated notes), GA-safe (subagent fallback, no hard dependency on preview features).
+- **Cross-surface parity gate** in `validate-capabilities.js`: schema ↔ `.claude` ↔ `.gemini`
+  agents/commands can no longer silently diverge; schema reconciled to all 11 agents.
+- **Multi-model writer's room** (ADR 0001): a provider-aware **model registry**
+  (`.wtfb/ai-harness/model-registry.json`), a zero-dep **connector** (`model-consult.js`,
+  OpenAI-compatible / self-hosted vLLM) with an opt-in MCP server, and a **council** mode for
+  `/writers-room` (solo default / diverse / custom) with synthesis provenance and graceful skip.
+- **Opt-in Fountain `--strict`** validation mode.
+- **Installable plugin packaging** (`.claude-plugin/plugin.json` + self-hosted
+  `marketplace.json`) with a `lint:plugin` gate.
+- **Docs & conventions**: repo-wide README refresh, PM-agnostic `CONTRIBUTING.md`, ADR directory,
+  and a CodeRabbit config tuned for a writing harness.
+
+### Fixed
+
+- **Template sync no longer overwrites protected files** — `sync-upstream.sh` and the
+  `sync-upstream.yml` workflow now enforce `protectedPaths` via `restore-protected-paths.sh`
+  (restore fork versions + drop protected additions), covered by a negative-controlled test.
+
+### Security
+
+- **Secret-leak guard** in the model registry validator: a committed endpoint URL or API key
+  fails CI. All endpoints/keys live in `.env` (gitignored); the registry references env-var
+  names only.
+
+---
+
 ## [1.5.2] - 2026-01-20
 
 ### Added

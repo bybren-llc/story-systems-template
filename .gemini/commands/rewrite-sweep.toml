@@ -1,0 +1,46 @@
+description = "Run a per-scene rewrite sweep, grading each scene, into a prioritized notes file"
+prompt = """
+Fan out one reviewer subagent per scene to grade and diagnose every scene, then consolidate
+into a single prioritized rewrite plan. Where /rewrite-check walks the whole-script 6-step
+methodology once, this sweep gives each scene its own grader, surfacing the weakest scenes.
+
+## Arguments
+- `[scope]` — Optional: `full` (default), `act1` | `act2` | `act3`, or `scenes X-Y`.
+- `[file]` — Optional path to the `.fountain` (or novel chapter) to sweep.
+
+## Mechanism (GA-safe)
+Fan out one subagent per scene. Do NOT hard-depend on a preview feature — prefer, in order:
+1. Dynamic workflow (if enabled): one grader per scene, parallel with a cap.
+2. Native subagent dispatch (always available): one grader per scene, batching large scripts.
+Each per-scene prompt reuses the rewriting-methodology and arc-check skills.
+
+## Workflow
+
+### Step 1: Segment into scenes
+Split on scene headings — `^(INT\\.|EXT\\.|INT\\./EXT\\.|I/E\\.)` for screenplays, chapter markers
+for novels. Number 1..N. Honor `[scope]`.
+
+### Step 2: Establish arc context once
+Run a light arc-check to list story threads, so each per-scene grade can note which thread(s)
+the scene advances (or fails to).
+
+### Step 3: Fan out — grade one subagent per scene
+Each subagent grades its scene A–F per the rewriting-methodology "best scene" standard and
+returns: grade, threads advanced, enters-late/exits-early, compression opportunities, and one
+concrete fix toward the A-scene.
+
+### Step 4: Consolidate + prioritize
+Merge into `.wtfb/session/sweeps/rewrite-sweep-notes.md` (overwrite; regenerated artifact),
+sorted weakest-first (F → A), with a header stamping graded count, `verified_against`
+(git rev-parse --short HEAD), grade distribution, and threads with holes.
+
+### Step 5: Report
+Print the grade distribution + the D/F scenes with fixes; point the writer at the notes file.
+Do NOT rewrite the script — a sweep proposes; the writer decides.
+
+## Success Criteria
+- [ ] Every in-scope scene got its own graded pass
+- [ ] Each scene notes which thread(s) it advances
+- [ ] Consolidated, weakest-first notes written and `verified_against` stamped
+- [ ] Script left unmodified
+"""

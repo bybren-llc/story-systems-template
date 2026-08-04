@@ -1,0 +1,44 @@
+description = "Run a per-scene continuity sweep, one subagent per scene, into a notes file"
+prompt = """
+Fan out one Continuity Editor subagent per scene across the whole script, then consolidate
+every finding into a single dated notes file. Where /check-continuity makes one whole-script
+pass, this sweep gives each scene its own focused reviewer, checked against the Story Bible.
+
+## Arguments
+- `[scope]` — Optional: `full` (default), `act1` | `act2` | `act3`, or `scenes X-Y`.
+- `[file]` — Optional path to the `.fountain` (or novel chapter) to sweep.
+
+## Mechanism (GA-safe)
+Fan out one subagent per scene. Do NOT hard-depend on a preview feature — prefer, in order:
+1. Dynamic workflow (if enabled): one continuity reviewer per scene, parallel with a cap.
+2. Native subagent dispatch (always available): one reviewer per scene, batching large scripts.
+
+## Workflow
+
+### Step 1: Segment into scenes
+Split on scene headings — `^(INT\\.|EXT\\.|INT\\./EXT\\.|I/E\\.)` for screenplays, chapter markers
+for novels. Number 1..N. Honor `[scope]`.
+
+### Step 2: Load ground truth once
+Read `story-bible/` cards and the continuity-tracking skill; pass relevant cards to each
+per-scene subagent so findings cite canon.
+
+### Step 3: Fan out — one subagent per scene
+Each reviewer receives only its scene + Story Bible context and returns structured findings
+(timeline / character / prop), each citing the card it relies on and a severity.
+
+### Step 4: Consolidate
+Merge into `.wtfb/session/sweeps/continuity-sweep-notes.md` (overwrite; regenerated artifact),
+grouped by kind, ordered by severity then scene, with a header stamping the swept scene count,
+`verified_against` (git rev-parse --short HEAD), and CLEAN / X ISSUES.
+
+### Step 5: Report
+Print the header + top issues; point the writer at the notes file. Do NOT edit the script —
+a sweep reports; the writer decides.
+
+## Success Criteria
+- [ ] Every in-scope scene got its own subagent pass
+- [ ] Findings cite Story Bible cards where relevant
+- [ ] Consolidated notes written and `verified_against` stamped
+- [ ] Script left unmodified
+"""

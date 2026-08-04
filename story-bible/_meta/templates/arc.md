@@ -2,8 +2,8 @@
 type: arc
 title: "{{Arc Name}}"
 description: "{{ONE_SENTENCE <=160 chars: whose change this tracks and the shape of it}}"
-tags: [structure, {{positive-arc|negative-arc|flat-arc|transformational-arc}}]
-timestamp: {{YYYY-MM-DD}}
+tags: [structure, "{{positive-arc|negative-arc|flat-arc|transformational-arc}}"]
+timestamp: "{{YYYY-MM-DD}}"
 status: draft
 domain: structure
 sources:

@@ -22,4 +22,5 @@ Copy the matching skeleton from [`_meta/templates/`](_meta/templates/) into the 
 folder, fill it in, cite the scenes under **Appears In**, and set `verified_against` to the
 current commit. Keep it under 50 lines — if it's growing, you're restating the manuscript.
 
-See [`characters/example.md`](characters/example.md) for a worked example.
+See [`_meta/example-character.md`](_meta/example-character.md) for a worked example (a
+non-canonical teaching fixture — your `characters/` folder starts empty for your own cast).

@@ -182,4 +182,4 @@ Per WTFB genre categorization, adjust structure for:
 | Thriller | Major revelation midpoint, ticking clock |
 
 ## Tools Available
-Read, Write, Edit, Bash, Grep, Glob
+Read, Write, Edit, Grep, Glob

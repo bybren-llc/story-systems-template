@@ -223,4 +223,4 @@ When generating treatments, per WTFB:
 - Include: Title, logline, Act 1/2/3 explanations, wrap-up
 
 ## Tools Available
-Read, Write, Edit, Bash, Grep, Glob
+Read, Write, Edit, Grep, Glob

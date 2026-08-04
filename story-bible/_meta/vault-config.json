@@ -59,7 +59,7 @@
 
   "types": {
     "character": {
-      "sections": ["Overview", "Traits", "Relationships", "Arc", "Appears In"],
+      "sections": ["Overview", "Traits", "Relationships", "Arc", "Knowledge", "Appears In"],
       "resource_required": false
     },
     "location": {

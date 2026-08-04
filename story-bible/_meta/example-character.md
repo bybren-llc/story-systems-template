@@ -40,6 +40,11 @@ inciting incident onward.
 
 Believes the lie that she is only her worst mistake; learns the truth that a map can be redrawn.
 
+## Knowledge
+
+- Opening → midpoint — does not know her brother survived the first expedition.
+- After the pass — learns the sabotage was not entirely her fault.
+
 ## Appears In
 
 - [Chapter 1](../../manuscript/ch01.md) — where her flaw and want would be established.

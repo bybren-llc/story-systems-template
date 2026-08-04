@@ -16,6 +16,10 @@ on:
       - main
       - 'draft/**'
 
+# Least-privilege token for all jobs — these are read-only validation jobs.
+permissions:
+  contents: read
+
 jobs:
   detect-type:
     name: Detect Project Type
@@ -172,6 +176,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
 
       - name: Setup Node.js
         uses: actions/setup-node@v4

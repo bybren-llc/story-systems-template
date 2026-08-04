@@ -1,0 +1,96 @@
+{
+  "okf_version": "0.1",
+  "bundle_root": "story-bible",
+  "obsidian_vault_root": ".",
+
+  "domains": ["cast", "world", "chronology", "objects", "themes", "structure"],
+
+  "watch_list": [
+    "*.fountain",
+    "manuscript/**/*.md",
+    "manuscript/**/*.fountain",
+    "sourcematerials/**",
+    "story-bible/**/*.md"
+  ],
+
+  "watch_list_exclusions": [
+    "story-bible/_meta/**",
+    "exports/**",
+    "docs/archive/**"
+  ],
+
+  "statuses": ["canon", "draft", "provisional", "cut"],
+
+  "max_concept_lines": 50,
+
+  "frontmatter": {
+    "required": [
+      "type",
+      "title",
+      "description",
+      "tags",
+      "timestamp",
+      "status",
+      "sources",
+      "verified_against"
+    ],
+    "optional": ["domain", "aka", "ticket", "docs", "okf_version"],
+    "max_description_length": 160,
+    "path_fields": ["sources", "docs"]
+  },
+
+  "link_rules": {
+    "style": "relative-markdown",
+    "concept_links_stay_in_bundle": true,
+    "external_repo_links_only_under": "Appears In",
+    "forbidden": ["wikilinks", "leading-slash-paths", "github-urls-for-repo-files"]
+  },
+
+  "tags": [
+    "cast", "world", "chronology", "objects", "themes", "structure",
+    "protagonist", "antagonist", "supporting", "minor",
+    "interior", "exterior", "recurring-location",
+    "flashback", "flash-forward", "present",
+    "macguffin", "weapon", "keepsake", "symbol",
+    "motif", "premise", "moral-argument",
+    "positive-arc", "negative-arc", "flat-arc", "transformational-arc",
+    "act-one", "act-two", "act-three", "spoiler"
+  ],
+
+  "types": {
+    "character": {
+      "sections": ["Overview", "Traits", "Relationships", "Arc", "Appears In"],
+      "resource_required": false
+    },
+    "location": {
+      "sections": ["Overview", "Geography", "Sensory Details", "Appears In"],
+      "resource_required": false
+    },
+    "timeline-event": {
+      "sections": ["Overview", "When", "Consequences", "Appears In"],
+      "resource_required": false
+    },
+    "prop": {
+      "sections": ["Overview", "Significance", "Chain of Custody", "Appears In"],
+      "resource_required": false
+    },
+    "theme": {
+      "sections": ["Overview", "Expression", "Related Threads", "Appears In"],
+      "resource_required": false
+    },
+    "arc": {
+      "sections": ["Overview", "Beats", "Turning Points", "Appears In"],
+      "resource_required": false
+    },
+    "index": {
+      "sections": [],
+      "resource_required": false,
+      "internal": true
+    },
+    "template": {
+      "sections": [],
+      "resource_required": false,
+      "internal": true
+    }
+  }
+}

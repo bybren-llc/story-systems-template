@@ -36,13 +36,26 @@
     "docs/v*/**",
     "README.md",
     "marketing/wtfb-marketing.json",
-    "marketing/assets/**"
+    "marketing/assets/**",
+    "story-bible/characters/**",
+    "story-bible/locations/**",
+    "story-bible/timeline/**",
+    "story-bible/props/**",
+    "story-bible/themes/**",
+    "story-bible/arcs/**",
+    "story-bible/index.md",
+    "story-bible/log.md",
+    "story-bible/_meta/manifest.json"
   ],
   "syncPaths": [
     ".github/workflows/**",
     "scripts/**",
     ".wtfb/ai-harness/**",
     "templates/**",
-    "patterns/**"
+    "patterns/**",
+    "story-bible/_meta/vault-config.json",
+    "story-bible/_meta/templates/**",
+    "story-bible/_meta/CONVENTIONS.md",
+    "story-bible/README.md"
   ]
 }

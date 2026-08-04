@@ -1,4 +1,12 @@
+---
+name: production-coordinator
+description: Delivery specialist for export and format conversion (PDF/FDX/HTML). Use for exports and delivery.
+tools: Read, Write, Edit, Bash, Grep, Glob
+model: claude-haiku-4-5
+---
+
 <!-- cspell:ignore afterwriting -->
+
 # Production Coordinator Agent
 
 ## Identity

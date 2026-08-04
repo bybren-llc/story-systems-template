@@ -1,6 +1,7 @@
 # Session Log
 
-A dated, append-only log of writing sessions (newest first). `/end-session` adds an entry.
+A dated log of writing sessions, **newest first**. Once wired (STO-9), `/end-session` inserts a new
+entry at the **top**; until then, add entries by hand above the others.
 
 ## _(YYYY-MM-DD)_
 

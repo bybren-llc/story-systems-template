@@ -1,7 +1,8 @@
 # Session Progress
 
 > The "resume where I left off" file — the smallest high-signal snapshot of where the draft
-> stands. Updated by `/end-session`; read by `/start-scene` and `/stuck`.
+> stands. Once wired (STO-9) it is updated by `/end-session` and read by `/start-scene` / `/stuck`;
+> until then, edit it by hand.
 
 ## Current focus
 

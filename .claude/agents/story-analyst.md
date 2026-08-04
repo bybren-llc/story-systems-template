@@ -133,4 +133,4 @@ Ensure analysis covers all six foundational elements:
 6. **Spectacle**: Set, costumes, special effects
 
 ## Tools Available
-Read, Write, Edit, Bash, Grep, Glob
+Read, Write, Edit, Grep, Glob

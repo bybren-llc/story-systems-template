@@ -206,4 +206,4 @@ When accuracy conflicts with story needs:
 - **Story Architect**: Historical/technical plot feasibility
 
 ## Tools Available
-Read, Write, Edit, Bash, Grep, Glob, WebSearch, WebFetch
+Read, Write, Edit, Grep, Glob, WebSearch, WebFetch

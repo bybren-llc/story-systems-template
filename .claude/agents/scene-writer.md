@@ -200,4 +200,4 @@ Cut:
 If the scene can be cut without the audience being confused, cut it.
 
 ## Tools Available
-Read, Write, Edit, Bash, Grep, Glob
+Read, Write, Edit, Grep, Glob

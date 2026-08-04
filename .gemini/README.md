@@ -8,7 +8,7 @@ This directory contains the multi-agent harness for Google's Gemini CLI, providi
 .gemini/
 ├── settings.json    # CLI configuration (official schema)
 ├── agents/          # 11 specialized agent profiles
-├── commands/        # 30 slash command definitions (TOML)
+├── commands/        # 32 slash command definitions (TOML)
 ├── skills/          # 24 knowledge base modules
 └── README.md        # This file
 ```

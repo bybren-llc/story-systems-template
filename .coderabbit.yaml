@@ -10,11 +10,13 @@
 
 language: en-US
 
+# HARD LIMIT: 250 characters. Over that, the whole file fails schema validation and
+# CodeRabbit silently falls back to defaults — see STO-26. Per-path detail belongs in
+# `reviews.path_instructions` below, which has no such cap.
 tone_instructions: |
-  This is a creative-writing harness, not an application codebase. Be encouraging and concise.
-  Review the harness machinery rigorously — shell hooks, Node scripts, YAML frontmatter, JSON
-  schema, CI — but treat documentation and any prose with a light touch, and never critique a
-  writer's creative or story choices. Prefer high-signal, actionable findings over stylistic nits.
+  Creative-writing harness, not an application codebase. Be encouraging and concise. Review
+  the harness machinery rigorously; treat docs and prose lightly. Never critique a writer's
+  creative or story choices. Prefer actionable findings over nits.
 
 reviews:
   profile: chill
@@ -34,6 +36,12 @@ reviews:
   auto_review:
     enabled: true
     drafts: false
+    # Without this, CodeRabbit only auto-reviews PRs into the DEFAULT branch (`main`), and
+    # feature PRs — which target `develop` per CONTRIBUTING.md — are skipped entirely.
+    # Forks: add your own integration branch here if you rename it.
+    base_branches:
+      - "develop"
+      - "main"
 
   path_instructions:
     - path: ".claude/hooks/**"

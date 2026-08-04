@@ -12,7 +12,9 @@ scripts/
 ├── sync-upstream.sh            # Template sync helper
 ├── restore-protected-paths.sh  # Enforce protectedPaths after a template merge
 ├── validate-fountain.js        # Fountain format validation
-└── validate-models.js          # Multi-model registry gate (structure + secret-leak guard)
+├── validate-models.js          # Multi-model registry gate (structure + secret-leak guard)
+├── model-consult.js            # Multi-model connector core + CLI (OpenAI-compatible / vLLM)
+└── model-consult-mcp.mjs       # Opt-in MCP server exposing list_models / consult_model
 ```
 
 ## Compatibility Contract
@@ -160,6 +162,32 @@ the `sync-upstream.yml` workflow.
 
 Uses git pathspec matching (exact, not substring) and is bash 3.2 compatible (macOS default).
 Covered by `npm run test:sync` (`tests/test-protected-sync.sh`), which runs in CI.
+
+### model-consult.js
+
+**Purpose:** The multi-model **connector** (ADR 0001). Reads the roster from
+`.wtfb/ai-harness/model-registry.json`, resolves each model's endpoint/key from the env-var
+names the registry declares, and consults a model via one adapter. The **OpenAI-compatible**
+adapter covers self-hosted **vLLM** and OpenAI-compatible clouds. Zero external dependencies.
+
+**Usage:**
+```bash
+# List the roster (redacted — shows whether each endpoint/key resolves, never the values)
+node scripts/model-consult.js list
+
+# Consult a rostered non-Claude model (endpoints/keys come from .env — see .env.example)
+node scripts/model-consult.js consult vllm-local --seat guest --prompt "pitch me an opening"
+```
+
+**Behavior:**
+- Anthropic models are **refused** here — they run natively in-session as subagents.
+- A missing endpoint/key or an unreachable server returns a **structured error**, never a faked
+  completion (exit 1). Covered by `npm run test:consult` (`tests/test-model-consult.sh`), in CI.
+
+**Enabling it in Claude Code (opt-in MCP):** `scripts/model-consult-mcp.mjs` wraps the core as an
+MCP server exposing `list_models` / `consult_model`. Enable with `npm i @modelcontextprotocol/sdk
+zod`, then register it in `.mcp.json` (instructions in the file header). Until then the base
+template carries no extra runtime dependency.
 
 ### validate-fountain.js
 

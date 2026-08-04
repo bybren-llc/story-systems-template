@@ -16,6 +16,7 @@
     "lint:md": "markdownlint-cli2 '**/*.md' '#node_modules'",
     "lint:spell": "cspell '**/*.{md,fountain,txt}' --no-progress",
     "test:sync": "bash tests/test-protected-sync.sh",
+    "test:consult": "bash tests/test-model-consult.sh",
     "init": "bash scripts/init-project.sh",
     "prepare": "husky"
   },

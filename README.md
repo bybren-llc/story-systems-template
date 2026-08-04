@@ -2,23 +2,30 @@
 # Story Systems Template
 
 <p align="center">
+  <a href="https://github.com/bybren-llc/story-systems-template/releases/latest">
+    <img src="https://img.shields.io/github/v/release/bybren-llc/story-systems-template?style=flat-square&color=blue&label=release" alt="Release">
+  </a>
   <a href="https://github.com/bybren-llc/story-systems-template/blob/main/LICENSE">
     <img src="https://img.shields.io/github/license/bybren-llc/story-systems-template?style=flat-square" alt="License">
   </a>
-  <a href="https://github.com/bybren-llc/story-systems-template/releases/latest">
-    <img src="https://img.shields.io/github/v/release/bybren-llc/story-systems-template?include_prereleases&style=flat-square&color=blue" alt="Version">
-  </a>
   <a href="https://github.com/bybren-llc/story-systems-template/actions/workflows/validate.yml">
-    <img src="https://img.shields.io/github/actions/workflow/status/bybren-llc/story-systems-template/validate.yml?style=flat-square&label=validation" alt="Validation">
+    <img src="https://img.shields.io/github/actions/workflow/status/bybren-llc/story-systems-template/validate.yml?branch=main&style=flat-square&label=validation" alt="Validation">
+  </a>
+  <img src="https://img.shields.io/badge/template-ready-brightgreen?style=flat-square" alt="Template Ready">
+  <a href="https://deepwiki.com/bybren-llc/story-systems-template">
+    <img src="https://deepwiki.com/badge.svg" alt="Ask DeepWiki">
+  </a>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/agents-11-red?style=flat-square" alt="Agents">
+  <img src="https://img.shields.io/badge/skills-24-purple?style=flat-square" alt="Skills">
+  <img src="https://img.shields.io/badge/commands-34-orange?style=flat-square" alt="Commands">
+  <a href="https://www.npmjs.com/package/@wtfb/cli">
+    <img src="https://img.shields.io/npm/v/@wtfb/cli?style=flat-square&logo=npm&label=@wtfb/cli" alt="npm">
   </a>
   <a href="https://github.com/bybren-llc/story-systems-template/stargazers">
     <img src="https://img.shields.io/github/stars/bybren-llc/story-systems-template?style=flat-square" alt="Stars">
-  </a>
-  <a href="https://deepwiki.com/bybren-llc/story-systems-template">
-    <img src="https://img.shields.io/badge/DeepWiki-AI_Docs-blue?style=flat-square&logo=artificial-intelligence" alt="DeepWiki">
-  </a>
-  <a href="https://www.npmjs.com/package/@wtfb/cli">
-    <img src="https://img.shields.io/npm/v/@wtfb/cli?style=flat-square&logo=npm&label=@wtfb/cli" alt="npm">
   </a>
 </p>
 

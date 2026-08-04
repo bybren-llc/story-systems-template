@@ -76,8 +76,11 @@ Writer (conversation)
 |-------|--------------|
 | **Script Supervisor** | `wtfb validate`, `wtfb validate --fountain` |
 | **Production Coordinator** | `wtfb export-pdf`, `wtfb export-fdx`, `wtfb export-html` |
+| **Session Manager** | `git` (session / branch integration) |
+| **Continuity Editor** | `npm run lint:bible`, `npm run bible:drift` |
 
-Other agents focus on craft (story, dialogue, continuity) and don't need CLI tools.
+The other agents focus on craft (story, dialogue, structure) and don't run commands — their
+`tools:` sets omit `Bash` (least privilege).
 
 ## Agent Profiles
 

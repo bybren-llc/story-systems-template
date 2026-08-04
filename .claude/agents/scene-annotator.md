@@ -1,7 +1,7 @@
 ---
 name: scene-annotator
 description: Documentation specialist for notes, synopses, and section markers. Use for organizing and annotating.
-tools: Read, Write, Edit, Bash, Grep, Glob
+tools: Read, Write, Edit, Grep, Glob
 model: claude-haiku-4-5
 ---
 

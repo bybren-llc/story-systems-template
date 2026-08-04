@@ -1,7 +1,7 @@
 ---
 name: standards-reviewer
 description: Industry-compliance specialist ensuring professional submission standards. Use for standards review.
-tools: Read, Write, Edit, Bash, Grep, Glob
+tools: Read, Write, Edit, Grep, Glob
 model: claude-opus-4-8
 ---
 

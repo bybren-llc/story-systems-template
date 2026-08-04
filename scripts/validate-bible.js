@@ -67,7 +67,7 @@ function assertShape(obj, name, checks, exitCode) {
     const v = key.split('.').reduce((o, k) => (o == null ? undefined : o[k]), obj);
     const ok = kind === 'array' ? Array.isArray(v)
       : kind === 'object' ? (v != null && typeof v === 'object' && !Array.isArray(v))
-      : kind === 'number' ? typeof v === 'number'
+      : kind === 'number' ? Number.isFinite(v)
       : v !== undefined;
     if (!ok) {
       console.error(`${C.red}${name}: missing or invalid "${key}" (expected ${kind}).${C.reset}`);

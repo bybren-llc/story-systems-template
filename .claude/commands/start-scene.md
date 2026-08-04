@@ -11,6 +11,13 @@ Begin work on a scene with proper workflow setup.
 
 ## Workflow
 
+### Step 0: Resume from session memory
+
+Read `.wtfb/session/progress.md` to pick up where you left off — the current focus, "next up",
+anything you were blocked on, the scene/chapter checklist, and arc state. Skim
+`.wtfb/session/draft-state.md` for established facts and open threads relevant to this scene. (See
+`.wtfb/session/README.md`.)
+
 ### Step 1: Identify Scene Context
 1. If no argument provided, ask:
    - What is the scene about?

@@ -1,7 +1,7 @@
 ---
 name: story-architect
 description: Structural authority for three-act structure, act breaks, and story spine. Use for structure design and validation (VETO authority).
-tools: Read, Write, Edit, Bash, Grep, Glob
+tools: Read, Write, Edit, Grep, Glob
 model: claude-opus-4-8
 ---
 

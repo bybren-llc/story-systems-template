@@ -1,7 +1,7 @@
 ---
 name: research-specialist
 description: Information authority for location, historical, and technical accuracy. Use for research and fact-checking.
-tools: Read, Write, Edit, Bash, Grep, Glob, WebSearch, WebFetch
+tools: Read, Write, Edit, Grep, Glob, WebSearch, WebFetch
 model: claude-opus-4-8
 ---
 

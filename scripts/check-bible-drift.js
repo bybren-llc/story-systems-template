@@ -88,9 +88,13 @@ function main() {
   const cfgPath = path.join(vaultDir, '_meta', 'vault-config.json');
   const manifestPath = path.join(vaultDir, '_meta', 'manifest.json');
   if (!fs.existsSync(manifestPath)) { console.log('No manifest.json — nothing to drift-check.'); process.exit(0); }
-  const cfg = fs.existsSync(cfgPath) ? readJson(cfgPath, softExit) : {};
+  const cfg = (fs.existsSync(cfgPath) ? readJson(cfgPath, softExit) : {}) || {};
   const manifest = readJson(manifestPath, softExit);
-  const concepts = (Array.isArray(manifest.concepts) ? manifest.concepts : []).filter((c) => c && typeof c === 'object');
+  if (manifest == null || typeof manifest !== 'object' || Array.isArray(manifest) || !Array.isArray(manifest.concepts)) {
+    console.error(`${C.red}manifest.json: "concepts" must be an array.${C.reset}`);
+    process.exit(softExit);
+  }
+  const concepts = manifest.concepts.filter((c) => c && typeof c === 'object');
 
   // 1. determine changed paths
   let changed;

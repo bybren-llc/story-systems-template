@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "wtfb-story-harness",
+  "displayName": "Words To Film By — Story Harness",
+  "version": "1.5.3",
+  "description": "The WTFB creative-writing harness as an installable plugin: 11 dispatchable agents, 24 skills, and 30+ slash commands for screenplay/novel/film work — structure, dialogue, continuity, story bible, and a multi-model writer's room.",
+  "author": {
+    "name": "J. Scott Graham",
+    "email": "scott@cheddarfox.com",
+    "url": "https://github.com/bybren-llc"
+  },
+  "homepage": "https://github.com/bybren-llc/story-systems-template",
+  "repository": "https://github.com/bybren-llc/story-systems-template",
+  "license": "MIT",
+  "keywords": ["screenplay", "novel", "fountain", "story-structure", "writing", "wtfb"],
+  "skills": "./.claude/skills/",
+  "agents": "./.claude/agents/",
+  "commands": "./.claude/commands/"
+}

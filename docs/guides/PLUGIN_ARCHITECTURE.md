@@ -347,6 +347,46 @@ Later entries in `precedence` win for capabilities with the same base `wtfbId`.
 
 See [Capability Contract - Third-Party Plugin Author Rules](./CAPABILITY_CONTRACT.md#third-party-plugin-author-rules) for full specification.
 
+## Installing the harness as a plugin (STO-14)
+
+Besides using this repo as a **template to fork**, the harness ships as an installable Claude Code
+**plugin** — the same agents, skills, and commands, added on top of any project.
+
+Manifests live in `.claude-plugin/`:
+
+- **`plugin.json`** — declares the `wtfb-story-harness` plugin and points its component paths at
+  the existing `./.claude/` directories (`skills`, `agents`, `commands`). No files are duplicated;
+  on install, Claude Code copies the repo into its plugin cache so those relative paths resolve.
+- **`marketplace.json`** — a self-hosted marketplace (`wtfb-story-systems`) listing the plugin with
+  a GitHub source pointing back at this repo, so no separate marketplace repo is required.
+
+Both are gated by `npm run lint:plugin` (`scripts/validate-plugin.js`, in the `validate` chain and
+CI): valid JSON, kebab plugin name, and — importantly — every declared component path must resolve
+to a directory that actually contains components, and the marketplace must list the plugin by name.
+
+### Install
+
+```bash
+# 1. Add this repo as a marketplace
+/plugin marketplace add bybren-llc/story-systems-template
+
+# 2. Install the harness plugin
+/plugin install wtfb-story-harness@wtfb-story-systems
+```
+
+Plugins and marketplaces are **generally available** in Claude Code (not beta).
+
+### Scope of the plugin
+
+The plugin bundles **agents + skills + commands**. Hooks are **not** bundled: this repo wires hooks
+via `.claude/settings.json` using `$CLAUDE_PROJECT_DIR` (the template-fork model), whereas plugin
+hooks use `${CLAUDE_PLUGIN_ROOT}` — bundling them unchanged would resolve to the wrong paths. Fork the template if
+you want the hooks; install the plugin for the agents/skills/commands.
+
+> **One manual verification remains:** a live `/plugin install` in a real Claude Code session. The
+> manifests and component paths are validated in CI, but the end-to-end install/enable is the
+> publisher's final check (it can't run in this repo's CI).
+
 ## Related Documentation
 
 - [Capability Contract](./CAPABILITY_CONTRACT.md) - Schema and rules for capabilities

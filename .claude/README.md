@@ -21,8 +21,8 @@ This directory contains the multi-agent harness for Claude Code.
 Beyond the agent team, the harness ships operational machinery:
 
 - **Wired hooks** (`settings.json` → `hooks/*.sh`): block direct pushes to `main` and pushes with
-  uncommitted changes, cue Fountain-format + conventional-commit reminders, and print a session
-  banner. See [hooks/README.md](hooks/README.md).
+  uncommitted **tracked** changes, cue Fountain-format + conventional-commit reminders, and print a
+  session banner. See [hooks/README.md](hooks/README.md).
 - **Per-role model routing** ([model-routing.md](model-routing.md)): Fable 5 for prose roles,
   Opus 4.8 for structure/review/orchestration, Haiku 4.5 for mechanical work.
 - **Story Bible** (`story-bible/` at repo root): a validated, drift-aware continuity vault —

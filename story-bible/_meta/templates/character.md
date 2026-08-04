@@ -2,8 +2,8 @@
 type: character
 title: "{{Character Name}}"
 description: "{{ONE_SENTENCE <=160 chars: who they are and their function in the story}}"
-tags: [cast, {{protagonist|antagonist|supporting|minor}}]
-timestamp: {{YYYY-MM-DD}}
+tags: [cast, "{{protagonist|antagonist|supporting|minor}}"]
+timestamp: "{{YYYY-MM-DD}}"
 status: draft
 aka: "{{nickname / alias, optional}}"
 domain: cast

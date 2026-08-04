@@ -2,8 +2,8 @@
 type: timeline-event
 title: "{{Event Name}}"
 description: "{{ONE_SENTENCE <=160 chars: what happens and when in story chronology}}"
-tags: [chronology, {{present|flashback|flash-forward}}]
-timestamp: {{YYYY-MM-DD}}
+tags: [chronology, "{{present|flashback|flash-forward}}"]
+timestamp: "{{YYYY-MM-DD}}"
 status: draft
 domain: chronology
 sources:

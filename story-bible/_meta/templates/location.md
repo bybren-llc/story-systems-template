@@ -2,8 +2,8 @@
 type: location
 title: "{{Location Name}}"
 description: "{{ONE_SENTENCE <=160 chars: what this place is and its story function}}"
-tags: [world, {{interior|exterior|recurring-location}}]
-timestamp: {{YYYY-MM-DD}}
+tags: [world, "{{interior|exterior|recurring-location}}"]
+timestamp: "{{YYYY-MM-DD}}"
 status: draft
 domain: world
 sources:

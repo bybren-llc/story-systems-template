@@ -20,6 +20,10 @@ Check for:
 4. Last scene written
 5. Any uncommitted changes
 6. Notes or TODOs in the screenplay
+7. **Session memory** — read `.wtfb/session/progress.md` (current focus, next up, blocked on),
+   `.wtfb/session/draft-state.md` (open threads, inconsistencies), and the latest
+   `.wtfb/session/session-log.md` entry, so the guidance is grounded in where the writer actually
+   left off rather than inferred from scratch.
 
 ### Step 2: Determine User Situation
 

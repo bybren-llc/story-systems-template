@@ -292,5 +292,5 @@ above — what each character knows and does not know, scene by scene.
    `verified_against` SHA — re-verify the card and bump it.
 4. **Read as canon**: `/check-continuity` treats `status: canon` cards as ground truth.
 
-Keep cards lean (≤50 lines): a card **cites** the manuscript, it never restates it. See
+Keep cards lean (at most 50 lines): a card **cites** the manuscript, it never restates it. See
 `story-bible/_meta/CONVENTIONS.md`.

@@ -24,10 +24,14 @@ and stamp it with the commit it was verified against.
 | theme | `story-bible/themes/` |
 | arc | `story-bible/arcs/` |
 
-### Step 2: Copy the template
+### Step 2: Create or refresh the card
 
-Copy `story-bible/_meta/templates/<type>.md` into the folder as `<slug>.md` and fill it in.
-Keep it under 50 lines — a map-card **cites** the manuscript, it does not restate it.
+- **New card:** copy `story-bible/_meta/templates/<type>.md` into the folder as `<slug>.md` and
+  fill it in.
+- **Refresh:** if `<slug>.md` already exists, **edit it in place** — never copy the template over
+  an existing card (that would discard the writer's content).
+
+Keep it to **at most 50 lines** — a map-card **cites** the manuscript, it does not restate it.
 
 ### Step 3: Cite sources + stamp verified_against
 

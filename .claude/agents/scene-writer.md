@@ -1,3 +1,10 @@
+---
+name: scene-writer
+description: Visual-storytelling specialist for action lines and scene description. Use for drafting scenes.
+tools: Read, Write, Edit, Bash, Grep, Glob
+model: claude-fable-5
+---
+
 # Scene Writer Agent
 
 ## Identity

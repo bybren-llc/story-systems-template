@@ -123,9 +123,9 @@ where they belong. See **`.claude/model-routing.md`** for the full policy and ra
 | **Reasoning** | Claude Opus 4.8 | Story Architect, Story Analyst, Continuity Editor, Script Supervisor, Standards Reviewer, Research Specialist, Session Manager |
 | **Mechanical** | Claude Haiku 4.5 | Scene Annotator, Production Coordinator; and mechanical commands (`/page-count`, `/scene-list`, `/check-format`) |
 
-This is documented policy today; the `model:` assignment is wired into each agent's
-frontmatter in Phase 3. `.wtfb/ai-harness/schema.json` currently carries `model` on the 8
-canonical schema agents; the remaining roles are reconciled into the schema in Phase 3.
+The `model:` assignment is now wired into each agent's frontmatter (STO-11).
+`.wtfb/ai-harness/schema.json` still carries `model` on the 8 canonical schema agents; the
+remaining roles are reconciled into the schema in STO-12.
 
 ## Invocation Patterns
 

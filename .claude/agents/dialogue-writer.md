@@ -1,3 +1,10 @@
+---
+name: dialogue-writer
+description: Voice specialist for character-specific dialogue, rhythm, and subtext. Use for writing or polishing dialogue.
+tools: Read, Write, Edit, Bash, Grep, Glob
+model: claude-fable-5
+---
+
 # Dialogue Writer Agent
 
 ## Identity

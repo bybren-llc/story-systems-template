@@ -63,18 +63,22 @@ jobs:
         run: |
           git checkout -b sync/upstream-template-$(date +%Y%m%d)
 
-          # Cherry-pick changes only for syncPaths
-          # This is a simplified approach - full implementation would filter by path
           git merge upstream/main --no-commit --no-ff || true
 
-          # Check for conflicts
+          # Enforce protectedPaths: restore fork-owned files the merge would overwrite,
+          # and drop upstream additions under protected paths. This is what makes the
+          # "Protected Paths (will NOT be changed)" promise in the PR body actually true.
+          bash scripts/restore-protected-paths.sh HEAD
+
+          # Any remaining conflicts are in NON-protected files (protected ones were resolved
+          # in the fork's favour above) and need a human.
           if git diff --name-only --diff-filter=U | grep -q .; then
-            echo "Conflicts detected - manual resolution required"
+            echo "Conflicts detected in non-protected files - manual resolution required"
             git merge --abort
             exit 1
           fi
 
-          git commit -m "sync: merge upstream template updates" || echo "No changes to commit"
+          git commit -m "sync: merge upstream template updates (protected paths preserved)" || echo "No changes to commit"
 
       - name: Create Pull Request
         if: steps.check.outputs.behind > 0

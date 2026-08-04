@@ -74,6 +74,7 @@ echo ""
 echo -e "${YELLOW}To merge updates:${NC}"
 echo ""
 echo "  git merge upstream/main --no-commit"
+echo "  ./scripts/restore-protected-paths.sh   # restore fork-owned protected paths"
 echo "  # Review changes carefully"
 echo "  # Resolve any conflicts"
 echo "  git commit -m 'sync: merge upstream template updates'"
@@ -81,7 +82,8 @@ echo ""
 echo -e "${YELLOW}Or create a branch first:${NC}"
 echo ""
 echo "  git checkout -b sync/upstream-$(date +%Y%m%d)"
-echo "  git merge upstream/main"
+echo "  git merge upstream/main --no-commit"
+echo "  ./scripts/restore-protected-paths.sh   # restore fork-owned protected paths"
 echo "  # Review, then create a PR"
 echo ""
 
@@ -95,20 +97,25 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     git checkout -b "$BRANCH_NAME" 2>/dev/null || git checkout "$BRANCH_NAME"
 
     echo "Merging upstream..."
-    if git merge upstream/main --no-commit; then
+    git merge upstream/main --no-commit --no-ff || true
+
+    echo "Enforcing protected paths (restoring fork-owned files)..."
+    "$(dirname "$0")/restore-protected-paths.sh" HEAD
+
+    if git diff --name-only --diff-filter=U | grep -q .; then
         echo ""
-        echo -e "${GREEN}Merge successful! Review the changes and commit when ready:${NC}"
-        echo ""
-        echo "  git status"
-        echo "  git diff --cached"
-        echo "  git commit -m 'sync: merge upstream template updates'"
-    else
-        echo ""
-        echo -e "${YELLOW}Merge has conflicts. Please resolve them:${NC}"
+        echo -e "${YELLOW}Merge has conflicts in non-protected files. Please resolve them:${NC}"
         echo ""
         echo "  git status  # See conflicted files"
         echo "  # Edit files to resolve conflicts"
         echo "  git add <resolved-files>"
+        echo "  git commit -m 'sync: merge upstream template updates'"
+    else
+        echo ""
+        echo -e "${GREEN}Merge staged with protected paths preserved. Review and commit:${NC}"
+        echo ""
+        echo "  git status"
+        echo "  git diff --cached"
         echo "  git commit -m 'sync: merge upstream template updates'"
     fi
 else

@@ -11,7 +11,8 @@ scripts/
 ├── init-project.ps1            # Project initialization (Windows PowerShell)
 ├── sync-upstream.sh            # Template sync helper
 ├── restore-protected-paths.sh  # Enforce protectedPaths after a template merge
-└── validate-fountain.js        # Fountain format validation
+├── validate-fountain.js        # Fountain format validation
+└── validate-models.js          # Multi-model registry gate (structure + secret-leak guard)
 ```
 
 ## Compatibility Contract

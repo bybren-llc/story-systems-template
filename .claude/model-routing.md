@@ -57,9 +57,16 @@ them:
   matters more than the last increment of quality.
 - The `model:` field in each agent's frontmatter is the enforcement (STO-11); this doc is the
   human-readable policy behind it.
-- `.wtfb/ai-harness/schema.json` currently carries `model` on the **8 canonical schema
-  agents**; the remaining roles (Scene Annotator, Standards Reviewer, Session Manager) are
-  reconciled into the schema in Phase 3 (STO-12).
+- `.wtfb/ai-harness/schema.json` carries `model` on **all 11 agents** (reconciled in STO-12);
+  a CI parity gate keeps schema models and agent frontmatter in agreement.
 - **Gemini/Codex parity is deferred.** These are Claude Code hooks/models; `.gemini/` keeps
   its own harness and cannot route to Claude model IDs, so per-role model routing is a
   Claude-surface concern for now.
+
+## Beyond Claude — the multi-model council
+
+Per-role routing above is Claude-only. To convene **other** models (self-hosted vLLM, other
+cloud) alongside Claude in the writer's room, see the provider-aware roster at
+`.wtfb/ai-harness/model-registry.json` (validated by `npm run lint:models`) and the design in
+[`docs/adr/0001-multi-model-writers-room.md`](../docs/adr/0001-multi-model-writers-room.md).
+The registry references env-var **names** only — real endpoints/keys live in `.env`.

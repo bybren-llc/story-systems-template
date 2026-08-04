@@ -36,6 +36,7 @@ if (!mode) {
 const results = {
   skills: { errors: [], warnings: [] },
   commands: { errors: [], warnings: [] },
+  parity: { errors: [], warnings: [] },
   summary: { totalErrors: 0, totalWarnings: 0 }
 };
 
@@ -263,6 +264,109 @@ function validateCommand(commandPath) {
 }
 
 /**
+ * List markdown stems in a directory, excluding README.
+ */
+function mdStems(dir) {
+  if (!fs.existsSync(dir)) return null;
+  return fs.readdirSync(dir)
+    .filter(f => f.endsWith('.md') && f.toLowerCase() !== 'readme.md')
+    .map(f => path.basename(f, '.md'))
+    .sort();
+}
+
+/**
+ * List command stems in a harness dir, excluding README.
+ * Claude commands are .md; Gemini commands are .toml.
+ */
+function commandStems(dir, ext) {
+  if (!fs.existsSync(dir)) return null;
+  return fs.readdirSync(dir)
+    .filter(f => f.endsWith(ext) && f.toLowerCase() !== 'readme' + ext)
+    .map(f => path.basename(f, ext))
+    .sort();
+}
+
+/**
+ * Read the `model:` field from an agent markdown file's frontmatter.
+ */
+function agentModel(agentPath) {
+  const fm = parseFrontmatter(fs.readFileSync(agentPath, 'utf8'));
+  return fm ? fm.model : undefined;
+}
+
+/**
+ * Report set differences between an authoritative list and a mirror list.
+ */
+function diffSets(label, authoritative, mirror, errors) {
+  const a = new Set(authoritative);
+  const b = new Set(mirror);
+  const missing = [...a].filter(x => !b.has(x));
+  const extra = [...b].filter(x => !a.has(x));
+  if (missing.length) errors.push(`${label}: missing ${missing.join(', ')}`);
+  if (extra.length) errors.push(`${label}: unexpected ${extra.join(', ')}`);
+}
+
+/**
+ * Cross-surface consistency gate.
+ *
+ * Guarantees the capability schema, the on-disk Claude agents/commands, and every
+ * mirrored harness (.gemini, and .codex if present) describe the SAME asset set —
+ * so counts can't silently diverge again (STO-12). A mirror that does not exist is
+ * skipped, never fabricated.
+ */
+function validateParity() {
+  const errors = [];
+  const warnings = [];
+
+  // 1. Schema agents <-> on-disk Claude agents (ids + models)
+  let schemaAgents = null;
+  try {
+    schemaAgents = JSON.parse(fs.readFileSync('.wtfb/ai-harness/schema.json', 'utf8')).agents || [];
+  } catch (e) {
+    errors.push(`Could not read .wtfb/ai-harness/schema.json: ${e.message}`);
+  }
+  const diskAgents = mdStems('.claude/agents');
+
+  if (schemaAgents && diskAgents) {
+    const schemaIds = schemaAgents.map(a => a.id).sort();
+    diffSets('schema.agents vs .claude/agents', diskAgents, schemaIds, errors);
+
+    // Model routing must agree between schema and agent frontmatter.
+    for (const a of schemaAgents) {
+      const p = path.join('.claude/agents', `${a.id}.md`);
+      if (!fs.existsSync(p)) continue;
+      const diskModel = agentModel(p);
+      if (diskModel && a.model && diskModel !== a.model) {
+        errors.push(`model drift for ${a.id}: schema=${a.model} frontmatter=${diskModel}`);
+      }
+    }
+  }
+
+  // 2. Mirrors must match the Claude surface exactly (agents + commands).
+  const claudeCommands = commandStems('.claude/commands', '.md');
+  const mirrors = [
+    { name: '.gemini', agents: '.gemini/agents', commands: '.gemini/commands', cmdExt: '.toml' },
+    { name: '.codex', agents: '.codex/agents', commands: '.codex/commands', cmdExt: '.md' }
+  ];
+
+  for (const m of mirrors) {
+    const hasMirror = fs.existsSync(m.agents) || fs.existsSync(m.commands);
+    if (!hasMirror) continue; // absent mirror is fine — we never fabricate one
+
+    const mirrorAgents = mdStems(m.agents);
+    if (diskAgents && mirrorAgents) {
+      diffSets(`${m.name}/agents vs .claude/agents`, diskAgents, mirrorAgents, errors);
+    }
+    const mirrorCommands = commandStems(m.commands, m.cmdExt);
+    if (claudeCommands && mirrorCommands) {
+      diffSets(`${m.name}/commands vs .claude/commands`, claudeCommands, mirrorCommands, errors);
+    }
+  }
+
+  return { errors, warnings };
+}
+
+/**
  * Main validation runner
  */
 function main() {
@@ -333,6 +437,20 @@ function main() {
     console.log(`${YELLOW}No commands directory found${RESET}`);
   }
 
+  console.log();
+
+  // Cross-surface parity (schema <-> disk <-> mirrors)
+  console.log(`${BOLD}Checking cross-surface parity...${RESET}`);
+  const parity = validateParity();
+  results.parity.errors = parity.errors;
+  results.parity.warnings = parity.warnings;
+  results.summary.totalErrors += parity.errors.length;
+  results.summary.totalWarnings += parity.warnings.length;
+  const parityStatus = parity.errors.length > 0 ? `${RED}FAIL${RESET}` :
+                       parity.warnings.length > 0 ? `${YELLOW}WARN${RESET}` :
+                       `${GREEN}PASS${RESET}`;
+  console.log(`  ${parityStatus} schema / disk / mirror consistency`);
+
   // Print summary
   console.log();
   console.log(`${BOLD}Summary${RESET}`);
@@ -354,6 +472,13 @@ function main() {
     for (const { command, issues } of results.commands.errors) {
       console.log(`  ${BOLD}/${command}${RESET}`);
       for (const issue of issues) {
+        console.log(`    ${RED}!${RESET} ${issue}`);
+      }
+    }
+
+    if (results.parity.errors.length > 0) {
+      console.log(`  ${BOLD}parity${RESET}`);
+      for (const issue of results.parity.errors) {
         console.log(`    ${RED}!${RESET} ${issue}`);
       }
     }

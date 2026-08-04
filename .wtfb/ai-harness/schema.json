@@ -104,6 +104,27 @@
       "model": "claude-haiku-4-5",
       "capabilities": ["scheduling", "budgeting", "logistics"],
       "projectTypes": ["film-production"]
+    },
+    {
+      "id": "scene-annotator",
+      "role": "Notes, synopses, and section markers",
+      "model": "claude-haiku-4-5",
+      "capabilities": ["annotation", "synopsis", "organization"],
+      "projectTypes": ["screenplay", "novel"]
+    },
+    {
+      "id": "standards-reviewer",
+      "role": "Industry submission standards compliance",
+      "model": "claude-opus-4-8",
+      "capabilities": ["standards", "submission", "compliance"],
+      "projectTypes": ["screenplay"]
+    },
+    {
+      "id": "session-manager",
+      "role": "Session orchestration and task routing",
+      "model": "claude-opus-4-8",
+      "capabilities": ["orchestration", "git-workflow", "task-routing"],
+      "projectTypes": ["screenplay", "novel", "film-production"]
     }
   ],
 

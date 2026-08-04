@@ -1,0 +1,79 @@
+description = "Initialize project README from IMDb-style template"
+prompt = """
+Initialize the project README from the IMDb-style template.
+
+## Arguments
+- `[--title <title>]` - Optional: Override project title (defaults to `.wtfb/project.json` name)
+- `[--type <type>]` - Optional: Override project type (screenplay|novel|film-production)
+- `[--force]` - Overwrite even if README appears customized
+- `[--dry-run]` - Show what would be generated without writing
+
+## Workflow
+
+### Step 1: Check Current State
+
+Look for the marker `<!-- wtfb:template-readme -->` in README.md.
+
+**Decision tree:**
+- README.md doesn't exist → proceed
+- README.md has marker → proceed (safe to overwrite)
+- README.md exists without marker → skip (unless `--force`)
+
+If skipping:
+```
+ℹ️ README.md appears to be customized - leaving it unchanged.
+   Use --force to replace it anyway.
+```
+
+### Step 2: Run CLI Command
+
+Execute the deterministic CLI:
+```bash
+npx wtfb init-readme [--title "..."] [--type ...] [--force] [--dry-run]
+```
+
+The CLI will:
+1. Read project info from `.wtfb/project.json` (flags override if provided)
+2. Read `templates/readme-imdb-style.md`
+3. Substitute placeholders:
+   - `# [Project Title] (Year)` → `# {Title} ({Year})`
+   - `[Project Type]` → display label (Screenplay, Novel, Film Production)
+4. Remove the template marker from output
+5. Write to README.md
+
+### Step 3: Confirm Result
+
+**On success (generated):**
+```
+✅ README.md created!
+```
+
+**On skip (customized):**
+```
+ℹ️ README.md appears to be customized - leaving it unchanged.
+```
+
+## Type Display Mapping
+
+| Internal Token | Display Label |
+|----------------|---------------|
+| `screenplay` | Screenplay |
+| `novel` | Novel |
+| `film-production` | Film Production |
+
+## Exit Codes
+
+| Exit | Meaning |
+|------|---------|
+| `0` | Success OR skipped (customized README) |
+| `1` | Error (template not found, write failed, etc.) |
+
+"Skipped" is informational, not an error.
+
+## Success Criteria
+- [ ] CLI command executed successfully
+- [ ] README.md contains project title and year
+- [ ] Project type shows human-friendly label
+- [ ] Template marker removed from output
+- [ ] User-modified README not overwritten (without --force)
+"""

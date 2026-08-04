@@ -13,6 +13,7 @@
     "bible:drift": "node scripts/check-bible-drift.js",
     "lint:md": "markdownlint-cli2 '**/*.md' '#node_modules'",
     "lint:spell": "cspell '**/*.{md,fountain,txt}' --no-progress",
+    "test:sync": "bash tests/test-protected-sync.sh",
     "init": "bash scripts/init-project.sh",
     "prepare": "husky"
   },

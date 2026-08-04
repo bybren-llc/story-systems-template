@@ -131,3 +131,4 @@ OKF
 # Harness / tooling terms
 refspec
 coderabbit
+pathspec

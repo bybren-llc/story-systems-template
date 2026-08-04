@@ -9,7 +9,7 @@
 if ls ./*.fountain >/dev/null 2>&1; then
   # --- numbers computed from the .fountain files ---
   TITLE=$(grep -m1 'Title:' -- ./*.fountain 2>/dev/null | head -1 | sed 's/.*\*\*\(.*\)\*\*.*/\1/' | sed 's/Title:[[:space:]]*//' | tr -d '\n')
-  SCENES=$(grep -hcE '^(INT|EXT|I/E)' -- ./*.fountain 2>/dev/null | awk '{s+=$1} END{print s+0}')
+  SCENES=$(grep -hcE '^(INT\.|EXT\.|INT\./EXT\.|I/E\.)[[:space:]]' -- ./*.fountain 2>/dev/null | awk '{s+=$1} END{print s+0}')
   LINES=$(cat ./*.fountain 2>/dev/null | wc -l | tr -d ' ')
   PAGES=$(( (LINES + 54) / 55 ))   # ~55 lines/page, rounded up
 

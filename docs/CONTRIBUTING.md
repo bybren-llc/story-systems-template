@@ -68,8 +68,9 @@ Pattern: `type/kebab-case-description`
 4. **Merge strategy** (creative content branches):
    - **Squash merge**: `scene/*`, `fix/*`, `export/*` (clean history)
    - **Regular merge**: `revision/*`, `structure/*`, `character/*` (preserve history)
-   - Harness/template contributions use ticket-linked branches and **rebase-and-merge** —
-     see the root [CONTRIBUTING.md](../CONTRIBUTING.md).
+   - Harness/template contributions use ticket-linked branches on a **dev → main** flow
+     (squash into `develop`, merge-commit to promote to `main`; never rebase-merge) —
+     see the root [CONTRIBUTING.md](../CONTRIBUTING.md#branching--merge-model).
 
 5. **Cleanup after merge**:
    ```bash

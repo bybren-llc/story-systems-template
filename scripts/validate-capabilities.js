@@ -239,7 +239,7 @@ function validateCommand(commandPath) {
       const imperativeVerbs = [
         'add', 'analyze', 'apply', 'begin', 'build', 'check', 'clean', 'clear',
         'complete', 'configure', 'conduct', 'convene', 'create', 'delete', 'deploy',
-        'detect', 'display', 'end', 'estimate', 'evaluate', 'execute', 'export',
+        'detect', 'display', 'draft', 'end', 'estimate', 'evaluate', 'execute', 'export',
         'extract', 'find', 'fix', 'format', 'generate', 'get', 'help', 'import',
         'initialize', 'insert', 'install', 'list', 'load', 'log', 'make', 'manage',
         'merge', 'move', 'open', 'parse', 'perform', 'prepare', 'print', 'process',

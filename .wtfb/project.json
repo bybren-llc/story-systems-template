@@ -45,7 +45,8 @@
     "story-bible/arcs/**",
     "story-bible/index.md",
     "story-bible/log.md",
-    "story-bible/_meta/manifest.json"
+    "story-bible/_meta/manifest.json",
+    ".wtfb/session/**"
   ],
   "syncPaths": [
     ".github/workflows/**",

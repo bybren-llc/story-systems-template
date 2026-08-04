@@ -14,12 +14,25 @@ Generate summary of work completed:
 - Pages added/removed
 - Major changes made
 
-### Step 2: Git Status Check
+### Step 2: Update session memory
+
+Write `.wtfb/session/` **first**, so these updates are included in the commit below and the next
+session resumes cleanly:
+
+- **`progress.md`** — update *Current focus* (working on / next up / blocked on), the
+  scene/chapter checklist, arc tracking, and the *Last session* line.
+- **`draft-state.md`** — add any newly established facts, opened/closed plot threads, or timeline
+  anchors from this session.
+- **`session-log.md`** — **prepend** a new dated entry at the top (newest first): what you worked
+  on, decisions made, and where the next session starts.
+- Note the current page count; update continuity databases / the Story Bible (`/bible`) if modified.
+
+### Step 3: Git Status Check
 ```bash
 git status
 ```
 
-If uncommitted changes exist:
+If uncommitted changes exist (now including the session-memory updates above):
 1. Display changes
 2. Offer to commit with descriptive message
 3. Use commit format:
@@ -29,18 +42,6 @@ If uncommitted changes exist:
    - Detail 1
    - Detail 2
    ```
-
-### Step 3: Update session memory
-
-Write `.wtfb/session/` so the next session resumes cleanly:
-
-- **`progress.md`** — update *Current focus* (working on / next up / blocked on), the
-  scene/chapter checklist, arc tracking, and the *Last session* line.
-- **`draft-state.md`** — add any newly established facts, opened/closed plot threads, or timeline
-  anchors from this session.
-- **`session-log.md`** — **prepend** a new dated entry at the top (newest first): what you worked
-  on, decisions made, and where the next session starts.
-- Note the current page count; update continuity databases / the Story Bible (`/bible`) if modified.
 
 ### Step 4: Carryover Notes
 Identify items for next session:

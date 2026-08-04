@@ -41,6 +41,15 @@ never link a manuscript file here.}}
 {{2-4 sentences: lie they believe -> truth they learn, or the change (or refusal to change).
 Link the arc card if one exists.}}
 
+## Knowledge
+
+{{Source/time-scoped: what this character KNOWS and does NOT know at key points — the spine of
+dramatic irony and reveals. Only characters who hold or lack story-critical information need
+detail here; write "None tracked" otherwise. Wardrobe/costume continuity: signature look goes in
+Traits; plot-relevant pieces get their own prop card.}}
+
+- {{by scene / beat}} — {{knows … / does not yet know …}}
+
 ## Appears In
 
 {{Manuscript scenes/chapters this card is verified against. Out-of-bundle links appear ONLY

@@ -263,3 +263,34 @@ For each significant prop:
 2. Plot all scenes
 3. Verify no impossibilities
 4. Check flashback consistency
+
+## Story Bible Integration
+
+The registries above are your **working brain** while writing. The **Story Bible**
+(`story-bible/`) is the durable, validated, version-controlled store of record — those registries
+crystallized into cards that cite the manuscript and are drift-checked against it.
+
+### Registry → card type
+
+| This skill's registry | Story Bible card type |
+|-----------------------|-----------------------|
+| Character Registry | `character` (Overview / Traits / Relationships / Arc / **Knowledge** / Appears In) |
+| Timeline Registry | `timeline-event` |
+| Location Registry | `location` |
+| Prop Registry | `prop` |
+| Wardrobe Registry | folded into `character` (signature look → Traits) + `prop` (plot-relevant pieces); scene-by-scene wardrobe stays here as working tracking |
+
+The character card's **Knowledge** section is the durable home for the "Knowledge State" tracked
+above — what each character knows and does not know, scene by scene.
+
+### The loop
+
+1. **Author / refresh** a card with `/bible` — copy the matching template, cite the scenes under
+   `sources:` / `## Appears In`, and stamp `verified_against` with the current commit SHA.
+2. **Validate** structure: `npm run lint:bible` (CI gates `lint:bible:strict`).
+3. **Detect drift**: `npm run bible:drift` flags cards whose cited scenes changed after their
+   `verified_against` SHA — re-verify the card and bump it.
+4. **Read as canon**: `/check-continuity` treats `status: canon` cards as ground truth.
+
+Keep cards lean (≤50 lines): a card **cites** the manuscript, it never restates it. See
+`story-bible/_meta/CONVENTIONS.md`.

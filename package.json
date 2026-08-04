@@ -4,8 +4,10 @@
   "description": "WTFB Creative Project",
   "private": true,
   "scripts": {
-    "validate": "npm run lint:fountain && npm run lint:md && npm run lint:spell && npm run validate:capabilities && npm run lint:bible",
+    "validate": "npm run lint:fountain && npm run lint:md && npm run lint:spell && npm run validate:capabilities && npm run lint:bible && npm run lint:models",
     "validate:capabilities": "node scripts/validate-capabilities.js",
+    "lint:models": "node scripts/validate-models.js",
+    "lint:models:strict": "node scripts/validate-models.js --strict",
     "lint:fountain": "node scripts/validate-fountain.js",
     "lint:fountain:strict": "node scripts/validate-fountain.js --strict",
     "lint:bible": "node scripts/validate-bible.js",

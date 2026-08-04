@@ -1,0 +1,49 @@
+{
+  "$schema": "https://wtfb.io/schemas/model-registry.v1.json",
+  "version": "1.0.0",
+  "description": "Provider-aware model roster for the multi-model writer's room (ADR 0001). References env-var NAMES only — never secret values. Real endpoints/keys live in .env (gitignored).",
+  "defaults": {
+    "params": { "temperature": 0.8, "max_tokens": 2048 }
+  },
+  "models": [
+    {
+      "id": "claude-opus",
+      "provider": "anthropic",
+      "model": "claude-opus-4-8",
+      "seatAffinity": ["story-architect", "story-analyst", "standards-reviewer", "research-specialist"],
+      "notes": "Reasoning tier. Runs natively in the Claude Code session; no endpoint/key needed."
+    },
+    {
+      "id": "claude-fable",
+      "provider": "anthropic",
+      "model": "claude-fable-5",
+      "seatAffinity": ["dialogue-writer", "scene-writer"],
+      "notes": "Prose tier. Runs natively in the Claude Code session."
+    },
+    {
+      "id": "claude-haiku",
+      "provider": "anthropic",
+      "model": "claude-haiku-4-5",
+      "seatAffinity": ["scene-annotator", "production-coordinator"],
+      "notes": "Mechanical tier. Runs natively in the Claude Code session."
+    },
+    {
+      "id": "vllm-local",
+      "provider": "openai-compatible",
+      "model": "Qwen/Qwen2.5-32B-Instruct",
+      "baseUrlEnv": "WTFB_VLLM_BASE_URL",
+      "apiKeyEnv": "WTFB_VLLM_API_KEY",
+      "params": { "temperature": 0.9 },
+      "seatAffinity": ["guest"],
+      "notes": "Self-hosted vLLM (OpenAI-compatible /v1). Set model to your served model name. API key optional for a local server; set WTFB_VLLM_API_KEY only if your gateway requires one."
+    },
+    {
+      "id": "gemini-pro",
+      "provider": "gemini",
+      "model": "gemini-2.5-pro",
+      "apiKeyEnv": "WTFB_GEMINI_API_KEY",
+      "seatAffinity": ["guest"],
+      "notes": "Optional cloud guest seat. Only consulted when rostered and WTFB_GEMINI_API_KEY is set."
+    }
+  ]
+}

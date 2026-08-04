@@ -62,11 +62,11 @@ Two or three short paragraphs. Observed fact, with coordinates.
 - Open with the artifact and its exact location — `apps/web-client/.npmrc:4-5` carries a hardcoded `_authToken`.
 - Say what it currently does that is load-bearing, and what breaks without it.
 - Second paragraph: the separate condition that makes this hard. Lead with `Separately,` when it is a distinct fact, not a consequence.
-- Date every observation of external state — `as of 2026-07-31 that allowlist holds only apps/design-system`.
+- Date every observation of external state — as of 2026-07-31 that allowlist holds only `apps/design-system`.
 - If one thing is both the defect and the thing masking another defect, say that in one sentence.
-- State the failure as when-then, concrete — `When it is revoked or expires, the web client build stops resolving @vendor/icons`.
+- State the failure as when-then, concrete — when the token is revoked or expires, the web client build stops resolving `@vendor/icons`.
 - Name the constraint on the fix if one exists: permissions, ownership, an environment you cannot reach.
-- Name the precedent if one exists — `apps/design-system already went through exactly this under PROJ-1180`.
+- Name the precedent if one exists — `apps/design-system` already went through exactly this under `PROJ-1180`.
 
 ### Goal
 
@@ -89,7 +89,7 @@ Four to seven bullets. Everything already found, so the assignee does not have t
 - Exact coordinates — `.gitlab-ci.yml:207-208`, `.npmrc:4-5`, project `12345678`.
 - Exact click path for UI work — `mirror-registry → Settings → CI/CD → Job token permissions → add group/web-client`.
 - The verification command, verbatim and runnable.
-- Traps — signals that read wrong. `The legacy ci_job_token_scope_enabled reads false and is misleading`.
+- Traps — signals that read wrong. The legacy `ci_job_token_scope_enabled` reads `false` and is misleading.
 - The pattern to copy — a file that already does it right, and the ticket that made it so.
 
 ### Style

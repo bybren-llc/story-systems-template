@@ -254,7 +254,7 @@ Examples:
 
 ## Optional: Marketplace Plugins
 
-**The base template is complete.** All 11 agents, 24 skills, and 30 commands work out of the box. You can start writing immediately with `/start-scene`.
+**The base template is complete.** All 11 agents, 24 skills, and 30+ commands work out of the box. You can start writing immediately with `/start-scene`.
 
 For enhanced workflows (showrunner mode, advanced methodology), you can optionally install marketplace plugins:
 

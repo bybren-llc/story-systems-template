@@ -6,13 +6,32 @@ This directory contains the multi-agent harness for Claude Code.
 
 ```
 .claude/
+├── settings.json    # Runtime config — wires the hooks below (git guardrails, format cues, banner)
+├── model-routing.md # Per-role model routing (Fable 5 / Opus 4.8 / Haiku 4.5)
 ├── agents/          # 11 specialized agent profiles
-├── commands/        # Slash command definitions
+├── commands/        # Slash command definitions (incl. /bible)
 ├── skills/          # Knowledge base modules (SKILL.md files)
-├── hooks/           # Hook configurations
+├── hooks/           # Hook helper scripts, invoked by settings.json
 ├── resources/       # Patterns and reference materials
 └── README.md
 ```
+
+## Harness Mechanics
+
+Beyond the agent team, the harness ships operational machinery:
+
+- **Wired hooks** (`settings.json` → `hooks/*.sh`): block direct pushes to `main` and pushes with
+  uncommitted changes, cue Fountain-format + conventional-commit reminders, and print a session
+  banner. See [hooks/README.md](hooks/README.md).
+- **Per-role model routing** ([model-routing.md](model-routing.md)): Fable 5 for prose roles,
+  Opus 4.8 for structure/review/orchestration, Haiku 4.5 for mechanical work.
+- **Story Bible** (`story-bible/` at repo root): a validated, drift-aware continuity vault —
+  author cards with `/bible`, validate with `npm run lint:bible` (CI-gated), catch stale cards
+  with `npm run bible:drift`.
+- **CodeRabbit** (`.coderabbit.yaml` at repo root): AI review tuned for a writing harness —
+  rigorous on tooling/frontmatter, hands-off on creative content.
+- **Contributing** ([/CONTRIBUTING.md](/CONTRIBUTING.md)): project-management-agnostic
+  ticket/branch/PR conventions.
 
 ## Agent Team
 

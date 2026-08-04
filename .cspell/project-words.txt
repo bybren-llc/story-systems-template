@@ -122,3 +122,8 @@ autofetch
 Bren
 imdb
 IMDb
+
+# Story Bible / knowledge-vault terms
+wikilinks
+macguffin
+OKF

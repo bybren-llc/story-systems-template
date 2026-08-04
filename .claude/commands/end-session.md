@@ -30,10 +30,17 @@ If uncommitted changes exist:
    - Detail 2
    ```
 
-### Step 3: Update Tracking
-- Note current page count
-- Update any continuity databases if modified
-- Record session in log
+### Step 3: Update session memory
+
+Write `.wtfb/session/` so the next session resumes cleanly:
+
+- **`progress.md`** — update *Current focus* (working on / next up / blocked on), the
+  scene/chapter checklist, arc tracking, and the *Last session* line.
+- **`draft-state.md`** — add any newly established facts, opened/closed plot threads, or timeline
+  anchors from this session.
+- **`session-log.md`** — **prepend** a new dated entry at the top (newest first): what you worked
+  on, decisions made, and where the next session starts.
+- Note the current page count; update continuity databases / the Story Bible (`/bible`) if modified.
 
 ### Step 4: Carryover Notes
 Identify items for next session:

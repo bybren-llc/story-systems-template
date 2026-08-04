@@ -9,8 +9,12 @@ Convene a collaborative pre-production session where 6 specialized agents pitch 
 ## Usage
 
 ```
-/writers-room
+/writers-room [mode]
 ```
+
+- `[mode]` — Optional: `solo` (default, all Claude), `diverse` (spread seats across
+  providers + guest models), or `custom` (explicit seat→model roster). See the
+  **Multi-Model Council** section of the `writers-room` skill.
 
 ## What It Does
 
@@ -22,8 +26,17 @@ Convene a collaborative pre-production session where 6 specialized agents pitch 
    - **Scene Writer** - Visual setpieces
    - **Standards Reviewer** - Quality and originality
    - **Research Specialist** - Authenticity
-3. **Synthesizes Direction:** Combines best ideas into unified creative direction
+3. **Synthesizes Direction:** Combines best ideas into unified creative direction, crediting
+   which seat/model each surviving idea came from
 4. **Outputs Document:** Creates `creative-direction.md` to guide production
+
+### Multi-model (opt-in)
+
+In `diverse`/`custom` mode the room convenes seats across **multiple models/providers** —
+Claude seats run as native subagents; guest seats (self-hosted vLLM or cloud) are consulted via
+the `model-consult` connector. A guest whose provider is unreachable is **skipped with a logged
+reason**, never faked. With nothing configured the room runs in `solo` mode. Configure guests in
+`.env` (see `.env.example`) against the roster in `.wtfb/ai-harness/model-registry.json`.
 
 ## When to Use
 

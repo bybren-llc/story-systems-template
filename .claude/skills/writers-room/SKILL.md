@@ -2,10 +2,10 @@
 name: writers-room
 wtfbId: wtfb:writers-room
 description: |
-  This skill convenes a 6-agent collaborative pre-production session.
-  Story Architect, Dialogue Writer, Scene Writer, Research Specialist,
-  Standards Reviewer, and Continuity Editor pitch their creative visions
-  before writing begins.
+  This skill convenes a 6-seat collaborative pre-production session — Story Architect,
+  Story Analyst, Dialogue Writer, Scene Writer, Standards Reviewer, and Research Specialist
+  pitch their creative visions before writing begins. Optionally convenes the seats across
+  MULTIPLE models/providers (Claude + self-hosted vLLM + cloud) for genuine diversity.
 
   Use when: starting a new screenplay, planning major rewrites,
   reimagining existing material, or seeking diverse expert perspectives.
@@ -101,6 +101,49 @@ Combine the best elements from all pitches into:
 - What's explicitly off-limits
 - The "North Star" for the project
 
+## Multi-Model Council (opt-in)
+
+By default every seat is played by its routed Claude model (see `.claude/model-routing.md`) —
+"diverse perspectives" from diverse *prompts*. The council upgrade lets the room convene diverse
+*minds*: some seats on Claude, some on a self-hosted vLLM model, some on another cloud. This is
+additive — the default behavior is unchanged.
+
+### Modes
+
+- **`solo` (default):** all six seats = their routed Claude models. No registry or endpoints
+  needed. This is exactly the classic Writer's Room.
+- **`diverse`:** seats spread across providers, plus optional **guest seats** on rostered
+  non-Claude models (e.g. a local Qwen/Llama wildcard, a Gemini seat).
+- **`custom`:** an explicit seat→model roster provided at invocation.
+
+### How the council runs
+
+The **Session Manager** conducts:
+
+1. **Read the roster.** `node scripts/model-consult.js list` (or the `list_models` MCP tool if the
+   `model-consult` server is enabled) returns the available models, redacted, with a `ready` flag
+   per model. Assign each seat a `model_id` — default is the seat's affinity → Claude model.
+2. **Gather pitches in parallel — one mind per seat:**
+   - **Claude seats:** dispatch the seat's native subagent ("Acting as the Story Architect…") on
+     its routed model, as today.
+   - **Guest (non-Claude) seats:** call `consult_model(model_id, seat, system, prompt)` (MCP), or
+     `node scripts/model-consult.js consult <model_id> --seat <seat> --prompt "…"`. The `system`
+     prompt is the seat's role framing; the `prompt` is the brief from Step 1.
+3. **Synthesize with provenance.** A single Claude Opus pass consolidates all pitches into one
+   direction and **credits which seat/model each surviving idea came from** — so you can see
+   whether the local model or the cloud guest actually moved the needle.
+4. **Degrade gracefully — never fake.** If a guest seat's provider is unreachable or
+   not configured, the connector returns a structured error (not a completion). **Skip that seat**
+   and record it under "Seats skipped" with the reason. The room continues with the seats it has;
+   the roster header states who spoke and who was skipped (no silent drops).
+
+### Configuring guests
+
+Guest endpoints and keys live in `.env` (see `.env.example`); the registry
+(`.wtfb/ai-harness/model-registry.json`) references only the env-var **names**. To enable the MCP
+path, install the SDK and register the server per `scripts/model-consult-mcp.mjs`. With nothing
+configured, the room simply runs in `solo` mode.
+
 ## Output Format
 
 ```markdown
@@ -108,26 +151,39 @@ Combine the best elements from all pitches into:
 
 ## Project: [Title]
 ## Date: [Session Date]
-## Participants: Story Architect, Story Analyst, Dialogue Writer, Scene Writer, Standards Reviewer, Research Specialist
+## Mode: [solo | diverse | custom]
+
+### Council Roster
+| Seat | Model | Provider | Spoke? |
+|------|-------|----------|--------|
+| Story Architect | claude-opus-4-8 | anthropic | ✅ |
+| Story Analyst | claude-opus-4-8 | anthropic | ✅ |
+| Dialogue Writer | claude-fable-5 | anthropic | ✅ |
+| Scene Writer | claude-fable-5 | anthropic | ✅ |
+| Standards Reviewer | claude-opus-4-8 | anthropic | ✅ |
+| Research Specialist | claude-opus-4-8 | anthropic | ✅ |
+| *(guest)* Wildcard | vllm-local | openai-compatible | ✅ / ⏭️ skipped |
+
+*Seats skipped:* [none] — or "Wildcard (vllm-local): NETWORK_ERROR — endpoint unreachable".
 
 ---
 
-## The Pitch (From Story Architect)
+## The Pitch (From Story Architect · claude-opus-4-8)
 [Structure and form recommendations]
 
-## The Heart (From Story Analyst)
+## The Heart (From Story Analyst · claude-opus-4-8)
 [Character and thematic core]
 
-## The Voice (From Dialogue Writer)
+## The Voice (From Dialogue Writer · claude-fable-5)
 [Tone and language approach]
 
-## The Spectacle (From Scene Writer)
+## The Spectacle (From Scene Writer · claude-fable-5)
 [Visual setpieces and key moments]
 
-## The Standard (From Standards Reviewer)
+## The Standard (From Standards Reviewer · claude-opus-4-8)
 [Quality benchmarks and originality notes]
 
-## The Foundation (From Research Specialist)
+## The Foundation (From Research Specialist · claude-opus-4-8)
 [Authenticity requirements]
 
 ---

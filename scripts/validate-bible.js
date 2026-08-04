@@ -118,7 +118,7 @@ function parseFrontmatter(raw) {
 function validateCard(file, rel, cfg, repoRoot, bundleBase, manifestIds) {
   const errors = [];
   const warnings = [];
-  const raw = fs.readFileSync(file, 'utf8');
+  const raw = fs.readFileSync(file, 'utf8').replace(/\r\n?/g, '\n');
   const { fm, body } = parseFrontmatter(raw);
 
   if (!fm) { errors.push('missing YAML frontmatter'); return { errors, warnings }; }
@@ -226,13 +226,19 @@ function main() {
   const cfgPath = path.join(vaultDir, '_meta', 'vault-config.json');
   if (!fs.existsSync(cfgPath)) { console.error(`${C.red}Missing ${path.relative(repoRoot, cfgPath)}${C.reset}`); process.exit(softExit); }
   const cfg = readJson(cfgPath, repoRoot, softExit);
+  if (!cfg.frontmatter || !Array.isArray(cfg.frontmatter.required) || !cfg.types || !cfg.link_rules) {
+    console.error(`${C.red}vault-config.json is missing required sections (frontmatter/types/link_rules).${C.reset}`);
+    process.exit(softExit);
+  }
 
   // manifest ids (optional file)
   let manifestIds = null;
   const manifestPath = path.join(vaultDir, '_meta', 'manifest.json');
   if (fs.existsSync(manifestPath)) {
     const manifest = readJson(manifestPath, repoRoot, softExit);
-    manifestIds = new Set((manifest.concepts || []).map((c) => c.id));
+    manifestIds = new Set((Array.isArray(manifest.concepts) ? manifest.concepts : [])
+      .filter((c) => c && typeof c.id === 'string' && c.id)
+      .map((c) => c.id));
   }
 
   // concept cards = *.md under the vault, excluding _meta/**, index.md, log.md, README.md

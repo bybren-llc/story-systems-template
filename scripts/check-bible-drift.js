@@ -71,7 +71,8 @@ function globToRegExp(glob) {
     if (c === '*') {
       if (glob[i + 1] === '*') { re += '.*'; i++; if (glob[i + 1] === '/') i++; }
       else re += '[^/]*';
-    } else if ('.+^${}()|[]\\'.includes(c)) re += '\\' + c;
+    } else if (c === '?') re += '[^/]';
+    else if ('.+^${}()|[]\\'.includes(c)) re += '\\' + c;
     else re += c;
   }
   return new RegExp('^' + re + '$');
@@ -89,7 +90,7 @@ function main() {
   if (!fs.existsSync(manifestPath)) { console.log('No manifest.json — nothing to drift-check.'); process.exit(0); }
   const cfg = fs.existsSync(cfgPath) ? readJson(cfgPath, softExit) : {};
   const manifest = readJson(manifestPath, softExit);
-  const concepts = manifest.concepts || [];
+  const concepts = (Array.isArray(manifest.concepts) ? manifest.concepts : []).filter((c) => c && typeof c === 'object');
 
   // 1. determine changed paths
   let changed;
@@ -110,7 +111,8 @@ function main() {
       const out = execFileSync('git', ['diff', '--name-only', '--end-of-options', `${since}..HEAD`], { cwd: repoRoot, encoding: 'utf8' });
       changed = out.split('\n').map((s) => s.trim()).filter(Boolean);
     } catch (e) {
-      console.error(`${C.red}git diff failed (unknown SHA?): ${since}${C.reset}`);
+      const detail = (e && e.stderr && e.stderr.toString().trim()) || (e && e.message) || 'unknown error';
+      console.error(`${C.red}git diff failed for ${since}: ${detail}${C.reset}`);
       process.exit(softExit);
     }
   }

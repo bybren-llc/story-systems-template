@@ -171,6 +171,9 @@ jobs:
       - name: Validate capabilities
         run: npm run validate:capabilities
 
+      - name: Validate model registry
+        run: npm run lint:models
+
   validate-bible:
     name: Validate Story Bible
     runs-on: ubuntu-latest

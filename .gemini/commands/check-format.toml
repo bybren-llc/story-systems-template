@@ -11,11 +11,26 @@ Validate Fountain syntax and formatting for the screenplay project.
 
 ## Workflow
 
-### Step 1: Load Fountain File
-- Identify target .fountain file (check for *.fountain in project root)
-- Read complete file content
+### Step 1: Run the validator
 
-### Step 2: Syntax Validation
+**Run `npm run lint:fountain`** — or `node scripts/validate-fountain.js [file]` for one file.
+
+This is the deterministic pass. It checks scene-heading shape, character-name capitalization,
+transition format, and parenthetical case, and it reports exact line numbers. Report its output
+as given; do not re-derive those findings by reading, and do not paraphrase them.
+
+It is advisory by default and exits 0 even with findings, so it will not interrupt the session.
+Do not add `--strict` here — that flag is for CI.
+
+If it reports nothing, say so. A clean validator run is a result, not an absence of one.
+
+### Step 2: Read for what the validator cannot catch
+
+Load the file and review it for the issues below. These are judgement calls a linter cannot
+make — scene logic, dialogue attribution, structural drift. Skip anything Step 1 already
+reported.
+
+### Step 3: Syntax Validation
 
 #### Title Page Check
 - [ ] Title present
@@ -33,7 +48,7 @@ Validate Fountain syntax and formatting for the screenplay project.
 - Parentheticals must be on own line, in (parentheses)
 - No orphaned dialogue (dialogue without character)
 
-### Step 3: Generate Report
+### Step 4: Generate Report
 
 Format your output as:
 ```
@@ -41,8 +56,18 @@ Format your output as:
 
 ### Status: [VALID / X ERRORS / Y WARNINGS]
 
+The validator emits no severity, so **every validator finding counts as a warning (Y)**.
+Only entries you add under *Errors (Must Fix)* count as errors (X). `Ready for Export` is NO
+when X is above zero; validator warnings alone do not block it. Without this rule two runs on
+the same file can report different counts.
+
+### Validator (`npm run lint:fountain`) — [N findings / clean]
+[Paste the validator's output verbatim — its per-file lines and its closing summary, whether
+ that is "Found N potential issue(s)" or "All fountain files validated successfully!".
+ Do not summarize it or replace a clean run with a shorter sentence.]
+
 ### Errors (Must Fix)
-[List breaking issues with line numbers]
+[List breaking issues found by reading, beyond what the validator caught]
 
 ### Warnings (Should Review)
 [List non-breaking issues]
@@ -67,8 +92,16 @@ Primary: Script Supervisor
 Supporting: Standards Reviewer
 
 ## Validation Gate
-This command is BLOCKING for:
-- Commits
-- Pull Requests
-- Exports
+
+This command is **advisory**. It reports; it does not block. Step 1 runs the validator without
+`--strict`, so a run with findings still exits 0 and never interrupts a writing session.
+
+What actually blocks:
+
+- **Commits** — `lint-staged` runs the Fountain validator on staged `.fountain` files
+- **Pull requests** — the `validate-screenplay` CI job runs `npm run lint:fountain`
+- **Exports** — nothing automatic. Treat unresolved *Errors (Must Fix)* as a reason not to
+  deliver, and set `Ready for Export: NO`
+
+Reporting findings and blocking on them are separate jobs. This command does the first.
 """

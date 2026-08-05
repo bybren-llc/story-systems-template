@@ -51,6 +51,7 @@ The YAML frontmatter allows:
 | `/end-session` | Complete session cleanly with state preservation |
 | `/stuck` | Analyze project state and provide context-aware guidance |
 | `/import` | Import existing screenplay or source material |
+| `/init-readme` | Initialize project README from IMDb-style template |
 
 ### Writing
 
@@ -76,6 +77,14 @@ The YAML frontmatter allows:
 | `/check-format` | Validate Fountain syntax and formatting |
 | `/check-continuity` | Validate consistency across the screenplay |
 | `/rewrite-check` | Apply the WTFB 6-step rewriting methodology |
+| `/continuity-sweep` | Run a per-scene continuity sweep, one subagent per scene, into a notes file |
+| `/rewrite-sweep` | Run a per-scene rewrite sweep, grading each scene, into a prioritized notes file |
+
+### Story Bible
+
+| Command | Description |
+|---------|-------------|
+| `/bible` | Create or refresh a Story Bible card and stamp `verified_against` |
 
 ### Development
 

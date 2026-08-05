@@ -363,6 +363,63 @@ function validateParity() {
     }
   }
 
+  // 3. Docs must keep up with the commands that exist.
+  //
+  // File parity above only proves the trees agree with each other. A command can ship,
+  // pass every gate, and still be invisible in the documents users actually read — which
+  // is how /bible, /continuity-sweep, /rewrite-sweep and /init-readme went unlisted
+  // (STO-27). These two checks close that gap.
+  //
+  // DOC_INDEXES claim to be exhaustive, so they must name every command.
+  // DOC_COUNTS merely state a number; an exact figure must be right, while an
+  // open-ended one ("30+ commands") is a floor and is left alone.
+  const DOC_INDEXES = ['.claude/commands/README.md', 'GEMINI.md', '.gemini/README.md'];
+  const DOC_COUNTS = [
+    ...DOC_INDEXES,
+    'README.md',
+    'docs/QUICKSTART.md',
+    '.wtfb/ai-harness/CLAUDE.md',
+    '.claude/README.md'
+  ];
+
+  // An index must exist whether or not the command list could be read. commandStems()
+  // returns null when .claude/commands is absent, and gating this on it meant losing
+  // both the directory and every index still reported clean.
+  for (const doc of DOC_INDEXES) {
+    if (!fs.existsSync(doc)) {
+      errors.push(`${doc} is listed as a command index but does not exist`);
+    }
+  }
+
+  if (claudeCommands) {
+    const total = claudeCommands.length;
+
+    for (const doc of DOC_INDEXES) {
+      if (!fs.existsSync(doc)) continue; // already reported above
+      const text = fs.readFileSync(doc, 'utf8');
+      // Match the closing backtick too, so /export-all cannot satisfy /export.
+      const missing = claudeCommands.filter(c => !text.includes(`\`/${c}\``));
+      if (missing.length > 0) {
+        errors.push(`${doc} omits ${missing.length} command(s): ${missing.join(', ')}`);
+      }
+    }
+
+    // Counts are written many ways: "35 commands", "35 slash command definitions".
+    // Anchoring on "<n> commands" alone missed the second form and let a stale 34
+    // survive in .gemini/README.md, so the optional words are matched too.
+    const COUNT_RE = /(\d+)(\+?)\s+(?:slash\s+)?commands?\b/gi;
+    for (const doc of DOC_COUNTS) {
+      if (!fs.existsSync(doc)) continue; // count-only docs are optional by design
+      const text = fs.readFileSync(doc, 'utf8');
+      for (const m of text.matchAll(COUNT_RE)) {
+        if (m[2] === '+') continue; // "30+ commands" is a floor, not a claim
+        if (Number(m[1]) !== total) {
+          errors.push(`${doc} states ${m[1]} commands; .claude/commands has ${total}`);
+        }
+      }
+    }
+  }
+
   return { errors, warnings };
 }
 

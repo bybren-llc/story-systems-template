@@ -116,6 +116,18 @@ See `.wtfb/ai-harness/schema.json` for full capability definitions.
 /location-scout [name]     - Add location details
 ```
 
+### Harness Contribution
+
+For improving the harness itself — agents, skills, commands, hooks, scripts, docs.
+See `CONTRIBUTING.md`.
+
+```
+/ticket [description]      - Draft a four-section issue and create it in Linear
+```
+
+> The lists above are a quick reference, not the full set.
+> **`.claude/commands/README.md` indexes all 35 commands.**
+
 ---
 
 ## Fountain Format Reference (Screenplays)

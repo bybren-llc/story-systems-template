@@ -386,7 +386,12 @@ function validateParity() {
     const total = claudeCommands.length;
 
     for (const doc of DOC_INDEXES) {
-      if (!fs.existsSync(doc)) continue;
+      // A missing index is a failure, not a pass. Renaming or deleting one of these
+      // must not quietly disarm the check that depends on it.
+      if (!fs.existsSync(doc)) {
+        errors.push(`${doc} is listed as a command index but does not exist`);
+        continue;
+      }
       const text = fs.readFileSync(doc, 'utf8');
       // Match the closing backtick too, so /export-all cannot satisfy /export.
       const missing = claudeCommands.filter(c => !text.includes(`\`/${c}\``));
@@ -395,10 +400,14 @@ function validateParity() {
       }
     }
 
+    // Counts are written many ways: "35 commands", "35 slash command definitions".
+    // Anchoring on "<n> commands" alone missed the second form and let a stale 34
+    // survive in .gemini/README.md, so the optional words are matched too.
+    const COUNT_RE = /(\d+)(\+?)\s+(?:slash\s+)?commands?\b/gi;
     for (const doc of DOC_COUNTS) {
-      if (!fs.existsSync(doc)) continue;
+      if (!fs.existsSync(doc)) continue; // count-only docs are optional by design
       const text = fs.readFileSync(doc, 'utf8');
-      for (const m of text.matchAll(/(\d+)(\+?)\s+commands?\b/gi)) {
+      for (const m of text.matchAll(COUNT_RE)) {
         if (m[2] === '+') continue; // "30+ commands" is a floor, not a claim
         if (Number(m[1]) !== total) {
           errors.push(`${doc} states ${m[1]} commands; .claude/commands has ${total}`);

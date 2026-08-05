@@ -63,7 +63,7 @@ marketing/           # Marketing materials and config
 .gemini/             # This harness
   settings.json      # CLI configuration
   agents/            # 11 specialized agent profiles
-  commands/          # 30 slash command definitions (TOML)
+  commands/          # 35 slash command definitions (TOML)
   skills/            # 24 knowledge base modules
 ```
 

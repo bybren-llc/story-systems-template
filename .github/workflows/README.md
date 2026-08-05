@@ -175,8 +175,13 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      # There is no `npm run export:*` script — the export CLI is an external
+      # prerequisite, so a nightly export workflow has to install it itself.
+      - name: Install the export CLI
+        run: npm install -g afterwriting
+
       - name: Generate PDF
-        run: npm run export:pdf
+        run: afterwriting --source screenplay.fountain --pdf --output exports/pdf/screenplay.pdf
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4

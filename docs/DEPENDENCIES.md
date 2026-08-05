@@ -1,10 +1,13 @@
 # Dependencies
 
-This document explains all npm dependencies used in the Story Systems Template.
+This document covers everything the template needs to run — the npm packages it installs, and
+the external tools some commands invoke but do **not** install for you.
 
 ---
 
 ## Overview
+
+### Installed by `npm install`
 
 | Package | Purpose | Type |
 |---------|---------|------|
@@ -13,6 +16,28 @@ This document explains all npm dependencies used in the Story Systems Template.
 | `husky` | Git hooks | Dev |
 | `lint-staged` | Run linters on staged files | Dev |
 | `markdownlint-cli2` | Markdown linting | Dev |
+
+### Not installed — you must provide these
+
+Nothing in `npm install` brings these in. The commands that need them say so inline, but the
+command will fail at the point of use if the tool is absent.
+
+| Tool | Needed by | Install | Verified against |
+|------|-----------|---------|------------------|
+| `@wtfb/cli` | `/init-readme`, `/start-project`, `npm run init` | `npm i -g @wtfb/cli` or invoked via `npx @wtfb/cli` | 1.0.4 |
+| `afterwriting` | `/export-pdf`, `/export-html`, `/export-all` | `npm install -g afterwriting` | 1.17.3 |
+| `screenplain` | `/export-fdx`, `/export-all` | `pipx install screenplain` | — |
+| `pipx` + Python 3.8+ | prerequisite for `screenplain` | see pipx docs | — |
+
+**The package is `@wtfb/cli`, not `wtfb`.** Bare `npx wtfb` resolves an unpublished package and
+returns 404, and a globally installed `wtfb` binary does not rescue it — `npx` still goes to the
+registry.
+
+**`screenplain` pulls in a Python toolchain.** It is the only non-Node prerequisite in the
+template, and it is needed only for FDX export.
+
+**You may not need any of them.** The recommended export path is Better Fountain in VS Code
+(`.vscode/extensions.json` recommends it), which requires none of the CLI tools above.
 
 ---
 
@@ -90,7 +115,7 @@ Works with Husky to run the right linter for each file type:
 
 ### markdownlint-cli2
 
-**Version:** ^0.15.0
+**Version:** ^0.20.0
 **Purpose:** Markdown linting and formatting
 **Website:** [github.com/DavidAnson/markdownlint-cli2](https://github.com/DavidAnson/markdownlint-cli2)
 
@@ -113,17 +138,25 @@ npm run lint:md
 
 All dependencies are orchestrated through npm scripts:
 
-```json
-{
-  "scripts": {
-    "validate": "npm run lint:fountain && npm run lint:md && npm run lint:spell",
-    "lint:fountain": "node scripts/validate-fountain.js",
-    "lint:md": "markdownlint-cli2 '**/*.md' '#node_modules'",
-    "lint:spell": "cspell '**/*.{md,fountain,txt}' --no-progress",
-    "prepare": "husky"
-  }
-}
-```
+`npm run validate` chains the linters below. **Read `package.json` for the authoritative
+list** — a count written here goes stale, and this file has already carried a stale one:
+
+| Script | Runs |
+|--------|------|
+| `validate` | every `lint:*` and `validate:*` script below, in order |
+| `lint:fountain` | `scripts/validate-fountain.js` — advisory; `lint:fountain:strict` exits non-zero |
+| `lint:md` | `markdownlint-cli2` |
+| `lint:spell` | `cspell` |
+| `validate:capabilities` | `scripts/validate-capabilities.js` — agent/command/skill parity + doc parity |
+| `lint:bible` | `scripts/validate-bible.js` — advisory; **CI runs `lint:bible:strict`** |
+| `lint:models` | `scripts/validate-models.js` |
+| `lint:plugin` | `scripts/validate-plugin.js` |
+| `bible:drift` | `scripts/check-bible-drift.js` — not in `validate`, not in CI |
+| `init` | `scripts/init-project.sh` |
+
+> **`validate` and CI are not identical.** `validate` runs `lint:bible`, CI runs
+> `lint:bible:strict`, so a local run can be green where CI is red. Run
+> `npm run lint:bible:strict` before pushing if you have touched `story-bible/`.
 
 ---
 
@@ -139,12 +172,14 @@ This installs everything needed for validation and pre-commit hooks.
 
 ---
 
-## Global CLI Alternative
+## The WTFB CLI
 
-For a streamlined experience across all projects, install the WTFB CLI globally:
+`@wtfb/cli` is **required**, not an alternative. `npm run init` and `/init-readme` invoke it,
+and `CLAUDE.md` routes agent tooling through it. `npx` fetches it on demand, so a global
+install is optional — but the package must be reachable either way.
 
 ```bash
-npm install -g @wtfb/cli
+npm install -g @wtfb/cli    # optional; npx @wtfb/cli works without it
 ```
 
 Then use:

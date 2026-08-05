@@ -485,8 +485,14 @@ touch docs/v1-original/.gitkeep
 # (STO-33). A failed README does not invalidate an otherwise good scaffold, so this stays
 # non-fatal, but it reports what failed and how to retry rather than a bare one-liner.
 echo "Generating project README..."
-if ! npx @wtfb/cli init-readme --title "$PROJECT_TITLE" --type "$PROJECT_TYPE"; then
-    echo -e "  ${YELLOW}README generation failed (exit $?).${NC}"
+# `$?` inside `if ! cmd; then` is the status of the negation, which is 0 whenever the
+# command failed — so the error would have reported "exit 0" every time. Capture it in the
+# else branch, where it is the command's own status.
+if npx @wtfb/cli init-readme --title "$PROJECT_TITLE" --type "$PROJECT_TYPE"; then
+    :
+else
+    _readme_rc=$?
+    echo -e "  ${YELLOW}README generation failed (exit ${_readme_rc}).${NC}"
     echo -e "  ${YELLOW}Everything else was created. Retry with:${NC}"
     echo -e "  ${YELLOW}  npx @wtfb/cli init-readme --title \"$PROJECT_TITLE\" --type \"$PROJECT_TYPE\"${NC}"
     echo -e "  ${YELLOW}If it keeps failing, check network access to the npm registry.${NC}"

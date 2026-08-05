@@ -16,6 +16,11 @@ Generate summary of work completed:
 
 ### Step 2: Update session memory
 
+**No hook or script writes session memory — this step does.** You can also edit the files by
+hand, but nothing automated will, so skipping this leaves `.wtfb/session/` showing the previous
+session — `/start-scene` and `/stuck`
+will then resume from stale state without any indication that they are doing so.
+
 Write `.wtfb/session/` **first**, so these updates are included in the commit below and the next
 session resumes cleanly:
 

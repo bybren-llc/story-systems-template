@@ -23,7 +23,9 @@ Check for:
 7. **Session memory** — read `.wtfb/session/progress.md` (current focus, next up, blocked on),
    `.wtfb/session/draft-state.md` (open threads, inconsistencies), and the latest
    `.wtfb/session/session-log.md` entry, so the guidance is grounded in where the writer actually
-   left off rather than inferred from scratch.
+   left off rather than inferred from scratch. These files are updated only by `/end-session`,
+   so if the last session skipped it they describe an older state — say so rather than
+   presenting stale notes as current.
 
 ### Step 2: Determine User Situation
 

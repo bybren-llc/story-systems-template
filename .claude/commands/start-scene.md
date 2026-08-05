@@ -18,6 +18,10 @@ anything you were blocked on, the scene/chapter checklist, and arc state. Skim
 `.wtfb/session/draft-state.md` for established facts and open threads relevant to this scene. (See
 `.wtfb/session/README.md`.)
 
+These files are only as current as the last `/end-session`. If the previous session ended
+without it, they describe an older state and nothing marks them stale — check the dates before
+relying on them.
+
 ### Step 1: Identify Scene Context
 1. If no argument provided, ask:
    - What is the scene about?

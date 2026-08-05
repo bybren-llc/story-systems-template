@@ -97,6 +97,14 @@ The YAML frontmatter allows:
 | `/export-html` | Generate an HTML preview of the screenplay |
 | `/export-all` | Generate all output formats (PDF, FDX, HTML) at once |
 
+### Harness
+
+For contributors improving the harness itself — see `CONTRIBUTING.md`.
+
+| Command | Description |
+|---------|-------------|
+| `/ticket` | Draft a four-section issue from repo coordinates and create it in Linear |
+
 ## Usage
 
 Commands are invoked in Claude Code with a forward slash:

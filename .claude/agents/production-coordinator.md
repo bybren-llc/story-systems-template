@@ -101,8 +101,12 @@ afterwriting --source screenplay.fountain --pdf --config pdf-config.json
 - Review after import for formatting
 
 ### Tools
+- Better Fountain (VS Code: `Fountain: Export to FDX`) — the recommended path
 - Highland (direct FDX export)
-- afterwriting (--fdx flag)
+- screenplain (`pipx install screenplain`, then `screenplain --format fdx`)
+
+> `afterwriting` does **not** export FDX — it only imports `.fdx`. There is no `--fdx` flag.
+> Reaching for one is a silent failure; use Better Fountain or screenplain.
 ```
 
 ### HTML Export

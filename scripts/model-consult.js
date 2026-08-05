@@ -27,7 +27,57 @@ const fs = require('fs');
 const path = require('path');
 
 const REGISTRY_PATH = path.join('.wtfb', 'ai-harness', 'model-registry.json');
+const ENV_PATH = '.env';
 const DEFAULT_TIMEOUT_MS = 60000;
+
+/**
+ * Load .env into process.env if it exists (STO-32).
+ *
+ * .env.example and the NOT_CONFIGURED error both tell writers to put their endpoint and key in
+ * .env, but nothing read that file — so following the documented instruction produced
+ * NOT_CONFIGURED. Fixed here rather than by rewriting the docs to say "export", because .env is
+ * what the docs, the example file, and .gitignore all already assume.
+ *
+ * Hand-rolled rather than `--env-file` or dotenv: the flag needs Node 20.6+ and this repo
+ * declares no engines field, and the repo is deliberately zero-dependency.
+ *
+ * A real environment variable always wins — never clobber what the caller already exported.
+ */
+function loadDotEnv(file) {
+  let raw;
+  try {
+    raw = fs.readFileSync(file, 'utf8');
+  } catch (e) {
+    // An absent .env is the normal case — solo mode needs none of these, so stay quiet.
+    if (e && e.code === 'ENOENT') return;
+    // Anything else means the file is THERE and unreadable: a permission problem, a directory
+    // where a file should be, a bad mount. Swallowing that produces NOT_CONFIGURED with no hint
+    // that the config exists, which is the failure this whole ticket is about.
+    process.stderr.write(
+      `warning: could not read ${file} (${e && e.code ? e.code : 'unknown error'}): ${e && e.message}\n` +
+      `warning: continuing without it — any endpoint or key it defines will be missing.\n`
+    );
+    return;
+  }
+  for (const line of raw.split('\n')) {
+    const trimmed = line.trim();
+    if (!trimmed || trimmed.startsWith('#')) continue;
+    const eq = trimmed.indexOf('=');
+    if (eq <= 0) continue;
+    const key = trimmed.slice(0, eq).trim();
+    if (!/^[A-Za-z_][A-Za-z0-9_]*$/.test(key)) continue;
+    if (Object.prototype.hasOwnProperty.call(process.env, key)) continue;
+    let value = trimmed.slice(eq + 1).trim();
+    // Strip one matching pair of surrounding quotes, if present.
+    if (value.length >= 2 && ((value[0] === '"' && value.endsWith('"')) ||
+                              (value[0] === "'" && value.endsWith("'")))) {
+      value = value.slice(1, -1);
+    }
+    process.env[key] = value;
+  }
+}
+
+loadDotEnv(ENV_PATH);
 
 class ConsultError extends Error {
   constructor(code, message, meta) {

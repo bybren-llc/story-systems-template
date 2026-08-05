@@ -24,6 +24,21 @@ automatically.
 No tracker at all? Still prefix a short, stable slug (for example `hooks-fix-...`) — but a
 tracked ID is strongly preferred.
 
+### Writing the issue
+
+Run **`/ticket <description>`**. It reads the repo for coordinates before drafting, redacts
+secrets and third-party identifiers, shows you the body, and creates the issue only after you
+confirm. The output is four sections and nothing else:
+
+| Section | What goes in it |
+| --- | --- |
+| **Problem** | The defect as observed fact, with `file:line`, dated external state, and the precedent ticket if one exists |
+| **Goal** | One sentence, the end state written as if already true |
+| **AC** | 4–6 observable end states a reviewer can check without you — not tasks |
+| **Dev Notes** | Coordinates, the verification command, traps, and the pattern to copy |
+
+If it runs longer than one screen, it is two tickets.
+
 ## Branch naming
 
 **Format:** `<TICKET-ID>-<short-description>` (kebab-case).

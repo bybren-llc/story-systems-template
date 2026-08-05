@@ -56,7 +56,10 @@ The harness coordinates 11 specialized agents organized into four functional are
 - **Production Coordinator** - Manage exports and delivery
 - **Session Manager** - Initialize sessions and coordinate tasks
 
-## Available Commands
+## Commands — a selection
+
+The most-reached-for of the 35. **[`commands/README.md`](commands/README.md) is the full
+index** — this table is deliberately partial and is not kept in step with every addition.
 
 | Command | Purpose |
 |---------|---------|

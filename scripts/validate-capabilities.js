@@ -363,6 +363,50 @@ function validateParity() {
     }
   }
 
+  // 3. Docs must keep up with the commands that exist.
+  //
+  // File parity above only proves the trees agree with each other. A command can ship,
+  // pass every gate, and still be invisible in the documents users actually read — which
+  // is how /bible, /continuity-sweep, /rewrite-sweep and /init-readme went unlisted
+  // (STO-27). These two checks close that gap.
+  //
+  // DOC_INDEXES claim to be exhaustive, so they must name every command.
+  // DOC_COUNTS merely state a number; an exact figure must be right, while an
+  // open-ended one ("30+ commands") is a floor and is left alone.
+  const DOC_INDEXES = ['.claude/commands/README.md', 'GEMINI.md', '.gemini/README.md'];
+  const DOC_COUNTS = [
+    ...DOC_INDEXES,
+    'README.md',
+    'docs/QUICKSTART.md',
+    '.wtfb/ai-harness/CLAUDE.md',
+    '.claude/README.md'
+  ];
+
+  if (claudeCommands) {
+    const total = claudeCommands.length;
+
+    for (const doc of DOC_INDEXES) {
+      if (!fs.existsSync(doc)) continue;
+      const text = fs.readFileSync(doc, 'utf8');
+      // Match the closing backtick too, so /export-all cannot satisfy /export.
+      const missing = claudeCommands.filter(c => !text.includes(`\`/${c}\``));
+      if (missing.length > 0) {
+        errors.push(`${doc} omits ${missing.length} command(s): ${missing.join(', ')}`);
+      }
+    }
+
+    for (const doc of DOC_COUNTS) {
+      if (!fs.existsSync(doc)) continue;
+      const text = fs.readFileSync(doc, 'utf8');
+      for (const m of text.matchAll(/(\d+)(\+?)\s+commands?\b/gi)) {
+        if (m[2] === '+') continue; // "30+ commands" is a floor, not a claim
+        if (Number(m[1]) !== total) {
+          errors.push(`${doc} states ${m[1]} commands; .claude/commands has ${total}`);
+        }
+      }
+    }
+  }
+
   return { errors, warnings };
 }
 

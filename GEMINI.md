@@ -67,7 +67,7 @@ marketing/           # Marketing materials and config
   skills/            # 24 knowledge base modules
 ```
 
-## Available Commands (30 Commands)
+## Available Commands (35 Commands)
 
 ### Workflow Commands
 | Command | Purpose |
@@ -76,6 +76,7 @@ marketing/           # Marketing materials and config
 | `/start-scene` | Begin new scene development |
 | `/end-session` | Complete session, commit progress |
 | `/stuck` | Get help when blocked |
+| `/init-readme` | Initialize project README from IMDb-style template |
 
 ### Writing Commands
 | Command | Purpose |
@@ -98,6 +99,13 @@ marketing/           # Marketing materials and config
 | `/story-check` | Validate against 12 critical questions |
 | `/power-analysis` | Analyze conflict dynamics |
 | `/rewrite-check` | Apply 6-step rewriting methodology |
+| `/continuity-sweep` | Per-scene continuity sweep into a notes file |
+| `/rewrite-sweep` | Per-scene rewrite sweep, graded and prioritized |
+
+### Story Bible Commands
+| Command | Purpose |
+|---------|---------|
+| `/bible` | Create or refresh a Story Bible card, stamp `verified_against` |
 
 ### Validation Commands (Quality Gates)
 | Command | Purpose |
@@ -122,6 +130,13 @@ marketing/           # Marketing materials and config
 | `/character-interview` | Conduct 80-question interview |
 | `/theme-discovery` | Interactive theme exploration |
 | `/writers-room` | Convene multi-agent session |
+
+### Harness Commands
+For contributors improving the harness itself — see `CONTRIBUTING.md`.
+
+| Command | Purpose |
+|---------|---------|
+| `/ticket` | Draft a four-section issue from repo coordinates, create it in Linear |
 
 ## Git Workflow
 

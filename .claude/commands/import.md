@@ -120,7 +120,7 @@ I found:
   - Characters mentioned: [names]
 
 Would you like to:
-  1. Keep as reference material (save to source-materials/)
+  1. Keep as reference material (save to sourcematerials/)
   2. Create a beat sheet from this content
   3. Use this to start a new screenplay
 ```
@@ -207,8 +207,8 @@ Which would you like to import?
 
 Create files in appropriate locations:
 - Screenplay: `[title-slug].fountain` at project root
-- Notes/reference: `source-materials/[filename]`
-- Images: Keep originals in `source-materials/scans/`
+- Notes/reference: `sourcematerials/[filename]`
+- Images: Keep originals in `sourcematerials/scans/`
 
 ### Step 5: Confirm and Next Steps
 

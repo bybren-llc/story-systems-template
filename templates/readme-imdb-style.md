@@ -2,7 +2,7 @@
 
 <!-- Replace with your project's hero image -->
 <p align="center">
-  <img src="source-materials/hero-image.jpg" alt="Project Title" width="600">
+  <img src="sourcematerials/hero-image.jpg" alt="Project Title" width="600">
 </p>
 
 **[Project Type]** | **[Genre, Genre, Genre]** | **[Runtime]**

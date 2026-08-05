@@ -53,27 +53,16 @@ Just type a number or describe what you have!
 1. Ask for screenplay title
 2. Ask for logline (optional - can skip)
 3. Ask for main character name (optional - can skip)
-4. Create complete workspace from template:
-   - Initialize git silently
-   - Copy all files from `resources/workspace/`:
-     - `.github/workflows/validate.yml` - CI/CD automation
-     - `.github/PULL_REQUEST_TEMPLATE.md` - PR review checklist
-     - `docs/CONTRIBUTING.md` - Collaboration guide
-     - `scripts/validate-fountain.js` - Fountain validator
-     - `templates/` - Beat sheet, character registry
-     - `.cspell/project-words.txt` - Custom dictionary
-     - `.markdownlint-cli2.yaml` - Lint config
-   - Create from templates:
-     - `CLAUDE.md` from `CLAUDE.md.template`
-     - `package.json` from `package.json.template`
-     - `cspell.json` from `cspell.json.template`
-     - `[title-slug].fountain` from `screenplay.fountain.template`
-   - Create empty directories:
-     - `source-materials/`
-     - `exports/pdf/`, `exports/fdx/`, `exports/html/`
-     - `patterns/`
+4. Create the workspace:
+   - **Run `npm run init`** — `scripts/init-project.sh` builds the workspace. It prompts for
+     title and project type, creates `sourcematerials/`, `exports/pdf|fdx|html/`, and
+     `docs/v1-original/`, and writes the screenplay file. Everything else — `.github/`,
+     `docs/`, `templates/`, `scripts/`, `CLAUDE.md`, `package.json` — already exists,
+     because this repo *is* the template.
+   - Copy `templates/screenplay-template.fountain` to `[title-slug].fountain` if the writer
+     wants a differently-named script than `init` produced, and fill in its title page.
    - Run `npm install` silently
-   - Run `npx wtfb init-readme --title "[title]"` to generate project README
+   - Run `npx @wtfb/cli init-readme --title "[title]"` to generate the project README
 
 Display completion:
 ```

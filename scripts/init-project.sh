@@ -480,9 +480,23 @@ touch exports/html/.gitkeep
 mkdir -p docs/v1-original
 touch docs/v1-original/.gitkeep
 
-# Generate project README from IMDb template
+# Generate project README from IMDb template.
+# The package is @wtfb/cli — bare `npx wtfb` resolves an unpublished package and 404s
+# (STO-33). A failed README does not invalidate an otherwise good scaffold, so this stays
+# non-fatal, but it reports what failed and how to retry rather than a bare one-liner.
 echo "Generating project README..."
-npx wtfb init-readme --title "$PROJECT_TITLE" --type "$PROJECT_TYPE" || echo -e "  ${YELLOW}README generation failed${NC}"
+# `$?` inside `if ! cmd; then` is the status of the negation, which is 0 whenever the
+# command failed — so the error would have reported "exit 0" every time. Capture it in the
+# else branch, where it is the command's own status.
+if npx @wtfb/cli init-readme --title "$PROJECT_TITLE" --type "$PROJECT_TYPE"; then
+    :
+else
+    _readme_rc=$?
+    echo -e "  ${YELLOW}README generation failed (exit ${_readme_rc}).${NC}"
+    echo -e "  ${YELLOW}Everything else was created. Retry with:${NC}"
+    echo -e "  ${YELLOW}  npx @wtfb/cli init-readme --title \"$PROJECT_TITLE\" --type \"$PROJECT_TYPE\"${NC}"
+    echo -e "  ${YELLOW}If it keeps failing, check network access to the npm registry.${NC}"
+fi
 
 echo ""
 echo -e "${GREEN}========================================${NC}"

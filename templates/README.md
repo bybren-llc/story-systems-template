@@ -128,7 +128,7 @@ templates/
 **Example usage:**
 1. Copy to your project root: `cp templates/readme-imdb-style.md README.md`
 2. Replace all placeholder text with your project details
-3. Add your hero image to `source-materials/`
+3. Add your hero image to `sourcematerials/`
 4. Update as your project evolves
 
 ## Project Type Variations

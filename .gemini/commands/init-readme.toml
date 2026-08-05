@@ -29,7 +29,7 @@ If skipping:
 
 Execute the deterministic CLI:
 ```bash
-npx wtfb init-readme [--title "..."] [--type ...] [--force] [--dry-run]
+npx @wtfb/cli init-readme [--title "..."] [--type ...] [--force] [--dry-run]
 ```
 
 The CLI will:

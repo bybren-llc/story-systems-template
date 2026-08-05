@@ -7,8 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.7.0] - 2026-08-05
 
-**Ticket discipline and gate repair** — one new command and three gates that were not doing
-what the repo believed they were doing. No breaking changes.
+**Ticket discipline and gate repair** — one new command, plus repairs to three validation
+gates. No breaking changes.
 
 ### Added
 
@@ -25,17 +25,17 @@ what the repo believed they were doing. No breaking changes.
 
 ### Fixed
 
-- **`.coderabbit.yaml` was never parsed.** `tone_instructions` ran 373 characters against a
-  250-character schema cap, so the file failed validation and CodeRabbit fell back to defaults.
-  Every `path_instruction`, all `pre_merge_checks`, and the `path_filters` protecting
-  `*.fountain`, `manuscript/**`, and `sourcematerials/**` were inert — including through the
-  v1.6.0 release. Trimmed to 245 characters. (STO-26)
-- **Feature PRs were never auto-reviewed.** `auto_review` carried no `base_branches`, so only
-  PRs into the default branch were reviewed, while STO-24 had moved feature work onto
+- **`.coderabbit.yaml` now parses.** `tone_instructions` ran 373 characters against a
+  250-character schema cap, so the file failed validation and CodeRabbit fell back to default
+  settings — leaving every `path_instruction`, all `pre_merge_checks`, and the `path_filters`
+  protecting `*.fountain`, `manuscript/**`, and `sourcematerials/**` inactive. Trimmed to 245
+  characters. (STO-26)
+- **Auto-review now runs on `develop`.** `auto_review` carried no `base_branches`, so only PRs
+  into the default branch were reviewed, while STO-24 had moved feature work onto
   `develop`. (STO-26)
-- **Five commands were absent from every command index** — `/bible`, `/continuity-sweep`,
-  `/init-readme`, `/rewrite-sweep`, `/ticket`. Each had shipped in a green PR, because file
-  parity was enforced and prose never was. (STO-27)
+- **Five commands added to every command index** — `/bible`, `/continuity-sweep`,
+  `/init-readme`, `/rewrite-sweep`, `/ticket`. Parity was enforced across command files but not
+  across the documents listing them; the new gate covers both. (STO-27)
 - **Stale command counts** in `GEMINI.md` (two places) and `.gemini/README.md`. (STO-27)
 
 ### Changed

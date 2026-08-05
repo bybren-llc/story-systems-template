@@ -90,30 +90,31 @@ See `.wtfb/ai-harness/schema.json` for full capability definitions.
 /power-analysis            - Character power dynamics
 ```
 
-### Novel Projects
+### Novel Projects — planned, not shipped
 
-#### Workflow
+> **None of these commands exist yet.** They are the intended shape of novel support, kept here
+> as a roadmap. `npm run init` refuses the `novel` project type rather than scaffolding a
+> workspace with no commands behind it.
+
 ```
-/start-chapter [number]    - Begin chapter work
-/outline                   - View/edit story outline
-/character [name]          - View/edit character sheet
+/start-chapter [number]    - Begin chapter work          (planned)
+/outline                   - View/edit story outline     (planned)
+/character [name]          - View/edit character sheet   (planned)
+/word-count                - Current manuscript length   (planned)
+/timeline                  - View story timeline         (planned)
+/pacing-check              - Analyze narrative pacing     (planned)
 ```
 
-#### Analysis
-```
-/word-count                - Current manuscript length
-/timeline                  - View story timeline
-/pacing-check              - Analyze narrative pacing
-```
+### Film Production Projects — planned, not shipped
 
-### Film Production Projects
+> **None of these commands exist yet.** Same status as novel above: roadmap, not capability.
+> `npm run init` refuses the `film-production` project type.
 
-#### Production
 ```
-/create-schedule           - Build production schedule
-/call-sheet [date]         - Generate call sheet
-/budget-check              - Review budget status
-/location-scout [name]     - Add location details
+/create-schedule           - Build production schedule   (planned)
+/call-sheet [date]         - Generate call sheet         (planned)
+/budget-check              - Review budget status        (planned)
+/location-scout [name]     - Add location details        (planned)
 ```
 
 ### Harness Contribution

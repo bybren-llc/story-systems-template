@@ -130,9 +130,10 @@
 
   "commands": {
     "prefix": "/",
+    "_note": "novel and film-production commands are PLANNED, not shipped: no files exist in .claude/commands/ and npm run init refuses those project types. See STO-36.",
     "common": [
-      {"name": "help", "description": "Show available commands"},
-      {"name": "status", "description": "Show project status"}
+      {"name": "help", "description": "Show available commands", "status": "builtin"},
+      {"name": "status", "description": "Show project status", "status": "builtin"}
     ],
     "screenplay": [
       {"name": "start-scene", "args": "[description]", "description": "Begin scene work with context"},
@@ -145,17 +146,17 @@
       {"name": "writers-room", "args": null, "description": "Convene multi-agent pre-production session"}
     ],
     "novel": [
-      {"name": "start-chapter", "args": "[number]", "description": "Begin chapter work"},
-      {"name": "outline", "args": null, "description": "View/edit story outline"},
-      {"name": "character", "args": "[name]", "description": "View/edit character sheet"},
-      {"name": "word-count", "args": null, "description": "Current manuscript length"},
-      {"name": "timeline", "args": null, "description": "View story timeline"}
+      {"name": "start-chapter", "args": "[number]", "description": "Begin chapter work", "status": "planned"},
+      {"name": "outline", "args": null, "description": "View/edit story outline", "status": "planned"},
+      {"name": "character", "args": "[name]", "description": "View/edit character sheet", "status": "planned"},
+      {"name": "word-count", "args": null, "description": "Current manuscript length", "status": "planned"},
+      {"name": "timeline", "args": null, "description": "View story timeline", "status": "planned"}
     ],
     "film-production": [
-      {"name": "create-schedule", "args": null, "description": "Build production schedule"},
-      {"name": "call-sheet", "args": "[date]", "description": "Generate call sheet"},
-      {"name": "budget-check", "args": null, "description": "Review budget status"},
-      {"name": "location-scout", "args": "[name]", "description": "Add location details"}
+      {"name": "create-schedule", "args": null, "description": "Build production schedule", "status": "planned"},
+      {"name": "call-sheet", "args": "[date]", "description": "Generate call sheet", "status": "planned"},
+      {"name": "budget-check", "args": null, "description": "Review budget status", "status": "planned"},
+      {"name": "location-scout", "args": "[name]", "description": "Add location details", "status": "planned"}
     ]
   },
 

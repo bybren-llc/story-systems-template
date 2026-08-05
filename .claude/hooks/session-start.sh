@@ -25,16 +25,42 @@
 # same "No .fountain files yet" message as a genuinely empty project — so an unreadable
 # directory pointed the writer at /start-project, which scaffolds over their work. Failing
 # open on a scan is the same defect as globbing the wrong directory.
+#
+# No predictable /tmp fallback: a fixed path like /tmp/wtfb-find-err.$$ can be pre-created
+# as a symlink by a local user, and the 2> redirect would follow it and truncate whatever it
+# points at (CWE-377). If mktemp -d fails we treat that as a scan failure instead.
+#
+# find and sort run into files rather than a pipeline so their real exit statuses are
+# visible — process substitution discards them, which is how a failed scan could still have
+# looked like an empty project.
 FOUNTAIN_FILES=()
 FIND_ERRORS=""
-_find_err="$(mktemp 2>/dev/null || echo "/tmp/wtfb-find-err.$$")"
-while IFS= read -r -d '' f; do
-  FOUNTAIN_FILES+=("$f")
-done < <(find . \( -name node_modules -o -name .git \) -prune -o \
-              -path './templates' -prune -o \
-              -type f -name '*.fountain' -print0 2>"$_find_err" | sort -z)
-[ -s "$_find_err" ] && FIND_ERRORS="$(head -3 -- "$_find_err")"
-rm -f -- "$_find_err"
+_scan_dir="$(mktemp -d 2>/dev/null)"
+if [ -z "$_scan_dir" ] || [ ! -d "$_scan_dir" ]; then
+  FIND_ERRORS="could not create a private temporary directory for the scan"
+else
+  trap 'rm -rf -- "$_scan_dir"' EXIT INT TERM
+  if ! find . \( -name node_modules -o -name .git \) -prune -o \
+            -path './templates' -prune -o \
+            -type f -name '*.fountain' -print0 \
+            >"$_scan_dir/out" 2>"$_scan_dir/err"; then
+    FIND_ERRORS="find exited non-zero while scanning for .fountain files"
+  fi
+  if [ -s "$_scan_dir/err" ]; then
+    FIND_ERRORS="$(head -3 -- "$_scan_dir/err")"
+  fi
+  if [ -z "$FIND_ERRORS" ]; then
+    if ! sort -z <"$_scan_dir/out" >"$_scan_dir/sorted" 2>/dev/null; then
+      FIND_ERRORS="could not sort the scan results"
+    else
+      while IFS= read -r -d '' f; do
+        FOUNTAIN_FILES+=("$f")
+      done <"$_scan_dir/sorted"
+    fi
+  fi
+  rm -rf -- "$_scan_dir"
+  trap - EXIT INT TERM
+fi
 
 # --- resume focus from session memory (blank if still the placeholder) ---
 # Read outside the screenplay branch: a writer outlining in progress.md before any

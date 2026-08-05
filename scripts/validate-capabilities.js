@@ -382,16 +382,20 @@ function validateParity() {
     '.claude/README.md'
   ];
 
+  // An index must exist whether or not the command list could be read. commandStems()
+  // returns null when .claude/commands is absent, and gating this on it meant losing
+  // both the directory and every index still reported clean.
+  for (const doc of DOC_INDEXES) {
+    if (!fs.existsSync(doc)) {
+      errors.push(`${doc} is listed as a command index but does not exist`);
+    }
+  }
+
   if (claudeCommands) {
     const total = claudeCommands.length;
 
     for (const doc of DOC_INDEXES) {
-      // A missing index is a failure, not a pass. Renaming or deleting one of these
-      // must not quietly disarm the check that depends on it.
-      if (!fs.existsSync(doc)) {
-        errors.push(`${doc} is listed as a command index but does not exist`);
-        continue;
-      }
+      if (!fs.existsSync(doc)) continue; // already reported above
       const text = fs.readFileSync(doc, 'utf8');
       // Match the closing backtick too, so /export-all cannot satisfy /export.
       const missing = claudeCommands.filter(c => !text.includes(`\`/${c}\``));

@@ -39,6 +39,9 @@ if ([string]::IsNullOrWhiteSpace($ProjectType)) {
     Write-Yellow "  novel and film-production are planned, not shipped. The harness has no"
     Write-Yellow "  commands for them yet, so initializing one leaves you with no tooling."
     $typeNum = Read-Host "Select project type [1]"
+    # The prompt advertises [1] as the default, so honour it on empty input rather than
+    # sending a bare Enter into the invalid branch.
+    if ([string]::IsNullOrWhiteSpace($typeNum)) { $typeNum = "1" }
 
     switch ($typeNum) {
         "1" { $ProjectType = "screenplay" }

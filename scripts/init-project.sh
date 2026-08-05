@@ -36,6 +36,9 @@ if [ -z "$PROJECT_TYPE" ]; then
     echo -e "${YELLOW}  novel and film-production are planned, not shipped. The harness has no${NC}"
     echo -e "${YELLOW}  commands for them yet, so initializing one leaves you with no tooling.${NC}"
     read -p "Select project type [1]: " TYPE_NUM
+    # The prompt advertises [1] as the default, so honour it on empty input rather than
+    # sending a bare Enter into the invalid branch.
+    TYPE_NUM=${TYPE_NUM:-1}
 
     case $TYPE_NUM in
         1) PROJECT_TYPE="screenplay" ;;

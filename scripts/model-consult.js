@@ -47,8 +47,17 @@ function loadDotEnv(file) {
   let raw;
   try {
     raw = fs.readFileSync(file, 'utf8');
-  } catch {
-    return; // absent .env is the normal case: solo mode needs none of these
+  } catch (e) {
+    // An absent .env is the normal case — solo mode needs none of these, so stay quiet.
+    if (e && e.code === 'ENOENT') return;
+    // Anything else means the file is THERE and unreadable: a permission problem, a directory
+    // where a file should be, a bad mount. Swallowing that produces NOT_CONFIGURED with no hint
+    // that the config exists, which is the failure this whole ticket is about.
+    process.stderr.write(
+      `warning: could not read ${file} (${e && e.code ? e.code : 'unknown error'}): ${e && e.message}\n` +
+      `warning: continuing without it — any endpoint or key it defines will be missing.\n`
+    );
+    return;
   }
   for (const line of raw.split('\n')) {
     const trimmed = line.trim();

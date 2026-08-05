@@ -3,17 +3,17 @@
 Cross-session notes so you and your AI team can **resume where you left off** — following
 Anthropic's "effective harnesses for long-running agents" pattern, adapted to writing.
 
-> **These files are maintained by an agent, not by the harness.** Nothing writes them
-> automatically. They are updated when — and only when — you run `/end-session` and the agent
-> follows its instructions. Close the terminal, run out of context, or skip the command, and the
+> **These files are maintained by hand or by an agent, not by the harness.** Nothing writes
+> them automatically. `/end-session` is the command that updates them, and you can always edit
+> them yourself — but no hook, script, or CI job ever will. Close the terminal, run out of context, or skip the command, and the
 > session leaves no trace here. Read what is below as *"true as of the last `/end-session`"*,
 > not as current state.
 
 | File | Purpose | Updated by | Read by |
 |------|---------|-----------|---------|
 | `progress.md` | Smallest snapshot of where the draft stands (focus, checklist, arcs) | `/end-session` | `/start-scene`, `/stuck`, SessionStart banner |
-| `draft-state.md` | Plot-consistency working truth (established facts, open threads, timeline) | you + `/end-session` | `/start-scene`, `/stuck` |
-| `session-log.md` | Dated log, **newest first** | `/end-session` | you |
+| `draft-state.md` | Plot-consistency working truth (established facts, open threads, timeline) | `/end-session`, or you by hand | `/start-scene`, `/stuck` |
+| `session-log.md` | Dated log, **newest first** | `/end-session`, or you by hand | `/stuck`, you |
 
 These files are **your project's state** — protected from template sync and meant to be
 committed, so the resume-context travels with the repo.

@@ -20,12 +20,21 @@
 # is their work, not our stub.
 # -type f excludes FIFOs and directories, either of which could hang grep or cat.
 # -print0 with read -d '' keeps a filename containing a newline as one entry.
+#
+# Discovery errors are captured, never swallowed. A permission error used to produce the
+# same "No .fountain files yet" message as a genuinely empty project — so an unreadable
+# directory pointed the writer at /start-project, which scaffolds over their work. Failing
+# open on a scan is the same defect as globbing the wrong directory.
 FOUNTAIN_FILES=()
+FIND_ERRORS=""
+_find_err="$(mktemp 2>/dev/null || echo "/tmp/wtfb-find-err.$$")"
 while IFS= read -r -d '' f; do
   FOUNTAIN_FILES+=("$f")
 done < <(find . \( -name node_modules -o -name .git \) -prune -o \
               -path './templates' -prune -o \
-              -type f -name '*.fountain' -print0 2>/dev/null | sort -z)
+              -type f -name '*.fountain' -print0 2>"$_find_err" | sort -z)
+[ -s "$_find_err" ] && FIND_ERRORS="$(head -3 -- "$_find_err")"
+rm -f -- "$_find_err"
 
 # --- resume focus from session memory (blank if still the placeholder) ---
 # Read outside the screenplay branch: a writer outlining in progress.md before any
@@ -64,6 +73,24 @@ if [ ${#FOUNTAIN_FILES[@]} -gt 0 ]; then
   echo "Need help?"
   echo "  /stuck            Not sure what to do next"
   echo "  /check-format     Validate formatting"
+elif [ -n "$FIND_ERRORS" ]; then
+  # The scan did not finish. Do NOT say the project is empty — that is the message that
+  # sends a writer to /start-project and over their own draft. Report what failed instead.
+  echo "------------------------------------------------------------"
+  echo "        Could not finish scanning for screenplays"
+  echo "------------------------------------------------------------"
+  echo ""
+  echo "$FIND_ERRORS"
+  echo ""
+  echo "No screenplay was found, but the scan hit the errors above — so this is NOT a"
+  echo "claim that your project is empty. Resolve them and start a new session."
+  echo ""
+  if [ -n "$FOCUS" ]; then
+    echo "Resuming — last focus: ${FOCUS}"
+    echo ""
+  fi
+  echo "  /stuck            Help working out what went wrong"
+  echo "------------------------------------------------------------"
 else
   # New project — nothing to count yet, so claim nothing.
   echo "------------------------------------------------------------"

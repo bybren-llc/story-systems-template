@@ -1,6 +1,6 @@
 # Gemini CLI Harness
 
-This directory contains the multi-agent harness for Google's Gemini CLI, providing 11 agents, 30+ commands, and 24 skills for screenwriting workflows.
+This directory contains the multi-agent harness for Google's Gemini CLI, providing 11 agents, 35 commands, and 24 skills for screenwriting workflows.
 
 ## Structure
 
@@ -8,7 +8,7 @@ This directory contains the multi-agent harness for Google's Gemini CLI, providi
 .gemini/
 ├── settings.json    # CLI configuration (official schema)
 ├── agents/          # 11 specialized agent profiles
-├── commands/        # 34 slash command definitions (TOML)
+├── commands/        # 35 slash command definitions (TOML)
 ├── skills/          # 24 knowledge base modules
 └── README.md        # This file
 ```
@@ -44,13 +44,14 @@ The harness coordinates 11 specialized agents organized into four functional are
 - **Production Coordinator** - Manage exports and delivery
 - **Session Manager** - Initialize sessions and coordinate tasks
 
-## Commands (30+ Commands)
+## Commands (35 Commands)
 
 ### Workflow Commands
 | Command | Description |
 |---------|-------------|
 | `/start-project` | Initialize new screenplay project |
 | `/start-scene` | Begin new scene development |
+| `/init-readme` | Initialize project README from IMDb-style template |
 | `/end-session` | Complete session, commit progress |
 | `/stuck` | Get help when blocked |
 
@@ -75,6 +76,13 @@ The harness coordinates 11 specialized agents organized into four functional are
 | `/story-check` | Validate against 12 critical questions |
 | `/power-analysis` | Analyze conflict dynamics |
 | `/rewrite-check` | Apply 6-step rewriting methodology |
+| `/continuity-sweep` | Per-scene continuity sweep into a notes file |
+| `/rewrite-sweep` | Per-scene rewrite sweep, graded and prioritized |
+
+### Story Bible Commands
+| Command | Description |
+|---------|-------------|
+| `/bible` | Create or refresh a Story Bible card, stamp `verified_against` |
 
 ### Validation Commands (Quality Gates)
 | Command | Description |
@@ -99,6 +107,13 @@ The harness coordinates 11 specialized agents organized into four functional are
 | `/character-interview` | Conduct 80-question interview |
 | `/theme-discovery` | Interactive theme exploration |
 | `/writers-room` | Convene multi-agent session |
+
+### Harness Commands
+For contributors improving the harness itself — see `CONTRIBUTING.md`.
+
+| Command | Description |
+|---------|-------------|
+| `/ticket` | Draft a four-section issue from repo coordinates, create it in Linear |
 
 ## Skills (24 Skills)
 

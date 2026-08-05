@@ -32,14 +32,16 @@ fi
 if [ -z "$PROJECT_TYPE" ]; then
     echo "Project types:"
     echo "  1) screenplay"
-    echo "  2) novel"
-    echo "  3) film-production"
-    read -p "Select project type [1-3]: " TYPE_NUM
+    echo ""
+    echo -e "${YELLOW}  novel and film-production are planned, not shipped. The harness has no${NC}"
+    echo -e "${YELLOW}  commands for them yet, so initializing one leaves you with no tooling.${NC}"
+    read -p "Select project type [1]: " TYPE_NUM
+    # The prompt advertises [1] as the default, so honour it on empty input rather than
+    # sending a bare Enter into the invalid branch.
+    TYPE_NUM=${TYPE_NUM:-1}
 
     case $TYPE_NUM in
         1) PROJECT_TYPE="screenplay" ;;
-        2) PROJECT_TYPE="novel" ;;
-        3) PROJECT_TYPE="film-production" ;;
         *) echo -e "${RED}Invalid selection${NC}"; exit 1 ;;
     esac
 fi
@@ -50,13 +52,24 @@ if [ -z "$PROJECT_NAME" ]; then
     exit 1
 fi
 
-# Validate project type
+# Validate project type.
+# novel and film-production are refused rather than scaffolded: the harness ships 35
+# commands and every one is screenplay-facing. Creating one of those projects put a writer
+# in a workspace with no commands behind it (STO-36). The scaffolding branches below are
+# left intact so re-enabling is a one-line change once the commands exist.
 case $PROJECT_TYPE in
-    screenplay|novel|film-production)
+    screenplay)
         echo -e "${GREEN}Project type: $PROJECT_TYPE${NC}"
         ;;
+    novel|film-production)
+        echo -e "${RED}Error: '$PROJECT_TYPE' projects are not supported yet.${NC}"
+        echo -e "${YELLOW}The harness ships no ${PROJECT_TYPE} commands, so this would create a${NC}"
+        echo -e "${YELLOW}workspace with no tooling behind it. Tracking as planned work.${NC}"
+        echo -e "${YELLOW}Use: screenplay${NC}"
+        exit 1
+        ;;
     *)
-        echo -e "${RED}Error: Invalid project type. Use: screenplay, novel, or film-production${NC}"
+        echo -e "${RED}Error: Invalid project type. Use: screenplay${NC}"
         exit 1
         ;;
 esac

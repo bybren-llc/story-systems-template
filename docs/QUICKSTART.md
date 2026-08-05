@@ -171,7 +171,7 @@ cd my-screenplay
 ./scripts/init-project.sh
 ```
 
-You'll be prompted for project name and type (screenplay/novel/film-production).
+You'll be prompted for a project name. The only supported type is `screenplay` — novel and film-production are planned but ship no commands yet.
 
 **Step 3: Install dependencies**
 
@@ -246,7 +246,7 @@ If you get an execution policy error, run:
 PowerShell -ExecutionPolicy Bypass -File .\scripts\init-project.ps1
 ```
 
-You'll be prompted for project name and type (screenplay/novel/film-production).
+You'll be prompted for a project name. The only supported type is `screenplay` — novel and film-production are planned but ship no commands yet.
 
 **Step 3: Install dependencies**
 
@@ -289,11 +289,15 @@ For enhanced workflows (showrunner mode, advanced methodology), you can install 
 
 When you run the init script, you'll see:
 
-| Type | Main File | Additional |
-|------|-----------|------------|
-| `screenplay` | `{name}.fountain` | Beat sheet, character registry |
-| `novel` | `manuscript/chapters/` | Outline, character sheets |
-| `film-production` | `production/schedule.json` | Budget, crew contacts |
+| Type | Main File | Additional | Status |
+|------|-----------|------------|--------|
+| `screenplay` | `{name}.fountain` | Beat sheet, character registry | Supported |
+| `novel` | `manuscript/chapters/` | Outline, character sheets | **Planned** — `init` refuses it |
+| `film-production` | `production/schedule.json` | Budget, crew contacts | **Planned** — `init` refuses it |
+
+The harness ships 35 commands and all of them are screenplay-facing. Initializing a novel or
+film-production project would leave you in a workspace with no commands, so `npm run init`
+declines those types rather than scaffolding one.
 
 **Project structure:**
 ```

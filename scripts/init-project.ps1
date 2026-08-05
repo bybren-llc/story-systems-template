@@ -35,14 +35,16 @@ if ([string]::IsNullOrWhiteSpace($ProjectName)) {
 if ([string]::IsNullOrWhiteSpace($ProjectType)) {
     Write-Host "Project types:"
     Write-Host "  1) screenplay"
-    Write-Host "  2) novel"
-    Write-Host "  3) film-production"
-    $typeNum = Read-Host "Select project type [1-3]"
+    Write-Host ""
+    Write-Yellow "  novel and film-production are planned, not shipped. The harness has no"
+    Write-Yellow "  commands for them yet, so initializing one leaves you with no tooling."
+    $typeNum = Read-Host "Select project type [1]"
+    # The prompt advertises [1] as the default, so honour it on empty input rather than
+    # sending a bare Enter into the invalid branch.
+    if ([string]::IsNullOrWhiteSpace($typeNum)) { $typeNum = "1" }
 
     switch ($typeNum) {
         "1" { $ProjectType = "screenplay" }
-        "2" { $ProjectType = "novel" }
-        "3" { $ProjectType = "film-production" }
         default {
             Write-Red "Invalid selection"
             exit 1
@@ -56,10 +58,21 @@ if ([string]::IsNullOrWhiteSpace($ProjectName)) {
     exit 1
 }
 
-# Validate project type
-$validTypes = @("screenplay", "novel", "film-production")
-if ($ProjectType -notin $validTypes) {
-    Write-Red "Error: Invalid project type. Use: screenplay, novel, or film-production"
+# Validate project type.
+# novel and film-production are refused rather than scaffolded: the harness ships 35
+# commands and every one is screenplay-facing. Creating one of those projects put a writer
+# in a workspace with no commands behind it (STO-36). The scaffolding branches below are
+# left intact so re-enabling is a one-line change once the commands exist.
+$plannedTypes = @("novel", "film-production")
+if ($ProjectType -in $plannedTypes) {
+    Write-Red "Error: '$ProjectType' projects are not supported yet."
+    Write-Yellow "The harness ships no $ProjectType commands, so this would create a"
+    Write-Yellow "workspace with no tooling behind it. Tracking as planned work."
+    Write-Yellow "Use: screenplay"
+    exit 1
+}
+if ($ProjectType -ne "screenplay") {
+    Write-Red "Error: Invalid project type. Use: screenplay"
     exit 1
 }
 

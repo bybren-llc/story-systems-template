@@ -33,14 +33,16 @@ Both init scripts require:
 
 Both `init-project.sh` and `init-project.ps1` **MUST** implement identical behavior:
 
-1. Prompt for project name (lowercase, hyphenated) and type (screenplay/novel/film-production)
-2. Validate inputs before proceeding
+1. Prompt for project name (lowercase, hyphenated). **`screenplay` is the only accepted type**
+   — `novel` and `film-production` are refused with an explanation (STO-36), because the harness
+   ships no commands for them
+2. Validate inputs before proceeding, exiting non-zero on a refused or invalid type
 3. Create `.wtfb/project.json` with project configuration
 4. Create `marketing/wtfb-marketing.json` with placeholder values
 5. Create type-specific files:
    - **Screenplay**: `{name}.fountain`, `templates/beat-sheet.md`, `templates/character-registry.md`
-   - **Novel**: `manuscript/` structure, `world/` structure
-   - **Film-production**: `production/`, `assets/`, `crew/` structures
+   - **Novel** and **Film-production** branches are retained but unreachable — kept so that
+     re-enabling either is a one-line change once their commands exist
 6. Create symlink: `CLAUDE.md` -> `.wtfb/ai-harness/CLAUDE.md` (or copy as fallback on Windows)
 7. Update `package.json` name field
 8. Create placeholder directories with `.gitkeep` files
@@ -68,18 +70,19 @@ Both `init-project.sh` and `init-project.ps1` **MUST** implement identical behav
 
 # Direct mode
 ./scripts/init-project.sh my-screenplay screenplay
+
+# Refused — no commands ship for these types yet (exit 1)
 ./scripts/init-project.sh my-novel novel
 ./scripts/init-project.sh my-film film-production
 ```
 
 **What it does:**
-1. Validates project type (screenplay, novel, film-production)
+1. Validates project type — accepts `screenplay`, refuses `novel` and `film-production`
 2. Updates `.wtfb/project.json` with project name and type
 3. Updates `marketing/wtfb-marketing.json` with project details
 4. Creates type-specific files:
    - **Screenplay**: `[name].fountain` with title page, templates
-   - **Novel**: `manuscript/` structure with outline
-   - **Film Production**: `production/`, `assets/`, `crew/` directories
+   - **Novel** / **Film Production**: branches retained, currently unreachable
 5. Creates `CLAUDE.md` symlink
 6. Updates `package.json` name
 

@@ -552,12 +552,15 @@ foreach ($dir in $placeholderDirs) {
 # $LASTEXITCODE has to be checked explicitly.
 Write-Host "Generating project README..."
 try {
-    npx @wtfb/cli init-readme --title $ProjectTitle --type $ProjectType
+    # '@wtfb/cli' is quoted deliberately. In PowerShell argument mode a bare leading @ is the
+    # splatting operator, so an unquoted @wtfb/cli risks being parsed as a splat rather than a
+    # package name. Quoting removes the ambiguity; it cannot be exercised on a non-Windows CI.
+    npx '@wtfb/cli' init-readme --title $ProjectTitle --type $ProjectType
     if ($LASTEXITCODE -ne 0) { throw "npx exited with $LASTEXITCODE" }
 } catch {
     Write-Yellow "  README generation failed: $_"
     Write-Yellow "  Everything else was created. Retry with:"
-    Write-Yellow "    npx @wtfb/cli init-readme --title `"$ProjectTitle`" --type `"$ProjectType`""
+    Write-Yellow "    npx '@wtfb/cli' init-readme --title `"$ProjectTitle`" --type `"$ProjectType`""
     Write-Yellow "  If it keeps failing, check network access to the npm registry."
 }
 

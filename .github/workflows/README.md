@@ -178,7 +178,7 @@ jobs:
       # There is no `npm run export:*` script — the export CLI is an external
       # prerequisite, so a nightly export workflow has to install it itself.
       - name: Install the export CLI
-        run: npm install -g afterwriting
+        run: npm install -g afterwriting@1.17.3
 
       - name: Generate PDF
         run: afterwriting --source screenplay.fountain --pdf --output exports/pdf/screenplay.pdf

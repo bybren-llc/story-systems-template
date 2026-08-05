@@ -82,12 +82,15 @@ Issues:
 
 ### Status: [VALID / X ERRORS / Y WARNINGS]
 
-Status counts validator findings and reading findings together. `Ready for Export` is NO if
-either produced an entry under *Errors (Must Fix)*; validator warnings alone do not block it.
+The validator emits no severity, so **every validator finding counts as a warning (Y)**.
+Only entries you add under *Errors (Must Fix)* count as errors (X). `Ready for Export` is NO
+when X is above zero; validator warnings alone do not block it. Without this rule two runs on
+the same file can report different counts.
 
-### Validator (`npm run lint:fountain`) — [N findings / none]
-[Paste the validator's findings verbatim, with its line numbers.
- If it found nothing, write: "No issues reported."]
+### Validator (`npm run lint:fountain`) — [N findings / clean]
+[Paste the validator's output verbatim — its per-file lines and its closing summary, whether
+ that is "Found N potential issue(s)" or "All fountain files validated successfully!".
+ Do not summarize it or replace a clean run with a shorter sentence.]
 
 ### Errors (Must Fix)
 [List breaking issues found by reading, beyond what the validator caught]

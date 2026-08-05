@@ -11,7 +11,7 @@ Anthropic's "effective harnesses for long-running agents" pattern, adapted to wr
 
 | File | Purpose | Updated by | Read by |
 |------|---------|-----------|---------|
-| `progress.md` | Smallest snapshot of where the draft stands (focus, checklist, arcs) | `/end-session` | `/start-scene`, `/stuck`, SessionStart banner |
+| `progress.md` | Smallest snapshot of where the draft stands (focus, checklist, arcs) | `/end-session`, or you by hand | `/start-scene`, `/stuck`, SessionStart banner |
 | `draft-state.md` | Plot-consistency working truth (established facts, open threads, timeline) | `/end-session`, or you by hand | `/start-scene`, `/stuck` |
 | `session-log.md` | Dated log, **newest first** | `/end-session`, or you by hand | `/stuck`, you |
 

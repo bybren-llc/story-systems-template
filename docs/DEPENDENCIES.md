@@ -26,6 +26,12 @@ command will fail at the point of use if the tool is absent.
 |------|-----------|---------|------------------|
 | `@wtfb/cli` | `/init-readme`, `/start-project`, `npm run init` | `npm i -g @wtfb/cli` or invoked via `npx @wtfb/cli` | 1.0.4 |
 | `afterwriting` | `/export-pdf`, `/export-html`, `/export-all` | `npm install -g afterwriting` | 1.17.3 |
+
+The **Verified against** column records the version each tool was last exercised at, not a pin.
+The install commands are intentionally unpinned so you get fixes; if you need reproducibility,
+pin to the verified version. This file has already carried a stale pin once — `markdownlint-cli2`
+was documented at `^0.15.0` against `^0.20.0` in `package.json` — which is why versions live in
+one column here rather than inside install commands scattered across the docs.
 | `screenplain` | `/export-fdx`, `/export-all` | `pipx install screenplain` | — |
 | `pipx` + Python 3.8+ | prerequisite for `screenplain` | see pipx docs | — |
 
@@ -180,6 +186,16 @@ install is optional — but the package must be reachable either way.
 
 ```bash
 npm install -g @wtfb/cli    # optional; npx @wtfb/cli works without it
+```
+
+Without a global install, every command works through `npx`:
+
+```bash
+npx @wtfb/cli init-readme --title "My Screenplay"
+npx @wtfb/cli validate
+npx @wtfb/cli export-pdf
+npx @wtfb/cli export-fdx
+npx @wtfb/cli export-html
 ```
 
 Then use:

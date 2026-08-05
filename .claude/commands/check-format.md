@@ -82,7 +82,10 @@ Issues:
 
 ### Status: [VALID / X ERRORS / Y WARNINGS]
 
-### Validator (`npm run lint:fountain`)
+Status counts validator findings and reading findings together. `Ready for Export` is NO if
+either produced an entry under *Errors (Must Fix)*; validator warnings alone do not block it.
+
+### Validator (`npm run lint:fountain`) — [N findings / none]
 [Paste the validator's findings verbatim, with its line numbers.
  If it found nothing, write: "No issues reported."]
 

@@ -56,7 +56,10 @@ Format your output as:
 
 ### Status: [VALID / X ERRORS / Y WARNINGS]
 
-### Validator (`npm run lint:fountain`)
+Status counts validator findings and reading findings together. `Ready for Export` is NO if
+either produced an entry under *Errors (Must Fix)*; validator warnings alone do not block it.
+
+### Validator (`npm run lint:fountain`) — [N findings / none]
 [Paste the validator's findings verbatim, with its line numbers.
  If it found nothing, write: "No issues reported."]
 
@@ -86,8 +89,16 @@ Primary: Script Supervisor
 Supporting: Standards Reviewer
 
 ## Validation Gate
-This command is BLOCKING for:
-- Commits
-- Pull Requests
-- Exports
+
+This command is **advisory**. It reports; it does not block. Step 1 runs the validator without
+`--strict`, so a run with findings still exits 0 and never interrupts a writing session.
+
+What actually blocks:
+
+- **Commits** — `lint-staged` runs the Fountain validator on staged `.fountain` files
+- **Pull requests** — the `validate-screenplay` CI job runs `npm run lint:fountain`
+- **Exports** — nothing automatic. Treat unresolved *Errors (Must Fix)* as a reason not to
+  deliver, and set `Ready for Export: NO`
+
+Reporting findings and blocking on them are separate jobs. This command does the first.
 """

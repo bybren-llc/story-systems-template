@@ -11,11 +11,26 @@ Validate Fountain syntax and formatting.
 
 ## Workflow
 
-### Step 1: Load Fountain File
-- Identify target .fountain file
-- Read complete file content
+### Step 1: Run the validator
 
-### Step 2: Syntax Validation
+**Run `npm run lint:fountain`** — or `node scripts/validate-fountain.js [file]` for one file.
+
+This is the deterministic pass. It checks scene-heading shape, character-name capitalization,
+transition format, and parenthetical case, and it reports exact line numbers. Report its output
+as given; do not re-derive those findings by reading, and do not paraphrase them.
+
+It is advisory by default and exits 0 even with findings, so it will not interrupt the session.
+Do not add `--strict` here — that flag is for CI.
+
+If it reports nothing, say so. A clean validator run is a result, not an absence of one.
+
+### Step 2: Read for what the validator cannot catch
+
+Load the file and review it for the issues below. These are judgement calls a linter cannot
+make — scene logic, dialogue attribution, structural drift. Skip anything Step 1 already
+reported.
+
+### Step 3: Syntax Validation
 
 #### Title Page Check
 ```markdown
@@ -60,18 +75,22 @@ Issues:
 | Notes | X | Y |
 ```
 
-### Step 3: Generate Report
+### Step 4: Generate Report
 
 ```markdown
 ## Fountain Validation: [FILENAME]
 
 ### Status: [VALID / X ERRORS / Y WARNINGS]
 
+### Validator (`npm run lint:fountain`)
+[Paste the validator's findings verbatim, with its line numbers.
+ If it found nothing, write: "No issues reported."]
+
 ### Errors (Must Fix)
-[List breaking issues]
+[List breaking issues found by reading, beyond what the validator caught]
 
 ### Warnings (Should Review)
-[List non-breaking issues]
+[List non-breaking issues found by reading]
 
 ### Statistics
 - Pages: ~[X]

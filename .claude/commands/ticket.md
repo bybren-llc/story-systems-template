@@ -21,33 +21,48 @@ Do not draft from the description alone. Read the repo first and collect:
 - The file and line range of the thing that is wrong — `scripts/validate-fountain.js:88-94`.
 - What that code currently does that is load-bearing, and what breaks without it.
 - Any external state the ticket depends on, plus **today's date** to stamp the observation.
-- The command that proves the fix worked, run once so you know it runs.
+- The command that proves the fix worked. Run it only if it is already documented in the repo —
+  an `npm` script, a documented CLI — and only if it is read-only. Anything else goes into the
+  ticket without being run, and you ask before running it.
 - A file that already does it right, and the ticket that made it so.
 
 If a claim cannot be traced to a file, a command, or a dated check, it does not go in the ticket.
 
-### Step 2: Draft the four sections
+### Step 2: Redact before anything leaves the repo
+
+A ticket is published. Everything gathered in Step 1 lands in a tracker, and often in a public
+repo after that. Strip it before drafting:
+
+- **Secrets** — tokens, keys, passwords, connection strings — even when the point of the ticket
+  is that one was committed. Cite the location (`.npmrc:4-5`), never the value.
+- **Personal data** — names, emails, and account IDs of anyone outside the team.
+- **Client identifiers**, when the code belongs to someone else. Replace with a structural
+  placeholder (`apps/web-client`), never a look-alike of the real name.
+
+If a secret's value is genuinely needed to do the work, say where it lives and who can read it.
+
+### Step 3: Draft the four sections
 
 Use the format below. Four sections, in this order, no others.
 
-### Step 3: Self-check against the banned list
+### Step 4: Self-check against the banned list
 
 Reread the draft and cut every banned heading, phrase, and hedge. Confirm each AC bullet is an
 end state a reviewer can check without you — if it reads as an instruction, rewrite it as a
-condition.
+condition. Confirm Step 2 held: no secret's value survived into the draft.
 
-### Step 4: Show the draft and wait
+### Step 5: Show the draft and wait
 
 Print the full body and ask for confirmation. Do not create the issue first and edit after.
 
-### Step 5: Create the issue
+### Step 6: Create the issue
 
 Create it in the project's tracker — for this repo, Linear team `Story Systems` (prefix `STO`).
 Title uses the commit convention: `type(scope): description`.
 
-### Step 6: Offer the branch
+### Step 7: Offer the branch
 
-Once the ID exists, offer `<TICKET-ID>-<short-description>` off `main`, per `CONTRIBUTING.md`.
+Once the ID exists, offer `<TICKET-ID>-<short-description>` off `develop`, per `CONTRIBUTING.md`.
 
 ---
 

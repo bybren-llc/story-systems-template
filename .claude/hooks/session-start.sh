@@ -14,13 +14,18 @@
 #
 # templates/ is excluded so a fresh checkout — whose only .fountain is the blank stub —
 # still reads as a new project instead of claiming "~1 pages · 1 scenes".
+# -prune stops traversal rather than filtering output: -not -path './node_modules/*' only
+# matched a ROOT-level node_modules, so a nested one still contributed .fountain files and
+# still got walked. templates is pruned at root only — a writer's own templates/ subdirectory
+# is their work, not our stub.
+# -type f excludes FIFOs and directories, either of which could hang grep or cat.
+# -print0 with read -d '' keeps a filename containing a newline as one entry.
 FOUNTAIN_FILES=()
-while IFS= read -r f; do
-  [ -n "$f" ] && FOUNTAIN_FILES+=("$f")
-done < <(find . -name '*.fountain' \
-           -not -path './templates/*' \
-           -not -path './node_modules/*' \
-           -not -path './.git/*' 2>/dev/null | sort)
+while IFS= read -r -d '' f; do
+  FOUNTAIN_FILES+=("$f")
+done < <(find . \( -name node_modules -o -name .git \) -prune -o \
+              -path './templates' -prune -o \
+              -type f -name '*.fountain' -print0 2>/dev/null | sort -z)
 
 # --- resume focus from session memory (blank if still the placeholder) ---
 # Read outside the screenplay branch: a writer outlining in progress.md before any
@@ -38,7 +43,7 @@ if [ ${#FOUNTAIN_FILES[@]} -gt 0 ]; then
   # -h suppresses the filename prefix grep adds once more than one file matches.
   TITLE=$(grep -h -m1 'Title:' -- "${FOUNTAIN_FILES[@]}" 2>/dev/null | head -1 | sed 's/.*\*\*\(.*\)\*\*.*/\1/' | sed 's/Title:[[:space:]]*//' | tr -d '\n')
   SCENES=$(grep -hcE '^(INT\.|EXT\.|INT\./EXT\.|I/E\.)[[:space:]]' -- "${FOUNTAIN_FILES[@]}" 2>/dev/null | awk '{s+=$1} END{print s+0}')
-  LINES=$(cat "${FOUNTAIN_FILES[@]}" 2>/dev/null | wc -l | tr -d ' ')
+  LINES=$(cat -- "${FOUNTAIN_FILES[@]}" 2>/dev/null | wc -l | tr -d ' ')
   PAGES=$(( (LINES + 54) / 55 ))   # ~55 lines/page, rounded up
 
   echo "------------------------------------------------------------"

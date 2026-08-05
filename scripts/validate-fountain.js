@@ -95,7 +95,9 @@ function validateFile(filePath) {
   // A Fountain title page is OPTIONAL. Starting this true unconditionally meant a file
   // without a `===` separator never left title-page mode, so every line was skipped and
   // the file always validated clean — see STO-29. Only skip when there is one to skip.
-  let inTitlePage = lines.includes('===');
+  // Compare trimmed, matching the loop below — a CRLF file's separator is `===\r`, and a
+  // raw comparison would miss it and validate the title page as screenplay content.
+  let inTitlePage = lines.some((rawLine) => rawLine.trim() === '===');
 
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i].trim();

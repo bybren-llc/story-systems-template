@@ -6,21 +6,40 @@
 # current focus from .wtfb/session/progress.md — it never asserts a status it did not
 # actually check. A green check for an unperformed check is a lie.
 
-if ls ./*.fountain >/dev/null 2>&1; then
-  # --- numbers computed from the .fountain files ---
-  TITLE=$(grep -m1 'Title:' -- ./*.fountain 2>/dev/null | head -1 | sed 's/.*\*\*\(.*\)\*\*.*/\1/' | sed 's/Title:[[:space:]]*//' | tr -d '\n')
-  SCENES=$(grep -hcE '^(INT\.|EXT\.|INT\./EXT\.|I/E\.)[[:space:]]' -- ./*.fountain 2>/dev/null | awk '{s+=$1} END{print s+0}')
-  LINES=$(cat ./*.fountain 2>/dev/null | wc -l | tr -d ' ')
-  PAGES=$(( (LINES + 54) / 55 ))   # ~55 lines/page, rounded up
+# --- find the writer's screenplay wherever it lives ---
+# This used to glob ./*.fountain, the repo root only. A writer keeping their script in
+# drafts/ or screenplay/ was told "No .fountain files yet" and pointed at /start-project,
+# which scaffolds over existing work (STO-30). Reporting nothing to count while a
+# screenplay sits on disk is exactly the failure this banner exists to prevent.
+#
+# templates/ is excluded so a fresh checkout — whose only .fountain is the blank stub —
+# still reads as a new project instead of claiming "~1 pages · 1 scenes".
+FOUNTAIN_FILES=()
+while IFS= read -r f; do
+  [ -n "$f" ] && FOUNTAIN_FILES+=("$f")
+done < <(find . -name '*.fountain' \
+           -not -path './templates/*' \
+           -not -path './node_modules/*' \
+           -not -path './.git/*' 2>/dev/null | sort)
 
-  # --- resume focus from session memory (blank if still the placeholder) ---
-  FOCUS=""
-  if [ -f .wtfb/session/progress.md ]; then
-    FOCUS=$(grep -m1 -- '- \*\*Working on:\*\*' .wtfb/session/progress.md 2>/dev/null \
-      | sed 's/.*Working on:\*\*[[:space:]]*//' \
-      | sed 's/_([^)]*)_//g' \
-      | sed 's/[[:space:]]*$//' | tr -d '\n')
-  fi
+# --- resume focus from session memory (blank if still the placeholder) ---
+# Read outside the screenplay branch: a writer outlining in progress.md before any
+# .fountain exists should still see where they left off.
+FOCUS=""
+if [ -f .wtfb/session/progress.md ]; then
+  FOCUS=$(grep -m1 -- '- \*\*Working on:\*\*' .wtfb/session/progress.md 2>/dev/null \
+    | sed 's/.*Working on:\*\*[[:space:]]*//' \
+    | sed 's/_([^)]*)_//g' \
+    | sed 's/[[:space:]]*$//' | tr -d '\n')
+fi
+
+if [ ${#FOUNTAIN_FILES[@]} -gt 0 ]; then
+  # --- numbers computed from the .fountain files ---
+  # -h suppresses the filename prefix grep adds once more than one file matches.
+  TITLE=$(grep -h -m1 'Title:' -- "${FOUNTAIN_FILES[@]}" 2>/dev/null | head -1 | sed 's/.*\*\*\(.*\)\*\*.*/\1/' | sed 's/Title:[[:space:]]*//' | tr -d '\n')
+  SCENES=$(grep -hcE '^(INT\.|EXT\.|INT\./EXT\.|I/E\.)[[:space:]]' -- "${FOUNTAIN_FILES[@]}" 2>/dev/null | awk '{s+=$1} END{print s+0}')
+  LINES=$(cat "${FOUNTAIN_FILES[@]}" 2>/dev/null | wc -l | tr -d ' ')
+  PAGES=$(( (LINES + 54) / 55 ))   # ~55 lines/page, rounded up
 
   echo "------------------------------------------------------------"
   echo "     \"${TITLE:-Untitled Screenplay}\""
@@ -48,6 +67,10 @@ else
   echo ""
   echo "No .fountain files yet — nothing to count. Let's get you started."
   echo ""
+  if [ -n "$FOCUS" ]; then
+    echo "Resuming — last focus: ${FOCUS}"
+    echo ""
+  fi
   echo "  /start-project   Set up your screenplay (recommended)"
   echo "  /import          Bring in an existing script"
   echo ""

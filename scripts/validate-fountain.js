@@ -92,7 +92,10 @@ function validateFile(filePath) {
   const issues = [];
 
   let prevLine = '';
-  let inTitlePage = true;
+  // A Fountain title page is OPTIONAL. Starting this true unconditionally meant a file
+  // without a `===` separator never left title-page mode, so every line was skipped and
+  // the file always validated clean — see STO-29. Only skip when there is one to skip.
+  let inTitlePage = lines.includes('===');
 
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i].trim();

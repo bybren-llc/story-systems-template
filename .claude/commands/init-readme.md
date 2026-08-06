@@ -33,7 +33,7 @@ If skipping:
 
 Execute the deterministic CLI:
 ```bash
-npx @wtfb/cli init-readme [--title "..."] [--type ...] [--force] [--dry-run]
+node scripts/init-readme.js [--title "..."] [--type ...] [--force] [--dry-run]
 ```
 
 The CLI will:

@@ -493,22 +493,20 @@ touch exports/html/.gitkeep
 mkdir -p docs/v1-original
 touch docs/v1-original/.gitkeep
 
-# Generate project README from IMDb template.
-# The package is @wtfb/cli — bare `npx wtfb` resolves an unpublished package and 404s
-# (STO-33). A failed README does not invalidate an otherwise good scaffold, so this stays
-# non-fatal, but it reports what failed and how to retry rather than a bare one-liner.
+# Generate project README from the LOCAL template.
+# This used to call `npx @wtfb/cli init-readme`. That package ships no templates/ directory,
+# so it threw "Template not found" and exited 1 every time — every first run left README.md
+# as the unmodified template (STO-39). The template is ours, the work is string substitution,
+# so scripts/init-readme.js does it locally with no network and no external package.
+# Both initializers call the same script, so the shell and PowerShell paths cannot drift.
 echo "Generating project README..."
-# `$?` inside `if ! cmd; then` is the status of the negation, which is 0 whenever the
-# command failed — so the error would have reported "exit 0" every time. Capture it in the
-# else branch, where it is the command's own status.
-if npx @wtfb/cli init-readme --title "$PROJECT_TITLE" --type "$PROJECT_TYPE"; then
+if node scripts/init-readme.js --title "$PROJECT_TITLE" --type "$PROJECT_TYPE"; then
     :
 else
     _readme_rc=$?
     echo -e "  ${YELLOW}README generation failed (exit ${_readme_rc}).${NC}"
     echo -e "  ${YELLOW}Everything else was created. Retry with:${NC}"
-    echo -e "  ${YELLOW}  npx @wtfb/cli init-readme --title \"$PROJECT_TITLE\" --type \"$PROJECT_TYPE\"${NC}"
-    echo -e "  ${YELLOW}If it keeps failing, check network access to the npm registry.${NC}"
+    echo -e "  ${YELLOW}  node scripts/init-readme.js --title \"$PROJECT_TITLE\" --type \"$PROJECT_TYPE\"${NC}"
 fi
 
 echo ""

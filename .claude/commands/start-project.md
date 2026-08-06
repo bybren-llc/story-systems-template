@@ -62,7 +62,7 @@ Just type a number or describe what you have!
    - Copy `templates/screenplay-template.fountain` to `[title-slug].fountain` if the writer
      wants a differently-named script than `init` produced, and fill in its title page.
    - Run `npm install` silently
-   - Run `npx @wtfb/cli init-readme --title "[title]"` to generate the project README
+   - Run `node scripts/init-readme.js --title "[title]"` to generate the project README
 
 Display completion:
 ```

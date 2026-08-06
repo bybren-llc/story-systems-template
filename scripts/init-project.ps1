@@ -543,22 +543,19 @@ foreach ($dir in $placeholderDirs) {
     if (-not (Test-Path $gitkeep)) { New-Item -ItemType File -Path $gitkeep -Force | Out-Null }
 }
 
-# Generate project README from IMDb template.
-# The package is @wtfb/cli — bare `npx wtfb` resolves an unpublished package and 404s
-# (STO-33). A failed README does not invalidate an otherwise good scaffold, so this stays
-# non-fatal, but it reports what failed and how to retry.
-#
-# npx failing sets a non-zero exit code without throwing, so catch{} alone never fires —
-# $LASTEXITCODE has to be checked explicitly.
+# Generate project README from the LOCAL template.
+# This used to call `npx @wtfb/cli init-readme`. That package ships no templates/ directory,
+# so it threw "Template not found" and exited 1 every time (STO-39). scripts/init-readme.js
+# does it locally — same script the shell initializer calls, so the two cannot drift, and it
+# sidesteps PowerShell's argument-mode parsing of a leading @ entirely.
 Write-Host "Generating project README..."
 try {
-    npx @wtfb/cli init-readme --title $ProjectTitle --type $ProjectType
-    if ($LASTEXITCODE -ne 0) { throw "npx exited with $LASTEXITCODE" }
+    node scripts/init-readme.js --title $ProjectTitle --type $ProjectType
+    if ($LASTEXITCODE -ne 0) { throw "init-readme exited with $LASTEXITCODE" }
 } catch {
     Write-Yellow "  README generation failed: $_"
     Write-Yellow "  Everything else was created. Retry with:"
-    Write-Yellow "    npx @wtfb/cli init-readme --title `"$ProjectTitle`" --type `"$ProjectType`""
-    Write-Yellow "  If it keeps failing, check network access to the npm registry."
+    Write-Yellow "    node scripts/init-readme.js --title `"$ProjectTitle`" --type `"$ProjectType`""
 }
 
 Write-Host ""

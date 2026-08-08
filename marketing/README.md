@@ -6,16 +6,17 @@ This directory contains everything needed to market your project through the WTF
 
 ```
 marketing/
-├── wtfb-marketing.json    # Platform integration configuration
-├── assets/                # Visual marketing assets
-│   ├── poster.png         # Movie poster / book cover
-│   ├── banner.png         # Wide banner (1200x630)
-│   └── social/            # Social media cards
+├── wtfb-marketing.json          # Platform integration configuration
+├── wtfb-marketing.schema.json   # JSON Schema for local validation
+├── assets/                      # Visual marketing assets
+│   ├── poster.png               # Movie poster / book cover
+│   ├── banner.png               # Wide banner (1200x630)
+│   └── social/                  # Social media cards
 │       ├── twitter-card.png
 │       └── og-image.png
-└── pages/                 # GitHub Pages content
-    ├── _config.yml        # Jekyll configuration
-    └── index.md           # Landing page template
+└── pages/                       # GitHub Pages content
+    ├── _config.yml              # Jekyll configuration
+    └── index.md                 # Landing page template
 ```
 
 ## wtfb-marketing.json
@@ -30,8 +31,8 @@ This is the central configuration file that integrates your project with the WTF
     "title": "Your Project Title",
     "subtitle": "A Short Film",
     "logline": "One sentence pitch",
-    "type": "screenplay|novel|film-production",
-    "status": "development|pre-production|production|completed",
+    "type": "screenplay|novel|film-production|template",
+    "status": "development|pre-production|production|completed|beta",
     "year": 2026
   }
 }
@@ -107,20 +108,74 @@ PostHog integration for tracking page views, downloads, and conversions:
 ```
 
 ### Funding
-Crowdfunding tiers for project financing:
+Crowdfunding tiers for project financing. The extended schema supports both recurring (monthly) sponsors and one-time donations, with optional tier limits and toggling:
 
 ```json
 {
   "funding": {
     "enabled": true,
-    "goal": 50000,
+    "goal": null,
+    "currency": "USD",
     "tiers": [
-      {"id": "supporter", "amount": 25, "description": "Digital thanks"},
-      {"id": "producer", "amount": 1000, "description": "Producer credit"}
+      {
+        "id": "supporter",
+        "name": "Supporter",
+        "amount": 5,
+        "frequency": "monthly",
+        "description": "Name in README supporters section",
+        "limit": null,
+        "enabled": true
+      },
+      {
+        "id": "coffee",
+        "name": "Coffee",
+        "amount": 10,
+        "frequency": "one-time",
+        "description": "Thank you mention",
+        "limit": null,
+        "enabled": true
+      },
+      {
+        "id": "partner",
+        "name": "Partner",
+        "amount": 500,
+        "frequency": "monthly",
+        "description": "Large logo + Co-development sessions",
+        "limit": 5,
+        "enabled": true
+      }
     ]
   }
 }
 ```
+
+#### Tier Fields
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `id` | string | Unique identifier for the tier (used in code) |
+| `name` | string | Display name for the tier (shown to users) |
+| `amount` | number | Donation amount in the specified currency |
+| `frequency` | `"monthly"` \| `"one-time"` | Recurring vs one-time donation |
+| `description` | string | Description of what the sponsor receives |
+| `limit` | number \| null | Max number of sponsors at this tier (null = unlimited) |
+| `enabled` | boolean | Whether the tier is currently available |
+
+#### Top-Level Funding Fields
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `enabled` | boolean | Whether funding is active for this project |
+| `goal` | number \| null | Funding goal amount (null = no specific goal) |
+| `currency` | string | ISO 4217 currency code (e.g., `"USD"`, `"EUR"`) |
+| `tiers` | array | List of funding tier objects (see above) |
+
+#### Why the Extended Schema Matters
+
+1. **Mixed funding models** — Support both recurring sponsors and one-time donations via the `frequency` field
+2. **Tier limits** — Enable exclusive tiers (e.g., "only 5 Partner slots") via the `limit` field
+3. **Tier toggling** — Disable tiers without removing them via the `enabled` field
+4. **Display names** — Separate `id` (for code) from `name` (for display)
 
 ### Rights
 Ownership and licensing information:
@@ -131,8 +186,10 @@ Ownership and licensing information:
     "ownership": "creator",
     "registrations": [{"type": "WGA", "number": "123456"}],
     "licensing": {
+      "type": "MIT",
       "optionAvailable": true,
-      "purchaseAvailable": true
+      "purchaseAvailable": true,
+      "contactRequired": false
     }
   }
 }
@@ -143,7 +200,7 @@ Ownership and licensing information:
 ### Required Assets
 
 | Asset | Dimensions | Purpose |
-|-------|------------|---------|
+|-------|------------|--------|
 | `poster.png` | 800x1200 | Movie poster, book cover |
 | `banner.png` | 1200x630 | Header images, social sharing |
 | `social/twitter-card.png` | 1200x600 | Twitter card image |
@@ -201,6 +258,11 @@ The CI/CD pipeline validates your marketing config:
 # Validates JSON syntax
 jq empty marketing/wtfb-marketing.json
 
+# Local schema validation (using the included schema file)
+npx ajv validate -s marketing/wtfb-marketing.schema.json -d marketing/wtfb-marketing.json
+
 # Full schema validation (when registered with WTFB)
 # WTFB platform validates against https://wtfb.io/schemas/wtfb-marketing.v1.json
 ```
+
+The `wtfb-marketing.schema.json` file mirrors the platform schema and defines the expected structure, including the extended funding tier fields (`name`, `frequency`, `limit`, `enabled`) and the top-level `currency` field. Use it locally to catch configuration errors before pushing.

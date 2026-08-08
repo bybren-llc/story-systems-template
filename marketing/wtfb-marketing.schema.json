@@ -1,0 +1,279 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://wtfb.io/schemas/wtfb-marketing.v1.json",
+  "title": "WTFB Marketing Configuration",
+  "description": "Schema for wtfb-marketing.json — the central configuration file integrating a project with the WTFB platform.",
+  "type": "object",
+  "required": ["version", "project", "platform"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "version": { "type": "string" },
+
+    "project": {
+      "type": "object",
+      "required": ["id", "title", "type"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "description": "Unique project slug" },
+        "title": { "type": "string" },
+        "subtitle": { "type": ["string", "null"] },
+        "logline": { "type": ["string", "null"] },
+        "type": {
+          "type": "string",
+          "enum": ["screenplay", "novel", "film-production", "template"]
+        },
+        "status": {
+          "type": "string",
+          "enum": ["development", "pre-production", "production", "completed", "beta"]
+        },
+        "year": { "type": ["integer", "null"] }
+      }
+    },
+
+    "metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "genres": { "type": "array", "items": { "type": "string" } },
+        "themes": { "type": "array", "items": { "type": "string" } },
+        "keywords": { "type": "array", "items": { "type": "string" } },
+        "runtime": { "type": ["string", "integer", "null"] },
+        "rating": { "type": ["string", "null"] },
+        "language": { "type": ["string", "null"] },
+        "setting": { "type": ["string", "null"] }
+      }
+    },
+
+    "creators": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "primary": {
+          "type": "object",
+          "required": ["name"],
+          "additionalProperties": false,
+          "properties": {
+            "name": { "type": "string" },
+            "handle": { "type": ["string", "null"] },
+            "wtfbUserId": { "type": ["string", "null"] },
+            "role": { "type": ["string", "null"] },
+            "bio": { "type": ["string", "null"] },
+            "links": {
+              "type": "object",
+              "additionalProperties": { "type": "string" }
+            }
+          }
+        },
+        "organization": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "name": { "type": "string" },
+            "wtfbUserId": { "type": ["string", "null"] },
+            "role": { "type": ["string", "null"] },
+            "links": {
+              "type": "object",
+              "additionalProperties": { "type": "string" }
+            }
+          }
+        },
+        "contributors": {
+          "type": "array",
+          "items": { "type": "object" }
+        }
+      }
+    },
+
+    "marketing": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "tagline": { "type": ["string", "null"] },
+        "oneSheet": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "headline": { "type": "string" },
+            "synopsis": { "type": "string" },
+            "callToAction": { "type": "string" }
+          }
+        },
+        "assets": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "poster": { "type": ["string", "null"] },
+            "banner": { "type": ["string", "null"] },
+            "socialCards": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "twitter": { "type": ["string", "null"] },
+                "og": { "type": ["string", "null"] }
+              }
+            }
+          }
+        },
+        "quotes": { "type": "array", "items": { "type": "object" } }
+      }
+    },
+
+    "platform": {
+      "type": "object",
+      "required": ["visibility"],
+      "additionalProperties": false,
+      "properties": {
+        "visibility": {
+          "type": "string",
+          "enum": ["private", "public"]
+        },
+        "featured": { "type": "boolean" },
+        "allowFunding": { "type": "boolean" },
+        "allowInquiries": { "type": "boolean" },
+        "contactEmail": { "type": ["string", "null"] }
+      }
+    },
+
+    "commerce": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "stripeAccountId": { "type": ["string", "null"] },
+        "products": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "name"],
+            "additionalProperties": true,
+            "properties": {
+              "id": { "type": "string" },
+              "type": { "type": "string" },
+              "name": { "type": "string" },
+              "price": { "type": "number" },
+              "access": { "type": "string" },
+              "fulfillment": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+
+    "analytics": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "posthogProjectId": { "type": ["string", "null"] },
+        "trackingEvents": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "customProperties": { "type": "object" }
+      }
+    },
+
+    "funding": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Whether funding is active for this project"
+        },
+        "goal": {
+          "type": ["number", "null"],
+          "description": "Funding goal amount (null = no specific goal)"
+        },
+        "currency": {
+          "type": "string",
+          "description": "ISO 4217 currency code (e.g., USD, EUR)",
+          "default": "USD"
+        },
+        "tiers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "name", "amount", "frequency"],
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "Unique identifier for the tier (used in code)"
+              },
+              "name": {
+                "type": "string",
+                "description": "Display name for the tier (shown to users)"
+              },
+              "amount": {
+                "type": "number",
+                "description": "Donation amount in the specified currency"
+              },
+              "frequency": {
+                "type": "string",
+                "enum": ["monthly", "one-time"],
+                "description": "Recurring vs one-time donation"
+              },
+              "description": {
+                "type": "string",
+                "description": "Description of what the sponsor receives"
+              },
+              "limit": {
+                "type": ["number", "null"],
+                "description": "Max number of sponsors at this tier (null = unlimited)"
+              },
+              "enabled": {
+                "type": "boolean",
+                "description": "Whether the tier is currently available",
+                "default": true
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "rights": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "ownership": { "type": "string" },
+        "registrations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["type"],
+            "additionalProperties": true,
+            "properties": {
+              "type": { "type": "string" },
+              "number": { "type": "string" }
+            }
+          }
+        },
+        "licensing": {
+          "type": "object",
+          "additionalProperties": true,
+          "properties": {
+            "type": { "type": "string" },
+            "optionAvailable": { "type": "boolean" },
+            "purchaseAvailable": { "type": "boolean" },
+            "contactRequired": { "type": "boolean" }
+          }
+        }
+      }
+    },
+
+    "social": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "hashtag": { "type": ["string", "null"] },
+        "handles": {
+          "type": "object",
+          "additionalProperties": { "type": "string" }
+        },
+        "shareText": { "type": ["string", "null"] }
+      }
+    }
+  }
+}

@@ -175,6 +175,8 @@ Claude Agents ──write──> .fountain file ──view──> BetterFountain
 
 **Full instructions:** [docs/QUICKSTART.md](docs/QUICKSTART.md) - Platform-specific prerequisites, troubleshooting, and step-by-step guide.
 
+**On Windows and new to GitHub or the terminal?** [Windows Beginner's Guide](docs/guides/WINDOWS-BEGINNER-GUIDE.md) ([HTML version](docs/guides/windows-beginner-guide.html)) - A click-by-click, no-terminal setup using the Claude desktop app and GitHub Desktop.
+
 **New to Claude?** [Get Claude Code](https://claude.com/pricing) - Required for the AI team features.
 
 **Required extension:** [BetterFountain](https://github.com/piersdeseilligny/betterfountain) - Install in VS Code/Cursor to preview and navigate your screenplay. See [above](#see-what-your-ai-team-creates) for details.
@@ -381,6 +383,7 @@ Use the Tools → Join Community → Take Courses → Get Published → Launch I
 | Document | Purpose |
 |----------|---------|
 | [docs/QUICKSTART.md](docs/QUICKSTART.md) | Step-by-step setup guide |
+| [docs/guides/WINDOWS-BEGINNER-GUIDE.md](docs/guides/WINDOWS-BEGINNER-GUIDE.md) | No-terminal Windows setup for first-time GitHub / Claude Code users |
 | [AGENTS.md](AGENTS.md) | Complete agent team reference |
 | [docs/REFERENCE.md](docs/REFERENCE.md) | Commands, patterns, structure |
 | [docs/WORKFLOW.md](docs/WORKFLOW.md) | Git workflow guide |

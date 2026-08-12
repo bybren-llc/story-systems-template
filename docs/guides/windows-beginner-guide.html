@@ -1,0 +1,715 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Story Systems Template: Windows Beginner's Guide</title>
+<style>
+  /* ---------- Tokens ---------- */
+  :root {
+    --paper:#FBFAF7; --surface:#FFFFFF; --surface-2:#F4F1EA;
+    --ink:#20201C; --muted:#5C5A50; --faint:#807D71;
+    --hair:#E5E1D7; --hair-2:#D8D3C6;
+    --accent:#A9791F; --accent-ink:#8A6218;
+    --tip:#2C6E68; --tip-bg:#E9F1F0;
+    --warn:#A6412A; --warn-bg:#F6EAE5;
+    --done:#3F7D3A; --done-bg:#EAF1E7;
+    --code-bg:#F4F1EA; --code-ink:#3A362C;
+    --shadow:0 1px 2px rgba(30,28,20,.05), 0 8px 26px rgba(30,28,20,.06);
+    --maxw:72ch;
+    --serif:Georgia,"Times New Roman",serif;
+    --sans:"Segoe UI",system-ui,-apple-system,Roboto,Helvetica,Arial,sans-serif;
+    --mono:"Cascadia Code",Consolas,"SFMono-Regular",Menlo,"Liberation Mono",monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper:#161512; --surface:#1F1D18; --surface-2:#26241E;
+      --ink:#ECE8DE; --muted:#A7A292; --faint:#8B8778;
+      --hair:#33302A; --hair-2:#3F3B33;
+      --accent:#D6A94E; --accent-ink:#E7BE6B;
+      --tip:#5FB3AA; --tip-bg:#1C2A29;
+      --warn:#E0876B; --warn-bg:#2C201B;
+      --done:#7CB877; --done-bg:#1E271C;
+      --code-bg:#26241E; --code-ink:#D9D4C6;
+      --shadow:0 1px 2px rgba(0,0,0,.3), 0 10px 30px rgba(0,0,0,.35);
+    }
+  }
+  /* explicit toggle wins in both directions */
+  :root[data-theme="light"] {
+    --paper:#FBFAF7; --surface:#FFFFFF; --surface-2:#F4F1EA;
+    --ink:#20201C; --muted:#5C5A50; --faint:#807D71;
+    --hair:#E5E1D7; --hair-2:#D8D3C6;
+    --accent:#A9791F; --accent-ink:#8A6218;
+    --tip:#2C6E68; --tip-bg:#E9F1F0; --warn:#A6412A; --warn-bg:#F6EAE5;
+    --done:#3F7D3A; --done-bg:#EAF1E7; --code-bg:#F4F1EA; --code-ink:#3A362C;
+    --shadow:0 1px 2px rgba(30,28,20,.05), 0 8px 26px rgba(30,28,20,.06);
+  }
+  :root[data-theme="dark"] {
+    --paper:#161512; --surface:#1F1D18; --surface-2:#26241E;
+    --ink:#ECE8DE; --muted:#A7A292; --faint:#8B8778;
+    --hair:#33302A; --hair-2:#3F3B33;
+    --accent:#D6A94E; --accent-ink:#E7BE6B;
+    --tip:#5FB3AA; --tip-bg:#1C2A29; --warn:#E0876B; --warn-bg:#2C201B;
+    --done:#7CB877; --done-bg:#1E271C; --code-bg:#26241E; --code-ink:#D9D4C6;
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 10px 30px rgba(0,0,0,.35);
+  }
+
+  /* ---------- Reset-ish ---------- */
+  *,*::before,*::after{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:var(--sans); font-size:17px; line-height:1.65;
+    -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+  }
+  ::selection{background:color-mix(in srgb,var(--accent) 28%,transparent)}
+  a{color:var(--accent-ink); text-underline-offset:3px; text-decoration-thickness:1px}
+  a:hover{text-decoration-color:var(--accent)}
+  :focus-visible{outline:2px solid var(--accent); outline-offset:2px; border-radius:3px}
+  img{max-width:100%}
+
+  /* ---------- Shell ---------- */
+  .wrap{max-width:1120px; margin:0 auto; padding:0 clamp(18px,4vw,40px)}
+  .layout{display:block}
+  @media (min-width:1020px){
+    .layout{display:grid; grid-template-columns:250px minmax(0,1fr); gap:52px; align-items:start}
+  }
+
+  /* ---------- Masthead ---------- */
+  header.mast{
+    border-bottom:1px solid var(--hair); background:var(--surface);
+  }
+  .mast-inner{max-width:1120px; margin:0 auto; padding:44px clamp(18px,4vw,40px) 40px}
+  .eyebrow{
+    font-family:var(--mono); font-size:12px; letter-spacing:.16em; text-transform:uppercase;
+    color:var(--accent-ink); margin:0 0 14px; display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow::before{content:""; width:26px; height:1px; background:var(--accent)}
+  h1.title{
+    font-family:var(--serif); font-weight:700; line-height:1.08; text-wrap:balance;
+    font-size:clamp(30px,5vw,46px); margin:0 0 16px; letter-spacing:-.01em;
+  }
+  .lede{font-size:clamp(17px,2.2vw,19px); color:var(--muted); max-width:60ch; margin:0}
+  .meta-row{
+    display:flex; flex-wrap:wrap; gap:10px; margin-top:24px;
+  }
+  .pill{
+    font-family:var(--mono); font-size:12px; letter-spacing:.02em;
+    padding:6px 11px; border:1px solid var(--hair-2); border-radius:999px;
+    color:var(--muted); background:var(--paper); white-space:nowrap;
+  }
+  .pill b{color:var(--ink); font-weight:600}
+
+  /* ---------- Theme toggle ---------- */
+  .toggle{
+    position:fixed; top:14px; right:14px; z-index:20;
+    font-family:var(--mono); font-size:12px; letter-spacing:.04em;
+    background:var(--surface); color:var(--muted);
+    border:1px solid var(--hair-2); border-radius:999px; padding:7px 13px; cursor:pointer;
+    box-shadow:var(--shadow);
+  }
+  .toggle:hover{color:var(--ink); border-color:var(--accent)}
+
+  /* ---------- TOC ---------- */
+  nav.toc{margin:38px 0}
+  @media (min-width:1020px){
+    nav.toc{position:sticky; top:24px; margin:44px 0; max-height:calc(100vh - 48px); overflow:auto}
+  }
+  nav.toc h2{
+    font-family:var(--mono); font-size:11px; letter-spacing:.16em; text-transform:uppercase;
+    color:var(--faint); margin:0 0 12px; font-weight:600;
+  }
+  nav.toc ol{list-style:none; margin:0; padding:0; counter-reset:toc}
+  nav.toc li{margin:0}
+  nav.toc a{
+    display:block; padding:6px 0 6px 26px; position:relative;
+    color:var(--muted); text-decoration:none; font-size:14.5px; line-height:1.4;
+    border-left:2px solid transparent;
+  }
+  nav.toc a::before{
+    counter-increment:toc; content:counter(toc);
+    position:absolute; left:0; top:6px; font-family:var(--mono); font-size:11px;
+    color:var(--faint);
+  }
+  nav.toc a:hover{color:var(--ink)}
+
+  /* ---------- Article ---------- */
+  main{padding-bottom:80px; min-width:0}
+  article{max-width:var(--maxw)}
+  section{padding-top:14px; scroll-margin-top:20px}
+  h2.sec{
+    font-family:var(--serif); font-weight:700; font-size:clamp(23px,3.2vw,30px);
+    line-height:1.15; text-wrap:balance; letter-spacing:-.01em;
+    margin:52px 0 6px; padding-top:22px; border-top:1px solid var(--hair);
+  }
+  section:first-of-type h2.sec{border-top:none; margin-top:20px; padding-top:0}
+  h3{font-family:var(--sans); font-weight:700; font-size:19px; margin:32px 0 8px; letter-spacing:-.005em}
+  p{margin:14px 0}
+  strong{font-weight:700; color:var(--ink)}
+  em{font-style:italic}
+  code{
+    font-family:var(--mono); font-size:.86em; background:var(--code-bg); color:var(--code-ink);
+    padding:2px 6px; border-radius:5px; border:1px solid var(--hair);
+    word-break:break-word;
+  }
+  kbd{
+    font-family:var(--mono); font-size:.82em; background:var(--surface); color:var(--ink);
+    padding:2px 7px; border-radius:5px; border:1px solid var(--hair-2);
+    box-shadow:0 1px 0 var(--hair-2); white-space:nowrap;
+  }
+  ul,ol{margin:14px 0; padding-left:1.35em}
+  li{margin:7px 0}
+  li::marker{color:var(--accent)}
+  hr{border:none; border-top:1px solid var(--hair); margin:44px 0}
+
+  /* ---------- Part chip heading ---------- */
+  .part{
+    display:flex; align-items:baseline; gap:14px; margin:56px 0 6px;
+    padding-top:26px; border-top:2px solid var(--accent);
+  }
+  .part .chip{
+    flex:none; font-family:var(--mono); font-weight:600; font-size:14px;
+    color:var(--paper); background:var(--accent); letter-spacing:.04em;
+    padding:4px 11px; border-radius:6px; transform:translateY(-2px);
+  }
+  .part h2{
+    font-family:var(--serif); font-weight:700; font-size:clamp(23px,3.2vw,30px);
+    line-height:1.14; text-wrap:balance; letter-spacing:-.01em; margin:0;
+  }
+
+  /* ---------- Callouts ---------- */
+  .box{
+    background:var(--surface); border:1px solid var(--hair);
+    border-left:3px solid var(--faint); border-radius:10px;
+    padding:16px 18px; margin:22px 0; box-shadow:var(--shadow);
+  }
+  .box .label{
+    font-family:var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase;
+    font-weight:600; margin:0 0 6px; color:var(--faint); display:block;
+  }
+  .box p:first-of-type{margin-top:0}
+  .box p:last-child{margin-bottom:0}
+  .box.tip{border-left-color:var(--tip); background:var(--tip-bg)}
+  .box.tip .label{color:var(--tip)}
+  .box.warn{border-left-color:var(--warn); background:var(--warn-bg)}
+  .box.warn .label{color:var(--warn)}
+  .box.done{border-left-color:var(--done); background:var(--done-bg)}
+  .box.done .label{color:var(--done)}
+  .box.key{border-left-color:var(--accent); background:color-mix(in srgb,var(--accent) 9%,var(--surface))}
+  .box.key .label{color:var(--accent-ink)}
+
+  /* ---------- Code blocks ---------- */
+  .code{
+    position:relative; margin:20px 0; background:var(--code-bg);
+    border:1px solid var(--hair); border-radius:10px; overflow:hidden;
+  }
+  .code .head{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:8px 12px; border-bottom:1px solid var(--hair);
+    font-family:var(--mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--faint); background:color-mix(in srgb,var(--ink) 4%,var(--code-bg));
+  }
+  .code pre{
+    margin:0; padding:14px 16px; overflow-x:auto;
+    font-family:var(--mono); font-size:13.5px; line-height:1.6; color:var(--code-ink);
+  }
+  .code.speech pre{white-space:pre-wrap; word-break:break-word}
+  .copy{
+    font-family:var(--mono); font-size:11px; letter-spacing:.04em; text-transform:uppercase;
+    border:1px solid var(--hair-2); background:var(--surface); color:var(--muted);
+    border-radius:6px; padding:3px 9px; cursor:pointer;
+  }
+  .copy:hover{color:var(--ink); border-color:var(--accent)}
+  .copy.done{color:var(--done); border-color:var(--done)}
+
+  /* ---------- Tables ---------- */
+  .tablewrap{overflow-x:auto; margin:22px 0; border:1px solid var(--hair); border-radius:10px}
+  table{border-collapse:collapse; width:100%; min-width:520px; font-size:15px}
+  th,td{text-align:left; padding:11px 14px; border-bottom:1px solid var(--hair); vertical-align:top}
+  thead th{
+    font-family:var(--mono); font-size:11px; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--faint); font-weight:600; background:var(--surface-2);
+  }
+  tbody tr:last-child td{border-bottom:none}
+  tbody tr:nth-child(even){background:color-mix(in srgb,var(--ink) 2.5%,transparent)}
+  td code{font-size:.82em}
+  .yes{color:var(--done); font-weight:700}
+  .no{color:var(--warn); font-weight:700}
+
+  /* ---------- Flow diagram ---------- */
+  .flow{
+    display:flex; flex-wrap:wrap; gap:8px; align-items:stretch; margin:22px 0;
+  }
+  .flow .step{
+    flex:1 1 130px; background:var(--surface); border:1px solid var(--hair);
+    border-radius:9px; padding:12px 13px; box-shadow:var(--shadow); min-width:0;
+  }
+  .flow .step .n{font-family:var(--mono); font-size:11px; color:var(--accent-ink); letter-spacing:.08em}
+  .flow .step .t{display:block; font-weight:600; font-size:14.5px; margin-top:3px}
+
+  /* ---------- Steps list ---------- */
+  ol.steps{counter-reset:st; list-style:none; padding-left:0; margin:18px 0}
+  ol.steps>li{
+    position:relative; padding-left:44px; margin:14px 0; min-height:28px;
+  }
+  ol.steps>li::before{
+    counter-increment:st; content:counter(st);
+    position:absolute; left:0; top:-1px; width:28px; height:28px;
+    display:flex; align-items:center; justify-content:center;
+    font-family:var(--mono); font-size:13px; font-weight:600;
+    color:var(--accent-ink); background:color-mix(in srgb,var(--accent) 12%,var(--surface));
+    border:1px solid color-mix(in srgb,var(--accent) 35%,transparent); border-radius:50%;
+  }
+
+  /* ---------- Footer ---------- */
+  footer{border-top:1px solid var(--hair); margin-top:60px; padding:30px 0 10px; color:var(--muted); font-size:14px; text-align:center}
+  footer .brand{font-family:var(--serif); font-style:italic; color:var(--ink)}
+
+  @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto !important}}
+  html{scroll-behavior:smooth}
+</style>
+</head>
+<body>
+<button class="toggle" id="themeToggle" type="button" aria-label="Switch light or dark theme">Theme</button>
+
+<header class="mast">
+  <div class="mast-inner">
+    <p class="eyebrow">Story Systems Template &nbsp;/&nbsp; Windows &nbsp;/&nbsp; First-timer guide</p>
+    <h1 class="title">Write your screenplay with an 11-person AI team</h1>
+    <p class="lede">A step-by-step setup for Windows, even if you have never used GitHub, a terminal, or Claude Code before. We click buttons wherever we can, and when a command is unavoidable, you let Claude type it for you.</p>
+    <div class="meta-row">
+      <span class="pill"><b>Windows</b> 10 / 11</span>
+      <span class="pill">First-time <b>GitHub</b></span>
+      <span class="pill">First-time <b>Claude Code</b></span>
+      <span class="pill">No terminal skills needed</span>
+      <span class="pill">Setup about <b>30 to 45 min</b>, then 10 sec/day</span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+<div class="layout">
+
+  <nav class="toc" aria-label="Contents">
+    <h2>Contents</h2>
+    <ol>
+      <li><a href="#big-picture">The big picture</a></li>
+      <li><a href="#need">What you need first</a></li>
+      <li><a href="#partA">Part A: Install four tools</a></li>
+      <li><a href="#partB">Part B: Copy the template</a></li>
+      <li><a href="#partC">Part C: Download to your PC</a></li>
+      <li><a href="#partD">Part D: Open in Claude</a></li>
+      <li><a href="#partE">Part E: Set up the project</a></li>
+      <li><a href="#partF">Part F: Start writing</a></li>
+      <li><a href="#partG">Part G: Save to GitHub</a></li>
+      <li><a href="#naming">Naming cheat-sheet</a></li>
+      <li><a href="#trouble">Troubleshooting</a></li>
+      <li><a href="#glossary">Plain-English glossary</a></li>
+    </ol>
+  </nav>
+
+  <main>
+  <article>
+
+    <section id="big-picture">
+      <h2 class="sec">The big picture</h2>
+      <p>You are setting up a creative writing workspace that comes pre-loaded with an AI team: a Story Architect, a Dialogue Writer, a Script Supervisor, and eight more specialists. You talk to them in plain English, and they help you write and format a professional screenplay.</p>
+      <p>Four tools each do one small job. Here is the whole system at a glance.</p>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>The tool</th><th>What it is, in one line</th><th>Its job in your setup</th></tr></thead>
+          <tbody>
+            <tr><td><strong>GitHub</strong> (website)</td><td>An online locker for projects</td><td>Holds the master template, and later your online backup</td></tr>
+            <tr><td><strong>GitHub Desktop</strong> (app)</td><td>A click-button front end for GitHub</td><td>Downloads your project and backs it up, with no typing</td></tr>
+            <tr><td><strong>Claude desktop app</strong></td><td>The Claude app, with a built-in <strong>Code</strong> mode</td><td>Where your AI writing team lives and works</td></tr>
+            <tr><td><strong>Node.js and Git</strong></td><td>Two small background tools</td><td>Quiet helpers the project needs. Install once, forget</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>The flow you are about to follow. Each arrow is one Part below.</p>
+      <div class="flow">
+        <div class="step"><span class="n">B</span><span class="t">Copy the template on GitHub</span></div>
+        <div class="step"><span class="n">C</span><span class="t">Download it to your PC</span></div>
+        <div class="step"><span class="n">D</span><span class="t">Open it in Claude</span></div>
+        <div class="step"><span class="n">E</span><span class="t">Let Claude set it up</span></div>
+        <div class="step"><span class="n">F</span><span class="t">Start writing</span></div>
+      </div>
+      <div class="box key">
+        <span class="label">The one idea that makes this easy</span>
+        <p>The Claude <strong>Code</strong> tab is not only a chat box. It can run the setup steps for you. So instead of learning commands, you open your project and type something like <em>"install the dependencies and initialize this project as a screenplay named my-first-script."</em> Claude does it while you watch.</p>
+      </div>
+    </section>
+
+    <section id="need">
+      <h2 class="sec">What you need first</h2>
+      <p><strong>Your computer:</strong></p>
+      <ul>
+        <li>A <strong>Windows 10 (version 1809 or newer) or Windows 11</strong> PC.</li>
+        <li>About <strong>2 to 3 GB free disk space</strong> and an internet connection.</li>
+        <li>An <strong>email address</strong> for your GitHub and Claude accounts.</li>
+      </ul>
+      <p><strong>Prerequisites you will set up in Part A, all one-time:</strong></p>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>Prerequisite</th><th>Why it is needed</th><th>Cost</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Claude Pro or Max plan</strong></td><td>Claude Code (the "Code" tab) is not on the free plan</td><td>Paid</td></tr>
+            <tr><td><strong>Claude desktop app</strong></td><td>Runs your AI writing team with a graphical interface</td><td class="yes">Free</td></tr>
+            <tr><td><strong>Node.js</strong></td><td>The template uses it to check your formatting and spelling</td><td class="yes">Free</td></tr>
+            <tr><td><strong>Git for Windows</strong></td><td>Claude's Code tab needs it to work on files on your PC</td><td class="yes">Free</td></tr>
+            <tr><td><strong>GitHub account and GitHub Desktop</strong></td><td>Stores your project online and downloads it to your PC</td><td class="yes">Free</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>You only do Part A once, ever. After that you skip straight to opening your project.</p>
+      <div class="box warn">
+        <span class="label">Important prerequisite: Claude Code needs a PAID plan</span>
+        <p>The <strong>free</strong> Claude plan does <strong>not</strong> include Claude Code (the "Code" tab). To use your AI writing team you need <strong>Claude Pro</strong> (the usual choice for individual writers) or <strong>Claude Max</strong> (more headroom if you write a lot). Team or Enterprise work too.</p>
+        <p>You can start on Pro and upgrade later. Plans: <a href="https://claude.com/pricing">claude.com/pricing</a>. If you skip this, everything installs fine, but the <strong>Code</strong> tab shows an "upgrade" prompt instead of letting you work.</p>
+      </div>
+    </section>
+
+    <!-- PART A -->
+    <section id="partA">
+      <div class="part"><span class="chip">Part A</span><h2>Install the four tools (once)</h2></div>
+      <p>Do these five short steps in order. You never repeat Part A. Once these are on your PC, you are set for every future project.</p>
+
+      <h3>A1. Get a paid Claude plan (required)</h3>
+      <ol class="steps">
+        <li>In a browser, go to <a href="https://claude.ai">claude.ai</a> and sign up (or log in) with your email.</li>
+        <li>Go to <a href="https://claude.com/pricing">claude.com/pricing</a> and subscribe to <strong>Claude Pro</strong> (recommended to start) or <strong>Claude Max</strong>.</li>
+        <li>That is it. The same login works in the desktop app you install next.</li>
+      </ol>
+      <div class="box tip">
+        <span class="label">Why this comes first</span>
+        <p>If the plan is not active, later steps still look like they work, but the <strong>Code</strong> tab will not open. Getting it out of the way now saves confusion.</p>
+      </div>
+
+      <h3>A2. Install the Claude desktop app</h3>
+      <p>This is where your AI team works. It includes Claude Code built in, with a graphical interface, so no terminal is required.</p>
+      <ol class="steps">
+        <li>Go to <a href="https://claude.com/download">claude.com/download</a> and click the <strong>Windows</strong> download. A file like <code>Claude-Setup.exe</code> lands in your <strong>Downloads</strong> folder.</li>
+        <li>Double-click it and follow the installer. You do not need to be an administrator.</li>
+        <li>Open <strong>Claude</strong> from the <strong>Start menu</strong> and sign in with the account you paid for in A1.</li>
+        <li>At the top you will see three tabs: <strong>Chat</strong>, <strong>Cowork</strong>, and <strong>Code</strong>. You will use <strong>Code</strong> later. If clicking Code asks you to upgrade, your paid plan is not active yet, so fix that first.</li>
+      </ol>
+
+      <h3>A3. Install Node.js (required)</h3>
+      <p><strong>Node.js</strong> is a small free tool the template uses behind the scenes to check formatting and spelling. Install once, forget forever.</p>
+      <ol class="steps">
+        <li>Go to <a href="https://nodejs.org">nodejs.org</a>.</li>
+        <li>Click the big <strong>LTS</strong> button, which means "the stable version" (for example "20.x.x LTS"). A <code>.msi</code> file downloads.</li>
+        <li>Double-click it, then click <strong>Next</strong>, <strong>Next</strong>, <strong>Install</strong>. The defaults are correct, so change nothing, then click <strong>Finish</strong>.</li>
+      </ol>
+      <div class="box tip">
+        <span class="label">Normal</span>
+        <p>You will not see a new app in your Start menu, which is normal. Node.js works quietly in the background. It is separate from Claude. The Claude app has its own copy of Claude Code, but the template's helper tools need this one.</p>
+      </div>
+
+      <h3>A4. Install Git for Windows (required)</h3>
+      <p><strong>Git</strong> is the technology GitHub is built on. Claude's <strong>Code</strong> tab needs it installed to work on files on your PC (a "Local" session).</p>
+      <ol class="steps">
+        <li>Go to <a href="https://git-scm.com/downloads/win">git-scm.com/downloads/win</a> and click <strong>64-bit Git for Windows Setup</strong>.</li>
+        <li>Double-click the download. The installer asks a lot of questions. You can safely click <strong>Next</strong> on every screen and accept all defaults, then <strong>Install</strong>, then <strong>Finish</strong>. None of the options matter here.</li>
+      </ol>
+
+      <h3>A5. Make a GitHub account and install GitHub Desktop</h3>
+      <p><strong>GitHub</strong> stores the template and, later, backs up your work. <strong>GitHub Desktop</strong> does all the GitHub steps with buttons instead of commands.</p>
+      <ol class="steps">
+        <li><strong>Create a free GitHub account:</strong> go to <a href="https://github.com/signup">github.com/signup</a> and follow the prompts. It is free.</li>
+        <li><strong>Install GitHub Desktop:</strong> go to <a href="https://desktop.github.com">desktop.github.com</a>, click <strong>Download for Windows</strong>, then double-click <code>GitHubDesktopSetup.exe</code>.</li>
+        <li>Open <strong>GitHub Desktop</strong> and sign in with your new GitHub account. If a browser opens to confirm, click <strong>Authorize</strong>.</li>
+      </ol>
+      <div class="box done">
+        <span class="label">End of Part A: checklist</span>
+        <p>You should now have: a <strong>paid Claude plan</strong>, the <strong>Claude app</strong> (signed in), <strong>Node.js</strong>, <strong>Git for Windows</strong>, a <strong>GitHub account</strong>, and <strong>GitHub Desktop</strong> (signed in). All five done? You never touch Part A again.</p>
+      </div>
+    </section>
+
+    <!-- PART B -->
+    <section id="partB">
+      <div class="part"><span class="chip">Part B</span><h2>Make your own copy of the template</h2></div>
+      <p>You do not write inside the shared template. You make your own private copy first. GitHub has a one-click button for exactly this.</p>
+      <ol class="steps">
+        <li>In your browser, open the template page: <a href="https://github.com/bybren-llc/story-systems-template">github.com/bybren-llc/story-systems-template</a></li>
+        <li>Near the top-right, click the green <strong>Use this template</strong> button, then choose <strong>Create a new repository</strong>. ("Repository," or "repo," is just GitHub's word for one project folder.)</li>
+        <li>On the "Create a new repository" screen:
+          <ul>
+            <li><strong>Repository name:</strong> your project name in <strong>all lowercase with hyphens instead of spaces</strong>, for example <code>my-first-script</code> or <code>midnight-diner</code>. See the <a href="#naming">Naming cheat-sheet</a>, because this matters.</li>
+            <li><strong>Owner:</strong> leave it as your username.</li>
+            <li><strong>Public or Private:</strong> choose <strong>Private</strong> to keep your script to yourself (recommended for creative work).</li>
+            <li>Leave <strong>"Include all branches"</strong> unchecked.</li>
+          </ul>
+        </li>
+        <li>Click <strong>Create repository</strong>. After a few seconds you will see your copy at <code>github.com/YOUR-USERNAME/my-first-script</code>.</li>
+      </ol>
+      <div class="box tip">
+        <span class="label">What just happened</span>
+        <p>You now own a complete, private copy of the whole AI-writing template. The original stays untouched, and you will only ever change your copy.</p>
+      </div>
+    </section>
+
+    <!-- PART C -->
+    <section id="partC">
+      <div class="part"><span class="chip">Part C</span><h2>Download your project to your PC</h2></div>
+      <p>Your project lives online right now. To write on your computer you "clone" it, which is GitHub's word for downloading a working copy. GitHub Desktop does it in two clicks.</p>
+      <ol class="steps">
+        <li>On your new repository's page, click the green <strong>&lt; &gt; Code</strong> button, then <strong>Open with GitHub Desktop</strong>. If the browser asks "Open GitHub Desktop?", click <strong>Open</strong>.</li>
+        <li>In the <strong>Clone a repository</strong> window, the <strong>Local path</strong> is where the folder will live (the default, like <code>C:\Users\YourName\Documents\GitHub\my-first-script</code>, is fine). Remember this location, because that is where your screenplay lives. Click <strong>Clone</strong>.</li>
+        <li>If asked how you are planning to use this repository, choose <strong>For my own purposes</strong>, then <strong>Continue</strong>.</li>
+      </ol>
+      <div class="box tip">
+        <span class="label">No terminal needed</span>
+        <p>GitHub Desktop ran <code>git clone</code> for you. To find the folder later, click <strong>Repository</strong>, then <strong>Show in Explorer</strong> in GitHub Desktop. Keep GitHub Desktop open, because you will use it again in Part G.</p>
+      </div>
+    </section>
+
+    <!-- PART D -->
+    <section id="partD">
+      <div class="part"><span class="chip">Part D</span><h2>Open your project in Claude</h2></div>
+      <p>Now we bring in your AI team.</p>
+      <ol class="steps">
+        <li>Open the <strong>Claude</strong> desktop app from the Start menu.</li>
+        <li>Click the <strong>Code</strong> tab at the top center.</li>
+        <li>When asked how to run, choose <strong>Local</strong>, which means "work on the files on my own PC."</li>
+        <li>Click <strong>Select folder</strong> and choose the folder from Part C, for example <code>C:\Users\YourName\Documents\GitHub\my-first-script</code>.</li>
+        <li>Near the send button is a model dropdown. The default is fine, and you can change it later.</li>
+      </ol>
+      <div class="box key">
+        <span class="label">You are always in control</span>
+        <p>The Code tab starts in <strong>Manual mode</strong>. Claude shows you every change and waits for your <strong>Accept</strong> or <strong>Reject</strong> before anything happens to your files. Nothing is edited or run without your OK.</p>
+      </div>
+    </section>
+
+    <!-- PART E -->
+    <section id="partE">
+      <div class="part"><span class="chip">Part E</span><h2>Set up your project</h2></div>
+      <p>Your folder is a fresh copy of the template. Two small things happen once: install the helper tools, and "initialize" the project, which names it and creates your blank screenplay file. You will not type commands. You ask Claude.</p>
+
+      <h3>The easy way: ask Claude</h3>
+      <p>In the message box at the bottom of the <strong>Code</strong> tab, paste this (change the name to your project, using lowercase with hyphens) and press <kbd>Enter</kbd>:</p>
+      <div class="code speech">
+        <div class="head"><span>Type this to Claude</span><button class="copy" type="button">Copy</button></div>
+        <pre>Please set up this project for me. First run "npm install" to install the
+dependencies, then run the Windows initializer script to initialize it as a
+screenplay project named my-first-script. Show me each command before you run it.</pre>
+      </div>
+      <p>Claude proposes running <code>npm install</code> and then the setup script (<code>.\scripts\init-project.ps1</code>). Because you are in <strong>Manual mode</strong>, it shows each step and waits, so click <strong>Accept</strong> or <strong>Run</strong> to let each proceed. When it asks the project type, the answer is <strong>screenplay</strong> (option 1), the only type ready today.</p>
+      <p>When it finishes, Claude will have created your personal files, including:</p>
+      <ul>
+        <li><code>my-first-script.fountain</code>, your actual screenplay (it starts almost blank, ready for you).</li>
+        <li><code>templates/beat-sheet.md</code> and <code>templates/character-registry.md</code>, your planning docs.</li>
+        <li>A personalized <code>README.md</code> and project settings carrying your project's name.</li>
+      </ul>
+      <div class="box tip">
+        <span class="label">About the name you chose</span>
+        <p>Setup turns your hyphenated name into two things: <code>my-first-script</code> becomes the file <code>my-first-script.fountain</code>, and the on-screen title "My First Script" (each word capitalized). That is why the name should be lowercase with hyphens. See the <a href="#naming">Naming cheat-sheet</a>.</p>
+      </div>
+      <div class="box">
+        <span class="label">If you see "CLAUDE.md (copy: symlink requires Developer Mode)"</span>
+        <p>Normal, harmless Windows message. Everything works exactly the same, so you can ignore it.</p>
+      </div>
+
+      <h3>The manual way, only if you would rather do it yourself</h3>
+      <p>You can run the two steps in the app's built-in terminal:</p>
+      <ol class="steps">
+        <li>Open the integrated terminal with <kbd>Ctrl</kbd> + <kbd>`</kbd> (the backtick key, top-left under <kbd>Esc</kbd>).</li>
+        <li>Type <code>npm install</code> and press <kbd>Enter</kbd>.</li>
+        <li>When done, run the initializer:</li>
+      </ol>
+      <div class="code">
+        <div class="head"><span>PowerShell: initialize the project</span><button class="copy" type="button">Copy</button></div>
+        <pre>.\scripts\init-project.ps1</pre>
+      </div>
+      <p>If Windows blocks it with a red "execution policy" message, use this instead:</p>
+      <div class="code">
+        <div class="head"><span>PowerShell: if blocked by execution policy</span><button class="copy" type="button">Copy</button></div>
+        <pre>PowerShell -ExecutionPolicy Bypass -File .\scripts\init-project.ps1</pre>
+      </div>
+      <p>It asks for a project name (type your lowercase-hyphenated name, press <kbd>Enter</kbd>) and a project type (press <kbd>Enter</kbd> to accept <strong>screenplay</strong>). The easy way above is what this system is designed for, so letting Claude run the setup is the intended experience.</p>
+    </section>
+
+    <!-- PART F -->
+    <section id="partF">
+      <div class="part"><span class="chip">Part F</span><h2>Start writing</h2></div>
+      <p>Your AI team is ready. You steer it two ways, both in the same message box.</p>
+
+      <h3>1. Slash commands (type <code>/</code>)</h3>
+      <p>Type a forward slash <code>/</code> and a menu of commands pops up (or click <strong>+</strong>, then <strong>Slash commands</strong>). A few to start with:</p>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>Type this</th><th>What it does</th></tr></thead>
+          <tbody>
+            <tr><td><code>/start-scene A tense diner argument at midnight</code></td><td>Begins a new scene with the right setup</td></tr>
+            <tr><td><code>/writers-room</code></td><td>Convenes the AI team to brainstorm before you write</td></tr>
+            <tr><td><code>/check-format</code></td><td>Checks your screenplay is correctly formatted</td></tr>
+            <tr><td><code>/scene-list</code></td><td>Lists every scene with a page estimate</td></tr>
+            <tr><td><code>/export-pdf</code></td><td>Turns your script into a professional PDF</td></tr>
+            <tr><td><code>/stuck</code></td><td>Looks at where you are and suggests what to do next</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="box tip">
+        <span class="label">New to all this?</span>
+        <p>Type <code>/stuck</code>, or just say in plain English: "I'm new here, help me start my first scene." The AI team is built to guide beginners.</p>
+      </div>
+
+      <h3>2. Plain English</h3>
+      <p>You do not have to use commands at all. You can simply type things like:</p>
+      <ul>
+        <li>"Help me brainstorm a logline for a heist movie set in a bakery."</li>
+        <li>"Write an opening scene: a lighthouse keeper finds a message in a bottle."</li>
+        <li>"Read my beat sheet and tell me if Act Two is too slow."</li>
+      </ul>
+      <p>Every change Claude makes to a file is shown to you first, in the diff view with <strong>Accept</strong> and <strong>Reject</strong> buttons. Nothing happens to your screenplay without your approval.</p>
+    </section>
+
+    <!-- PART G -->
+    <section id="partG">
+      <div class="part"><span class="chip">Part G</span><h2>Save your work back to GitHub</h2></div>
+      <p>As you write, changes live on your PC. To keep a safe online backup, and to be able to work from another computer later, save them back to GitHub. There are two easy ways.</p>
+
+      <h3>Easiest: ask Claude</h3>
+      <div class="code speech">
+        <div class="head"><span>Type this to Claude</span><button class="copy" type="button">Copy</button></div>
+        <pre>Please save my work: commit these changes with a short message describing
+them, then push to GitHub.</pre>
+      </div>
+
+      <h3>Or use GitHub Desktop (buttons only)</h3>
+      <ol class="steps">
+        <li>Switch to <strong>GitHub Desktop</strong>. On the left you will see the files you changed.</li>
+        <li>Bottom-left, type a short note in the <strong>Summary</strong> box, for example "Wrote opening diner scene."</li>
+        <li>Click <strong>Commit to main</strong>. Commit means "save a snapshot."</li>
+        <li>Click <strong>Push origin</strong> at the top. Push means "upload the snapshot to GitHub."</li>
+      </ol>
+      <div class="box done">
+        <span class="label">Do this whenever you finish a session</span>
+        <p>It is your undo history and your backup in one. If your PC ever dies, your screenplay is safe on GitHub. <strong>To come back tomorrow:</strong> open Claude, click the <strong>Code</strong> tab, and your project is remembered (or click <strong>Select folder</strong> again). That is the 10-second daily routine.</p>
+      </div>
+    </section>
+
+    <!-- NAMING -->
+    <section id="naming">
+      <h2 class="sec">Naming cheat-sheet (important)</h2>
+      <p>Getting names right up front avoids confusing errors later. There are three names, and the simplest life is to make them all the same lowercase-hyphenated word.</p>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>Where</th><th>What to type</th><th>Good</th><th>Avoid</th></tr></thead>
+          <tbody>
+            <tr><td><strong>GitHub repo name</strong> (Part B)</td><td>Your project name</td><td><code>midnight-diner</code></td><td><code>Midnight Diner</code></td></tr>
+            <tr><td><strong>Local folder name</strong> (Part C)</td><td>Usually auto-matches the repo</td><td><code>midnight-diner</code></td><td>spaces, symbols</td></tr>
+            <tr><td><strong>Project name in setup</strong> (Part E)</td><td>The same word again</td><td><code>midnight-diner</code></td><td><code>Midnight Diner</code></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>The golden rules for the project name:</p>
+      <ul>
+        <li><span class="yes">Yes:</span> all lowercase, for example <code>midnight-diner</code>.</li>
+        <li><span class="yes">Yes:</span> hyphens (<code>-</code>) instead of spaces, so not <code>midnight diner</code>.</li>
+        <li><span class="yes">Yes:</span> letters and numbers only, so no <code>! @ . ' /</code>.</li>
+        <li><span class="no">No:</span> no spaces, no capitals, no punctuation.</li>
+      </ul>
+      <div class="box tip">
+        <span class="label">Why it matters</span>
+        <p>Enter <code>midnight-diner</code> and setup creates the file <code>midnight-diner.fountain</code> and sets your screenplay's display title to "Midnight Diner" (capitalized for you). You can change the on-screen title later inside the <code>.fountain</code> file. The folder and file name are simplest to just get right once.</p>
+      </div>
+    </section>
+
+    <!-- TROUBLE -->
+    <section id="trouble">
+      <h2 class="sec">Troubleshooting</h2>
+      <p>Common first-timer bumps on Windows, and the fix for each.</p>
+
+      <p><strong>The "Code" tab tells me to upgrade.</strong><br>Your paid Claude plan is not active. Revisit <a href="#partA">A1</a>, subscribe to Pro or Max at <a href="https://claude.com/pricing">claude.com/pricing</a>, then restart the Claude app.</p>
+
+      <p><strong>"Select folder" or the Local session will not start, or it mentions Git.</strong><br>Git is not installed. Do <a href="#partA">A4</a>, then fully close and reopen the Claude app.</p>
+
+      <p><strong><code>npm</code> is not recognized, or "npm is not installed."</strong><br>Node.js is not installed, or the app was open before you installed it. Do <a href="#partA">A3</a>, then completely close and reopen the Claude app so it sees the new tool, and try Part E again.</p>
+
+      <p><strong>The setup script is blocked by a red "execution policy" message.</strong><br>Windows being cautious. Use this version (Claude can run it for you):</p>
+      <div class="code">
+        <div class="head"><span>PowerShell</span><button class="copy" type="button">Copy</button></div>
+        <pre>PowerShell -ExecutionPolicy Bypass -File .\scripts\init-project.ps1</pre>
+      </div>
+
+      <p><strong>I see "CLAUDE.md (copy: symlink requires Developer Mode)."</strong><br>Normal on Windows, and the copy works identically, so there is nothing to fix. If you want the tidier version, <strong>Settings</strong>, then <strong>System</strong>, then <strong>For developers</strong>, then <strong>Developer Mode: On</strong> enables it, but it is purely cosmetic.</p>
+
+      <p><strong>"git is not recognized" in the terminal.</strong><br>Git was installed but the app was already open. Close and reopen the Claude app (and GitHub Desktop) so they pick up Git.</p>
+
+      <p><strong>A command seems stuck, or I am lost.</strong><br>In the Code tab, type in plain English: "that didn't work, here's what I see: [paste the message]. What should I do?" Claude reads the message and walks you through it.</p>
+
+      <p><strong>I accidentally changed something I did not mean to.</strong><br>Nothing is permanent until you commit (Part G). In GitHub Desktop, right-click a changed file, then <strong>Discard changes</strong> to undo it.</p>
+    </section>
+
+    <!-- GLOSSARY -->
+    <section id="glossary">
+      <h2 class="sec">Plain-English glossary</h2>
+      <p>You do not need these to follow the guide, but here is what the jargon means.</p>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>Term</th><th>What it really means</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Terminal</strong> (command line, CLI)</td><td>The plain text window where you type commands. This guide avoids it, and when it is needed, Claude types the commands for you.</td></tr>
+            <tr><td><strong>GitHub</strong></td><td>A website that stores projects online, like a locker with version history.</td></tr>
+            <tr><td><strong>Repository ("repo")</strong></td><td>GitHub's word for one project, meaning a folder of files plus its history.</td></tr>
+            <tr><td><strong>Template</strong></td><td>A ready-made starter repo you copy to begin your own. That is this whole system.</td></tr>
+            <tr><td><strong>Clone</strong></td><td>To download a working copy of a repo onto your PC (Part C). GitHub Desktop does it with a button.</td></tr>
+            <tr><td><strong>Commit</strong></td><td>To save a snapshot of your changes, with a short note (Part G).</td></tr>
+            <tr><td><strong>Push</strong></td><td>To upload your saved snapshots to GitHub so there is an online backup (Part G).</td></tr>
+            <tr><td><strong>Claude Code (the "Code" tab)</strong></td><td>The mode of the Claude app that can read your files, write, and run setup. It is your AI team's workshop.</td></tr>
+            <tr><td><strong>Slash command</strong></td><td>A shortcut you trigger by typing <code>/</code> (like <code>/start-scene</code>) to run a built-in task.</td></tr>
+            <tr><td><strong>Node.js and npm</strong></td><td>The background tool, and its installer, that the template uses to check your work. Install once, ignore forever.</td></tr>
+            <tr><td><strong>Git</strong></td><td>The underlying version-tracking technology that GitHub and GitHub Desktop are built on.</td></tr>
+            <tr><td><strong>Fountain (<code>.fountain</code>)</strong></td><td>A simple text format for screenplays. Your script is a <code>.fountain</code> file, and the AI team handles the formatting.</td></tr>
+            <tr><td><strong>Diff</strong></td><td>A "before and after" view of a change, with <strong>Accept</strong> and <strong>Reject</strong> buttons.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="box key">
+        <span class="label">The move that always works</span>
+        <p>Any time you are unsure: open the Code tab and ask, in plain English. That is the whole point of this system.</p>
+      </div>
+    </section>
+
+    <footer>
+      <p><span class="brand">Words To Film By</span>: "Your creative AI team, ready to work."<br>
+      Harness by J. Scott Graham / Bybren LLC. See also <code>docs/QUICKSTART.md</code>, <code>AGENTS.md</code>, <code>docs/REFERENCE.md</code>.</p>
+    </footer>
+
+  </article>
+  </main>
+
+</div>
+</div>
+
+<script>
+  // Theme toggle: stamp data-theme, overriding the OS media query in both directions.
+  (function(){
+    var btn = document.getElementById('themeToggle');
+    var root = document.documentElement;
+    btn.addEventListener('click', function(){
+      var current = root.getAttribute('data-theme');
+      if(!current){
+        current = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      root.setAttribute('data-theme', current === 'dark' ? 'light' : 'dark');
+    });
+  })();
+  // Copy buttons
+  (function(){
+    document.querySelectorAll('.copy').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var pre = btn.closest('.code').querySelector('pre');
+        var text = pre.innerText;
+        navigator.clipboard.writeText(text).then(function(){
+          var old = btn.textContent;
+          btn.textContent = 'Copied'; btn.classList.add('done');
+          setTimeout(function(){ btn.textContent = old; btn.classList.remove('done'); }, 1600);
+        });
+      });
+    });
+  })();
+</script>
+</body>
+</html>
